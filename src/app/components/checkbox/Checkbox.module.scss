@@ -1,7 +1,6 @@
 .Container {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 11px;
 }
 
@@ -14,11 +13,23 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  &:checked {
+  background-color: #cccccc;
+  &.Checked {
     background-color: #8728ff;
-    color: white;
-    ::after {
-      content: "✔";
-    }
   }
+  &.Transparent {
+    background-color: transparent;
+  }
+}
+
+.Label {
+  &.isLabelGray {
+    color: #7f7f7f;
+  }
+  &.isLabelBold {
+    font-weight: 700;
+  }
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
 }
