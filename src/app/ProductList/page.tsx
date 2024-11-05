@@ -1,14 +1,14 @@
-import { DisableBtn } from "../componant/Button/DisableBtn";
-import { NomalBtn } from "../componant/Button/NomalBtn";
-import { AbleBtn } from "../componant/Button/AbleBtn";
-import { FindPasswordBtn } from "../componant/Button/FindPasswordBtn";
-import { LoginBtn } from "../componant/Button/LoginBtn";
-import { DateBtn } from "../componant/Button/DateBtn";
-import { MemberBtn } from "../componant/Button/MemberBtn";
-import { ListBtn } from "../componant/Button/ListBtn";
-import { MapBtn } from "../componant/Button/MapBtn";
-import { ClickListBtn } from "../componant/Button/ClickListBtn";
-import { ResearchBtn } from "../componant/Button/ResearchBtn";
+import { DisableBtn } from "../components/Button/DisableBtn";
+import { NomalBtn } from "../components/Button/NomalBtn";
+import { AbleBtn } from "../components/Button/AbleBtn";
+import { FindPasswordBtn } from "../components/Button/FindPasswordBtn";
+import { LoginBtn } from "../components/Button/LoginBtn";
+import { DateBtn } from "../components/Button/DateBtn";
+import { MemberBtn } from "../components/Button/MemberBtn";
+import { ListBtn } from "../components/Button/ListBtn";
+import { MapBtn } from "../components/Button/MapBtn";
+import { ClickListBtn } from "../components/Button/ClickListBtn";
+import { ResearchBtn } from "../components/Button/ResearchBtn";
 
 const productList = () => {
   return (
