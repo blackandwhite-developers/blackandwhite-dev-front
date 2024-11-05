@@ -1,0 +1,38 @@
+$primary-color: #8728FF;
+$background-color: #f4f4f4;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.inputGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+.inputField {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background-color: $background-color
+}
+
+.resendButton {
+    padding: 8px 16px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:disabled {
+        background-color: #999999;
+        cursor: not-allowed;
+    }
+}
