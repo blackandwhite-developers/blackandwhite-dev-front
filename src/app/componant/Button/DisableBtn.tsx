@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./Button.module.scss";
 
 const DisableBtn = () => {
-  <button>시작하기</button>;
+  <button className="disableBtn">
+    <span>다음</span>
+  </button>;
 };
 
 export default DisableBtn;

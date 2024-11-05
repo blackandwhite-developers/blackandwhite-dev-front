@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./Button.module.scss";
 
 const NomalBtn = () => {
-  <button>시작하기</button>;
+  <button className="nomalBtn">
+    <span>시작하기</span>
+  </button>;
 };
 
 export default NomalBtn;
