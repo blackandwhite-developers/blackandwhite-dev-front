@@ -18,7 +18,8 @@ type DefaultAccordionProps = {
 export default function DefaultAccordion(props: DefaultAccordionProps) {
   const { title, children, isHeaderBold = false, isHeaderTransparent = false, isBodyBold = false, isBodyTransparent = false } = props;
   const [open, setOpen] = React.useState(false);
-  const handleToggle = () => {
+  const handleToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
     setOpen((prev) => !prev);
   };
   return (
