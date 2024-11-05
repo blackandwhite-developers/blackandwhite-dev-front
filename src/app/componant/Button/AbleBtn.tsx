@@ -1,9 +1,7 @@
 import React from "react";
 
 const AbleBtn = () => {
-  <button className="ableBtn">
-    <span>다음</span>
-  </button>;
+  <button className="ableBtn">다음</button>;
 };
 
 export default AbleBtn;

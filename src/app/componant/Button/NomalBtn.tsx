@@ -1,9 +1,13 @@
 import React from "react";
+import cn from "classnames/bind";
+import styles from "./Button.module.scss";
 
-const NomalBtn = () => {
-  <button className="nomalBtn">
-    <span>시작하기</span>
-  </button>;
+const cx = cn.bind(styles);
+
+type NomalbtnProps = {
+  label: string;
 };
 
-export default NomalBtn;
+export const NomalBtn = (props: NomalbtnProps) => {
+  return <button className={cx("NomalBtn")}>{props.label}</button>;
+};
