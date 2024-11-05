@@ -1,6 +1,11 @@
 import React from "react";
 import HotelName from "./Payment/Payment";
+import FootBarMap from "./Component/NavigationMap";
 
 export default function Home() {
-  return <React.Fragment></React.Fragment>;
+  return (
+    <div>
+      <FootBarMap />
+    </div>
+  );
 }
