@@ -1,18 +1,18 @@
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Button.module.scss";
-import { FaListUl } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
 const cx = cn.bind(styles);
 
-type ListBtnProps = {
+type MemberBtnProps = {
   label: string;
 };
 
-export const ListBtn = (props: ListBtnProps) => {
+export const MemberBtn = (props: MemberBtnProps) => {
   return (
-    <button className={cx("ListBtn")}>
-      <FaListUl />
+    <button className={cx("MemberBtn")}>
+      <CgProfile />
       {props.label}
     </button>
   );

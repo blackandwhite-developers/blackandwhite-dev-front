@@ -1,7 +1,13 @@
 import React from "react";
+import cn from "classnames/bind";
+import styles from "./Button.module.scss";
 
-const FindPasswordBtn = () => {
-  <button className="findPassword">비밀번호 찾기</button>;
+const cx = cn.bind(styles);
+
+type FindPasswordBtnProps = {
+  label: string;
 };
 
-export default FindPasswordBtn;
+export const FindPasswordBtn = (props: FindPasswordBtnProps) => {
+  return <button className={cx("FindPasswordBtn")}>{props.label}</button>;
+};

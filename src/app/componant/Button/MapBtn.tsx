@@ -1,7 +1,19 @@
 import React from "react";
+import cn from "classnames/bind";
+import styles from "./Button.module.scss";
+import { IoMapOutline } from "react-icons/io5";
 
-const MapBtn = () => {
-  <button className="mapBtn">💌 지도보기</button>;
+const cx = cn.bind(styles);
+
+type MapBtnProps = {
+  label: string;
 };
 
-export default MapBtn;
+export const MapBtn = (props: MapBtnProps) => {
+  return (
+    <button className={cx("MapBtn")}>
+      <IoMapOutline />
+      {props.label}
+    </button>
+  );
+};

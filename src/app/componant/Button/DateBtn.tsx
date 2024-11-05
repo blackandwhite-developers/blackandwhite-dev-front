@@ -1,7 +1,21 @@
 import React from "react";
+import cn from "classnames/bind";
+import styles from "./Button.module.scss";
+import { CiCalendar } from "react-icons/ci";
 
-const DateBtn = () => {
-  <button className="dateBtn">🏁 6.2화 - 6.3수</button>;
+const cx = cn.bind(styles);
+
+type DateBtnProps = {
+  label: string;
 };
 
-export default DateBtn;
+export const DateBtn = (props: DateBtnProps) => {
+  return (
+    <button className={cx("DateBtn")}>
+      <div>
+        <CiCalendar />{" "}
+      </div>
+      {props.label}
+    </button>
+  );
+};

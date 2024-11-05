@@ -1,7 +1,13 @@
 import React from "react";
+import cn from "classnames/bind";
+import styles from "./Button.module.scss";
 
-const AbleBtn = () => {
-  <button className="ableBtn">다음</button>;
+const cx = cn.bind(styles);
+
+type AbleBtnProps = {
+  label: string;
 };
 
-export default AbleBtn;
+export const AbleBtn = (props: AbleBtnProps) => {
+  return <button className={cx("AbleBtn")}>{props.label}</button>;
+};

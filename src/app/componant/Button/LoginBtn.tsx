@@ -1,7 +1,13 @@
 import React from "react";
+import cn from "classnames/bind";
+import styles from "./Button.module.scss";
 
-const LoginBtn = () => {
-  <button className="loginBtn">로그인하기</button>;
+const cx = cn.bind(styles);
+
+type LoginBtnProps = {
+  label: string;
 };
 
-export default LoginBtn;
+export const LoginBtn = (props: LoginBtnProps) => {
+  return <button className={cx("LoginBtn")}>{props.label}</button>;
+};
