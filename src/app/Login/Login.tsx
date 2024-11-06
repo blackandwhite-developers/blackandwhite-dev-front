@@ -5,12 +5,12 @@ import TextInput from "../components/TextInput/TextInput";
 
 const Login = () => {
 
-    return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>
-                <h1>로그인</h1>
-                <TextInput type="text" placeholder="이메일" />
-                <TextInput type="password" placeholder="비밀번호" showToggle />
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <h1>로그인</h1>
+        <TextInput type="text" placeholder="이메일" />
+        <TextInput type="password" placeholder="비밀번호" showToggle />
 
                 <input type="button" value="로그인" />
                 <div className={styles.authLinks}>

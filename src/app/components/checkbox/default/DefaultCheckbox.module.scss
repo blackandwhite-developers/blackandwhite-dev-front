@@ -1,0 +1,35 @@
+.Container {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.Checkmark {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #cccccc;
+  &.Checked {
+    background-color: #8728ff;
+  }
+  &.Transparent {
+    background-color: transparent;
+  }
+}
+
+.Label {
+  &.isLabelGray {
+    color: #7f7f7f;
+  }
+  &.isLabelBold {
+    font-weight: 700;
+  }
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
