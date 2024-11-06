@@ -1,19 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   font-family: "Noto Sans KR", serif;
   font-optical-sizing: auto;
   font-style: normal;
+
+  --black: #000000;
+  --gray900: #191919;
+  --gray800: #333333;
+  --gray700: #4c4c4c;
+  --gray600: #666666;
+  --gray500: #7f7f7f;
+  --gray400: #999999;
+  --gray300: #b2b2b2;
+  --gray200: #cccccc;
+  --gray100: #e5e5e5;
+  --gray50: #f6f6f6;
+  --gray10: #fafafa;
+  --white: #ffffff;
+
+  --main-purple: #8728ff;
+  --sub-purple: #e9d8ff;
+  --sub-red: #ff0045;
+
+  /* 딱히 안쓰는 것으로 보임*/
+  --main-pink: #d53560;
+  --main-blue: #088eec;
 }
 
 /* box-sizing 규칙을 명시합니다. */
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
