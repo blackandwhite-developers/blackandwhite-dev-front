@@ -48,7 +48,7 @@ export default function ProductDetailCard(props: ProductDetailCardProps) {
                             <p className={cx("checkInInfomation")}>
                                 <span>입실/퇴실</span>
                                 <span>
-                                    {infomation.checkInInfomation}/
+                                    입실 {infomation.checkInInfomation} / 퇴실{" "}
                                     {infomation.checkOutInfomation}
                                 </span>
                             </p>
