@@ -1,0 +1,13 @@
+.MenuIcon {
+  fill: var(--gray50);
+  path {
+    stroke: var(--gray300);
+    stroke-width: 1.5px;
+  }
+  &.isSelected {
+    fill: var(--sub-purple);
+    path {
+      stroke: var(--main-purple);
+    }
+  }
+}
