@@ -1,37 +1,26 @@
 import React from "react";
-import ServiceProviderPicker from "@/app/BottomSheet/ServiceProvider/ServiceProvider";
-import SortOptions from "@/app/BottomSheet/SortOptions/SortOptions";
+import cn from "classnames/bind";
+import styles from "./ProductDetail.module.scss";
+import {
+    // IoIosArrowBack,
+    IoIosHeartEmpty,
+    IoIosStarOutline,
+} from "react-icons/io";
+import { IoLocationOutline, IoCalendarClearOutline } from "react-icons/io5";
+// import { BsCart2 } from "react-icons/bs";
+import { CiUser } from "react-icons/ci";
+import Header from "../components/Header/Header";
 
-// import cn from "classnames/bind";
-// import styles from "./ProductDetail.module.scss";
-// import {
-//     IoIosArrowBack,
-//     IoMdCart,
-//     IoIosHeartEmpty,
-//     IoIosStarOutline,
-// } from "react-icons/io";
-// import { IoLocationOutline, IoCalendarClearOutline } from "react-icons/io5";
-// import { CiUser } from "react-icons/ci";
-
-// const cx = cn.bind(styles);
+const cx = cn.bind(styles);
 
 const ProductDetail = () => {
-    const dummyCarriers = ["SKT", "KT", "LG U+", "알뜰폰"];
-    const dummySortOptions = [
-        "코코시 추천순",
-        "리뷰 많은 순",
-        "평점 높은 순",
-        "거리 순",
-        "낮은 가격 순",
-        "높은 가격 순",
-    ];
+    const title = "김포 마리나베이 호텔";
     return (
         <div>
-            <ServiceProviderPicker carriers={dummyCarriers} />
-            <SortOptions sortOptions={dummySortOptions} />
             {/* <IoIosArrowBack />
             김포 마리나베이 호텔
-            <IoMdCart />
+            <BsCart2 /> */}
+            <Header title={title} />
             <div className={cx("ProductImage")}>사진</div>
             <div className={cx("ProductInform")}>
                 <p>호텔</p>
@@ -69,7 +58,7 @@ const ProductDetail = () => {
                         <button>객실 예약하기</button>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     );
 };
