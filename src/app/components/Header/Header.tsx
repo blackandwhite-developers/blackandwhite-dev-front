@@ -6,14 +6,17 @@ import { IoIosArrowBack } from "react-icons/io";
 const cx = cn.bind(styles);
 
 type HeaderProps = {
-    title?: string;
+    title: string;
 };
 
 const Header = ({ title }: HeaderProps) => {
     return (
-        <div className={cx("header")}>
-            <IoIosArrowBack />
-            {title}
+        <div className={cx("Header")}>
+            <a href="" className={cx("BackIcon")}>
+                <IoIosArrowBack />
+            </a>
+
+            <div className={cx("HeaderTitle")}>{title}</div>
         </div>
     );
 };
