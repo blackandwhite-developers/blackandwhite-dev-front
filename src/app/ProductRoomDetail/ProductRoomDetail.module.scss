@@ -1,0 +1,94 @@
+.ProductDetailWrapper {
+    margin: 0 auto;
+    max-width: 360px;
+    max-height: 760px;
+}
+
+.ProductImage {
+    width: 360px;
+    height: 228px;
+    // outline: 1px solid red;
+}
+
+.ProductInform {
+    padding: 15px;
+    line-height: 2;
+}
+
+.ProductWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.ProductTitleWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ProductTitle {
+    font-weight: 700;
+}
+
+.ProductTitleWrapper p {
+    font-size: 12px;
+    color: #7f7f7f;
+    padding-top: 10px;
+}
+
+.ProductDetailInformation {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    gap: 25px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f6f6f6;
+    position: relative;
+}
+
+.RoomInformation {
+    color: #7f7f7f;
+}
+
+.PersonCountInformation {
+    color: #4c4c4c;
+}
+
+.ProductDetailInformation::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #e5e5e5;
+    position: absolute;
+    bottom: -15;
+    right: 0;
+}
+
+.ProductSelectWrapper {
+    padding: 0 10px;
+}
+
+.ProductCategoryBadge {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: #b2b2b2;
+    padding-top: 10px;
+}
+
+.ProductCategoryWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ReservationSelectBtn {
+    display: flex;
+    padding-top: 20px;
+    gap: 10px;
+}
