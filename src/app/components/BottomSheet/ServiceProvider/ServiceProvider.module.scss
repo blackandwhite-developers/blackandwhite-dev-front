@@ -1,0 +1,50 @@
+.CategoryWrapper {
+    width: 100%;
+    min-width: 520px;
+    max-width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.CategoryTapBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.CategoryTitle {
+    font-weight: 700;
+    line-height: 24px;
+    padding-top: 15px;
+}
+
+.CategoryListWrapper {
+    padding-top: 10px;
+}
+
+.CategoryList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 14px 0;
+    font-weight: 600;
+    font-size: 14px;
+
+    &.SelectedCarrier {
+        color: #8728ff;
+    }
+}
+
+.CategoryItem {
+    cursor: pointer;
+}
+
+.CategoryItemCheck {
+    width: 17px;
+    height: 17px;
+}

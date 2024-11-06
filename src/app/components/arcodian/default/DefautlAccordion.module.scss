@@ -1,0 +1,63 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.AccordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 16px 6px;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  &.isHeaderBold {
+    font-weight: 700;
+  }
+  &.isHeaderTransparent {
+    background-color: transparent;
+  }
+}
+
+.AccordionBody {
+  padding: 16px 10px;
+  overflow: hidden;
+  display: none;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 12px;
+  transition: all 1s ease;
+  &.open {
+    display: block;
+  }
+  &.isBodyTransparent {
+    background-color: transparent;
+  }
+  &.isBodyBold {
+    font-weight: 700;
+  }
+}
+
+.OpenButton {
+  color: #999999;
+  .isArrowBlack {
+    color: #000000;
+  }
+  &.open {
+    display: none;
+  }
+}
+
+.CloseButton {
+  display: none;
+  color: #999999;
+  .isArrowBlack {
+    color: #000000;
+  }
+  &.open {
+    display: block;
+  }
+}
