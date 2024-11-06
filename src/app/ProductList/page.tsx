@@ -8,11 +8,12 @@ const cx = cn.bind(styles);
 
 const productList = () => {
   const categori = ["모텔", "호텔", "팬션/풀빌라", "캠핑", "게스트하우스", "레저/티켓", "해외숙소", "항공"];
+  const categoriImg = ["motel", "hotel", "pool", "camping", "guesthouse", "leisure", "othercountry", "airport"];
   return (
     <div>
       <header className={cx("header-container")}>
         <div className={cx("logo")}>
-          <img src="../public/img_home_logo.svg" alt="" />
+          <img src="home/img_home_logo.svg" alt="kokoshi-logo" />
         </div>
         <div className={cx("bell")}>
           <PiBellSimple style={{ width: "20px", height: "20px" }} />
@@ -20,21 +21,21 @@ const productList = () => {
       </header>
       <main className={cx("main-container")}>
         <h4>서치바 넣을자리</h4>
+
         <div className={cx("grid-container")}>
-          <div className={cx("grid-item")}>
-            <div className={cx("image")}>
-              <div className={cx("mock")}>목</div>
-            </div>
-            <div className={cx("title")}>모텔</div>
-          </div>
-          <div className={cx("grid-item")}>Item 2</div>
-          <div className={cx("grid-item")}>Item 3</div>
-          <div className={cx("grid-item")}>Item 4</div>
-          <div className={cx("grid-item")}>Item 5</div>
-          <div className={cx("grid-item")}>Item 6</div>
+          {categori.map((a, i) => {
+            return (
+              <div className={cx("grid-item")} key={i}>
+                <img src={`/categoryImage/ic_home_${categoriImg[i]}.svg`} alt="motel" />
+                <div className={cx("title")}>{categori[i]}</div>
+              </div>
+            );
+          })}
         </div>
 
-        <div className={cx("banner")}>배너입니다</div>
+        <div className={cx("banner")}>
+          <img src="/home/img_home_banner.svg" alt="" />
+        </div>
 
         <div className={cx("currentList")}>
           <h4>최근 본 숙소</h4>
