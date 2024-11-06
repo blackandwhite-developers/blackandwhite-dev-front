@@ -1,0 +1,152 @@
+.AccBookingWrapper {
+    width: 100%;
+    // min-width: 320px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 500px) {
+    .AccBookingWrapper {
+        padding: 10px;
+        max-width: 100%;
+    }
+}
+
+.AccBookingTapBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.AccBookingTitle {
+    padding-top: 15px;
+    font-weight: 700;
+}
+
+.AccBookingDetailWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.AccBookingImage {
+    width: 95px;
+    height: 95px;
+    outline: 1px solid red;
+    border-radius: 10px;
+}
+
+.AccBookingDetail {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    width: 380px;
+}
+
+.RoomTitle {
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 5px;
+}
+
+.ReservationDetail {
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+    gap: 16px;
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.ReservationDetail ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+}
+
+.StayNight {
+    width: 30px;
+    height: 17px;
+    background-color: #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #666666;
+}
+
+.CheckIn,
+.CheckOut {
+    color: #999999;
+}
+
+.ReservationDetail ul {
+    font-weight: 600;
+}
+
+.AccBookingInfo {
+    list-style-type: disc;
+    padding: 10px 0 0 10px;
+    line-height: 1.5;
+    font-size: 12px;
+    font-weight: 500;
+    color: #b2b2b2;
+}
+
+.ReservationInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.ReservationInfo p,
+.ReservationIfoStayNight p {
+    font-weight: 700;
+}
+.ReservationIfoStayNight {
+    display: flex;
+}
+
+.ButtonWrapper {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.CartButton {
+    color: #8728ff;
+    background-color: #fff;
+}
+
+.ButtonWrapper button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8728ff;
+    width: 155px;
+    height: 39px;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.ButtonWrapper .CartButton {
+    background-color: #fff;
+    border: 1px solid #8728ff;
+    color: #8728ff;
+    font-weight: 500;
+}
