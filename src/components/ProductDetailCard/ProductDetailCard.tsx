@@ -1,5 +1,6 @@
 import styles from "./ProductDetailCard.module.scss";
 import cn from "classnames/bind";
+import { ReservationBtn } from "@/app/components/Button/ReservationBtn";
 
 const cx = cn.bind(styles);
 
@@ -67,7 +68,10 @@ export default function ProductDetailCard(props: ProductDetailCardProps) {
                     </div>
                 </div>
             </div>
-            {/* 여기 버튼 컴포넌트 넣으시면 됩니다.*/}
+            <div className={cx("reservationBtn")}>
+                {" "}
+                <ReservationBtn label={"객실 예약하기"} />
+            </div>
         </div>
     );
 }
