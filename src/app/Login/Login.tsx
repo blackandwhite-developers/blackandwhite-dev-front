@@ -23,8 +23,8 @@ const Login = () => {
         <TextInput type="text" placeholder="이메일" />
         <TextInput type="password" placeholder="비밀번호" showToggle />
 
-        <ColorBorderTextInput type="text" placeholder="예약자 이름" borderColor="#8728FF" />
-        <ColorBorderTextInput type="text" placeholder="010-1234-5678" borderColor="#E5E5E5" />
+        <ColorBorderTextInput type="text" placeholder="예약자 이름" borderColor="#8728FF" isTransparent />
+        <ColorBorderTextInput type="text" placeholder="010-1234-5678" borderColor="#E5E5E5" isTransparent />
 
         <PhoneConfirm onResend={handleResend} />
 
