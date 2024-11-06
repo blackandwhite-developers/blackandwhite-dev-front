@@ -1,9 +1,12 @@
 .Container {
   display: flex;
   align-items: center;
-  cursor: pointer;
   padding: 6px;
   justify-content: space-between;
+}
+
+.Label {
+  cursor: pointer;
 }
 
 .Slide {
@@ -13,6 +16,7 @@
   border-radius: 50px;
   background-color: #e5e5e5;
   transition: background-color 0.3s;
+  cursor: pointer;
   &::before {
     content: "";
     position: absolute;
