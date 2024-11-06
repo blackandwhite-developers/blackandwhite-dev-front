@@ -1,17 +1,46 @@
+$primary-color: #8728FF;
+$background-color: #f4f4f4;
+
 .wrapper{
-    margin: 0 auto;
-    max-width: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-height: 760px;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    max-width: 360px;
+    padding: 20px;
     border: 1px solid red;
+    text-align: center;
 
-    h1{
-        margin-bottom: 20px;
+    h1 {
+        font-size: 2rem; 
+        color: $primary-color; 
+        text-align: left; 
+        margin-bottom: 20px; 
         font-weight: 700;
+    }
+}
+
+.authLinks {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    a {
+        text-decoration: none;
+        color: $primary-color;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    a:not(:last-child)::after {
+        content: "|";
+        margin-left: 8px; 
+        color: $primary-color;
     }
 }
