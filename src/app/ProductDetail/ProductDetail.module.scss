@@ -1,4 +1,4 @@
-html {
+.ProductDetailWrapper {
     margin: 0 auto;
     max-width: 360px;
     max-height: 760px;
@@ -7,11 +7,102 @@ html {
 .ProductImage {
     width: 360px;
     height: 228px;
-    outline: 1px solid red;
+    // outline: 1px solid red;
 }
 
 .ProductMainImage {
     width: 110px;
     height: 110px;
     outline: 1px solid red;
+}
+
+.ProductInform {
+    padding: 15px;
+    line-height: 2;
+}
+
+.ProductCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8728ff;
+    font-size: 12px;
+    border: 1px solid #8727ff;
+    border-radius: 10px;
+    width: 43px;
+    height: 22px;
+}
+
+.ProductWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.ProductTitleWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ProductTitle {
+    font-weight: 600;
+}
+
+.ProductFavorite {
+    font-size: 22px;
+}
+
+.ProductRating {
+    display: flex;
+    align-items: center;
+}
+
+.ProductRatingText {
+    padding-right: 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ProductStarRating {
+    display: flex;
+    font-size: 12px;
+}
+
+.ProductVoteTotal {
+    padding-left: 10px;
+    font-size: 12px;
+    color: #999999;
+}
+
+.ProductLocation {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #7f7f7f;
+}
+
+.ProductLocationIcon {
+    font-size: 14px;
+    padding-right: 5px;
+    color: #7f7f7f;
+}
+
+.ProductSelectWrapper {
+    padding: 0 10px;
+}
+
+.ProductCategoryBadge {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: #b2b2b2;
+    padding-top: 10px;
+}
+
+.ReservationSelectBtn {
+    display: flex;
+    padding-top: 20px;
+    gap: 10px;
 }
