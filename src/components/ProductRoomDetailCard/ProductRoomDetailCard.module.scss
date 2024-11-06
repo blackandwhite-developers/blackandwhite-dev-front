@@ -58,15 +58,14 @@
 
       .infomation {
         width: 100%;
-        background-color: rgba(246, 246, 246, 1);
         border-radius: 7px;
         font-size: .625rem;
-        padding: 11px 8px 10px 11px;
 
         p {
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           box-sizing: border-box;
+          gap: 5px;
 
           & span:first-child {
             color: rgba(127, 127, 127, 1);

@@ -33,33 +33,34 @@ export default function ProductDetailCard(props: ProductDetailCardProps) {
         <p className={cx("productBoxImage")}>
           <img src={`${imageUrl}`} alt={`${title}`} />
         </p>
+
         <div className={cx("productBoxInfo")}>
           <p className={cx("productLabel")}>{label}</p>
           <h3>{title}</h3>
-          {infomation ? (
-            <div className={cx("infomation")}>
-              {infomation.parlorInfomation ? (
-                <p className={cx("parlorInfomation")}>
-                  <span>객실 정보</span>
-                  <span>{infomation.parlorInfomation}</span>
-                </p>
-              ) : null}
-              {infomation.checkInInfomation ? (
-                <p className={cx("checkInInfomation")}>
-                  <span>입실/퇴실</span>
-                  <span>{infomation.checkInInfomation}</span>
-                </p>
-              ) : null}
-            </div>
-          ) : null}
+          <div className={cx("infomation")}>
+            {infomation.parlorInfomation ? (
+              <p className={cx("parlorInfomation")}>
+                <span>객실 정보</span>
+                <span>{infomation.parlorInfomation}</span>
+              </p>
+            ) : null}
+            {infomation.checkInInfomation ? (
+              <p className={cx("checkInInfomation")}>
+                <span>입실/퇴실</span>
+                <span>
+                  {infomation.checkInInfomation}/{infomation.checkOutInfomatio}
+                </span>
+              </p>
+            ) : null}
+          </div>
 
           <div className={cx("priceArea")}>
-            <span className={cx("roomCounter")}>
+            <span>
               {infomation.roomCount >= 1
                 ? `${infomation.roomCount}개 남음`
                 : `사용 불가`}
             </span>
-            <span>{infomation.lodgePrice}</span>
+            <span className={cx("roomPrice")}>{infomation.lodgePrice}</span>
           </div>
         </div>
       </div>
