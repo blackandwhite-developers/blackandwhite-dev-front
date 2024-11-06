@@ -26,7 +26,7 @@ const SignUp = () => {
                         </React.Fragment>
                     }
                 >
-                    <TermsOfService/>
+                    <TermsOfService />
                 </DefaultAccordion>
 
                 <AbleBtn label="다음"/> 

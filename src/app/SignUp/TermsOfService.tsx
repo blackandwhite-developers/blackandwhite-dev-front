@@ -1,9 +1,10 @@
 import React from 'react';
 import DefaultAccordion from '../components/arcodian/default/DefaultAccordion';
+import styles from "./TermsOfService.module.scss";
 
 const TermsOfService = () => {
     return (
-        <div>
+        <div className={styles.container}>
             <h2>이용약관</h2>
             <DefaultAccordion title="제 1조 (목적)">
                 이 약관은 [서비스 이름] (이하 "서비스")이 제공하는 인터넷 서비스의 이용과 관련하여 서비스와 회원 간의 권리, 의무, 책임 사항을 규정함을 목적으로 합니다.
