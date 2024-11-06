@@ -5,6 +5,7 @@ import DefaultAccordion from "./components/arcodian/default/DefaultAccordion";
 import "./page.scss";
 import PushAlarm from "./components/footer/PushAlarm";
 import Login from "./Login/Login";
+import Radio from "./components/radio/Radio";
 export default function Home() {
   return (
     <React.Fragment>
@@ -23,6 +24,16 @@ export default function Home() {
       >
         으하하2
       </DefaultAccordion>
+      <Radio
+        label={
+          <React.Fragment>
+            <span>두줄 이상</span>
+            <span>라디오 버튼</span>
+          </React.Fragment>
+        }
+        name="radio"
+        value="radio"
+      />
     </React.Fragment>
   );
 }

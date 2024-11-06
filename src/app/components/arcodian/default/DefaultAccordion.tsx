@@ -13,10 +13,11 @@ type DefaultAccordionProps = {
   isHeaderTransparent?: boolean;
   isBodyBold?: boolean;
   isBodyTransparent?: boolean;
+  isArrowBlack?: boolean;
 };
 
 export default function DefaultAccordion(props: DefaultAccordionProps) {
-  const { title, children, isHeaderBold = false, isHeaderTransparent = false, isBodyBold = false, isBodyTransparent = false } = props;
+  const { title, children, isHeaderBold = false, isHeaderTransparent = false, isBodyBold = false, isBodyTransparent = false, isArrowBlack = false } = props;
   const [open, setOpen] = React.useState(false);
   const handleToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -35,6 +36,7 @@ export default function DefaultAccordion(props: DefaultAccordionProps) {
         <span
           className={cx("OpenButton", {
             open,
+            isArrowBlack,
           })}
         >
           <FaChevronDown />
@@ -42,6 +44,7 @@ export default function DefaultAccordion(props: DefaultAccordionProps) {
         <span
           className={cx("CloseButton", {
             open,
+            isArrowBlack,
           })}
         >
           <FaChevronUp />
