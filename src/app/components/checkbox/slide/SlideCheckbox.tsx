@@ -21,12 +21,12 @@ export default function SlideCheckbox(props: SlideCheckBoxProps) {
     setCheck((prev) => !prev);
   };
   return (
-    <label className={cx("Container")}>
-      <span className={cx("Label", { isLabelBold, isLabelGray })} onClick={handleChange}>
-        {label}
-      </span>
-      <div className={cx("Slide", { Checked: check })} onClick={handleChange} />
-      <input type="checkbox" checked={check} hidden onChange={onChange} />
-    </label>
+    <div className={cx("Container")}>
+      <label className={cx("Wrapper")}>
+        <span className={cx("Label", { isLabelBold, isLabelGray })}>{label}</span>
+        <div className={cx("Slide", { Checked: check })} onClick={handleChange} />
+        <input type="checkbox" checked={check} readOnly hidden onChange={onChange} />
+      </label>
+    </div>
   );
 }

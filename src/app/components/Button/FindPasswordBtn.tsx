@@ -6,8 +6,14 @@ const cx = cn.bind(styles);
 
 type FindPasswordBtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const FindPasswordBtn = (props: FindPasswordBtnProps) => {
-  return <button className={cx("FindPasswordBtn")}>{props.label}</button>;
+  const { label, onClick } = props;
+  return (
+    <button className={cx("FindPasswordBtn")} onClick={onClick}>
+      {label}
+    </button>
+  );
 };

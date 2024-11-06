@@ -6,8 +6,14 @@ const cx = cn.bind(styles);
 
 type AbleBtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const AbleBtn = (props: AbleBtnProps) => {
-  return <button className={cx("AbleBtn")}>{props.label}</button>;
+  const { label, onClick } = props;
+  return (
+    <button className={cx("AbleBtn")} onClick={onClick}>
+      {label}
+    </button>
+  );
 };

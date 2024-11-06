@@ -22,17 +22,19 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
     setCheck((prev) => !prev);
   };
   return (
-    <label className={cx("Container")}>
-      <div
-        className={cx("Checkmark", {
-          Checked: check,
-          Transparent: isTransparent,
-        })}
-      >
-        <CheckIcon checked={check} isTransparent={isTransparent} shadow={isShadow} />
-      </div>
-      <span className={cx("Label", { isLabelBold, isLabelGray })}>{label}</span>
-      <input type="checkbox" readOnly hidden onClick={handleClick} onChange={onChange} />
-    </label>
+    <div className={cx("Container")}>
+      <label className={cx("Wrapper")}>
+        <div
+          className={cx("Checkmark", {
+            Checked: check,
+            Transparent: isTransparent,
+          })}
+        >
+          <CheckIcon checked={check} isTransparent={isTransparent} shadow={isShadow} />
+        </div>
+        <span className={cx("Label", { isLabelBold, isLabelGray })}>{label}</span>
+        <input type="checkbox" readOnly hidden onClick={handleClick} onChange={onChange} />
+      </label>
+    </div>
   );
 }
