@@ -14,17 +14,18 @@ type DefaultAccordionProps = {
   isBodyBold?: boolean;
   isBodyTransparent?: boolean;
   isArrowBlack?: boolean;
+  className?: string;
 };
 
 export default function DefaultAccordion(props: DefaultAccordionProps) {
-  const { title, children, isHeaderBold = false, isHeaderTransparent = false, isBodyBold = false, isBodyTransparent = false, isArrowBlack = false } = props;
+  const { title, className, children, isHeaderBold = false, isHeaderTransparent = false, isBodyBold = false, isBodyTransparent = false, isArrowBlack = false } = props;
   const [open, setOpen] = React.useState(false);
   const handleToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     setOpen((prev) => !prev);
   };
   return (
-    <div className={cx("Wrapper")}>
+    <div className={cx("Wrapper", className)}>
       <div
         className={cx("AccordionHeader", {
           isHeaderBold,
