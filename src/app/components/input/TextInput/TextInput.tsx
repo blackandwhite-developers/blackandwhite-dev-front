@@ -7,18 +7,18 @@ import styles from './TextInput.module.scss';
 const cx = cn.bind(styles);
 
 interface TextInputProps {
-    type: string;
-    placeholder: string;
-    showToggle?: boolean;
+  type: "text" | "password" | "number" | "tel" | "email";
+  placeholder: string;
+  showToggle?: boolean;
     className?: string;
 }
 
 const TextInput = ({ type, placeholder, showToggle, className }: TextInputProps) => {
     const [inputType, setInputType] = useState(type);
 
-    const toggleVisibility = () => {
-        setInputType(inputType === 'password' ? 'text' : 'password');
-    };
+  const toggleVisibility = () => {
+    setInputType(inputType === "password" ? "text" : "password");
+  };
 
     return (
         <div className={cx('inputWrapper', className)}>
