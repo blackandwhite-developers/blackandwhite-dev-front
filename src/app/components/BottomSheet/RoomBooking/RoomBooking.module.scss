@@ -1,19 +1,10 @@
 .RoomBookingWrapper {
-    width: 100%;
-    // min-width: 320px;
-    max-width: 600px;
+    max-width: 360px;
     margin: 0 auto;
     padding: 15px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 500px) {
-    .RoomBookingWrapper {
-        padding: 10px;
-        max-width: 100%;
-    }
 }
 
 .RoomBookingTapBar {
@@ -31,22 +22,21 @@
 .RoomBookingDetailWrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-top: 10px;
 }
 
 .RoomBookingImage {
-    width: 95px;
-    height: 95px;
-    outline: 1px solid red;
+    max-width: 110px;
+    border-radius: 10px;
+    overflow: hidden;
     border-radius: 10px;
 }
 
 .RoomBookingDetail {
     display: flex;
     flex-direction: column;
-    padding-left: 30px;
-    width: 380px;
+    padding-left: 10px;
+    width: 280px;
 }
 
 .RoomTitle {
@@ -59,10 +49,9 @@
     display: flex;
     justify-content: space-around;
     font-size: 12px;
-    gap: 16px;
     background-color: #f6f6f6;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 5px;
 }
 
 .ReservationDetail ul {
