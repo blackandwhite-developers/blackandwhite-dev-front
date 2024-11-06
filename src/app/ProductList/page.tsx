@@ -21,6 +21,7 @@ const productList = () => {
           <PiBellSimpleThin style={{ width: "20px", height: "20px" }} />
         </div>
       </header>
+
       <main className={cx("main-container")}>
         <SearchBar />
         <div className={cx("grid-container")}>
