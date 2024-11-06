@@ -6,8 +6,14 @@ const cx = cn.bind(styles);
 
 type NomalbtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const NomalBtn = (props: NomalbtnProps) => {
-  return <button className={cx("NomalBtn")}>{props.label}</button>;
+  const { label, onClick } = props;
+  return (
+    <button className={cx("NomalBtn")} onClick={onClick}>
+      {label}
+    </button>
+  );
 };
