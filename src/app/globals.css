@@ -99,3 +99,8 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
