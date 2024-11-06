@@ -76,8 +76,8 @@ const ProductDetail = () => {
                             {productDetailsArray.map((product, index) => (
                                 <ProductRoomDetailCard
                                     key={index}
-                                    title={product.title} // "대실" 또는 "숙박"
-                                    infomation={product.infomation} // ProductDetailInfomation 타입 데이터
+                                    title={product.title}
+                                    infomation={product.infomation}
                                 />
                             ))}
                         </div>
