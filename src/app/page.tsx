@@ -6,10 +6,11 @@ import "./page.scss";
 import PushAlarm from "./components/footer/PushAlarm";
 import Login from "./Login/Login";
 import Radio from "./components/radio/Radio";
+import SignUp from "./SignUp/SignUp";
 export default function Home() {
   return (
     <React.Fragment>
-      <Login />
+      <SignUp />
       {/*
       <PushAlarm />
       <DefaultCheckBox label="이용약관에 동의합니다." />

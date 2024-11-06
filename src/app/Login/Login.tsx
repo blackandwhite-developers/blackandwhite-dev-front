@@ -13,7 +13,7 @@ const Login = () => {
                 <TextInput type="text" placeholder="이메일" className='textInput' />
                 <TextInput type="password" placeholder="비밀번호" showToggle className='textInput' />
 
-                <AbleBtn label="로그인" /> 
+                <AbleBtn label="로그인"/> 
                 <div className={styles.authLinks}>
                     <a href="./FindID">아이디찾기</a>
                     <a href="./FindPW">비밀번호 찾기</a>

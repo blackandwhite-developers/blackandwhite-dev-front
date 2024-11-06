@@ -1,0 +1,29 @@
+$primary-color: #8728FF;
+$background-color: #f4f4f4;
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 360px;
+    height: 760px;
+    background-color: #FFF;
+}
+
+.container {
+    width: 100%;
+    max-width: 360px;
+    max-height: 760px;
+    padding: 20px;
+    text-align: center;
+    overflow-y: auto;
+
+    h1 {
+        font-size: 2rem;
+        color: $primary-color;
+        text-align: left;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+}
