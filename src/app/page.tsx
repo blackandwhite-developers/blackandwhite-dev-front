@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <Login />
+      {/*
       <PushAlarm />
       <DefaultCheckBox label="이용약관에 동의합니다." />
       <SlideCheckbox label={"ON / OFF"} />
@@ -23,6 +24,7 @@ export default function Home() {
       >
         으하하2
       </DefaultAccordion>
+      */}
     </React.Fragment>
   );
 }
