@@ -1,6 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  font-family: "Noto Sans KR", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 
 /* box-sizing 규칙을 명시합니다. */
 *,
@@ -90,4 +98,9 @@ textarea:not([rows]) {
 /* 고정된 모든 항목에는 여분의 스크롤 여백이 있어야 합니다. */
 :target {
   scroll-margin-block: 5ex;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
 }
