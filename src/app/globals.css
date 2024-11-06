@@ -5,7 +5,9 @@
 @tailwind utilities;
 
 :root {
-  --font: "Noto Sans KR", sans-serif;
+  font-family: "Noto Sans KR", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 /* box-sizing 규칙을 명시합니다. */
