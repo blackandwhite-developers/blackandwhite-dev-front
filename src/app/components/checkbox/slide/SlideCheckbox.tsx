@@ -10,20 +10,23 @@ type SlideCheckBoxProps = {
   checked?: boolean;
   isLabelBold?: boolean;
   isLabelGray?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function SlideCheckbox(props: SlideCheckBoxProps) {
-  const { label, checked = false, isLabelBold = false, isLabelGray = false } = props;
+  const { label, onChange, checked = false, isLabelBold = false, isLabelGray = false } = props;
   const [check, setCheck] = React.useState(checked);
-  const handleChange = () => {
+  const handleChange = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
     setCheck((prev) => !prev);
   };
   return (
     <label className={cx("Container")}>
-      <span className={cx("Label", { isLabelBold, isLabelGray })}>{label}</span>
-      <div className={cx("Slide", { Checked: check })} />
-
-      <input type="checkbox" checked={check} hidden onChange={handleChange} />
+      <span className={cx("Label", { isLabelBold, isLabelGray })} onClick={handleChange}>
+        {label}
+      </span>
+      <div className={cx("Slide", { Checked: check })} onClick={handleChange} />
+      <input type="checkbox" checked={check} hidden onChange={onChange} />
     </label>
   );
 }
