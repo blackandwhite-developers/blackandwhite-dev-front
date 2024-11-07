@@ -99,7 +99,7 @@ const SignUpView = () => {
             checked={serviceTermsChecked}
             onChange={handleServiceTermsChange}
           />
-          <a href="/ServiceTerms">자세히 보기</a>
+          <a href="/serviceterms">자세히 보기</a>
         </div>
         <div className={styles.checkBox}>
           <DefaultCheckBox
@@ -107,7 +107,7 @@ const SignUpView = () => {
             checked={privacyPolicyChecked}
             onChange={handlePrivacyPolicyChange}
           />
-          <a href="/PrivacyPolicy">자세히 보기</a>
+          <a href="/privacypolicy">자세히 보기</a>
         </div>
         <div className={styles.checkBox}>
           <DefaultCheckBox
@@ -115,7 +115,7 @@ const SignUpView = () => {
             checked={locationTermsChecked}
             onChange={handleLocationTermsChange}
           />
-          <a href="/LocationTerms">자세히 보기</a>
+          <a href="/locationterms">자세히 보기</a>
         </div>
         <div className={styles.checkBox}>
           <DefaultCheckBox
@@ -123,7 +123,7 @@ const SignUpView = () => {
             checked={marketingTermsChecked}
             onChange={handleMarketingTermsChange}
           />
-          <a href="/MarketingTerms">자세히 보기</a>
+          <a href="/marketingterms">자세히 보기</a>
         </div>
 
         {isConfirmButtonEnabled ? (
