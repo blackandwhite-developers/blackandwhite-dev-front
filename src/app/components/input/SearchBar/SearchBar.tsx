@@ -1,15 +1,19 @@
 "use client"
 import React, { useState } from 'react';
+import cn from 'classnames/bind';
 import styles from './SearchBar.module.scss';
 import { CiSearch } from "react-icons/ci";
 import { FiDelete } from 'react-icons/fi';
 
+const cx = cn.bind(styles);
+
 interface SearchBarProps {
     placeholder?: string;
-    onSearch: (query: string) => void; 
+    onSearch: (query: string) => void;
+    className?: string;
 }
 
-const SearchBar = ({ placeholder = "어떤 숙소를 찾으시나요?", onSearch }: SearchBarProps) => {
+const SearchBar = ({ placeholder = "어떤 숙소를 찾으시나요?", onSearch, className }: SearchBarProps) => {
     const [query, setQuery] = useState('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,20 +31,18 @@ const SearchBar = ({ placeholder = "어떤 숙소를 찾으시나요?", onSearch
     };
 
     return (
-        <div className={styles.searchBar}>
-            
+        <div className={cx('searchBar', className)}>
             <input
                 type="text"
                 value={query}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}
-                className={styles.searchInput}
-                
+                className={cx('searchInput')}
             />
-            <CiSearch className={styles.searchIcon} />
+            <CiSearch className={cx('searchIcon')} />
             {query && (
-                <button onClick={clearInput} className={styles.clearButton}>
+                <button onClick={clearInput} className={cx('clearButton')}>
                     <FiDelete />
                 </button>
             )}
