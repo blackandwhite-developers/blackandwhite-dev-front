@@ -15,9 +15,9 @@ type ProductSelectInfomation = {
     /** 대실 예약 정보*/
     roomInfoDetail: string;
     /** 숙박 가격 */
-    lodgePrice: number;
+    lodgePrice: string;
     /** 대실 가격 */
-    roomPrice: number;
+    roomPrice: string;
 };
 
 type ProductSelectCardProps = {
