@@ -3,9 +3,10 @@ import DefaultCheckBox from "./components/checkbox/default/DefaultCheckbox";
 import SlideCheckbox from "./components/checkbox/slide/SlideCheckbox";
 import DefaultAccordion from "./components/arcodian/default/DefaultAccordion";
 import "./page.scss";
-import PushAlarm from "./components/footer/PushAlarm";
+import PushAlarm from "./components/pushAlarm/PushAlarm";
 import Login from "./Login/Login";
 import Radio from "./components/radio/Radio";
+import SignUp from "./SignUp/SignUp";
 import { AbleBtn } from "./components/Button/AbleBtn";
 import { ClickListBtn } from "./components/Button/ClickListBtn";
 import { DateBtn } from "./components/Button/DateBtn";
@@ -17,10 +18,13 @@ import { MapBtn } from "./components/Button/MapBtn";
 import { MemberBtn } from "./components/Button/MemberBtn";
 import { NomalBtn } from "./components/Button/NomalBtn";
 import { ResearchBtn } from "./components/Button/ResearchBtn";
+import FooterBar from "./components/footer/FooterBar";
+
 export default function Home() {
   return (
     <React.Fragment>
-      <Login />
+      <SignUp />
+      {/*
       <PushAlarm />
       <DefaultCheckBox label="이용약관에 동의합니다." />
       <SlideCheckbox label={"ON / OFF"} />
@@ -45,6 +49,8 @@ export default function Home() {
         name="radio"
         value="radio"
       />
+
+      */}
       <div>
         <NomalBtn label={"시작하기"} />
         <DisableBtn label={"다음"} />
@@ -58,6 +64,7 @@ export default function Home() {
         <ClickListBtn label={"목록보기"} />
         <ResearchBtn label={"이 지역 재탐색"} />
       </div>
+      <FooterBar defaultSelected="home" />
     </React.Fragment>
   );
 }

@@ -1,40 +1,31 @@
-"use client";
-import React from "react";
-import styles from "./Login.module.scss";
+"use client"
+import React from 'react';
+import styles from './Login.module.scss';
 import TextInput from "../components/input/TextInput/TextInput";
-import ColorBorderTextInput from "../components/input/ColorBorderTextInput/ColorBorderTextInput";
-import PhoneConfirm from "../components/input/PhoneConfirm/PhoneConfirm";
-import SearchBar from "../components/input/SearchBar/SearchBar";
+import { AbleBtn } from '../components/Button/AbleBtn';
 
 const Login = () => {
-  console.log(styles);
-  const handleResend = () => {
-    alert("인증 번호를 재전송했습니다!");
-  };
 
-  const handleSearch = (query: string) => {
-    alert(`검색어: ${query}`);
-  };
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.container}>
+                <h1>로그인</h1>
+                <TextInput type="text" placeholder="이메일" className='textInput' />
+                <TextInput type="password" placeholder="비밀번호" showToggle className='textInput' />
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <h1>로그인</h1>
-        <TextInput type="text" placeholder="이메일" />
-        <TextInput type="password" placeholder="비밀번호" showToggle />
+                <AbleBtn label="로그인"/> 
+                <div className={styles.authLinks}>
+                    <a href="./FindID">아이디찾기</a>
+                    <a href="./FindPW">비밀번호 찾기</a>
+                    <a href="./SignUp">회원가입</a>
+                </div>
+                <div className={styles.line_with_text}>
+                    <span>혹은</span>
+                </div>
 
-        <ColorBorderTextInput type="text" placeholder="예약자 이름" borderColor="#8728FF" isTransparent />
-        <ColorBorderTextInput type="text" placeholder="010-1234-5678" borderColor="#E5E5E5" isTransparent />
-
-        <PhoneConfirm onResend={handleResend} />
-
-        <SearchBar onSearch={handleSearch} />
-
-        <input type="button" value="로그인" />
-        <a href="./Sign">회원가입</a>
-      </div>
-    </div>
-  );
-};
+            </div>
+        </div>
+    );
+}
 
 export default Login;
