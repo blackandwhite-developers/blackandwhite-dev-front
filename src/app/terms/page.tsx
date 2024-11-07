@@ -1,10 +1,5 @@
-import TermsView from "@/views/terms/TermsView";
-import React from "react";
+import TermsOfServiceView from "@/views/TermsOfService/TermsOfServiceDetail.view";
 
-export default function TermsPage() {
-  return (
-    <React.Fragment>
-      <TermsView />
-    </React.Fragment>
-  );
+export default function TermsOfServicePage() {
+  return <TermsOfServiceView />;
 }

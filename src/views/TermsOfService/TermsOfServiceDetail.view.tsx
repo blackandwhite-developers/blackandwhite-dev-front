@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./TermsOfService.module.scss";
+import styles from "./TermsOfServiceDetail.view.module.scss";
 import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
