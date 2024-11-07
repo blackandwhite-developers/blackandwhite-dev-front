@@ -88,7 +88,7 @@ const TermsOfService = () => {
                     <DisableBtn label="확인" />
                 )}
             </div>
-        </div>
+        </div>   
     );
 };
 
