@@ -4,7 +4,7 @@ import styles from "./Hotel.module.scss";
 
 const cx = cn.bind(styles);
 
-const Hotel = () => {
+const HotelView = () => {
   const data = [
     {
       img: "/categoryImage/img_hotel_seoul.svg",
@@ -95,11 +95,11 @@ const Hotel = () => {
         <h3>지역 선택</h3>
 
         <div className={cx("grid-container")}>
-          {data.map((a, i) => {
+          {data.map((a) => {
             return (
-              <div className={cx("grid-item")}>
-                <img src={data[i].img} alt="regoinImg" />
-                <div className={cx("title")}>{data[i].title}</div>
+              <div key={a.title} className={cx("grid-item")}>
+                <img src={a.img} alt="regoinImg" />
+                <div className={cx("title")}>{a.title}</div>
               </div>
             );
           })}
@@ -137,4 +137,4 @@ const Hotel = () => {
   );
 };
 
-export default Hotel;
+export default HotelView;

@@ -1,8 +1,8 @@
+import HotelView from "@/views/Hotel/Hotel";
 import React from "react";
-import Hotel from "./Hotel";
 
-const HotelView = () => {
-  return <Hotel></Hotel>;
+const HotelPage = () => {
+  return <HotelView />;
 };
 
-export default HotelView;
+export default HotelPage;
