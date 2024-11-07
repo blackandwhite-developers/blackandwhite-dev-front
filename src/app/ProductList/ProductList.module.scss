@@ -1,0 +1,97 @@
+/*헤더*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+:root {
+  --font: "Noto Sans KR", sans-serif;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  margin: 0 auto 10px auto;
+  width: 360px;
+  padding: 0 20px;
+}
+.header-container .logo {
+  display: flex;
+  width: 121px;
+  height: 29px;
+}
+.header-container .bell {
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
+
+/*메인*/
+
+.main-container .grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 열 */
+  padding: 20px;
+  max-width: 360px; /* 최대 너비 설정 */
+  margin: 0 auto;
+  gap: 20px 0;
+}
+
+.main-container .grid-container .grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.main-container .grid-container .grid-item img {
+  width: 58px;
+  height: 58px;
+}
+.main-container .grid-container .grid-item .title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20.27px;
+  letter-spacing: -0.08em;
+  text-align: left;
+  font-family: var(--font);
+}
+.main-container .banner {
+  width: 360px;
+  margin: 0 auto;
+}
+.main-container .banner img {
+  width: 100%;
+  padding: 0 20px;
+}
+.main-container .currentList h4 {
+  width: 360px;
+  margin: 0 auto;
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 23.17px;
+  letter-spacing: -0.08em;
+  text-align: left;
+  padding: 10px 20px;
+}
+.main-container .list-container {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.main-container .currentList .list-image {
+  margin-bottom: 10px;
+}
+.main-container .currentList .list-item {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 180px;
+}
