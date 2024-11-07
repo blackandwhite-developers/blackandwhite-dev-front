@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./SignUp.module.scss";
+import styles from "./SignUp.view.module.scss";
 import TextInput from "@/app/components/input/TextInput/TextInput";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";

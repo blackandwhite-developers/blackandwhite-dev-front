@@ -1,13 +1,17 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductRoomDetail.view.module.scss";
-// import IoIosArrowBack,"react-icons/io";
-// import { BsCart2 } from "react-icons/bs";
 import Header from "@/app/components/Header/Header";
 import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
 import ProductRoomDetailCard from "@/app/components/ProductRoomDetailCard/ProductRoomDetailCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 
 const cx = cn.bind(styles);
 
@@ -37,12 +41,26 @@ const ProductRoomDetailView = () => {
       },
     },
   ];
-
+  const images = ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"];
   return (
     <div className={cx("ProductDetailWrapper")}>
       <Header title={title} />
       <div className={cx("ProductImage")}>
-        <Image src="/images/HotelImage1.png" alt="탭 바 이미지" width={360} height={228} />
+        <Swiper
+          modules={[Pagination]}
+          loop={true}
+          spaceBetween={10}
+          slidesPerView={1}
+          pagination={{
+            clickable: true,
+          }}
+        >
+          {images.map((src, index) => (
+            <SwiperSlide key={index}>
+              <Image src={src} alt="호텔 이미지" width={360} height={228} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
       <div className={cx("ProductInform")}>
         <div className={cx("ProductWrapper")}>
