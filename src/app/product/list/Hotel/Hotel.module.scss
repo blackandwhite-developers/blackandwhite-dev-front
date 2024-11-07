@@ -1,10 +1,17 @@
+.container .header {
+  text-align: center;
+}
+
+.container .banner img {
+  margin: 0 auto;
+}
+
 .grid-container {
   margin: 0 auto;
   width: 360px;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
 }
 
 .grid-container .grid-item {
@@ -21,5 +28,7 @@
 }
 
 .grid-container .grid-item img {
+  width: 70px;
+  height: 70px;
   margin: 0 auto;
 }

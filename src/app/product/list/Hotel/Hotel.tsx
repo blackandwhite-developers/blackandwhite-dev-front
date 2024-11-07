@@ -88,7 +88,7 @@ const Hotel = () => {
     <div className={cx("container")}>
       <div className={cx("header")}>헤더바 위치</div>
       <div className={cx("banner")}>
-        <img src="./categoryImage/img_hotel_banner01.svg" alt="" />
+        <img src="/categoryImage/HotelImg/img_hotel_banner.svg" alt="" />
       </div>
 
       <div className={cx("selectRegion")}>

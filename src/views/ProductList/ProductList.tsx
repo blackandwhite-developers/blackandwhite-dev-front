@@ -1,9 +1,9 @@
 import React from "react";
 import cn from "classnames/bind";
-import styles from "./ProductList.module.scss";
-import FooterBar from "../components/footer/FooterBar";
+import styles from "./ProductList.view.module.scss";
+// import FooterBar from "./components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
-import SearchBar from "../components/input/SearchBar/SearchBar";
+// import SearchBar from "./components/input/SearchBar/SearchBar";
 import { title } from "process";
 import { url } from "inspector";
 import Link from "next/link";
@@ -48,7 +48,7 @@ const productList = () => {
       </header>
 
       <main className={cx("main-container")}>
-        <SearchBar />
+        {/* <SearchBar /> */}
         <div className={cx("grid-container")}>
           {categori.map((a, i) => {
             return (
@@ -85,9 +85,7 @@ const productList = () => {
           </div>
         </div>
       </main>
-      <footer>
-        <FooterBar />
-      </footer>
+      <footer>{/* <FooterBar /> */}</footer>
     </div>
   );
 };
