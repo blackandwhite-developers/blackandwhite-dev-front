@@ -6,6 +6,7 @@ import cn from "classnames/bind";
 import styles from "./ProductDetail.module.scss";
 import { IoIosHeartEmpty, IoIosStarOutline } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
+import { BsCart2 } from "react-icons/bs";
 import Header from "../components/Header/Header";
 import { DateBtn } from "../components/Button/DateBtn";
 import { MemberBtn } from "../components/Button/MemberBtn";
@@ -65,7 +66,13 @@ const ProductDetail = () => {
     ];
     return (
         <div className={cx("ProductDetailWrapper")}>
-            <Header title={title} />
+            <div className={cx("ProductDetailHeader")}>
+                <Header title={title} />
+                <a href="" className={cx("CartIcon")}>
+                    <BsCart2 />
+                </a>
+            </div>
+
             <div className={cx("ProductImage")}>
                 <Swiper
                     modules={[Pagination]}
