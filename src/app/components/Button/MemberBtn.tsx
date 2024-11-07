@@ -7,13 +7,15 @@ const cx = cn.bind(styles);
 
 type MemberBtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const MemberBtn = (props: MemberBtnProps) => {
+  const { label, onClick } = props;
   return (
-    <button className={cx("MemberBtn")}>
+    <button className={cx("MemberBtn")} onClick={onClick}>
       <CgProfile />
-      {props.label}
+      {label}
     </button>
   );
 };

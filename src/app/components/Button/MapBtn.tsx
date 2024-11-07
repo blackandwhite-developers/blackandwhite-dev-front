@@ -7,13 +7,15 @@ const cx = cn.bind(styles);
 
 type MapBtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const MapBtn = (props: MapBtnProps) => {
+  const { label, onClick } = props;
   return (
-    <button className={cx("MapBtn")}>
+    <button className={cx("MapBtn")} onClick={onClick}>
       <IoMapOutline />
-      {props.label}
+      {label}
     </button>
   );
 };
