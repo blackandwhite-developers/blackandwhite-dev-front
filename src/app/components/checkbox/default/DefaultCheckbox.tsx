@@ -13,27 +13,37 @@ type CheckBoxProps = {
   isLabelGray?: boolean;
   isShadow?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 };
 
 export default function DefaultCheckBox(props: CheckBoxProps) {
-  const { label, onChange, isTransparent = false, isLabelBold = false, isLabelGray = false, isShadow = false } = props;
-  const [check, setCheck] = React.useState(false);
-  const handleClick = () => {
-    setCheck((prev) => !prev);
-  };
+  const { 
+    label, 
+    onChange, 
+    checked = false,
+    isTransparent = false, 
+    isLabelBold = false, 
+    isLabelGray = false, 
+    isShadow = false,
+    className 
+  } = props;
+  // const [check, setCheck] = React.useState(false);
+  // const handleClick = () => {
+  //   setCheck((prev) => !prev);
+  // };
   return (
-    <div className={cx("Container")}>
+    <div className={cx("Container", className)}>
       <label className={cx("Wrapper")}>
         <div
           className={cx("Checkmark", {
-            Checked: check,
+            Checked: checked,
             Transparent: isTransparent,
           })}
         >
-          <CheckIcon checked={check} isTransparent={isTransparent} shadow={isShadow} />
+          <CheckIcon checked={checked} isTransparent={isTransparent} shadow={isShadow} />
         </div>
         <span className={cx("Label", { isLabelBold, isLabelGray })}>{label}</span>
-        <input type="checkbox" readOnly hidden onClick={handleClick} onChange={onChange} />
+        <input type="checkbox" readOnly hidden  onChange={onChange} />
       </label>
     </div>
   );

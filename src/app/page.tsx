@@ -7,23 +7,20 @@ import PushAlarm from "./components/pushAlarm/PushAlarm";
 import Login from "./Login/Login";
 import Radio from "./components/radio/Radio";
 import SignUp from "./SignUp/SignUp";
-import { AbleBtn } from "./components/Button/AbleBtn";
-import { ClickListBtn } from "./components/Button/ClickListBtn";
-import { DateBtn } from "./components/Button/DateBtn";
-import { DisableBtn } from "./components/Button/DisableBtn";
-import { FindPasswordBtn } from "./components/Button/FindPasswordBtn";
-import { ListBtn } from "./components/Button/ListBtn";
-import { LoginBtn } from "./components/Button/LoginBtn";
-import { MapBtn } from "./components/Button/MapBtn";
-import { MemberBtn } from "./components/Button/MemberBtn";
-import { NomalBtn } from "./components/Button/NomalBtn";
-import { ResearchBtn } from "./components/Button/ResearchBtn";
-import FooterBar from "./components/footer/FooterBar";
+import ServiceTerms from "./agree/ServiceTerms";
+import PrivacyPolicy from "./agree/PrivacyPolicy";
+import LocationTerms from "./agree/LocationTerms";
+import MarktingTerms from "./agree/MarketingTerms";
 
 export default function Home() {
   return (
     <React.Fragment>
+      {/* <MarktingTerms/> */}
+      {/* <LocationTerms /> */}
+      {/* <PrivacyPolicy/> */}
+      {/* <ServiceTerms/> */}
       <SignUp />
+      {/* <Login /> */}
       {/*
       <PushAlarm />
       <DefaultCheckBox label="이용약관에 동의합니다." />
