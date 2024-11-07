@@ -7,10 +7,20 @@ import PushAlarm from "./components/footer/PushAlarm";
 import Login from "./Login/Login";
 import Radio from "./components/radio/Radio";
 import SignUp from "./SignUp/SignUp";
+import ServiceTerms from "./agree/ServiceTerms";
+import PrivacyPolicy from "./agree/PrivacyPolicy";
+import LocationTerms from "./agree/LocationTerms";
+import MarktingTerms from "./agree/MarketingTerms";
+
 export default function Home() {
   return (
     <React.Fragment>
+      {/* <MarktingTerms/> */}
+      {/* <LocationTerms /> */}
+      {/* <PrivacyPolicy/> */}
+      {/* <ServiceTerms/> */}
       <SignUp />
+      {/* <Login /> */}
       {/*
       <PushAlarm />
       <DefaultCheckBox label="이용약관에 동의합니다." />
