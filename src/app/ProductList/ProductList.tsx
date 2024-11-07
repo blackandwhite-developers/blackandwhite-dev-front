@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./ProductList.module.scss";
-import FootBarHome from "../components/footer/NavigationHome";
+import FooterBar from "../components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
 import SearchBar from "../components/input/SearchBar/SearchBar";
 import { title } from "process";
@@ -15,22 +15,22 @@ const productList = () => {
   const categoriImg = ["Motel", "Hotel", "Pool", "Camping", "Guesthouse", "Leisure", "Othercountry", "Airport"];
   const currentDate = [
     {
-      thumnail: "/home/hotel/hotel_01.svg",
+      thumbnail: "/home/hotel/hotel_01.svg",
       title: "코코시하우스",
       price: "45,000",
     },
     {
-      thumnail: "/home/hotel/hotel_02.svg",
+      thumbnail: "/home/hotel/hotel_02.svg",
       title: "알라베티호텔",
       price: "253,000",
     },
     {
-      thumnail: "/home/hotel/hotel_03.svg",
+      thumbnail: "/home/hotel/hotel_03.svg",
       title: "루첼라 루 호텔",
       price: "85,000",
     },
     {
-      thumnail: "/home/hotel/hotel_02.svg",
+      thumbnail: "/home/hotel/hotel_02.svg",
       title: "알라베티호텔",
       price: "253,000",
     },
@@ -72,7 +72,7 @@ const productList = () => {
             {currentDate.map((item, index) => (
               <div className={cx("list-item")} key={index}>
                 <div className={cx("list-image")}>
-                  <img src={item.thumnail} alt={item.title} />
+                  <img src={item.thumbnail} alt={item.title} />
                 </div>
                 <div className={cx("list-title")}>
                   <p>{item.title}</p>
@@ -86,7 +86,7 @@ const productList = () => {
         </div>
       </main>
       <footer>
-        <FootBarHome />
+        <FooterBar />
       </footer>
     </div>
   );
