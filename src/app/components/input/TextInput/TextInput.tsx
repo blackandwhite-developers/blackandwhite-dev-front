@@ -11,14 +11,24 @@ interface TextInputProps {
     placeholder: string;
     showToggle?: boolean;
     className?: string;
+    errorMessage? : string;
 }
 
-const TextInput = ({ type, placeholder, showToggle, className }: TextInputProps) => {
+const TextInput = ({ 
+    type, 
+    placeholder, 
+    showToggle, 
+    className, 
+    errorMessage 
+}: TextInputProps) => {
+
     const [inputType, setInputType] = useState(type);
 
     const toggleVisibility = () => {
         setInputType(inputType === "password" ? "text" : "password");
     };
+
+    const isError = Boolean(errorMessage);
 
     return (
         <div className={cx('inputWrapper', className)}>
@@ -36,6 +46,7 @@ const TextInput = ({ type, placeholder, showToggle, className }: TextInputProps)
                     {inputType === 'password' ? <LuEyeOff /> : <LuEye />}
                 </button>
             )}
+            {isError && <p className={cx('errorMessage')}>{errorMessage}</p>}
         </div>
     );
 };
