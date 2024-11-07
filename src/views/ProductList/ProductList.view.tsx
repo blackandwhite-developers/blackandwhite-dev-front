@@ -1,15 +1,13 @@
 import React from "react";
 import cn from "classnames/bind";
-import styles from "./ProductList.module.scss";
-import FootBarHome from "../components/footer/NavigationHome";
+import styles from "./ProductList.view.module.scss";
+import FootBar from "@/app/components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
-import SearchBar from "../components/input/SearchBar/SearchBar";
-import { title } from "process";
-import { url } from "inspector";
+import SearchBar from "@/app/components/input/SearchBar/SearchBar";
 
 const cx = cn.bind(styles);
 
-const productList = () => {
+const ProductListView = () => {
   const categori = ["모텔", "호텔", "팬션/풀빌라", "캠핑", "게스트하우스", "레저/티켓", "해외숙소", "항공"];
   const categoriImg = ["motel", "hotel", "pool", "camping", "guesthouse", "leisure", "othercountry", "airport"];
   const currentDate = [
@@ -47,7 +45,12 @@ const productList = () => {
       </header>
 
       <main className={cx("main-container")}>
-        <SearchBar />
+        <SearchBar
+          searchFunc={async (q) => {
+            "use server";
+            console.log(q);
+          }}
+        />
         <div className={cx("grid-container")}>
           {categori.map((a, i) => {
             return (
@@ -82,11 +85,9 @@ const productList = () => {
           </div>
         </div>
       </main>
-      <footer>
-        <FootBarHome />
-      </footer>
+      <FootBar defaultSelected="home" />
     </div>
   );
 };
 
-export default productList;
+export default ProductListView;
