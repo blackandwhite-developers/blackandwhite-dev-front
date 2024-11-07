@@ -11,6 +11,18 @@ import ServiceTerms from "./agree/ServiceTerms";
 import PrivacyPolicy from "./agree/PrivacyPolicy";
 import LocationTerms from "./agree/LocationTerms";
 import MarktingTerms from "./agree/MarketingTerms";
+import { NomalBtn } from "./components/Button/NomalBtn";
+import { DisableBtn } from "./components/Button/DisableBtn";
+import { AbleBtn } from "./components/Button/AbleBtn";
+import { FindPasswordBtn } from "./components/Button/FindPasswordBtn";
+import { LoginBtn } from "./components/Button/LoginBtn";
+import { DateBtn } from "./components/Button/DateBtn";
+import { MemberBtn } from "./components/Button/MemberBtn";
+import { ListBtn } from "./components/Button/ListBtn";
+import { MapBtn } from "./components/Button/MapBtn";
+import { ClickListBtn } from "./components/Button/ClickListBtn";
+import { ResearchBtn } from "./components/Button/ResearchBtn";
+import FooterBar from "./components/footer/FooterBar";
 
 export default function Home() {
   return (
