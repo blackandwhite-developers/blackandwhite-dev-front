@@ -7,14 +7,16 @@ const cx = cn.bind(styles);
 
 type ClickListBtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const ClickListBtn = (props: ClickListBtnProps) => {
+  const { label, onClick } = props;
   return (
-    <button className={cx("ClickListBtn")}>
+    <button className={cx("ClickListBtn")} onClick={onClick}>
       {" "}
       <FaListUl />
-      {props.label}
+      {label}
     </button>
   );
 };

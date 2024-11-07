@@ -3,14 +3,25 @@ import DefaultCheckBox from "./components/checkbox/default/DefaultCheckbox";
 import SlideCheckbox from "./components/checkbox/slide/SlideCheckbox";
 import DefaultAccordion from "./components/arcodian/default/DefaultAccordion";
 import "./page.scss";
-import PushAlarm from "./components/footer/PushAlarm";
+import PushAlarm from "./components/pushAlarm/PushAlarm";
 import Login from "./Login/Login";
-import ReservetionContent from "./Payment/Payment";
+import Radio from "./components/radio/Radio";
+import SignUp from "./SignUp/SignUp";
+import ServiceTerms from "./agree/ServiceTerms";
+import PrivacyPolicy from "./agree/PrivacyPolicy";
+import LocationTerms from "./agree/LocationTerms";
+import MarktingTerms from "./agree/MarketingTerms";
 
 export default function Home() {
   return (
     <React.Fragment>
-      <Login />
+      {/* <MarktingTerms/> */}
+      {/* <LocationTerms /> */}
+      {/* <PrivacyPolicy/> */}
+      {/* <ServiceTerms/> */}
+      <SignUp />
+      {/* <Login /> */}
+      {/*
       <PushAlarm />
       <ReservetionContent />
       <DefaultCheckBox label="이용약관에 동의합니다." />
@@ -26,6 +37,32 @@ export default function Home() {
       >
         으하하2
       </DefaultAccordion>
+      <Radio
+        label={
+          <React.Fragment>
+            <span>두줄 이상</span>
+            <span>라디오 버튼</span>
+          </React.Fragment>
+        }
+        name="radio"
+        value="radio"
+      />
+
+      */}
+      <div>
+        <NomalBtn label={"시작하기"} />
+        <DisableBtn label={"다음"} />
+        <AbleBtn label={"다음"} />
+        <FindPasswordBtn label={"비밀번호찾기"} />
+        <LoginBtn label={"로그인하기"} />
+        <DateBtn label={"6.2 화 - 6.3 수"} />
+        <MemberBtn label={"성인2명"} />
+        <ListBtn label={"목록보기"} />
+        <MapBtn label={"지도보기"} />
+        <ClickListBtn label={"목록보기"} />
+        <ResearchBtn label={"이 지역 재탐색"} />
+      </div>
+      <FooterBar defaultSelected="home" />
     </React.Fragment>
   );
 }

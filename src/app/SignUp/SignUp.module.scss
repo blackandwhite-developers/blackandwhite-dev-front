@@ -1,0 +1,37 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 360px;
+    height: 760px;
+    background-color: var(--white);
+}
+
+.container {
+    width: 100%;
+    max-width: 360px;
+    max-height: 760px;
+    padding: 20px;
+    text-align: center;
+    
+
+    h1 {
+        font-size: 2rem;
+        color: var(--main-purple);
+        text-align: left;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+}
+
+.checkBox{
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0;
+
+    a{
+        color: var(--main-purple);
+        text-decoration: none;
+    }
+}

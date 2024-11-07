@@ -2,6 +2,14 @@
   display: flex;
   align-items: center;
   gap: 11px;
+  max-width: max-content;
+}
+
+.Wrapper {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
 }
 
 .Checkmark {

@@ -7,13 +7,15 @@ const cx = cn.bind(styles);
 
 type ResearchBtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const ResearchBtn = (props: ResearchBtnProps) => {
+  const { label, onClick } = props;
   return (
-    <button className={cx("ResearchBtn")}>
+    <button className={cx("ResearchBtn")} onClick={onClick}>
       <MdOutlineRefresh style={{ transform: "scaleX(-1)", fontSize: "15px" }} />
-      {props.label}
+      {label}
     </button>
   );
 };

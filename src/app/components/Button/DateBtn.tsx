@@ -7,15 +7,17 @@ const cx = cn.bind(styles);
 
 type DateBtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const DateBtn = (props: DateBtnProps) => {
+  const { label, onClick } = props;
   return (
-    <button className={cx("DateBtn")}>
+    <button className={cx("DateBtn")} onClick={onClick}>
       <div>
         <CiCalendar />{" "}
       </div>
-      {props.label}
+      {label}
     </button>
   );
 };
