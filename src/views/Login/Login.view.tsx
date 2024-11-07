@@ -16,7 +16,7 @@ const LoginView = () => {
         <div className={styles.authLinks}>
           <a href="./FindID">아이디찾기</a>
           <a href="./FindPW">비밀번호 찾기</a>
-          <a href="./SignUp">회원가입</a>
+          <a href="./signup">회원가입</a>
         </div>
         <div className={styles.line_with_text}>
           <span>혹은</span>

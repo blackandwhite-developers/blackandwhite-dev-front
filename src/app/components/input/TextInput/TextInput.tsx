@@ -12,6 +12,8 @@ interface TextInputProps {
     showToggle?: boolean;
     className?: string;
     errorMessage? : string;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; 
 }
 
 const TextInput = ({ 
@@ -19,7 +21,9 @@ const TextInput = ({
     placeholder, 
     showToggle, 
     className, 
-    errorMessage 
+    errorMessage, 
+    value, 
+    onChange 
 }: TextInputProps) => {
 
     const [inputType, setInputType] = useState(type);
@@ -36,6 +40,8 @@ const TextInput = ({
                 className={cx('inputField')}
                 type={inputType}
                 placeholder={placeholder}
+                value={value}
+                onChange={onChange}
             />
             {showToggle && (
                 <button
