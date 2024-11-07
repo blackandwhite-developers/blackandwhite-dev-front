@@ -12,7 +12,7 @@ type ProductDetailInfomation = {
     /** 퇴실 */
     checkOutInfomation?: string | null;
     /** 숙박 가격 */
-    lodgePrice?: number;
+    lodgePrice?: string;
     /** 객실 갯수 */
     roomCount: number;
 };

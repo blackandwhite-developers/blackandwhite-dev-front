@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.module.scss";
-import { IoIosHeartEmpty, IoIosStarOutline } from "react-icons/io";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { FaRegStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import Header from "../components/Header/Header";
@@ -20,6 +21,8 @@ const cx = cn.bind(styles);
 
 const ProductDetail = () => {
     const title = "김포 마리나베이 호텔";
+
+    /** 상품 카드 더미 데이터 */
     const productDetailsArray = [
         {
             imageUrl: "/images/HotelImage1.png",
@@ -29,7 +32,7 @@ const ProductDetail = () => {
                 parlorInfomation: "기준 2인 (최대 3인)",
                 checkInInfomation: "16:00",
                 checkOutInfomation: "11:00",
-                lodgePrice: 75000,
+                lodgePrice: "75,000원",
                 roomCount: 1,
             },
         },
@@ -41,7 +44,7 @@ const ProductDetail = () => {
                 parlorInfomation: "기준 2인 (최대 2인)",
                 checkInInfomation: "15:00",
                 checkOutInfomation: "11:00",
-                lodgePrice: 65000,
+                lodgePrice: "75,000원",
                 roomCount: 3,
             },
         },
@@ -53,17 +56,25 @@ const ProductDetail = () => {
                 parlorInfomation: "기준 3인 (최대 4인)",
                 checkInInfomation: "17:00",
                 checkOutInfomation: "12:00",
-                lodgePrice: 95000,
+                lodgePrice: "75,000원",
                 roomCount: 2,
             },
         },
     ];
 
+    /** 상단 이미지 더미 데이터 */
     const images = [
         "/images/HotelImage1.png",
         "/images/HotelImage1.png",
         "/images/HotelImage1.png",
     ];
+
+    const [selectedTab, setSelectedTab] = useState("room");
+
+    const handleTabClick = (tab: string) => {
+        setSelectedTab(tab);
+    };
+
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
@@ -107,11 +118,11 @@ const ProductDetail = () => {
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>4.0</p>
                         <p className={cx("ProductStarRating")}>
-                            <IoIosStarOutline />
-                            <IoIosStarOutline />
-                            <IoIosStarOutline />
-                            <IoIosStarOutline />
-                            <IoIosStarOutline />
+                            <FaRegStar />
+                            <FaRegStar />
+                            <FaRegStar />
+                            <FaRegStar />
+                            <FaRegStar />
                         </p>
                         <p className={cx("ProductReviewCount")}>(1,136)</p>
                     </div>
@@ -125,10 +136,22 @@ const ProductDetail = () => {
 
                 <div className={cx("ProductCategoryWrapper")}>
                     <div className={cx("ProductCategoryBadge")}>
-                        <button className={cx("CategoryLink", "selected")}>
+                        <button
+                            className={cx("CategoryLink", {
+                                selected: selectedTab === "room",
+                            })}
+                            onClick={() => handleTabClick("room")}
+                        >
                             객실 선택
                         </button>
-                        <button className={cx("CategoryLink")}>후기</button>
+                        <button
+                            className={cx("CategoryLink", {
+                                selected: selectedTab === "review",
+                            })}
+                            onClick={() => handleTabClick("review")}
+                        >
+                            후기
+                        </button>
                     </div>
                     <div className={cx("ProductCategoryLine")}></div>
 

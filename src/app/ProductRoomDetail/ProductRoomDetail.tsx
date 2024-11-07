@@ -18,6 +18,8 @@ const cx = cn.bind(styles);
 
 const ProductDetail = () => {
     const title = "객실상세";
+
+    /** 상품 카드 더미 데이터 */
     const productDetailsArray = [
         {
             title: "대실" as const,
@@ -42,6 +44,8 @@ const ProductDetail = () => {
             },
         },
     ];
+
+    /** 상단 이미지 더미 데이터 */
     const images = [
         "/images/HotelImage1.png",
         "/images/HotelImage1.png",
