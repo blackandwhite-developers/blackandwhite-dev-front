@@ -4,18 +4,12 @@ import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.module.scss";
-import {
-    // IoIosArrowBack,
-    IoIosHeartEmpty,
-    IoIosStarOutline,
-} from "react-icons/io";
+import { IoIosHeartEmpty, IoIosStarOutline } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
-// import { BsCart2 } from "react-icons/bs";
 import Header from "../components/Header/Header";
 import { DateBtn } from "../components/Button/DateBtn";
 import { MemberBtn } from "../components/Button/MemberBtn";
 import ProductSelectCard from "@/app/components/ProductSelectCard/ProductSelectCard";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
@@ -87,7 +81,6 @@ const ProductDetail = () => {
                     slidesPerView={1}
                     pagination={{
                         clickable: true,
-                        type: "bullets",
                     }}
                 >
                     {images.map((src, index) => (
