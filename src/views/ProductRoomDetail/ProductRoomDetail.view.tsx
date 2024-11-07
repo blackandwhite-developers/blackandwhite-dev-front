@@ -1,17 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
-import styles from "./ProductRoomDetail.module.scss";
+import styles from "./ProductRoomDetail.view.module.scss";
 // import IoIosArrowBack,"react-icons/io";
 // import { BsCart2 } from "react-icons/bs";
-import Header from "../components/Header/Header";
-import { DateBtn } from "../components/Button/DateBtn";
-import { MemberBtn } from "../components/Button/MemberBtn";
+import Header from "@/app/components/Header/Header";
+import { DateBtn } from "@/app/components/Button/DateBtn";
+import { MemberBtn } from "@/app/components/Button/MemberBtn";
 import ProductRoomDetailCard from "@/app/components/ProductRoomDetailCard/ProductRoomDetailCard";
 
 const cx = cn.bind(styles);
 
-const ProductDetail = () => {
+const ProductRoomDetailView = () => {
   const title = "객실상세";
   const productDetailsArray = [
     {
@@ -77,4 +77,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductRoomDetailView;
