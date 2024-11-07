@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./Payment.module.scss";
 import cn from "classnames/bind";
-import DefaultCheckBox from "../components/checkbox/default/DefaultCheckbox";
+import Badge from "../components/badge/Badge";
 
 const cx = cn.bind(styles);
 
