@@ -1,19 +1,19 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
-import {
-  // IoIosArrowBack,
-  IoIosHeartEmpty,
-  IoIosStarOutline,
-} from "react-icons/io";
+import { IoIosHeartEmpty, IoIosStarOutline } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
-// import { BsCart2 } from "react-icons/bs";
 import Header from "@/app/components/Header/Header";
 import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
-
 import ProductDetailCard from "@/app/components/ProductDetailCard/ProductDetailCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 
 const cx = cn.bind(styles);
 
@@ -57,11 +57,27 @@ const ProductDetailView = () => {
       },
     },
   ];
+
+  const images = ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"];
   return (
     <div className={cx("ProductDetailWrapper")}>
       <Header title={title} />
       <div className={cx("ProductImage")}>
-        <Image src="/images/HotelImage1.png" alt="탭 바 이미지" width={360} height={228} />
+        <Swiper
+          modules={[Pagination]}
+          loop={true}
+          spaceBetween={10}
+          slidesPerView={1}
+          pagination={{
+            clickable: true,
+          }}
+        >
+          {images.map((src, index) => (
+            <SwiperSlide key={index}>
+              <Image src={src} alt="호텔 이미지" width={360} height={228} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
       <div className={cx("ProductInform")}>
         <p className={cx("ProductCategory")}>호텔</p>
@@ -81,7 +97,7 @@ const ProductDetailView = () => {
               <IoIosStarOutline />
               <IoIosStarOutline />
             </p>
-            <p className={cx("ProductVoteTotal")}>(1,136)</p>
+            <p className={cx("ProductReviewCount")}>(1,136)</p>
           </div>
           <div className={cx("ProductLocation")}>
             <p className={cx("ProductLocationIcon")}>
