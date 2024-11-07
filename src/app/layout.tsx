@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { MockProvider } from "@/mockProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,22 +12,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Start the mocking when the app is running in development mode.
-  if (typeof window === "undefined") {
-    (async () => {
-      const { server } = await import("../mocks/server");
-      server.listen();
-    })();
-  } else {
-    (async () => {
-      const { worker } = await import("../mocks/browser");
-      worker.start();
-    })();
-  }
-
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MockProvider>{children}</MockProvider>
+      </body>
     </html>
   );
 }
