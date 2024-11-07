@@ -5,11 +5,14 @@ import DefaultAccordion from "./components/arcodian/default/DefaultAccordion";
 import "./page.scss";
 import PushAlarm from "./components/footer/PushAlarm";
 import Login from "./Login/Login";
+import ReservetionContent from "./Payment/Payment";
+
 export default function Home() {
   return (
     <React.Fragment>
       <Login />
       <PushAlarm />
+      <ReservetionContent />
       <DefaultCheckBox label="이용약관에 동의합니다." />
       <SlideCheckbox label={"ON / OFF"} />
       <DefaultAccordion title="아코디언 테스트">으하하</DefaultAccordion>

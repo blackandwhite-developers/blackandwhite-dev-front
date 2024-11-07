@@ -1,0 +1,26 @@
+.Wrapper {
+  margin: 0 auto;
+  background-color: #ffffff;
+  width: 360px;
+  height: 400px;
+}
+
+.reservation-container {
+  width: 320px;
+  height: 45px;
+  border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hotelname-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.room-detailcontent {
+  font-size: 12px;
+  font-weight: 500;
+  color: #4c4c4c;
+}
