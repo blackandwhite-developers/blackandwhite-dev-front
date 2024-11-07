@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
-import styles from "./ProductDetail.module.scss";
+import styles from "./ProductSelect.view.module.scss";
 import {
   // IoIosArrowBack,
   IoIosHeartEmpty,
@@ -9,54 +9,61 @@ import {
 } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 // import { BsCart2 } from "react-icons/bs";
-import Header from "../components/Header/Header";
-import { DateBtn } from "../components/Button/DateBtn";
-import { MemberBtn } from "../components/Button/MemberBtn";
+import Header from "@/app/components/Header/Header";
+import { DateBtn } from "@/app/components/Button/DateBtn";
+import { MemberBtn } from "@/app/components/Button/MemberBtn";
 
-import ProductDetailCard from "@/app/components/ProductDetailCard/ProductDetailCard";
+import ProductSelectCard from "@/app/components/ProductSelectCard/ProductSelectCard";
 
 const cx = cn.bind(styles);
 
-const ProductDetail = () => {
+const ProductSelectView = () => {
   const title = "김포 마리나베이 호텔";
-  const productDetailsArray = [
+  const productSelectData = [
     {
       imageUrl: "/images/HotelImage1.png",
       label: "특가",
       title: "프리미엄 트윈",
       infomation: {
         parlorInfomation: "기준 2인 (최대 3인)",
-        checkInInfomation: "16:00",
-        checkOutInfomation: "11:00",
-        lodgePrice: 75000,
-        roomCount: 1,
+        roomInformation: "대실",
+        roomInfoDetail: "4시간기준",
+        roomPrice: "40000",
+        lodgeInformation: "숙박",
+        lodgeInfoDetail: "16:00 ~ 11:00",
+        lodgePrice: "75000",
       },
     },
     {
       imageUrl: "/images/HotelImage1.png",
-      label: "스탠다드",
+      label: "세일",
       title: "디럭스 더블",
       infomation: {
-        parlorInfomation: "기준 2인 (최대 2인)",
-        checkInInfomation: "15:00",
-        checkOutInfomation: "11:00",
-        lodgePrice: 65000,
-        roomCount: 3,
+        parlorInfomation: "기준 2인 (최대 3인)",
+        roomInformation: "대실",
+        roomInfoDetail: "4시간기준",
+        roomPrice: "40000",
+        lodgeInformation: "숙박",
+        lodgeInfoDetail: "16:00 ~ 11:00",
+        lodgePrice: "75000",
       },
     },
     {
       imageUrl: "/images/HotelImage1.png",
-      label: "프리미엄",
-      title: "슈페리어 트윈",
+      label: "특가",
+      title: "스위트룸",
       infomation: {
-        parlorInfomation: "기준 3인 (최대 4인)",
-        checkInInfomation: "17:00",
-        checkOutInfomation: "12:00",
-        lodgePrice: 95000,
-        roomCount: 2,
+        parlorInfomation: "기준 2인 (최대 3인)",
+        roomInformation: "대실",
+        roomInfoDetail: "4시간기준",
+        roomPrice: "40000",
+        lodgeInformation: "숙박",
+        lodgeInfoDetail: "16:00 ~ 11:00",
+        lodgePrice: "75000",
       },
     },
   ];
+
   return (
     <div className={cx("ProductDetailWrapper")}>
       <Header title={title} />
@@ -105,8 +112,8 @@ const ProductDetail = () => {
             </div>
 
             <div>
-              {productDetailsArray.map((product, index) => (
-                <ProductDetailCard key={index} imageUrl={product.imageUrl} label={product.label} title={product.title} infomation={product.infomation} />
+              {productSelectData.map((product, index) => (
+                <ProductSelectCard key={index} imageUrl={product.imageUrl} label={product.label} title={product.title} infomation={product.infomation} />
               ))}
             </div>
           </div>
@@ -116,4 +123,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductSelectView;
