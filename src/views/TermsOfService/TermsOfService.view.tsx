@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./TermsOfServiceDetail.view.module.scss";
+import styles from "./TermsOfService.view.module.scss";
 import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
@@ -46,21 +46,20 @@ const TermsOfServiceView = () => {
         <DefaultCheckBox label="전체 동의" checked={isAllChecked} onChange={handleAllCheckedChange} className={styles.allCheckBox} />
         <div className={styles.checkBox}>
           <DefaultCheckBox label="서비스 이용약관 (필수)" checked={serviceTermsChecked} onChange={handleServiceTermsChange} />
-          <a href="/ServiceTerms">자세히 보기</a>
+          <a href="/terms/detail?type=service">자세히 보기</a>
         </div>
         <div className={styles.checkBox}>
           <DefaultCheckBox label="개인정보 수집/이용 (필수)" checked={privacyPolicyChecked} onChange={handlePrivacyPolicyChange} />
-          <a href="/PrivacyPolicy">자세히 보기</a>
+          <a href="/terms/detail?type=privacy">자세히 보기</a>
         </div>
         <div className={styles.checkBox}>
           <DefaultCheckBox label="위치정보 이용 동의 (선택)" checked={locationTermsChecked} onChange={handleLocationTermsChange} />
-          <a href="/LocationTerms">자세히 보기</a>
+          <a href="/terms/detail?type=location">자세히 보기</a>
         </div>
         <div className={styles.checkBox}>
           <DefaultCheckBox label="마케팅 정보 수신 동의 (선택)" checked={marketingTermsChecked} onChange={handleMarketingTermsChange} />
-          <a href="/MarketingTerms">자세히 보기</a>
+          <a href="/terms/detail?type=marketing">자세히 보기</a>
         </div>
-
         {isConfirmButtonEnabled ? <AbleBtn label="확인" /> : <DisableBtn label="확인" />}
       </div>
     </div>
