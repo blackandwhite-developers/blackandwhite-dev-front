@@ -1,6 +1,3 @@
-$primary-color: #8728ff;
-$background-color: #f4f4f4;
-
 .inputWrapper {
   position: relative;
   margin-bottom: 4px;
@@ -11,7 +8,7 @@ $background-color: #f4f4f4;
   padding: 12px;
   border-radius: 8px;
   border: none;
-  background-color: $background-color;
+  background-color: var(--gray50);
 }
 
 .toggleButton {
@@ -22,9 +19,15 @@ $background-color: #f4f4f4;
   background: none;
   border: none;
   cursor: pointer;
-  color: $primary-color;
+  color: var(--main-purple);
 
   &.eyeOff {
     color: #999;
   }
+}
+
+.errorMessage {
+  color: var(--sub-red);
+  font-size: 14px;
+  margin-top: 4px;
 }
