@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
-import styles from "./ProductRoomDetail.module.scss";
+import styles from "./ProductRoomDetail.view.module.scss";
 import Header from "@/app/components/Header/Header";
 import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";

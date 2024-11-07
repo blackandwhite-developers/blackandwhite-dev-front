@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
-import styles from "./ProductDetail.module.scss";
+import styles from "./ProductDetail.view.module.scss";
 import { IoIosHeartEmpty, IoIosStarOutline } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import Header from "@/app/components/Header/Header";
