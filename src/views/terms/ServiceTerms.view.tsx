@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./agree.module.scss";
+import styles from "./agree.view.module.scss";
 
 const ServiceTerms = () => {
   return (
