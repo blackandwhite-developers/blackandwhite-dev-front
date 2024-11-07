@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
@@ -12,8 +14,12 @@ import { IoLocationOutline } from "react-icons/io5";
 import Header from "../components/Header/Header";
 import { DateBtn } from "../components/Button/DateBtn";
 import { MemberBtn } from "../components/Button/MemberBtn";
-
 import ProductSelectCard from "@/app/components/ProductSelectCard/ProductSelectCard";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 
 const cx = cn.bind(styles);
 
@@ -64,16 +70,37 @@ const ProductDetail = () => {
         },
     ];
 
+    const images = [
+        "/images/HotelImage1.png",
+        "/images/HotelImage1.png",
+        "/images/HotelImage1.png",
+    ];
+
     return (
         <div className={cx("ProductDetailWrapper")}>
             <Header title={title} />
             <div className={cx("ProductImage")}>
-                <Image
-                    src="/images/HotelImage1.png"
-                    alt="탭 바 이미지"
-                    width={360}
-                    height={228}
-                />
+                <Swiper
+                    modules={[Pagination]}
+                    loop={true}
+                    spaceBetween={10}
+                    slidesPerView={1}
+                    pagination={{
+                        clickable: true,
+                        type: "bullets",
+                    }}
+                >
+                    {images.map((src, index) => (
+                        <SwiperSlide key={index}>
+                            <Image
+                                src={src}
+                                alt="호텔 이미지"
+                                width={360}
+                                height={228}
+                            />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
             <div className={cx("ProductInform")}>
                 <p className={cx("ProductCategory")}>호텔</p>

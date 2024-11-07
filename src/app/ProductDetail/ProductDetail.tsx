@@ -14,9 +14,11 @@ import { IoLocationOutline } from "react-icons/io5";
 import Header from "../components/Header/Header";
 import { DateBtn } from "../components/Button/DateBtn";
 import { MemberBtn } from "../components/Button/MemberBtn";
+import ProductDetailCard from "@/app/components/ProductDetailCard/ProductDetailCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import ProductDetailCard from "@/app/components/ProductDetailCard/ProductDetailCard";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 
 const cx = cn.bind(styles);
 
@@ -70,7 +72,16 @@ const ProductDetail = () => {
         <div className={cx("ProductDetailWrapper")}>
             <Header title={title} />
             <div className={cx("ProductImage")}>
-                <Swiper spaceBetween={10} slidesPerView={1} pagination={true}>
+                <Swiper
+                    modules={[Pagination]}
+                    loop={true}
+                    spaceBetween={10}
+                    slidesPerView={1}
+                    pagination={{
+                        clickable: true,
+                        type: "bullets",
+                    }}
+                >
                     {images.map((src, index) => (
                         <SwiperSlide key={index}>
                             <Image
