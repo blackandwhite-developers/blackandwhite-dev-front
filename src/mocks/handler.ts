@@ -1,10 +1,7 @@
 import { http, HttpResponse } from "msw";
-
+const homeCategory = await import("./home-category.json");
 export const handlers = [
-  http.post("/login", () => {
-    return HttpResponse.json({ username: "admin" });
-  }),
-  http.get("https://jsonplaceholder.typicode.com/todos", () => {
-    return HttpResponse.json({ username: "admin" });
+  http.get("http://localhost:3000/api/home-category", () => {
+    return HttpResponse.json(homeCategory);
   }),
 ];
