@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "img": "/categoryImage/img_hotel_seoul.svg",
+      "title": "서울/경인"
+    },
+    {
+      "img": "/categoryImage/img_hotel_chungcheong.svg",
+      "title": "충청"
+    },
+    {
+      "img": "/categoryImage/img_hotel_gyengsang.svg",
+      "title": "경상"
+    },
+    {
+      "img": "/categoryImage/img_hotel_jeonla",
+      "title": "전라"
+    },
+    {
+      "img": "/categoryImage/img_hotel_gangwon",
+      "title": "강원"
+    },
+    {
+      "img": "/categoryImage/img_hotel_jeju.svg",
+      "title": "제주"
+    }
+  ],
+  "prev": null,
+  "next": null,
+  "count": 6
+}
