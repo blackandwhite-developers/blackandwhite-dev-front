@@ -9,7 +9,7 @@ const cx = cn.bind(styles);
 
 interface SearchBarProps {
   placeholder?: string;
-  searchFunc: (query: string) => void;
+  searchFunc?: (query: string) => void;
   className?: string;
 }
 
@@ -22,7 +22,7 @@ const SearchBar = ({ placeholder = "어떤 숙소를 찾으시나요?", searchFu
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && query.trim()) {
-      searchFunc(query.trim());
+      searchFunc?.(query.trim());
     }
   };
 

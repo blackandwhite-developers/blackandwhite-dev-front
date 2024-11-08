@@ -3,8 +3,8 @@ import styles from "./agree.view.module.scss";
 
 const MarktingTerms = () => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
+    <div className={styles.wrapper_bottomSheet}>
+      <div className={styles.container_bottomSheet}>
         <h1>마케팅 정보 수신 동의</h1>
         <p>회사는 다양한 프로모션 및 이벤트 소식을 이용자에게 제공하기 위해 마케팅 정보 수신에 대한 동의를 받고 있습니다.</p>
         <p>

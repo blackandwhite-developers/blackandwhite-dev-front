@@ -1,0 +1,63 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    z-index: 10;
+
+    &.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.bottomSheet {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 16px 16px 0 0;
+    padding: 20px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(-50%);
+    transition: transform 0.3s ease-out;
+    z-index: 20;
+
+    &.open {
+        transform: translateX(-50%) scale(1); 
+    }
+
+    .handle {
+        width: 40px;
+        height: 4px;
+        background-color: var(--gray200);
+        border-radius: 2px;
+        margin: 0 auto 16px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .content {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--black);
+        overflow-y: auto;
+        max-height: 320px; 
+        text-align: left;
+    }
+
+    @media (min-width: 768px) {
+        width: 360px;
+        max-width: 360px; 
+    }
+}

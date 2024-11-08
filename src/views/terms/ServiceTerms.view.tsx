@@ -3,8 +3,8 @@ import styles from "./agree.view.module.scss";
 
 const ServiceTerms = () => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
+    <div className={styles.wrapper_bottomSheet}>
+      <div className={styles.container_bottomSheet}>
         <h1>서비스 이용약관</h1>
         <p>본 약관은 [서비스명] (이하 &quot;회사&quot;)이 제공하는 모든 서비스의 이용과 관련하여 회사와 이용자 간의 권리, 의무, 책임 사항 및 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
         <p>
