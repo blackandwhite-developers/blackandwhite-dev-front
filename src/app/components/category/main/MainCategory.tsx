@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./MainCategory.module.scss";
-import Image from "next/image";
 import cn from "classnames/bind";
+import { ImageIcon } from "../../imageIcon/ImageIcon";
 
 const cx = cn.bind(styles);
 
@@ -18,7 +18,7 @@ export default function MainCategory(props: MainCategoryProps) {
   return (
     <div key={categoryName} className={cx("MainCategory", className)} onClick={onClick}>
       <div className={cx("CategoryIconWrapper")}>
-        <Image src={categoryIcon} alt={categoryKoreanName} width={43} height={43} />
+        <ImageIcon src={categoryIcon} alt={categoryKoreanName} width={43} height={43} />
       </div>
       <p className={cx("CategoryName")}>{categoryKoreanName}</p>
     </div>
