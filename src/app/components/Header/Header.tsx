@@ -7,16 +7,18 @@ const cx = cn.bind(styles);
 
 type HeaderProps = {
   title: string;
+  onClick?: () => void;
 };
 
-const Header = ({ title }: HeaderProps) => {
+const Header = ({ title, onClick }: HeaderProps) => {
   return (
     <div className={cx("Header")}>
-      <a href="" className={cx("BackIcon")}>
-        <IoIosArrowBack />
-      </a>
-
-      <div className={cx("HeaderTitle")}>{title}</div>
+      <div className={cx("Container")}>
+        <button className={cx("BackIcon")} onClick={onClick}>
+          <IoIosArrowBack />
+        </button>
+        <p className={cx("HeaderTitle")}>{title}</p>
+      </div>
     </div>
   );
 };
