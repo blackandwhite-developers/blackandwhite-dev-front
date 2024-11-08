@@ -1,0 +1,31 @@
+.Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 11px;
+}
+
+.Count {
+  align-self: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -8px;
+}
+
+.Button {
+  background-color: transparent;
+  border: 1.3px solid var(--main-purple);
+  color: var(--main-purple);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18.33px;
+  width: 18.33px;
+  &.isMinusDisabled,
+  &.isPlusDisabled {
+    opacity: 30%;
+    cursor: not-allowed;
+  }
+}
