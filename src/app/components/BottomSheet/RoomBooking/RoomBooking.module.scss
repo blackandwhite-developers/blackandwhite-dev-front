@@ -15,6 +15,7 @@
 }
 
 .RoomBookingTitle {
+    font-size: 16px;
     padding-top: 15px;
     font-weight: 700;
 }
@@ -61,8 +62,8 @@
     list-style-type: none;
 }
 
-.StayNight {
-    width: 30px;
+.StayHour {
+    width: 35px;
     height: 17px;
     background-color: #cccccc;
     display: flex;
@@ -108,6 +109,7 @@
     border: 1px solid #8728ff;
     border-radius: 10px;
     cursor: pointer;
+    background-color: #ffffff;
 
     &.selected {
         background-color: #e9d8ff;
@@ -130,7 +132,7 @@
 }
 
 .ButtonWrapper {
-    padding-top: 25px;
+    padding-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -152,6 +154,7 @@
     padding: 10px;
     border-radius: 10px;
     color: #fff;
+    border: none;
 }
 
 .ButtonWrapper .CartButton {
