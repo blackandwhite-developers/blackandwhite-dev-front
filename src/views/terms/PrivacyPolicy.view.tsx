@@ -3,8 +3,8 @@ import styles from "./agree.view.module.scss";
 
 const PrivacyPolicy = () => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
+    <div className={styles.wrapper_bottomSheet}>
+      <div className={styles.container_bottomSheet}>
         <h1>개인정보 수집 / 이용</h1>
         <p>회사는 회원가입 및 서비스 제공을 위해 이용자의 개인정보를 수집, 이용하며, 그 목적과 처리에 대해 아래와 같이 안내드립니다.</p>
         <p>
