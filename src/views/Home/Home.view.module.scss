@@ -7,7 +7,6 @@
   justify-content: center;
   justify-self: center;
   background-color: var(--white);
-  padding: 105px 0 60px;
 }
 
 @include mobile {
@@ -36,4 +35,5 @@
   align-items: center;
   justify-content: center;
   background-color: var(--white);
+  padding: 105px 0 60px;
 }
