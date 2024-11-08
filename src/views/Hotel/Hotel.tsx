@@ -1,10 +1,13 @@
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Hotel.module.scss";
+import Header from "@/app/components/Header/Header";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
 const HotelView = () => {
+  const Title = "호텔";
   const data = [
     {
       img: "/categoryImage/img_hotel_seoul.svg",
@@ -86,25 +89,17 @@ const HotelView = () => {
 
   return (
     <div className={cx("container")}>
-      <div className={cx("header")}>헤더바 위치</div>
+      <div className={cx("header")}>
+        <Link href={"/product/list"}>
+          <Header title={Title} />
+        </Link>
+      </div>
       <div className={cx("banner")}>
         <img src="/categoryImage/HotelImg/img_hotel_banner.svg" alt="" />
       </div>
 
       <div className={cx("selectRegion")}>
         <h3>지역 선택</h3>
-<<<<<<<< HEAD:src/app/product/list/Hotel/Hotel.tsx
-      </div>
-      <div className={cx("grid-container")}>
-        {data.map((a, i) => {
-          return (
-            <div className={cx("grid-item")}>
-              <img src={data[i].img} alt="regoinImg" />
-              <div className={cx("title")}>{data[i].title}</div>
-            </div>
-          );
-        })}
-========
 
         <div className={cx("grid-container")}>
           {data.map((a) => {
@@ -116,7 +111,6 @@ const HotelView = () => {
             );
           })}
         </div>
->>>>>>>> develop:src/views/Hotel/Hotel.tsx
       </div>
 
       <div className={cx("popularityRoom")}>

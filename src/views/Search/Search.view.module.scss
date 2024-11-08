@@ -1,3 +1,19 @@
+.header {
+  padding: 0 20px;
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 23.17px;
+  letter-spacing: -0.08em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.header a {
+  text-decoration: none;
+}
+
 .about {
   display: flex;
   flex-direction: column;
@@ -8,7 +24,7 @@
   width: 320px;
   margin: 0 auto;
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 .searchResult .searchResult-header {
   padding: 0 20px;
@@ -91,6 +107,11 @@
 .card-container .card .card-item img {
   width: 110px;
   height: 110px;
+}
+.card-container .card .card-item .detail {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .card-container .card .card-item .detail .title {

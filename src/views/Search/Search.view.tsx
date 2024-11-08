@@ -6,6 +6,9 @@ import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
 import { FaAngleDown } from "react-icons/fa";
 import { BiTransfer } from "react-icons/bi";
+import Badge from "@/app/components/badge/Badge";
+import Header from "@/app/components/Header/Header";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
@@ -65,7 +68,11 @@ const SearchPageView = () => {
 
   return (
     <div>
-      <div className={cx("header")}>헤더바 자리</div>
+      <div className={cx("header")}>
+        <Link href={"/product/list"}>
+          <Header title={"검색"} />
+        </Link>
+      </div>
 
       <div className={cx("about")}>
         <SearchBar />
@@ -99,7 +106,7 @@ const SearchPageView = () => {
                     <div className={cx("card-item")}>
                       <img src={a.img} alt="" />
                       <div className={cx("detail")}>
-                        <button>{a.type}</button>
+                        <Badge shape="round">{a.type}</Badge>
                         <p className={cx("title")}>{a.title}</p>
                         <div className={cx("rate-info")}>
                           <p className={cx("rate")}>{a.rate}</p>
