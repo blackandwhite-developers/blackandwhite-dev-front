@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./ProductRoomDetailCard.module.scss";
 import cn from "classnames/bind";
 import { RoomReservationBtn } from "@/app/components/Button/RoomReservationBtn";
