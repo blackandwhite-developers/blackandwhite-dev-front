@@ -1,12 +1,16 @@
 .Container {
   display: flex;
   align-items: center;
-  padding: 6px;
   justify-content: space-between;
+  max-width: max-content;
+  padding: 6px;
 }
 
-.Label {
-  cursor: pointer;
+.Wrapper {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  gap: 12px;
 }
 
 .Slide {

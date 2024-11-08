@@ -1,0 +1,6 @@
+.MenuIcon {
+  fill: var(--gray300);
+  &.isSelected {
+    fill: var(--main-purple);
+  }
+}

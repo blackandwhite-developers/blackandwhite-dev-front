@@ -6,8 +6,14 @@ const cx = cn.bind(styles);
 
 type DisableBtnProps = {
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const DisableBtn = (props: DisableBtnProps) => {
-  return <button className={cx("DisableBtn")}>{props.label}</button>;
+  const { label, onClick } = props;
+  return (
+    <button className={cx("DisableBtn")} onClick={onClick}>
+      {label}
+    </button>
+  );
 };

@@ -1,0 +1,60 @@
+{
+  "categories": [
+    {
+      "categoryName": "motel",
+      "categoryIcon": {
+        "path": "/icon-asset/category-asset/motel.png"
+      },
+      "categoryKoreanName": "모텔"
+    },
+    {
+      "categoryName": "hotel",
+      "categoryIcon": {
+        "path": "/icon-asset/category-asset/hotel.png"
+      },
+      "categoryKoreanName": "호텔"
+    },
+    {
+      "categoryName": "pension",
+      "categoryIcon": {
+        "path": "/icon-asset/category-asset/poolvilla.png"
+      },
+      "categoryKoreanName": "펜션/풀빌라"
+    },
+    {
+      "categoryName": "camping",
+      "categoryIcon": {
+        "path": "/icon-asset/category-asset/camping.png"
+      },
+      "categoryKoreanName": "캠핑"
+    },
+    {
+      "categoryName": "guesthouse",
+      "categoryIcon": {
+        "path": "/icon-asset/category-asset/guesthouse.png"
+      },
+      "categoryKoreanName": "게스트하우스"
+    },
+    {
+      "categoryName": "ticket",
+      "categoryIcon": {
+        "path": "/icon-asset/category-asset/ticket.png"
+      },
+      "categoryKoreanName": "레저/티켓"
+    },
+    {
+      "categoryName": "foreign",
+      "categoryIcon": {
+        "path": "/icon-asset/category-asset/foreign-country.png"
+      },
+      "categoryKoreanName": "해외숙소"
+    },
+    {
+      "categoryName": "aviation",
+      "categoryIcon": {
+        "path": "/icon-asset/category-asset/aviation.png"
+      },
+      "categoryKoreanName": "항공"
+    }
+  ]
+}
