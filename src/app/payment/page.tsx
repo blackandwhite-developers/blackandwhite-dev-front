@@ -5,7 +5,7 @@ import PaymentCoupon from "@/views/Payment/Payment-coupon.view";
 import ReservetionUser from "@/views/Payment/Payment-uesr.view";
 import styles from "@/views/Payment/Payment.view.module.scss";
 import cn from "classnames/bind";
-import ReservetionContent from "@/views/Payment/Payment.view";
+import ReservationSection from "@/views/Payment/Payment.view";
 
 const cx = cn.bind(styles);
 
@@ -13,7 +13,7 @@ export default function PaymentPage() {
   return (
     <div className={cx("page-layout")}>
       <div className={cx("page")}>
-        <ReservetionContent />
+        <ReservationSection />
         <ReservetionUser />
         <PaymentCoupon />
       </div>
