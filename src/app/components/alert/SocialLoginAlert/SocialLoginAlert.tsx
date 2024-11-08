@@ -39,7 +39,7 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
             age: checked,
             birthday: checked,
         });
-    };
+    }; 
 
     const openBottomSheet = (title: string, content: string) => {
         setSheetTitle(title);
