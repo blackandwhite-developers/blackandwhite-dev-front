@@ -1,6 +1,6 @@
 import React from "react";
 import "./page.scss";
-import SocialLoginAlert from "./components/SocialLoginAlert/SocialLoginAlert";
+import SocialLoginAlert from "./components/alert/SocialLoginAlert/SocialLoginAlert";
 
 export default async function Home() {
   return <React.Fragment>
