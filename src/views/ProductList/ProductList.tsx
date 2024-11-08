@@ -52,7 +52,7 @@ const productList = () => {
         <div className={cx("grid-container")}>
           {categori.map((a, i) => {
             return (
-              <Link href={`/${categoriImg[i]}`} key={i}>
+              <Link href={`/product/list/${categoriImg[i]}`} key={i}>
                 <div className={cx("grid-item")}>
                   <img src={`/categoryImage/ic_home_${categoriImg[i]}.svg`} alt="motel" />
                   <div className={cx("title")}>{categori[i]}</div>
