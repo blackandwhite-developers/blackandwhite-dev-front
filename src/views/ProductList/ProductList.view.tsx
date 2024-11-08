@@ -1,11 +1,10 @@
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./ProductList.view.module.scss";
-// import FooterBar from "./components/footer/FooterBar";
+import FooterBar from "../../app/components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
-// import SearchBar from "./components/input/SearchBar/SearchBar";
-import { title } from "process";
-import { url } from "inspector";
+import SearchBar from "../../app/components/input/SearchBar/SearchBar";
+
 import Link from "next/link";
 
 const cx = cn.bind(styles);
@@ -40,15 +39,18 @@ const productListView = () => {
     <div>
       <header className={cx("header-container")}>
         <div className={cx("logo")}>
-          <img src="home/img_home_logo.svg" alt="kokoshi-logo" />
+          <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
         </div>
-        <div className={cx("bell")}>
-          <PiBellSimpleThin style={{ width: "20px", height: "20px" }} />
-        </div>
+
+        <Link href={"/alert"}>
+          <div className={cx("bell")}>
+            <PiBellSimpleThin style={{ width: "20px", height: "20px" }} />
+          </div>
+        </Link>
       </header>
 
       <main className={cx("main-container")}>
-        {/* <SearchBar /> */}
+        <SearchBar />
         <div className={cx("grid-container")}>
           {categori.map((a, i) => {
             return (
@@ -85,7 +87,9 @@ const productListView = () => {
           </div>
         </div>
       </main>
-      <footer>{/* <FooterBar /> */}</footer>
+      <footer>
+        <FooterBar />
+      </footer>
     </div>
   );
 };
