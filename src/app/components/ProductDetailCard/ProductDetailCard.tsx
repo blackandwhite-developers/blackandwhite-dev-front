@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./ProductDetailCard.module.scss";
 import cn from "classnames/bind";
 import { ReservationBtn } from "@/app/components/Button/ReservationBtn";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
@@ -12,7 +14,7 @@ type ProductDetailInfomation = {
     /** 퇴실 */
     checkOutInfomation?: string | null;
     /** 숙박 가격 */
-    lodgePrice?: number;
+    lodgePrice?: string;
     /** 객실 갯수 */
     roomCount: number;
 };
@@ -63,14 +65,15 @@ export default function ProductDetailCard(props: ProductDetailCardProps) {
                                 : `사용 불가`}
                         </span>
                         <span className={cx("roomPrice")}>
-                            {infomation.lodgePrice}
+                            {infomation.lodgePrice} 원
                         </span>
                     </div>
                 </div>
             </div>
             <div className={cx("reservationBtn")}>
-                {" "}
-                <ReservationBtn label={"객실 예약하기"} />
+                <Link href="/product/room" style={{ textDecoration: "none" }}>
+                    <ReservationBtn label={"객실 예약하기"} />
+                </Link>
             </div>
         </div>
     );

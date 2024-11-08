@@ -72,11 +72,11 @@ const RoomBooking = () => {
                             <li>2024.11.05(화)</li>
                             <li>16:00</li>
                         </ul>
-                        <p className={cx("StayNight")}>1박</p>
+                        <p className={cx("StayHour")}>4시간</p>
                         <ul>
                             <li className={cx("CheckOut")}>체크아웃</li>
-                            <li>2024.11.06(수)</li>
-                            <li>11:00</li>
+                            <li>2024.11.05(화)</li>
+                            <li>20:00</li>
                         </ul>
                     </div>
                 </div>
@@ -114,8 +114,8 @@ const RoomBooking = () => {
             </div>
             <div className={cx("ReservationInfo")}>
                 <div className={cx("ReservationIfoStayNight")}>
-                    <p>숙박</p>
-                    <span>(1박)</span>
+                    <p>대실</p>
+                    <span>(4시간)</span>
                 </div>
                 <p>75,000원</p>
             </div>

@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./ProductSelectCard.module.scss";
 import cn from "classnames/bind";
 import { ReservationBtn } from "@/app/components/Button/ReservationBtn";
+import Link from "next/link";
 const cx = cn.bind(styles);
 
 type ProductSelectInfomation = {
@@ -85,7 +87,9 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
                 </div>
             </div>
             <div className={cx("reservationBtn")}>
-                <ReservationBtn label={"객실 예약하기"} />
+                <Link href="/product/room" style={{ textDecoration: "none" }}>
+                    <ReservationBtn label={"객실 예약하기"} />
+                </Link>
             </div>
         </div>
     );
