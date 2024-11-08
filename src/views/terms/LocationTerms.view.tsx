@@ -3,8 +3,8 @@ import styles from "./agree.view.module.scss";
 
 const LocationTerms = () => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
+    <div className={styles.wrapper_bottomSheet}>
+      <div className={styles.container_bottomSheet}>
         <h1>위치정보 이용 동의</h1>
         <p>회사는 위치 기반 서비스를 제공하기 위해 이용자의 위치 정보를 수집, 이용, 제공하며, 그 목적과 방법에 대해 아래와 같이 안내드립니다.</p>
         <p>
