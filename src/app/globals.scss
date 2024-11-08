@@ -26,27 +26,6 @@
     /* 딱히 안쓰는 것으로 보임*/
     --main-pink: #d53560;
     --main-blue: #088eec;
-
-    /*DayPicker CSS*/
-    * {
-        --rdp-day-width: 30px;
-        --rdp-day-height: 35px;
-        --rdp-accent-background-color: #8728ff;
-        --rdp-range_start-background: #8728ff;
-        --rdp-range_start-date-background-color: #8728ff;
-        --rdp-range_end-background: #8728ff;
-        --rdp-range_end-date-background-color: #8728ff;
-        --rdp-range_middle-background-color: #8728ff;
-        --rdp-selected-border: 2.5px solid #8728ff;
-        --rdp-range_start-color: #ffffff;
-        --rdp-range_middle-foreground-color: #ffffff;
-        --rdp-range_end-color: #ffffff;
-        --rdp-today-color: #8728ff;
-        --rdp-nav_button-width: 20px;
-        --rdp-nav-height: 20px;
-        --rdp-day_button-border-radius: 20px;
-        --rdp-outline: 2px solid#8727ff;
-    }
 }
 
 /* box-sizing 규칙을 명시합니다. */
@@ -129,6 +108,8 @@ button,
 textarea,
 select {
     font: inherit;
+    background-color: transparent;
+    border: none;
 }
 
 /* 행 속성이 없는 textarea가 너무 작지 않도록 합니다. */

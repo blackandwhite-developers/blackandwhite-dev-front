@@ -1,5 +1,10 @@
 // span태그들이 넓이와 높히 값이 적용되지 않고 있음
 
+// 버튼 공통 스타일
+:global(button) {
+    cursor: pointer;
+}
+
 // 노말버튼
 .NomalBtn {
     background-color: white;
