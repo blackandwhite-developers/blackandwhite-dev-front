@@ -1,0 +1,39 @@
+@import "@/app/_mixins.scss";
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  background-color: var(--white);
+}
+
+@include mobile {
+  .pageContainer {
+    gutter: 20px;
+    width: 320px;
+  }
+}
+@include tablet {
+  .pageContainer {
+    gutter: 20px;
+    width: 360px;
+  }
+}
+@include desktop {
+  .pageContainer {
+    gutter: 20px;
+    width: 1024px;
+  }
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  padding: 105px 0 60px;
+}

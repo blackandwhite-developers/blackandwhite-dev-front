@@ -6,7 +6,7 @@ import styles from "./ColorBorderTextInput.module.scss";
 
 const cx = cn.bind(styles);
 
-interface ReservationTextInputProps {
+interface ColorBorderTextInputProps {
   type: "text" | "password" | "number" | "tel" | "email";
   placeholder: string;
   borderColor?: string;
@@ -14,13 +14,7 @@ interface ReservationTextInputProps {
   className?: string;
 }
 
-const ReservationTextInput = ({
-  type,
-  placeholder,
-  borderColor,
-  isTransparent = false,
-  className
-}: ReservationTextInputProps) => {
+const ColorBorderTextInput = ({ type, placeholder, borderColor, isTransparent = false, className }: ColorBorderTextInputProps) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,21 +36,11 @@ const ReservationTextInput = ({
         style={{ borderColor: borderColor || "black", backgroundColor: isTransparent ? "transparent" : "white" }}
       />
       {inputValue ? (
-        <button
-          type="button"
-          className={cx("toggleButton")}
-          onClick={handleClearInput}
-          style={{ color: "#8728FF" }}
-        >
+        <button type="button" className={cx("toggleButton")} onClick={handleClearInput} style={{ color: "#8728FF" }}>
           <FiDelete />
         </button>
       ) : (
-        <button
-          type="button"
-          className={cx("toggleButton")}
-          onClick={handleClearInput}
-          style={{ color: "#999999" }}
-        >
+        <button type="button" className={cx("toggleButton")} onClick={handleClearInput} style={{ color: "#999999" }}>
           <FiDelete />
         </button>
       )}
@@ -64,4 +48,4 @@ const ReservationTextInput = ({
   );
 };
 
-export default ReservationTextInput;
+export default ColorBorderTextInput;

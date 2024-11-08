@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import styles from "./DefautlAccordion.module.scss";
+import styles from "./Accordion.module.scss";
 import cn from "classnames/bind";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 const cx = cn.bind(styles);
 
-type DefaultAccordionProps = {
+type AccordionProps = {
   title?: React.ReactNode;
   children?: React.ReactNode;
   isHeaderBold?: boolean;
@@ -17,7 +17,7 @@ type DefaultAccordionProps = {
   className?: string;
 };
 
-export default function DefaultAccordion(props: DefaultAccordionProps) {
+export default function Accordion(props: AccordionProps) {
   const { title, className, children, isHeaderBold = false, isHeaderTransparent = false, isBodyBold = false, isBodyTransparent = false, isArrowBlack = false } = props;
   const [open, setOpen] = React.useState(false);
   const handleToggle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

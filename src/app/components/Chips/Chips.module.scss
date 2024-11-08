@@ -1,0 +1,14 @@
+.chips {
+  font-size: .75rem;
+  padding: 5px 12px;
+  border-radius: 13.5px;
+  border: .75px solid var(--gray400);
+  color: var(--gray400);
+
+  &.checked {
+    // 체크된 상태의 스타일
+    border: .75px solid var(--main-purple); // 예: 배경색 변경
+    color: var(--main-purple); // 예: 글자색 변경
+    background-color: var(--sub-purple);
+  }
+}

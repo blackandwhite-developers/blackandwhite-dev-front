@@ -1,3 +1,4 @@
+@import "../../_mixins.scss";
 .container {
   min-height: 68px;
   max-height: 68px;
@@ -8,19 +9,39 @@
   background-color: var(--white);
   position: fixed;
   bottom: 0;
+  margin-top: 19px;
+}
+
+@include mobile {
+  .foot-navigation {
+    margin: 0 20px;
+    gutter: 20px;
+    width: 320px;
+  }
+}
+@include tablet {
+  .foot-navigation {
+    margin: 0 204px;
+    gutter: 20px;
+    width: 360px;
+  }
+}
+@include desktop {
+  .foot-navigation {
+    margin: 0 448px;
+    gutter: 20px;
+    width: 1024px;
+  }
 }
 
 .foot-navigation {
   display: flex;
-  width: 100%;
-  min-width: 360px;
-  max-width: 720px;
   min-height: max-content;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-self: center;
-  justify-content: space-around;
+  justify-content: space-between;
   /* border: 1px solid red; */
 }
 

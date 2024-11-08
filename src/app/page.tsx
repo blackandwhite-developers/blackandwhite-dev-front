@@ -1,9 +1,6 @@
 import React from "react";
-import "./page.scss";
-import SocialLoginAlert from "./components/alert/SocialLoginAlert/SocialLoginAlert";
+import HomeView from "@/views/Home/Home.view";
 
 export default async function Home() {
-  return <React.Fragment>
-    <SocialLoginAlert/>
-  </React.Fragment>;
+  return <HomeView />;
 }

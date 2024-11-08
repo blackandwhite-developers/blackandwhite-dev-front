@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "./FooterBar.css";
+import "./FooterBar.scss";
 import MapIcon from "../icon/MapIcon";
 import HomeIcon from "../icon/HomeIcon";
 import MypageIcon from "../icon/MypageIcon";
