@@ -1,0 +1,50 @@
+.Wrapper {
+  margin: 0 auto;
+  background-color: #ffffff;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+//예약자 정보 부분
+.reservation-person {
+  width: 80px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.information-title {
+  font-size: 14px;
+  font-weight: 700;
+  &::after {
+    content: "*";
+    color: #d53560;
+  }
+}
+
+//이름,전화번호 부분
+.userdata-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+}
+
+.userdata-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.userdata-container button[type="button"] {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #999999;
+}
