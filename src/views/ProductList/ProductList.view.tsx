@@ -1,14 +1,15 @@
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./ProductList.view.module.scss";
-import FooterBar from "@/app/components/footer/FooterBar";
+import FooterBar from "../../app/components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
-import SearchBar from "@/app/components/input/SearchBar/SearchBar";
+import SearchBar from "../../app/components/input/SearchBar/SearchBar";
+
 import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const ProductListView = () => {
+const productListView = () => {
   const categori = ["모텔", "호텔", "팬션/풀빌라", "캠핑", "게스트하우스", "레저/티켓", "해외숙소", "항공"];
   const categoriImg = ["Motel", "Hotel", "Pool", "Camping", "Guesthouse", "Leisure", "Othercountry", "Airport"];
   const currentDate = [
@@ -33,28 +34,27 @@ const ProductListView = () => {
       price: "253,000",
     },
   ];
+
   return (
     <div>
       <header className={cx("header-container")}>
         <div className={cx("logo")}>
-          <img src="home/img_home_logo.svg" alt="kokoshi-logo" />
+          <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
         </div>
-        <div className={cx("bell")}>
-          <PiBellSimpleThin style={{ width: "20px", height: "20px" }} />
-        </div>
+
+        <Link href={"/alert"}>
+          <div className={cx("bell")}>
+            <PiBellSimpleThin style={{ width: "20px", height: "20px" }} />
+          </div>
+        </Link>
       </header>
 
       <main className={cx("main-container")}>
-        <SearchBar
-          searchFunc={async (e) => {
-            "use server";
-            console.log(e);
-          }}
-        />
+        <SearchBar />
         <div className={cx("grid-container")}>
           {categori.map((a, i) => {
             return (
-              <Link href={`/${categoriImg[i]}`} key={i}>
+              <Link href={`/product/list/${categoriImg[i]}`} key={i}>
                 <div className={cx("grid-item")}>
                   <img src={`/categoryImage/ic_home_${categoriImg[i]}.svg`} alt="motel" />
                   <div className={cx("title")}>{categori[i]}</div>
@@ -94,4 +94,4 @@ const ProductListView = () => {
   );
 };
 
-export default ProductListView;
+export default productListView;

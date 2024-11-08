@@ -1,10 +1,13 @@
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Hotel.module.scss";
+import Header from "@/app/components/Header/Header";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
 const HotelView = () => {
+  const Title = "호텔";
   const data = [
     {
       img: "/categoryImage/img_hotel_seoul.svg",
@@ -86,9 +89,13 @@ const HotelView = () => {
 
   return (
     <div className={cx("container")}>
-      <div className={cx("header")}>헤더바 위치</div>
+      <div className={cx("header")}>
+        <Link href={"/product/list"}>
+          <Header title={Title} />
+        </Link>
+      </div>
       <div className={cx("banner")}>
-        <img src="./categoryImage/img_hotel_banner01.svg" alt="" />
+        <img src="/categoryImage/HotelImg/img_hotel_banner.svg" alt="" />
       </div>
 
       <div className={cx("selectRegion")}>
@@ -108,30 +115,43 @@ const HotelView = () => {
 
       <div className={cx("popularityRoom")}>
         <h3>지금 핫한 숙소!</h3>
-        <div className={cx("pop-grid-item")}>
-          <img src={PopData[0].img} alt="" />
-          <div className={cx("pop-title")}>{PopData[0].name}</div>
-          <div className={cx("pop-raet-info")}>
-            <div className={cx("pop-rate")}>{PopData[0].rate}</div>
-            <div className={cx("pop-count")}>{PopData[0].count}</div>
-          </div>
-          <div className={cx("pop-distance")}>{PopData[0].distance}</div>
-          <div className={cx("pop-price")}>{PopData[0].price}</div>
-        </div>
 
-        <div className={cx("pop-grid-item")}>
-          <img src={PopData[1].img} alt="" />
-          <div className={cx("pop-title")}>{PopData[1].name}</div>
-          <div className={cx("pop-raet-info")}>
-            <div className={cx("pop-rate")}>{PopData[1].rate}</div>
-            <div className={cx("pop-count")}>{PopData[1].count}</div>
-          </div>
-          <div className={cx("pop-distance")}>{PopData[1].distance}</div>
-          <div className={cx("pop-price")}>{PopData[1].price}</div>
+        <div className={cx("pop-grid")}>
+          {PopData.map((a, i) => (
+            <div key={i} className={cx("pop-grid-item")}>
+              <img src={a.img} alt={a.name} />
+              <div className={cx("pop-title")}>{a.name}</div>
+              <div className={cx("pop-rate-info")}>
+                <div className={cx("pop-rate")}>{a.rate} </div>
+                <div className={cx("pop-ratestar")}>★★★★☆ </div>
+                <div className={cx("pop-count")}>({a.count})</div>
+              </div>
+              <div className={cx("pop-distance")}>{a.distance}</div>
+              <div className={cx("pop-price")}>{a.price}원</div>
+            </div>
+          ))}
         </div>
       </div>
-      <div className={cx("reservationClosedRoom")}>
+
+      {/* 데이터는 위와 동일한 데이터로 대체 */}
+      <div className={cx("popularityRoom")}>
         <h3>예약이 빨리 마감되는 숙소!</h3>
+
+        <div className={cx("pop-grid")}>
+          {PopData.map((a, i) => (
+            <div key={i} className={cx("pop-grid-item")}>
+              <img src={a.img} alt={a.name} />
+              <div className={cx("pop-title")}>{a.name}</div>
+              <div className={cx("pop-rate-info")}>
+                <div className={cx("pop-rate")}>{a.rate} </div>
+                <div className={cx("pop-ratestar")}>★★★★☆ </div>
+                <div className={cx("pop-count")}>({a.count})</div>
+              </div>
+              <div className={cx("pop-distance")}>{a.distance}</div>
+              <div className={cx("pop-price")}>{a.price}원</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
