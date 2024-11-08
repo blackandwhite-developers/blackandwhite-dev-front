@@ -93,18 +93,6 @@ const HotelView = () => {
 
       <div className={cx("selectRegion")}>
         <h3>지역 선택</h3>
-<<<<<<<< HEAD:src/app/product/list/Hotel/Hotel.tsx
-      </div>
-      <div className={cx("grid-container")}>
-        {data.map((a, i) => {
-          return (
-            <div className={cx("grid-item")}>
-              <img src={data[i].img} alt="regoinImg" />
-              <div className={cx("title")}>{data[i].title}</div>
-            </div>
-          );
-        })}
-========
 
         <div className={cx("grid-container")}>
           {data.map((a) => {
@@ -116,7 +104,6 @@ const HotelView = () => {
             );
           })}
         </div>
->>>>>>>> develop:src/views/Hotel/Hotel.tsx
       </div>
 
       <div className={cx("popularityRoom")}>

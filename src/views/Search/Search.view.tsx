@@ -4,6 +4,7 @@ import cn from "classnames/bind";
 import SearchBar from "@/app/components/input/SearchBar/SearchBar";
 import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
+import { FaAngleDown } from "react-icons/fa";
 import { BiTransfer } from "react-icons/bi";
 
 const cx = cn.bind(styles);
@@ -85,26 +86,33 @@ const SearchPageView = () => {
         </div>
         <div className={cx("searchResult-main")}>
           <div className={cx("recomend")}>
-            <button>코코시 추천 순</button>
+            <button className={cx("recomend-btn")}>
+              <p>
+                코코시 추천 순 <FaAngleDown />
+              </p>
+            </button>
 
             <div className={cx("card-container")}>
-              <div className={cx("card")}>
-                <div className={cx("img")}>
-                  <img src={Data[0].img} alt="" />
-                </div>
-                <div className={cx("detail")}>
-                  <button>{Data[0].type}</button>
-                  <p className={cx("title")}>{Data[0].title}</p>
-                  <div className={cx("rate-info")}>
-                    <p className={cx("rate")}>{Data[0].rate}</p>
-                    <p className={cx("rate-star")}>{Data[0].rateStar}</p>
-                    <p className={cx("count")}>{Data[0].count}</p>
+              {Data.map((a, i) => {
+                return (
+                  <div className={cx("card")} key={i}>
+                    <div className={cx("card-item")}>
+                      <img src={a.img} alt="" />
+                      <div className={cx("detail")}>
+                        <button>{a.type}</button>
+                        <p className={cx("title")}>{a.title}</p>
+                        <div className={cx("rate-info")}>
+                          <p className={cx("rate")}>{a.rate}</p>
+                          <p className={cx("rate-star")}>{a.rateStar}</p>
+                          <p className={cx("count")}>({a.count})</p>
+                        </div>
+                        <p className={cx("distance")}>{a.distance}</p>
+                        <p className={cx("price")}>{a.price}원</p>
+                      </div>
+                    </div>
                   </div>
-                  <p className={cx("title")}>{Data[0].title}</p>
-                  <p className={cx("distance")}>{Data[0].distance}</p>
-                  <p className={cx("price")}>{Data[0].price}</p>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
