@@ -1,0 +1,28 @@
+.wrapper {
+  background-color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 16px;
+}
+
+.card-header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.title-required {
+  font-size: 14px;
+  font-weight: 700;
+  &::after {
+    content: "*";
+    color: #d53560;
+  }
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+}

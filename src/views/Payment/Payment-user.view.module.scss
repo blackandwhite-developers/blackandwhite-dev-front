@@ -18,6 +18,10 @@
 .information-title {
   font-size: 14px;
   font-weight: 700;
+  &::after {
+    content: "*";
+    color: #d53560;
+  }
 }
 
 //이름,전화번호 부분
@@ -44,15 +48,3 @@
   cursor: pointer;
   color: #999999;
 }
-
-// .custom-checkbox span {
-//   display: inline-block;
-//   width: 16px;
-//   height: 16px;
-//   border-radius: 50%; /* 동그란 모양 만들기 */
-//   border: 2px solid #999999; /* 테두리 색상 */
-//   position: relative;
-//   cursor: pointer;
-//   margin-right: 5px; /* 텍스트와의 간격 */
-//   transition: background-color 0.2s ease;
-// }

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "./Payment.view.module.scss";
 import cn from "classnames/bind";
+import PaymentCard from "./PaymentCard.view";
 
 const cx = cn.bind(styles);
 
@@ -13,7 +14,7 @@ const ReservetionContent = () => {
   };
 
   return (
-    <div className={cx("Wrapper")}>
+    <PaymentCard>
       <div className={cx("reservation-container")}>
         <p className={cx("hotelname-title")}>김포 마리나베이 호텔</p>
         <p className={cx("room-detailcontent")}>
@@ -64,7 +65,7 @@ const ReservetionContent = () => {
         <p className={cx("pay-text")}>결제금액</p>
         <p className={cx("pay-amount")}>75,000원</p>
       </div>
-    </div>
+    </PaymentCard>
   );
 };
 
