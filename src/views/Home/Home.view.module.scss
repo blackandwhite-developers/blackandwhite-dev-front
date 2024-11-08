@@ -1,4 +1,4 @@
-@import "./_mixins.scss";
+@import "@/app/_mixins.scss";
 
 .pageContainer {
   display: flex;
@@ -7,6 +7,7 @@
   justify-content: center;
   justify-self: center;
   background-color: var(--white);
+  padding: 105px 0 60px;
 }
 
 @include mobile {
@@ -34,6 +35,5 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   background-color: var(--white);
 }
