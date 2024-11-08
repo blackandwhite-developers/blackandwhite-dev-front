@@ -28,6 +28,34 @@
   &.Transparent {
     background-color: transparent;
   }
+  &.isCircle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+  }
+}
+
+.CheckIcon {
+  width: 12px;
+  height: 14px;
+  path {
+    fill: #ffffff;
+  }
+  &.Transparent {
+    path {
+      fill: #7f7f7f;
+    }
+    &.checked {
+      path {
+        fill: #8728ff;
+      }
+    }
+    &.shadow:not(checked) {
+      path {
+        filter: drop-shadow(0px 4px 4px 0px rgba(0, 0, 0, 0.25));
+      }
+    }
+  }
 }
 
 .Label {
