@@ -1,0 +1,34 @@
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-box {
+  width: 104px;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e9d8ff;
+  border-radius: 11px;
+  cursor: pointer;
+}
+
+.button-box button[type="button"] {
+  background: none;
+  border: none;
+  outline: none;
+  color: #8728ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.button-icon p {
+  font-size: 12px;
+  font-weight: 500;
+}
