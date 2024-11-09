@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "./Payment.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
+import Badge from "@/app/components/badge/Badge";
 
 const cx = cn.bind(styles);
 
@@ -31,8 +32,11 @@ const ReservetionContent = (props: ReservationContentProps) => {
   } = props;
 
   return (
-    <div className={cx("Wrapper")}>
+    <div className={cx("wrapper")}>
       <div className={cx("reservation-container")}>
+        <Badge shape="round" color="black">
+          호텔
+        </Badge>
         <p className={cx("hotelname-title")}>{title}</p>
         <p className={cx("room-detailcontent")}>{roomType}</p>
       </div>
@@ -41,7 +45,7 @@ const ReservetionContent = (props: ReservationContentProps) => {
           <div className={cx("date-box")}>
             <p className={cx("check")}>체크인</p>
             <p className={cx("date-text")}>{checkInDate}</p>
-            <p className={cx("date-time")}>{props.checkInTime}</p>
+            <p className={cx("date-time")}>{checkInTime}</p>
           </div>
           <div className={cx("day-box")}>
             <p className={cx("day-text")}>{props.night}박</p>
@@ -55,7 +59,7 @@ const ReservetionContent = (props: ReservationContentProps) => {
       </div>
       <div className={cx("visit-container")}>
         <div className={cx("visit-box")}>
-          <p className={cx("visit-text")}>방문수단*</p>
+          <p className={cx("visit-text")}>방문수단</p>
           <div className={cx("visit-checkBox")}>
             <label className={cx("custom-checkbox")}>
               <input type="checkbox" checked={visitMethod === "walking"} />
@@ -70,8 +74,14 @@ const ReservetionContent = (props: ReservationContentProps) => {
       </div>
       <div className={cx("pay-container")}>
         <p className={cx("pay-text")}>결제금액</p>
-        <p className={cx("pay-amount")}>{props.price.toLocaleString()}원</p>
+        <div className={cx("badge-box")}>
+          <Badge shape="square" color="point">
+            선착순 3,000원 특가
+          </Badge>
+          <p className={cx("pay-amount")}>{price.toLocaleString()}원</p>
+        </div>
       </div>
+      <div className={cx("border")}></div>
     </div>
   );
 };
