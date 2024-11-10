@@ -7,7 +7,7 @@ import Badge from "@/app/components/badge/Badge";
 
 const cx = cn.bind(styles);
 
-interface ReservationContentProps {
+export interface ReservationContentProps {
   title: string;
   roomType: string;
   night: number;
@@ -17,6 +17,7 @@ interface ReservationContentProps {
   checkOutTime: string;
   visitMethod: "walking" | "car";
   price: number;
+  discountPrice: number;
 }
 
 const ReservetionContent = (props: ReservationContentProps) => {
@@ -29,6 +30,7 @@ const ReservetionContent = (props: ReservationContentProps) => {
     checkOutTime,
     visitMethod,
     price,
+    discountPrice,
   } = props;
 
   return (
@@ -76,9 +78,11 @@ const ReservetionContent = (props: ReservationContentProps) => {
         <p className={cx("pay-text")}>결제금액</p>
         <div className={cx("badge-box")}>
           <Badge shape="square" color="point">
-            선착순 3,000원 특가
+            선착순 {discountPrice.toLocaleString()}원 특가
           </Badge>
-          <p className={cx("pay-amount")}>{price.toLocaleString()}원</p>
+          <p className={cx("pay-amount")}>
+            {(price - discountPrice).toLocaleString()}원
+          </p>
         </div>
       </div>
       <div className={cx("border")}></div>
@@ -86,43 +90,11 @@ const ReservetionContent = (props: ReservationContentProps) => {
   );
 };
 
-const ReservationSection = () => {
-  const reservations: ReservationContentProps[] = [
-    {
-      title: "김포 마리나베이 호텔",
-      roomType: "디럭스 트윈 (기존 2명/최대 2명)",
-      checkInDate: "2023.06.14(화)",
-      checkInTime: "16:00",
-      checkOutDate: "2023.06.15(수)",
-      checkOutTime: "11:00",
-      night: 1,
-      visitMethod: "car",
-      price: 75000,
-    },
-    {
-      title: "Soo 경복궁",
-      roomType: "디럭스 트윈 (기존 2명/최대 2명)",
-      checkInDate: "2023.06.23(화)",
-      checkInTime: "16:00",
-      checkOutDate: "2023.06.24(수)",
-      checkOutTime: "11:00",
-      night: 1,
-      visitMethod: "walking",
-      price: 75000,
-    },
-    {
-      title: "양양 여름이네 펜션",
-      roomType: "디럭스 트윈 (기존 2명/최대 2명)",
-      checkInDate: "2023.06.23(화)",
-      checkInTime: "16:00",
-      checkOutDate: "2023.06.24(수)",
-      checkOutTime: "11:00",
-      night: 1,
-      visitMethod: "car",
-      price: 75000,
-    },
-  ];
-
+const ReservationSection = ({
+  reservations,
+}: {
+  reservations: ReservationContentProps[];
+}) => {
   return (
     <PaymentCard>
       {reservations.map((data, index) => {
@@ -138,6 +110,7 @@ const ReservationSection = () => {
             night={data.night}
             visitMethod={data.visitMethod}
             price={data.price}
+            discountPrice={data.discountPrice}
           />
         );
       })}

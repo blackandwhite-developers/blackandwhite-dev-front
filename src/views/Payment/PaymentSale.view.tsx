@@ -20,14 +20,22 @@ const PaymentSaleRow = (props: PaymentSaleRowProps) => {
   );
 };
 
-const PaymentSale = () => {
+const PaymentSale = ({
+  price,
+  discountPrice,
+  totalPrice,
+}: {
+  price: number;
+  discountPrice: number;
+  totalPrice: number;
+}) => {
   return (
     <PaymentTitle title="할인 및 결제 정보">
       <div className={cx("sale-container")}>
-        <PaymentSaleRow title="결제 금액" amount={234000} />
-        <PaymentSaleRow title="할인 금액" amount={-9000} />
+        <PaymentSaleRow title="결제 금액" amount={price} />
+        <PaymentSaleRow title="할인 금액" amount={discountPrice} />
         <div className={cx("border")}></div>
-        <PaymentSaleRow title="총 결제 금액" amount={225000} />
+        <PaymentSaleRow title="총 결제 금액" amount={totalPrice} />
       </div>
     </PaymentTitle>
   );
