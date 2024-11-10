@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "./PaymentMethod.view.module.scss";
 import cn from "classnames/bind";
 import PaymentTitle from "./PaymentTitle.view";
+import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 
 const cx = cn.bind(styles);
 
@@ -52,6 +53,7 @@ const PaymentMethod = () => {
           router="/dashboard"
         />
       </div>
+      <DefaultCheckBox label="필수 약관 전체 동의" />
     </PaymentTitle>
   );
 };
