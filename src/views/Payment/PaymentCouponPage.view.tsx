@@ -7,56 +7,50 @@ import Header from "@/app/components/Header/Header";
 
 const cx = cn.bind(styles);
 
-export interface ReservationContentProps {
+interface CouponContentProps {
   title: string;
-  couponAmount?: string;
+  couponAmount?: number;
   exp?: string;
 }
 
-const CouponCard = (props: ReservationContentProps) => {
+const CouponCard = (props: CouponContentProps) => {
   const { title, couponAmount, exp } = props;
 
   return (
-    <div className={cx("wrapper")}>
-      <Header title="예약" />
-      <div className={cx("reservation-container")}>
-        <label className={cx("custom-checkbox")}>
-          {/* <input type="checkbox" checked={visitMethod === "walking"} /> */}
-          <span></span>도보
-        </label>
-        <p className={cx("hotelname-title")}>{title}</p>
-      </div>
-      <div className={cx("reservationdate-container")}>
-        <div className={cx("reservationdate-box")}>
-          <div className={cx("date-box")}>
-            <p className={cx("check")}>체크인</p>
-          </div>
-          <div className={cx("date-box")}>
-            <p className={cx("check")}>체크아웃</p>
-          </div>
-        </div>
-      </div>
-      <div className={cx("visit-container")}>
-        <div className={cx("visit-box")}>
-          <p className={cx("visit-text")}>방문수단</p>
-          <div className={cx("visit-checkBox")}>
-            <label className={cx("custom-checkbox")}>
-              {/* <input type="checkbox" checked={visitMethod === "walking"} /> */}
-              <span></span>도보
-            </label>
-            <label className={cx("custom-checkbox")}>
-              {/* <input type="checkbox" checked={visitMethod === "car"} /> */}
-              <span></span>차량
-            </label>
-          </div>
-        </div>
-      </div>
+    <div className={cx("coupon-container")}>
+      <label className={cx("custom-checkbox")}>
+        <input type="checkbox" checked />
+        <span></span>
+        <p>{title}</p>
+      </label>
+      <p className={cx("coupon-amount")}>{couponAmount?.toLocaleString()}원</p>
+      <p className={cx("coupon-exp")}>{exp}</p>
     </div>
   );
 };
 
 const CouponPage = () => {
-  return <CouponCard title="적용안함" />;
+  return (
+    <div className={cx("wrapper")}>
+      <div className={cx("no-coupon-container")}>
+        <label className={cx("custom-checkbox")}>
+          <input type="checkbox" checked />
+          <span></span>
+          <p>적용 안함</p>
+        </label>
+      </div>
+      <CouponCard
+        title="여름 파격 세일!"
+        couponAmount={5000}
+        exp="(~23.07.19 까지)"
+      />
+      <CouponCard
+        title="떠나요 둘이서, 코코시 썸머 쿠폰"
+        couponAmount={10000}
+        exp="(~23.08.19 까지)"
+      />
+    </div>
+  );
 };
 
 export default CouponPage;
