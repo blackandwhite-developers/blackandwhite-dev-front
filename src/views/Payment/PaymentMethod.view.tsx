@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import styles from "./PaymentMethod.view.module.scss";
 import cn from "classnames/bind";
-import PaymentTitle from "./PaymentTitle.view";
+import PaymentCard from "./PaymentCard.view";
 import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
@@ -37,7 +37,7 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
   const router = useRouter();
 
   return (
-    <PaymentTitle title="결제 수단 선택">
+    <PaymentCard title="결제 수단 선택">
       <div className={cx("button-container")}>
         <PaymentMethodButton
           icon="/icon-asset/payment-asset/card.png"
@@ -83,7 +83,7 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
         </div>
       </div>
       <DisableBtn label={`${(totalPrice || 0).toLocaleString()}원 결제하기`} />
-    </PaymentTitle>
+    </PaymentCard>
   );
 };
 

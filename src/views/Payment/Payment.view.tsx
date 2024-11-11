@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./Payment.view.module.scss";
 import cn from "classnames/bind";
-import PaymentCard from "./PaymentTitle.view";
+import PaymentCard from "./PaymentCard.view";
 import Badge from "@/app/components/badge/Badge";
 import Header from "@/app/components/Header/Header";
 

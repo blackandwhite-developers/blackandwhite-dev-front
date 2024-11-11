@@ -10,6 +10,7 @@ import cn from "classnames/bind";
 import ReservationSection from "@/views/Payment/Payment.view";
 import PaymentSale from "@/views/Payment/PaymentSale.view";
 import PaymentMethod from "@/views/Payment/PaymentMethod.view";
+import ReservetionCoupon from "@/views/Payment/PaymentCoupon.view";
 
 const cx = cn.bind(styles);
 
@@ -67,7 +68,7 @@ export default function PaymentPage() {
       <div className={cx("page")}>
         <ReservationSection reservations={reservations} />
         <ReservetionUser />
-        <PaymentCoupon />
+        <ReservetionCoupon usablePointAmount={1200} usableCouponCount={2} />
         <PaymentSale
           price={price}
           discountPrice={discountPrice}
