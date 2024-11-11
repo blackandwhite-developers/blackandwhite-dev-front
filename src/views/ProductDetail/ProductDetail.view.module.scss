@@ -1,20 +1,22 @@
 .ProductDetailWrapper {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     max-width: 360px;
     max-height: 760px;
 }
 
-.ProductDetailHeader {
-    position: relative;
-}
+// .ProductDetailHeader {
+//     position: relative;
+// }
 
-.CartIcon {
-    position: absolute;
-    top: 20;
-    right: 0;
-    font-size: 19px;
-    color: var(--black);
-}
+// .CartIcon {
+//     position: absolute;
+//     top: 20;
+//     right: 0;
+//     font-size: 19px;
+//     color: var(--black);
+// }
 
 .ProductImage {
     width: 360px;

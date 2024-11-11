@@ -1,14 +1,22 @@
 @import "../../_mixins.scss";
 
+body {
+  padding-top: 50px;
+}
+
 .Header {
-  padding: 60px 0 12px 0;
+  margin: 0 auto;
+  width: 360px;
+  padding: 10px 0 5px;
   display: flex;
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  width: 100%;
+  z-index: 999;
 }
 
 @include mobile {
@@ -36,21 +44,23 @@
 .Container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0 auto;
-  padding: 0 19px;
 }
 
 .LeftIcon {
   cursor: pointer;
+  font-size: 20px;
 }
 
 .RightIcon {
   cursor: pointer;
+  font-size: 19px;
 }
+
 .HeaderTitle {
   display: flex;
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 500;
   justify-content: center;
   align-items: center;

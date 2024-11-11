@@ -4,10 +4,14 @@ import cn from "classnames/bind";
 import styles from "./AccBooking.module.scss";
 const cx = cn.bind(styles);
 
-const AccBooking = () => {
+type AccBookingProps = {
+    onClose: () => void;
+};
+
+const AccBooking = ({ onClose }: AccBookingProps) => {
     return (
         <div className={cx("AccBookingWrapper")}>
-            <div className={cx("AccBookingTapBar")}>
+            <div className={cx("AccBookingTapBar")} onClick={onClose}>
                 <Image
                     src="/images/TapBar.png"
                     alt="탭 바 이미지"
