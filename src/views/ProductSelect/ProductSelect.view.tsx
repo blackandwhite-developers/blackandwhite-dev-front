@@ -16,6 +16,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
+import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
 
@@ -84,7 +85,11 @@ const ProductDetail = () => {
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
-                <Header title={title} />
+                <Header
+                    title={"객실상세"}
+                    leftIcon={<FaAngleLeft />}
+                    rightIcon={<BsCart2 />}
+                />
                 <a href="" className={cx("CartIcon")}>
                     <BsCart2 />
                 </a>
