@@ -15,10 +15,11 @@ type CheckBoxProps = {
   isCircle?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  fontWeight?: number;
 };
 
 export default function DefaultCheckBox(props: CheckBoxProps) {
-  const { label, onChange, checked = false, isTransparent = false, isLabelBold = false, isLabelGray = false, isShadow = false, className, isCircle = false } = props;
+  const { label, onChange, checked = false, isTransparent = false, isLabelBold = false, isLabelGray = false, isShadow = false, className, isCircle = false, fontWeight = 500 } = props;
   const [check, setCheck] = React.useState(checked);
   const handleClick = () => {
     setCheck((prev) => !prev);
@@ -35,7 +36,14 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
         >
           <FaCheck className={cx("CheckIcon", { Transparent: isTransparent, isCircle, Shadow: isShadow })} />
         </div>
-        <span className={cx("Label", { isLabelBold, isLabelGray })}>{label}</span>
+        <span
+          className={cx("Label", { isLabelBold, isLabelGray })}
+          style={{
+            fontWeight: fontWeight,
+          }}
+        >
+          {label}
+        </span>
         <input
           type="checkbox"
           readOnly
