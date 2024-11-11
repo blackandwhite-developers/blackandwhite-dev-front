@@ -8,6 +8,7 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { FaRegStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
+import { FaAngleLeft } from "react-icons/fa6";
 import Header from "@/app/components/Header/Header";
 import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
@@ -77,10 +78,11 @@ const ProductDetail = () => {
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
-                <Header title={title} />
-                <a href="/product/room" className={cx("CartIcon")}>
-                    <BsCart2 />
-                </a>
+                <Header
+                    title={"객실상세"}
+                    leftIcon={<FaAngleLeft />}
+                    rightIcon={<BsCart2 />}
+                />
             </div>
 
             <div className={cx("ProductImage")}>

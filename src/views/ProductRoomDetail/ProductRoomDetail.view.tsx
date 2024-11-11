@@ -8,6 +8,7 @@ import { BsCart2 } from "react-icons/bs";
 import Header from "@/app/components/Header/Header";
 import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
+import { FaAngleLeft } from "react-icons/fa6";
 import ProductRoomDetailCard from "@/app/components/ProductRoomDetailCard/ProductRoomDetailCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -17,13 +18,12 @@ import "swiper/css/pagination";
 const cx = cn.bind(styles);
 
 const ProductDetail = () => {
-    const title = "객실상세";
-
     /** 상품 카드 더미 데이터 */
     const productDetailsArray = [
         {
             title: "대실" as const,
             infomation: {
+                badge: "선착순 3,000원 할인",
                 operationHoure: "24시간",
                 useHoure: "2시간",
                 checkInTime: "14:00",
@@ -54,7 +54,11 @@ const ProductDetail = () => {
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
-                <Header title={title} />
+                <Header
+                    title={"객실상세"}
+                    leftIcon={<FaAngleLeft />}
+                    rightIcon={<BsCart2 />}
+                />
                 <a href="" className={cx("CartIcon")}>
                     <BsCart2 />
                 </a>
@@ -110,6 +114,7 @@ const ProductDetail = () => {
                                     key={index}
                                     title={product.title}
                                     infomation={product.infomation}
+                                    badge={product.infomation.badge || ""}
                                 />
                             ))}
                         </div>
