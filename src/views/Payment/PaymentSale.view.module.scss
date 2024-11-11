@@ -1,4 +1,4 @@
-.Wrapper {
+.wrapper {
   margin: 0 auto;
   background-color: #ffffff;
   width: 360px;
@@ -7,65 +7,34 @@
   gap: 7px;
 }
 
-//쿠폰 및 포인트 사용 부분
-.title-box {
-  height: 50px;
+// 부분
+.sale-container {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.title-text {
-  font-size: 14px;
-  font-weight: 700;
-  // &::after {
-  //   content: "*";
-  //   color: #d53560;
-  // }
-}
-
-//쿠폰 부분
-.coupon-container {
+.box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
 }
 
-.coupon-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
+.text {
   font-size: 14px;
   font-weight: 500;
+  color: #4c4c4c;
 }
 
-.available {
+.amount {
   font-size: 14px;
-  font-weight: 500;
-  color: #999999;
+  font-weight: 700;
+  color: #000000;
 }
 
-.botton-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.available {
-  font-size: 14px;
-  font-weight: 500;
-  color: #999999;
-}
-
-.botton-box button[type="button"] {
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: #999999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.border {
+  height: 1px;
+  width: 100%;
+  background-color: #e5e5e5;
 }

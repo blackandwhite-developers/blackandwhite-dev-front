@@ -1,0 +1,60 @@
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-box {
+  width: 104px;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e9d8ff;
+  border-radius: 11px;
+  cursor: pointer;
+}
+
+.button-box button[type="button"] {
+  background: none;
+  border: none;
+  outline: none;
+  color: #8728ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.button-icon p {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+//체크박스 부분
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+//약관 안내 문구 부분
+.caption-container {
+  height: 90px;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.caption-container span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #666666;
+  padding: 12px;
+}

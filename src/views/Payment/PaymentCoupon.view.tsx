@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "./PaymentCoupon.view.module.scss";
 import cn from "classnames/bind";
 import { IoIosArrowForward } from "react-icons/io";
-import PaymentCard from "./PaymentCard.view";
+import PaymentTitle from "./PaymentTitle.view";
 
 const cx = cn.bind(styles);
 
@@ -12,7 +12,7 @@ const ReservetionUser = () => {
   const router = useRouter();
 
   return (
-    <PaymentCard title="쿠폰 및 포인트 사용">
+    <PaymentTitle title="쿠폰 및 포인트 사용">
       <div className={cx("coupon-container")}>
         <div className={cx("coupon-box")}>
           <p className={cx("coupon-text")}>쿠폰</p>
@@ -45,7 +45,7 @@ const ReservetionUser = () => {
           </button>
         </div>
       </div>
-    </PaymentCard>
+    </PaymentTitle>
   );
 
   // return (
