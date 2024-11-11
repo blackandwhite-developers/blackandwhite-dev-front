@@ -56,16 +56,24 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
         />
       </div>
       <div className={cx("checkbox-container")}>
-        <DefaultCheckBox label="필수 약관 전체 동의" isLabelBold={true} />
+        <DefaultCheckBox
+          label="필수 약관 전체 동의"
+          fontWeight={700}
+          fontSize={14}
+        />
         <DefaultCheckBox
           label="[필수] 개인정보 수집 및 이용"
           isTransparent={true}
           isLabelGray={true}
+          fontWeight={400}
+          fontSize={12}
         />
         <DefaultCheckBox
           label="[필수] 개인정보 제 3자 제공"
           isTransparent={true}
           isLabelGray={true}
+          fontWeight={400}
+          fontSize={12}
         />
         <div className={cx("caption-container")}>
           <span>

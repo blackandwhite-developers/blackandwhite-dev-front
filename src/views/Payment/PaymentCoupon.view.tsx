@@ -22,7 +22,7 @@ const ReservetionUser = () => {
           <button
             type="button"
             className={cx("arrow-icon")}
-            onClick={() => router.push("/dashboard")}
+            onClick={() => router.push("/payment/coupon")}
           >
             <IoIosArrowForward />
           </button>

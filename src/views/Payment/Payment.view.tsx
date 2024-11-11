@@ -4,6 +4,7 @@ import styles from "./Payment.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentTitle.view";
 import Badge from "@/app/components/badge/Badge";
+import Header from "@/app/components/Header/Header";
 
 const cx = cn.bind(styles);
 
@@ -35,6 +36,7 @@ const ReservetionContent = (props: ReservationContentProps) => {
 
   return (
     <div className={cx("wrapper")}>
+      <Header title="예약" />
       <div className={cx("reservation-container")}>
         <Badge shape="round" color="black">
           호텔
