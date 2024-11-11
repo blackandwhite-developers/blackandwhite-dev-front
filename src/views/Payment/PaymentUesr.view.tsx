@@ -26,7 +26,7 @@ const UserContent = (props: UserContentProps) => {
       <button
         type="button"
         className={cx("arrow-icon")}
-        onClick={() => router.push("/dashboard")}
+        onClick={() => router.push("/payment/user")}
       >
         <IoIosArrowForward />
       </button>
