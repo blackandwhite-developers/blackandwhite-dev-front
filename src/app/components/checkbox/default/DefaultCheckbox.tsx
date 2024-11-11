@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./DefaultCheckbox.module.scss";
 import cn from "classnames/bind";
 import { FaCheck } from "react-icons/fa6";
@@ -35,6 +35,7 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
   const handleClick = () => {
     setCheck((prev) => !prev);
   };
+
   return (
     <div className={cx("Container", className)}>
       <label className={cx("Wrapper")}>
@@ -49,6 +50,7 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
             className={cx("CheckIcon", {
               Transparent: isTransparent,
               isCircle,
+              checked: check,
               Shadow: isShadow,
             })}
           />

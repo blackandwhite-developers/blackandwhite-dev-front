@@ -1,7 +1,48 @@
 import React from "react";
 import cn from "classnames/bind";
-import CompletePage from "@/views/Payment/PaymentCompletePage.view";
+import PaymentComplete from "@/views/Payment/PaymentCompletePage.view";
+import { ReservationContentProps } from "@/views/Payment/Payment.view";
 
 export default function PaymentCompletePage() {
-  return <CompletePage />;
+  const reservations: ReservationContentProps[] = [
+    {
+      title: "김포 마리나베이 호텔",
+      roomImage: "/images/room/ordercomplete-101x101/room1.png",
+      roomType: "디럭스 트윈 (기존 2명/최대 2명)",
+      checkInDate: "2023.06.14(화)",
+      checkInTime: "16:00",
+      checkOutDate: "2023.06.15(수)",
+      checkOutTime: "11:00",
+      night: 1,
+      visitMethod: "car",
+      price: 78000,
+      discountPrice: 3000,
+    },
+    {
+      title: "Soo 경복궁",
+      roomType: "디럭스 트윈 (기존 2명/최대 2명)",
+      checkInDate: "2023.06.23(화)",
+      checkInTime: "16:00",
+      checkOutDate: "2023.06.24(수)",
+      checkOutTime: "11:00",
+      night: 1,
+      visitMethod: "walking",
+      price: 78000,
+      discountPrice: 3000,
+    },
+    {
+      title: "양양 여름이네 펜션",
+      roomType: "디럭스 트윈 (기존 2명/최대 2명)",
+      checkInDate: "2023.06.23(화)",
+      checkInTime: "16:00",
+      checkOutDate: "2023.06.24(수)",
+      checkOutTime: "11:00",
+      night: 1,
+      visitMethod: "car",
+      price: 78000,
+      discountPrice: 3000,
+    },
+  ];
+
+  return <PaymentComplete reservations={reservations} />;
 }

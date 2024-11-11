@@ -10,6 +10,7 @@ const cx = cn.bind(styles);
 
 export interface ReservationContentProps {
   title: string;
+  roomImage?: string;
   roomType: string;
   night: number;
   checkInDate: string;
