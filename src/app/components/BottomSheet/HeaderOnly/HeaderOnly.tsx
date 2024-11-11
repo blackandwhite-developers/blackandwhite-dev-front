@@ -8,6 +8,7 @@ type HeaderOnlyBottomSheetProps = {
     isOpen: boolean;
     onClose: () => void;
     className?: string;
+    scrollable?: boolean; 
 };
 
 const HeaderOnly = ({
@@ -16,6 +17,7 @@ const HeaderOnly = ({
     isOpen,
     onClose,
     className,
+    scrollable = true, 
 }: HeaderOnlyBottomSheetProps) => {
     if (!isOpen) return null;
     return (
@@ -33,7 +35,7 @@ const HeaderOnly = ({
                         <h1 className={styles.title}>{title}</h1>
                         {content && (
                             <div
-                                className={styles.content}
+                                className={cn(styles.content, { [styles.scrollable]: scrollable })}
                             >{content}
                             </div>
 
