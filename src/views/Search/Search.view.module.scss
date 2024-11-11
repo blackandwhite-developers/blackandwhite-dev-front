@@ -1,0 +1,178 @@
+.header {
+  padding: 0 20px;
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 23.17px;
+  letter-spacing: -0.08em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.header a {
+  text-decoration: none;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about .about-detail {
+  width: 320px;
+  margin: 0 auto;
+  display: flex;
+  gap: 15px;
+}
+.searchResult .searchResult-header {
+  padding: 0 20px;
+  width: 360px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.searchResult .searchResult-header h4 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23.17px;
+  letter-spacing: -0.045em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin: 10px 0;
+}
+
+.searchResult .searchResult-header button {
+  border-radius: 18px;
+  border: none;
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20.27px;
+  letter-spacing: -0.045em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  background-color: transparent;
+  color: #999999;
+}
+.searchResult-main .recomend {
+  width: 360px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.searchResult-main .recomend .recomend-btn p {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  color: #999999;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20.27px;
+  letter-spacing: -0.045em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.searchResult-main .recomend .recomend-btn p svg {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.card-container {
+  padding-top: 10px;
+}
+
+.card-container .card {
+  width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 11px 4px #7979791a;
+  position: relative;
+}
+
+.card-container .card .card-item {
+  display: flex;
+  gap: 20px;
+}
+
+.card-container .card .card-item img {
+  width: 110px;
+  height: 110px;
+}
+.card-container .card .card-item .detail {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.card-container .card .card-item .detail .title {
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20.27px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.card-container .card .card-item .detail .rate-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-container .card .card-item .detail .rate-info .rate,
+.rate-star {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20.27px;
+  letter-spacing: -0.05em;
+  text-align: left;
+}
+
+.card-container .card .card-item .detail .rate-info .count {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17.38px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.card-container .card .card-item .detail .distance {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14.48px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #7f7f7f;
+}
+
+.card-container .card .card-item .detail .price {
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23.17px;
+  letter-spacing: -0.05em;
+  text-align: right;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 16px;
+
+  color: #333;
+}
