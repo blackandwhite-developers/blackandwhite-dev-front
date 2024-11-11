@@ -82,7 +82,10 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
           </span>
         </div>
       </div>
-      <DisableBtn label={`${(totalPrice || 0).toLocaleString()}원 결제하기`} />
+      <DisableBtn
+        label={`${(totalPrice || 0).toLocaleString()}원 결제하기`}
+        onClick={() => router.push("/payment/complete")}
+      />
     </PaymentCard>
   );
 };

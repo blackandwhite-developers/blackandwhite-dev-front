@@ -36,9 +36,9 @@ const ReservetionContent = (props: ReservationContentProps) => {
 
   return (
     <div className={cx("wrapper")}>
-      <Header title="예약" />
+      {/* <Header title="예약" /> */}
       <div className={cx("reservation-container")}>
-        <Badge shape="round" color="black">
+        <Badge shape="round" color="point">
           호텔
         </Badge>
         <p className={cx("hotelname-title")}>{title}</p>
