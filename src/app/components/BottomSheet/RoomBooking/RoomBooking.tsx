@@ -8,9 +8,13 @@ import styles from "./RoomBooking.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+type RoomBookingProps = {
+    onClose: () => void;
+};
+
 const cx = cn.bind(styles);
 
-const RoomBooking = () => {
+const RoomBooking = ({ onClose }: RoomBookingProps) => {
     const [availableTimes, setAvailableTimes] = useState<string[]>([]);
     const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
 
@@ -46,7 +50,7 @@ const RoomBooking = () => {
 
     return (
         <div className={cx("RoomBookingWrapper")}>
-            <div className={cx("RoomBookingTapBar")}>
+            <div className={cx("RoomBookingTapBar")} onClick={onClose}>
                 <Image
                     src="/images/TapBar.png"
                     alt="탭 바 이미지"
