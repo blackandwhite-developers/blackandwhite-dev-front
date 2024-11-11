@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./PaymentSale.view.module.scss";
 import cn from "classnames/bind";
-import PaymentTitle from "./PaymentTitle.view";
+import PaymentCard from "./PaymentCard.view";
 
 const cx = cn.bind(styles);
 
@@ -30,14 +30,14 @@ const PaymentSale = ({
   totalPrice: number;
 }) => {
   return (
-    <PaymentTitle title="할인 및 결제 정보">
+    <PaymentCard title="할인 및 결제 정보">
       <div className={cx("sale-container")}>
         <PaymentSaleRow title="결제 금액" amount={price} />
         <PaymentSaleRow title="할인 금액" amount={discountPrice} />
         <div className={cx("border")}></div>
         <PaymentSaleRow title="총 결제 금액" amount={totalPrice} />
       </div>
-    </PaymentTitle>
+    </PaymentCard>
   );
 };
 
