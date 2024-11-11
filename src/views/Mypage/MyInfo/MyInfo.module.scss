@@ -1,0 +1,82 @@
+.MyInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 360px;
+    padding: 60px 0;
+}
+
+.Thumbnail {
+    position: relative;
+}
+
+.ThumbnailEdit {
+    position: absolute;
+    bottom: 3px;
+    left: 45px;
+    width: 24px;
+    height: 24px;
+    background-color: #e5e5e5;
+    color: #7f7f7f;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ThumbnailEdit svg {
+    width: 16px;
+    height: 16px;
+}
+
+.ProfileInfoWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+
+    .ProfileInfo {
+        font-size: 20px;
+    }
+
+    .ProfileEdit {
+        font-size: 14px;
+        color: #8727ff;
+    }
+}
+
+.ProfileInputWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+
+    .ProfileInputTitle {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid #d9e4ff;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .ProfileInputTitle label {
+        width: 110px;
+        color: #7f7f7f;
+        font-size: 14p;
+    }
+}
+
+.LogoutWrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    .LogoutWrapper a {
+        text-decoration: none;
+        color: #999999;
+        font-size: 14px;
+        cursor: pointer;
+    }
+}
