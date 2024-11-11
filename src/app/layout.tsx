@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./globals.scss";
 import { MockProvider } from "@/mockProvider";
 import RecoilProvider from "@/recoilProvider";
 

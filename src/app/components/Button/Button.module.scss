@@ -1,5 +1,10 @@
 // span태그들이 넓이와 높히 값이 적용되지 않고 있음
 
+// 버튼 공통 스타일
+:global(button) {
+    cursor: pointer;
+}
+
 // 노말버튼
 .NomalBtn {
     background-color: white;
@@ -104,6 +109,7 @@
     font-weight: 500;
     line-height: 20.27px;
     text-align: left;
+    cursor: pointer;
 }
 
 //맴버 버튼
@@ -122,6 +128,7 @@
     font-size: 14px;
     line-height: 20.27px;
     padding-left: 10px;
+    cursor: pointer;
 }
 
 //목록보기 버튼
@@ -196,7 +203,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
+    width: 85px;
     height: 27px;
     border: none;
     outline: none;
@@ -208,6 +215,7 @@
     text-align: center;
     font-size: 12px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 //대실 예약하기 버튼
@@ -227,6 +235,7 @@
     text-align: center;
     font-size: 12px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 //숙박 예약하기 버튼
@@ -246,4 +255,5 @@
     text-align: center;
     font-size: 12px;
     font-weight: 500;
+    cursor: pointer;
 }

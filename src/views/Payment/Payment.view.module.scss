@@ -1,7 +1,22 @@
-.Wrapper {
+.page-layout {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: #ffffff;
+}
+
+.page {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #e5e5e5;
+}
+
+.wrapper {
   margin: 0 auto;
   background-color: #ffffff;
-  width: 360px;
   display: flex;
   flex-direction: column;
   gap: 7px;
@@ -9,12 +24,12 @@
 
 //호텔명 부분
 .reservation-container {
-  width: 320px;
-  height: 45px;
+  height: 50px;
   // border: 1px solid blue;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .hotelname-title {
@@ -33,7 +48,7 @@
   // border: 1px solid green;
   background-color: #f6f6f6;
   border-radius: 20px;
-  width: 320px;
+  // width: 320px;
   height: 101px;
   display: flex;
   justify-content: center;
@@ -101,6 +116,10 @@
   font-size: 12px;
   font-weight: 500;
   color: #4c4c4c;
+  &::after {
+    content: "*";
+    color: #d53560;
+  }
 }
 
 //방문수단 체크박스 부분
@@ -177,9 +196,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
+  // width: 320px;
   height: 60px;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .pay-text {
@@ -188,7 +206,21 @@
   color: #4c4c4c;
 }
 
+.badge-box {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
 .pay-amount {
   font-size: 16px;
   font-weight: 700;
+}
+
+.border {
+  height: 1px;
+  width: 100%;
+  background-color: #e5e5e5;
+  margin-bottom: 10px;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import ReservetionContent from "./Payment.view";
-import ReservetionUser from "./Payment-uesr";
+import ReservetionUser from "./PaymentUesr.view";
 
 export default function PaymentPage() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import "./page.scss";
+import HomeView from "@/views/Home/Home.view";
 
 export default async function Home() {
-  return <React.Fragment></React.Fragment>;
+  return <HomeView />;
 }

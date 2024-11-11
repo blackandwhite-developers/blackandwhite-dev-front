@@ -4,6 +4,18 @@
     max-height: 760px;
 }
 
+.ProductDetailHeader {
+    position: relative;
+}
+
+.CartIcon {
+    position: absolute;
+    top: 20;
+    right: 0;
+    font-size: 19px;
+    color: var(--black);
+}
+
 .ProductImage {
     width: 360px;
     height: 228px;
@@ -12,7 +24,6 @@
 
 .ProductInform {
     padding: 15px;
-    line-height: 2;
 }
 
 .ProductWrapper {
@@ -29,13 +40,14 @@
 }
 
 .ProductTitle {
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .ProductTitleWrapper p {
     font-size: 12px;
-    color: #7f7f7f;
-    padding-top: 10px;
+    color: var(--gray500);
+    padding-top: 5px;
 }
 
 .ProductDetailInformation {
@@ -46,23 +58,23 @@
     margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
-    background-color: #f6f6f6;
+    background-color: var(--gray50);
     position: relative;
 }
 
 .RoomInformation {
-    color: #7f7f7f;
+    color: var(--gray500);
 }
 
 .PersonCountInformation {
-    color: #4c4c4c;
+    color: var(--gray700);
 }
 
 .ProductDetailInformation::after {
     content: "";
     width: 100%;
     height: 1px;
-    background-color: #e5e5e5;
+    background-color: var(--gray100);
     position: absolute;
     bottom: -15;
     right: 0;
@@ -76,7 +88,7 @@
     display: flex;
     gap: 20px;
     font-size: 14px;
-    color: #b2b2b2;
+    color: var(--gray300);
     padding-top: 10px;
 }
 
