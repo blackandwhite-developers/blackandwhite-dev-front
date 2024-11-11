@@ -1,0 +1,49 @@
+.alert-wrapper {
+  width: 360px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.alert-wrapper .alert-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.alert-wrapper .alert-container .alert-card {
+  display: flex;
+  gap: 10px;
+}
+
+.alert-wrapper .alert-container .alert-card img {
+  width: 62px;
+  height: 62px;
+}
+
+.alert-wrapper .alert-container .alert-card .alert-card-about .title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20.27px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  color: #8728ff;
+}
+
+.alert-wrapper .alert-container .alert-card .alert-card-about .content {
+  color: #666666;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20.27px;
+  letter-spacing: -0.05em;
+  text-align: left;
+}
+
+.alert-wrapper .alert-container .alert-card .alert-card-about .time {
+  color: #999999;
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20.27px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  padding-top: 10px;
+}

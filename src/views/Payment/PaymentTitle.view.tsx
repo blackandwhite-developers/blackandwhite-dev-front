@@ -1,15 +1,15 @@
 "use client";
 import cn from "classnames/bind";
-import styles from "./PaymentCard.view.module.scss";
+import styles from "./PaymentTitle.view.module.scss";
 
-interface PaymentCardProps {
+interface PaymentTitleProps {
   title?: string;
   required?: boolean;
   children: React.ReactNode;
 }
 const cx = cn.bind(styles);
 
-export default function PaymentCard(props: PaymentCardProps) {
+export default function PaymentTitle(props: PaymentTitleProps) {
   const { title, required = false, children } = props;
 
   return (
