@@ -3,7 +3,7 @@ import styles from "./HeaderOnly.module.scss";
 import cn from "classnames";
 
 type HeaderOnlyBottomSheetProps = {
-    title: string;
+    title: ReactNode;
     content?: ReactNode;
     isOpen: boolean;
     onClose: () => void;
@@ -34,8 +34,9 @@ const HeaderOnly = ({
                         {content && (
                             <div
                                 className={styles.content}
-                                dangerouslySetInnerHTML={{ __html: content }}
-                            />
+                            >{content}
+                            </div>
+
                         )}
                     </div>
                 </div>

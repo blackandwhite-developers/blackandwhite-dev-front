@@ -108,22 +108,9 @@
     max-width: 360px;
     height: 100%;
     overflow-y: auto;
-    padding: 20px;
     background-color: var(--white);
 
     p {
         margin-bottom: 10px;
-    }
-
-    &::-webkit-scrollbar {
-        display: block;
-    }
-
-    ul {
-        color: var(--black);
-
-        li {
-            margin-bottom: 10px;
-        }
     }
 }

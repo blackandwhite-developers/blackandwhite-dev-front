@@ -18,11 +18,23 @@ type CheckBoxProps = {
 };
 
 export default function DefaultCheckBox(props: CheckBoxProps) {
-  const { label, onChange, checked = false, isTransparent = false, isLabelGray = false, isShadow = false, className, isCircle = false, fontWeight = 500 } = props;
+  const { 
+    label, 
+    onChange, 
+    checked = false, 
+    isTransparent = false, 
+    isLabelGray = false, 
+    isShadow = false, 
+    className, 
+    isCircle = false, 
+    fontWeight = 500 
+  } = props;
+
   const [check, setCheck] = React.useState(checked);
   const handleClick = () => {
     setCheck((prev) => !prev);
   };
+
   return (
     <div className={cx("Container", className)}>
       <label className={cx("Wrapper")}>
@@ -33,7 +45,13 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
             isCircle,
           })}
         >
-          <FaCheck className={cx("CheckIcon", { Transparent: isTransparent, isCircle, Shadow: isShadow })} />
+          <FaCheck className={cx("CheckIcon", { 
+            Transparent: isTransparent, 
+            Checked: check,
+            isCircle, 
+            Shadow: isShadow 
+            })} 
+          />
         </div>
         <span
           className={cx("Label", { isLabelGray })}
