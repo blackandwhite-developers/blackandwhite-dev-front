@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames/bind";
-import styles from "./ProductList.view.module.scss";
+import styles from "./Home.view.module.scss";
 import FooterBar from "../../app/components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
 import SearchBar from "../../app/components/input/SearchBar/SearchBar";
@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const productListView = () => {
+const Homeview = () => {
   const categori = ["모텔", "호텔", "팬션/풀빌라", "캠핑", "게스트하우스", "레저/티켓", "해외숙소", "항공"];
   const categoriImg = ["Motel", "Hotel", "Pool", "Camping", "Guesthouse", "Leisure", "Othercountry", "Airport"];
   const currentDate = [
@@ -94,4 +94,4 @@ const productListView = () => {
   );
 };
 
-export default productListView;
+export default Homeview;
