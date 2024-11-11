@@ -35,6 +35,7 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
   const handleClick = () => {
     setCheck((prev) => !prev);
   };
+
   return (
     <div className={cx("Container", className)}>
       <label className={cx("Wrapper")}>
@@ -45,12 +46,12 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
             isCircle,
           })}
         >
-          <FaCheck
-            className={cx("CheckIcon", {
-              Transparent: isTransparent,
-              isCircle,
-              Shadow: isShadow,
-            })}
+          <FaCheck className={cx("CheckIcon", { 
+            Transparent: isTransparent, 
+            Checked: check,
+            isCircle, 
+            Shadow: isShadow 
+            })} 
           />
         </div>
         <span

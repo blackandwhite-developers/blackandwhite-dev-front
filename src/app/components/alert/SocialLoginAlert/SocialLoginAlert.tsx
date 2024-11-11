@@ -21,8 +21,8 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
         birthday: false,
     });
     const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
-    const [sheetContent, setSheetContent] = useState("");
-    const [sheetTitle, setSheetTitle] = useState("");
+    const [sheetContent, setSheetContent] = useState<React.ReactNode>("");
+    const [sheetTitle, setSheetTitle] = useState<React.ReactNode>("");
 
     const handleCheckboxChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
         const { checked } = e.target;
@@ -41,7 +41,7 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
         });
     }; 
 
-    const openBottomSheet = (title: string, content: string) => {
+    const openBottomSheet = (title: React.ReactNode, content: React.ReactNode) => {
         setSheetTitle(title);
         setSheetContent(content);
         setBottomSheetOpen(true);
@@ -71,6 +71,7 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
                     label="전체 동의하기"
                     checked={isChecked.thirdParty && isChecked.gender && isChecked.age && isChecked.birthday}
                     onChange={(e) => handleSelectAll(e.target.checked)}
+                    isCircle={true}
                     className={cx("select-all-checkbox")}
                 />
             </div>
@@ -82,11 +83,12 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
                 <DefaultCheckBox
                     label="[필수] 카카오 개인정보 제 3자 제공 동의"
                     checked={isChecked.thirdParty}
+                    isTransparent={true}
                     onChange={handleCheckboxChange("thirdParty")}
                 />
-                <button onClick={() => openBottomSheet("카카오 개인정보 제 3자 제공 동의", `
-                        <div>
-                            <div>
+                <button onClick={() => openBottomSheet(<span>카카오 개인정보 제 3자 제공 동의</span>, 
+                        <div className={styles.wrapper_bottomSheet}>
+                            <div className={styles.container_bottomSheet}>
                                 <p>아래 항목들은 카카오 소셜 로그인 및 서비스 이용을 위해 필수적으로 제공됩니다.</p>
 
                                 <h4>1. 제공받는 자</h4>
@@ -112,7 +114,7 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
                                 <h4>5. 동의 철회 및 거부 권리</h4>
                                 <p>사용자는 개인정보 제3자 제공에 대한 동의를 거부할 권리가 있으며, 이 경우 일부 서비스 이용에 제한이 있을 수 있습니다.</p>
                             </div>
-                        </div>`
+                        </div>
                     )} className={cx("details-link")}>
                     보기
                 </button>
@@ -121,9 +123,9 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
             <div className={cx("optional-checkboxes")}>
                 <div className={cx("optional-checkboxes-inner")}>
                     <p>[선택] 선택 제공 항목</p>
-                    <button onClick={() => openBottomSheet("선택 제공 항목", 
-                    `<div>
-                        <div>
+                    <button onClick={() => openBottomSheet(<span >선택 제공 항목</span>, 
+                    <div className={styles.wrapper_bottomSheet}>
+                        <div className={styles.container_bottomSheet}>
                             <p>다음 정보들은 카카오 소셜 로그인 및 개인화된 서비스 제공을 위해 선택적으로 수집되며, 동의하지 않더라도 기본 서비스는 이용 가능합니다.</p>
 
                             <h3>1. 성별</h3>
@@ -156,7 +158,7 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
                                 <h3>동의 철회 및 권리</h3>
                                 <p>사용자는 언제든지 선택 항목 정보 제공에 대한 동의를 철회할 권리가 있으며, 철회 시 해당 정보는 더 이상 활용되지 않습니다. 동의 철회는 계정 설정 메뉴에서 가능합니다.</p>
                         </div>
-                    </div>`
+                    </div>
                     )} className={cx("details-link")}>
                         보기
                     </button>
@@ -167,18 +169,21 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
                     checked={isChecked.gender}
                     onChange={handleCheckboxChange("gender")}
                     className={cx("optional-checkbox")}
+                    isTransparent={true}
                 />
                 <DefaultCheckBox
                     label="연령대"
                     checked={isChecked.age}
                     onChange={handleCheckboxChange("age")}
                     className={cx("optional-checkbox")}
+                    isTransparent={true}
                 />
                 <DefaultCheckBox
                     label="생일"
                     checked={isChecked.birthday}
                     onChange={handleCheckboxChange("birthday")}
                     className={cx("optional-checkbox")}
+                    isTransparent={true}
                 />
             </div>
 
