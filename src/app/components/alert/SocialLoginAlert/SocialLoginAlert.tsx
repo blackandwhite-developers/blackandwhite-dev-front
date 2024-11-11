@@ -82,6 +82,7 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
                 <DefaultCheckBox
                     label="[필수] 카카오 개인정보 제 3자 제공 동의"
                     checked={isChecked.thirdParty}
+                    isTransparent={true}
                     onChange={handleCheckboxChange("thirdParty")}
                 />
                 <button onClick={() => openBottomSheet("카카오 개인정보 제 3자 제공 동의", `
@@ -167,18 +168,21 @@ const SocialLoginAlert = ({ className }: SocialLoginAlertProps) => {
                     checked={isChecked.gender}
                     onChange={handleCheckboxChange("gender")}
                     className={cx("optional-checkbox")}
+                    isTransparent={true}
                 />
                 <DefaultCheckBox
                     label="연령대"
                     checked={isChecked.age}
                     onChange={handleCheckboxChange("age")}
                     className={cx("optional-checkbox")}
+                    isTransparent={true}
                 />
                 <DefaultCheckBox
                     label="생일"
                     checked={isChecked.birthday}
                     onChange={handleCheckboxChange("birthday")}
                     className={cx("optional-checkbox")}
+                    isTransparent={true}
                 />
             </div>
 
