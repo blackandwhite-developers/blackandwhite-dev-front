@@ -1,0 +1,33 @@
+.inputWrapper {
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--gray50);
+}
+
+.toggleButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--main-purple);
+
+  &.eyeOff {
+    color: #999;
+  }
+}
+
+.errorMessage {
+  color: var(--sub-red);
+  font-size: 14px;
+  margin-top: 4px;
+}

@@ -1,0 +1,128 @@
+//쿠폰 및 포인트 사용 부분
+.title-box {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.title-text {
+  font-size: 14px;
+  font-weight: 700;
+  // &::after {
+  //   content: "*";
+  //   color: #d53560;
+  // }
+}
+
+//쿠폰 부분
+.coupon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+}
+
+.coupon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.available {
+  font-size: 14px;
+  font-weight: 500;
+  color: #999999;
+}
+
+.botton-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.available {
+  font-size: 14px;
+  font-weight: 500;
+  color: #999999;
+}
+
+.botton-box button[type="button"] {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//포인트 부분
+.point-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+}
+
+.point-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.point-caption {
+  font-size: 10px;
+  font-weight: 500;
+  color: #7f7f7f;
+}
+
+.pointuse-box {
+  width: 156px;
+  height: 50px;
+  border-bottom: 1px solid#E5E5E5;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.point-input {
+  width: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.point-input::-webkit-outer-spin-button,
+.point-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pointuse-box button[type="button"] {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  width: 45px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-icon span {
+  font-size: 10px;
+  font-weight: 500;
+  color: #7f7f7f;
+}

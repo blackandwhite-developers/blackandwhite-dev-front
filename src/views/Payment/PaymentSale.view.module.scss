@@ -1,0 +1,40 @@
+.wrapper {
+  margin: 0 auto;
+  background-color: #ffffff;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+// 부분
+.sale-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4c4c4c;
+}
+
+.amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.border {
+  height: 1px;
+  width: 100%;
+  background-color: #e5e5e5;
+}

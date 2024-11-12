@@ -1,0 +1,65 @@
+@import "../../_mixins.scss";
+
+.Header {
+  margin: 0 auto;
+  width: 360px;
+  padding: 10px 0 5px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  z-index: 999;
+}
+
+@include mobile {
+  .Container {
+    margin: 0 20px;
+    gutter: 20px;
+    width: 320px;
+  }
+}
+@include tablet {
+  .Container {
+    margin: 0 204px;
+    gutter: 20px;
+    width: 360px;
+  }
+}
+@include desktop {
+  .Container {
+    margin: 0 448px;
+    gutter: 20px;
+    width: 1024px;
+  }
+}
+
+.Container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.LeftIcon {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.RightIcon {
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.HeaderTitle {
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  transform: translateX(-14.5px);
+}

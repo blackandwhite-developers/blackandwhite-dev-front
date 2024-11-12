@@ -1,0 +1,183 @@
+.ProductDetailWrapper {
+    margin: 0 auto;
+    max-width: 360px;
+    max-height: 760px;
+}
+
+.ProductDetailHeader {
+    position: relative;
+}
+
+.CartIcon {
+    position: absolute;
+    top: 20;
+    right: 0;
+    font-size: 19px;
+    color: var(--black);
+}
+
+.ProductImage {
+    width: 360px;
+    height: 228px;
+    // outline: 1px solid red;
+}
+
+.ProductMainImage {
+    width: 110px;
+    height: 110px;
+    outline: 1px solid red;
+}
+
+.ProductInform {
+    padding: 15px;
+}
+
+.ProductCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--main-purple);
+    font-size: 12px;
+    border: 1px solid var(--main-purple);
+    border-radius: 10px;
+    width: 43px;
+    height: 22px;
+}
+
+.ProductWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0 30px 0;
+}
+
+.ProductTitleWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ProductTitle {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.ProductFavorite {
+    font-size: 22px;
+    // cursor: pointer;
+}
+
+.ProductRating {
+    display: flex;
+    align-items: center;
+}
+
+.ProductRatingText {
+    padding-right: 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ProductStarRating {
+    display: flex;
+    font-size: 12px;
+}
+
+.ProductReviewCount {
+    padding-left: 10px;
+    font-size: 12px;
+    color: var(--gray400);
+}
+
+.ProductLocation {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: var(--gray500);
+}
+
+.ProductLocationIcon {
+    font-size: 14px;
+    padding-right: 5px;
+    color: var(--gray500);
+}
+
+.ProductSelectWrapper {
+    padding: 0 10px;
+}
+
+.ProductCategoryBadge {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: var(--gray300);
+    padding-top: 10px;
+}
+
+.ProductCategoryWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .ProductCategoryBadge {
+        position: relative;
+        width: 360px;
+        padding: 0 15px;
+        display: flex;
+        gap: 20px;
+
+        .CategoryLink {
+            position: relative;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding-bottom: 5px;
+            border: 0px;
+            background-color: inherit;
+            cursor: pointer;
+
+            &.selected {
+                color: var(--main-purple);
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -3px;
+                width: 100%;
+                height: 2px;
+                background-color: transparent;
+            }
+
+            &.selected::after {
+                background-color: var(--main-purple);
+            }
+        }
+    }
+    .ProductCategoryBadge:before {
+        position: absolute;
+        bottom: -3;
+        right: 15px;
+        content: "";
+        width: 330px;
+        height: 2px;
+        background-color: var(--gray100);
+    }
+
+    .ProductCategoryLine {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+}
+
+.ReservationSelectBtn {
+    display: flex;
+    padding-top: 20px;
+    gap: 10px;
+}

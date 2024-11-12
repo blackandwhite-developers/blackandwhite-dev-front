@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./globals.scss";
+import { MockProvider } from "@/mockProvider";
+import RecoilProvider from "@/recoilProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MockProvider>
+          <RecoilProvider>{children}</RecoilProvider>
+        </MockProvider>
+      </body>
     </html>
   );
 }
