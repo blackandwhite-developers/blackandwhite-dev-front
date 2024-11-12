@@ -4,61 +4,88 @@ import styles from "./PaymentCompletePage.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
 import Header from "@/app/components/Header/Header";
+import { ReservationContentProps } from "./Payment.view";
+import Badge from "@/app/components/badge/Badge";
 
 const cx = cn.bind(styles);
 
-interface CouponContentProps {
-  title: string;
-  rommImage?: string;
-  hotelName: string;
-  roomType: string;
-  night: number;
-  checkInDate: string;
-  checkInTime: string;
-  checkOutDate: string;
-  checkOutTime: string;
-  price: number;
-}
-
-const CouponCard = (props: CouponContentProps) => {
+const PaymentCompleteCard = (props: ReservationContentProps) => {
   const {
     title,
-    rommImage,
-    hotelName,
+    roomImage,
     roomType,
-    night,
     checkInDate,
     checkInTime,
     checkOutDate,
     checkOutTime,
+    night,
     price,
+    discountPrice,
   } = props;
 
   return (
-    <div className={cx("coupon-container")}>
-      <label className={cx("custom-checkbox")}>
-        <input type="checkbox" checked />
-        <span></span>
-        <p>{title}</p>
-      </label>
-      <p className={cx("coupon-amount")}>원</p>
-      <p className={cx("coupon-exp")}></p>
+    <div className={cx("Reservation-container")}>
+      <div className={cx("Reservation-content")}>
+        <img src={roomImage} alt="room-image" />
+        <div className={cx("hotel-content")}>
+          <Badge shape="round" color="point">
+            호텔
+          </Badge>
+          <p className={cx("hotel-name")}>{title}</p>
+          <p className={cx("date-text")}>
+            {checkInDate}~{checkOutDate},{night}박
+          </p>
+          <p className={cx("room-detailcontent")}>{roomType}</p>
+        </div>
+      </div>
+      <div className={cx("time-content")}>
+        <p className={cx("use-time")}>이용시간</p>
+        <div className={cx("checkin-time")}>
+          <p className={cx("date-text")}>체크인</p>
+          <p className={cx("room-detailcontent")}>{checkInTime}</p>
+        </div>
+        <div className={cx("checkout-time")}>
+          <p className={cx("date-text")}>체크아웃</p>
+          <p className={cx("room-detailcontent")}>{checkOutTime}</p>
+        </div>
+      </div>
+      <div className={cx("pay-container")}>
+        <p className={cx("pay-text")}>결제금액</p>
+        <p className={cx("pay-amount")}>
+          {(price - discountPrice).toLocaleString()}원
+        </p>
+      </div>
+      <div className={cx("border")}></div>
     </div>
   );
 };
 
-const CouponPage = () => {
+const PaymentComplete = ({
+  reservations,
+}: {
+  reservations: ReservationContentProps[];
+}) => {
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("no-coupon-container")}>
-        <label className={cx("custom-checkbox")}>
-          <input type="checkbox" checked />
-          <span></span>
-          <p>적용 안함</p>
-        </label>
-      </div>
+      {reservations.map((data, index) => {
+        return (
+          <PaymentCompleteCard
+            key={index}
+            title={data.title}
+            roomType={data.roomType}
+            checkInDate={data.checkInDate}
+            checkInTime={data.checkInTime}
+            checkOutDate={data.checkOutDate}
+            checkOutTime={data.checkOutTime}
+            night={data.night}
+            visitMethod={data.visitMethod}
+            price={data.price}
+            discountPrice={data.discountPrice}
+          />
+        );
+      })}
     </div>
   );
 };
 
-export default CouponPage;
+export default PaymentComplete;
