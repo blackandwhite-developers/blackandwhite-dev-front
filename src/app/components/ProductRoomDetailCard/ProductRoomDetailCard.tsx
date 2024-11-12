@@ -1,44 +1,43 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
 import styles from "./ProductRoomDetailCard.module.scss";
 import cn from "classnames/bind";
 import { RoomReservationBtn } from "@/app/components/Button/RoomReservationBtn";
 import { StayReservationBtn } from "@/app/components/Button/StayReservationBtn";
+import AccBooking from "../BottomSheet/AccBooking/AccBooking";
+import RoomBooking from "../BottomSheet/RoomBooking/RoomBooking";
 
 const cx = cn.bind(styles);
 
 type ProductDetailInfomation = {
-    /** 운영시간 */
     operationHoure?: string | null;
-    /** 이용시간 */
     useHoure?: string | null;
-    /** 입실 */
     checkInTime?: string | null;
-    /** 퇴실 */
     checkOutTime?: string | null;
-    /**  */
-    /** 숙박 가격 */
     price?: string;
-    /** 객실 갯수 */
     roomCount: number;
 };
 
 type ProductDetailCardProps = {
-    /** 뱃지 타이틀 */
     badge?: string;
-    /** 상품 명칭  */
     title: "대실" | "숙박";
-    /** 객실정보 */
     infomation: ProductDetailInfomation;
 };
 
 export default function ProductRoomDetailCard(props: ProductDetailCardProps) {
     const { badge, title, infomation } = props;
+    const [selectedBookingType, setSelectedBookingType] = useState<
+        "대실" | "숙박" | null
+    >(null);
+
+    const handleClose = () => {
+        setSelectedBookingType(null);
+    };
 
     return (
         <div className={cx("productDetailBox")}>
             <div className={cx("productDetailBoxInn")}>
                 <div className={cx("productBoxInfo")}>
-                    <p className={cx("productBadge")}>{badge}</p>
+                    {badge && <p className={cx("productBadge")}>{badge}</p>}
                     <h3>{title}</h3>
                     <div className={cx("infomation")}>
                         {title === "대실" ? (
@@ -69,7 +68,6 @@ export default function ProductRoomDetailCard(props: ProductDetailCardProps) {
                             </div>
                         )}
                     </div>
-
                     <div className={cx("priceArea")}>
                         <span>
                             {infomation.roomCount >= 1
@@ -84,11 +82,33 @@ export default function ProductRoomDetailCard(props: ProductDetailCardProps) {
             </div>
             <div className={cx("reservationBtn")}>
                 {title === "대실" ? (
-                    <RoomReservationBtn label={"대실 예약"} />
+                    <RoomReservationBtn
+                        label={"대실 예약"}
+                        onClick={() => setSelectedBookingType("대실")}
+                    />
                 ) : (
-                    <StayReservationBtn label={"숙박 예약"} />
+                    <StayReservationBtn
+                        label={"숙박 예약"}
+                        onClick={() => setSelectedBookingType("숙박")}
+                    />
                 )}
             </div>
+            {selectedBookingType === "대실" && (
+                <RoomBooking
+                    onClose={() => {
+                        console.log("RoomBooking 닫기");
+                        handleClose();
+                    }}
+                />
+            )}
+            {selectedBookingType === "숙박" && (
+                <AccBooking
+                    onClose={() => {
+                        console.log("AccBooking 닫기");
+                        handleClose();
+                    }}
+                />
+            )}
         </div>
     );
 }
