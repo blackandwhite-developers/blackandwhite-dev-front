@@ -40,13 +40,15 @@ const PaymentCompleteCard = (props: ReservationContentProps) => {
       </div>
       <div className={cx("time-content")}>
         <p className={cx("use-time")}>이용시간</p>
-        <div className={cx("check-box")}>
-          <p className={cx("checktime-text")}>체크인</p>
-          <p className={cx("time-text")}>{checkInTime}</p>
-        </div>
-        <div className={cx("check-box")}>
-          <p className={cx("checktime-text")}>체크아웃</p>
-          <p className={cx("time-text")}>{checkOutTime}</p>
+        <div className={cx("time-box")}>
+          <div className={cx("check-box")}>
+            <p className={cx("checktime-text")}>체크인</p>
+            <p className={cx("time-text")}>{checkInTime}</p>
+          </div>
+          <div className={cx("check-box")}>
+            <p className={cx("checktime-text")}>체크아웃</p>
+            <p className={cx("time-text")}>{checkOutTime}</p>
+          </div>
         </div>
       </div>
       <div className={cx("pay-container")}>
