@@ -25,6 +25,12 @@
   height: 101px;
 }
 
+.hotel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .hotel-name {
   font-size: 14px;
   font-weight: 700;
