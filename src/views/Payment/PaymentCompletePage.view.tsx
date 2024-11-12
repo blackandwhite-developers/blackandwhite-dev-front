@@ -12,6 +12,7 @@ const cx = cn.bind(styles);
 const PaymentCompleteCard = (props: ReservationContentProps) => {
   const {
     title,
+    hotelName,
     roomImage,
     roomType,
     checkInDate,
@@ -25,13 +26,14 @@ const PaymentCompleteCard = (props: ReservationContentProps) => {
 
   return (
     <div className={cx("Reservation-container")}>
+      <p className={cx("title")}>{title}</p>
       <div className={cx("Reservation-content")}>
         <img src={roomImage} alt="room-image" />
         <div className={cx("hotel-content")}>
           <Badge shape="round" color="point">
             호텔
           </Badge>
-          <p className={cx("hotel-name")}>{title}</p>
+          <p className={cx("hotel-name")}>{hotelName}</p>
           <p className={cx("date-text")}>
             {checkInDate}~{checkOutDate},{night}박
           </p>
@@ -40,13 +42,13 @@ const PaymentCompleteCard = (props: ReservationContentProps) => {
       </div>
       <div className={cx("time-content")}>
         <p className={cx("use-time")}>이용시간</p>
-        <div className={cx("checkin-time")}>
-          <p className={cx("date-text")}>체크인</p>
-          <p className={cx("room-detailcontent")}>{checkInTime}</p>
+        <div className={cx("check-box")}>
+          <p className={cx("checktime-text")}>체크인</p>
+          <p className={cx("time-text")}>{checkInTime}</p>
         </div>
-        <div className={cx("checkout-time")}>
-          <p className={cx("date-text")}>체크아웃</p>
-          <p className={cx("room-detailcontent")}>{checkOutTime}</p>
+        <div className={cx("check-box")}>
+          <p className={cx("checktime-text")}>체크아웃</p>
+          <p className={cx("time-text")}>{checkOutTime}</p>
         </div>
       </div>
       <div className={cx("pay-container")}>
@@ -70,8 +72,9 @@ const PaymentComplete = ({
       {reservations.map((data, index) => {
         return (
           <PaymentCompleteCard
+            title="상품 정보"
             key={index}
-            title={data.title}
+            hotelName={data.hotelName}
             roomType={data.roomType}
             checkInDate={data.checkInDate}
             checkInTime={data.checkInTime}

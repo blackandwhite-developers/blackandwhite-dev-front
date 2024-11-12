@@ -9,7 +9,8 @@ import Header from "@/app/components/Header/Header";
 const cx = cn.bind(styles);
 
 export interface ReservationContentProps {
-  title: string;
+  title?: string;
+  hotelName: string;
   roomImage?: string;
   roomType: string;
   night: number;
@@ -24,7 +25,7 @@ export interface ReservationContentProps {
 
 const ReservetionContent = (props: ReservationContentProps) => {
   const {
-    title,
+    hotelName,
     roomType,
     checkInDate,
     checkInTime,
@@ -42,7 +43,7 @@ const ReservetionContent = (props: ReservationContentProps) => {
         <Badge shape="round" color="point">
           호텔
         </Badge>
-        <p className={cx("hotelname-title")}>{title}</p>
+        <p className={cx("hotelname-title")}>{hotelName}</p>
         <p className={cx("room-detailcontent")}>{roomType}</p>
       </div>
       <div className={cx("reservationdate-container")}>
@@ -104,7 +105,7 @@ const ReservationSection = ({
         return (
           <ReservetionContent
             key={index}
-            title={data.title}
+            hotelName={data.hotelName}
             roomType={data.roomType}
             checkInDate={data.checkInDate}
             checkInTime={data.checkInTime}

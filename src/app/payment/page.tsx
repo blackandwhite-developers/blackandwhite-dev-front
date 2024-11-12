@@ -17,7 +17,7 @@ const cx = cn.bind(styles);
 export default function PaymentPage() {
   const reservations: ReservationContentProps[] = [
     {
-      title: "김포 마리나베이 호텔",
+      hotelName: "김포 마리나베이 호텔",
       roomType: "디럭스 트윈 (기존 2명/최대 2명)",
       checkInDate: "2023.06.14(화)",
       checkInTime: "16:00",
@@ -29,7 +29,7 @@ export default function PaymentPage() {
       discountPrice: 3000,
     },
     {
-      title: "Soo 경복궁",
+      hotelName: "Soo 경복궁",
       roomType: "디럭스 트윈 (기존 2명/최대 2명)",
       checkInDate: "2023.06.23(화)",
       checkInTime: "16:00",
@@ -41,7 +41,7 @@ export default function PaymentPage() {
       discountPrice: 3000,
     },
     {
-      title: "양양 여름이네 펜션",
+      hotelName: "양양 여름이네 펜션",
       roomType: "디럭스 트윈 (기존 2명/최대 2명)",
       checkInDate: "2023.06.23(화)",
       checkInTime: "16:00",
