@@ -9,7 +9,6 @@ import Header from "@/app/components/Header/Header";
 const cx = cn.bind(styles);
 
 export interface ReservationContentProps {
-  title?: string;
   hotelName: string;
   roomImage?: string;
   roomType: string;

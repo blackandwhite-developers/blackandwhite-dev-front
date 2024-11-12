@@ -1,28 +1,26 @@
-.wrapper {
-  margin: 0 auto;
-  width: 100%;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 16px;
-}
-
 .Reservation-container {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
-//상품 정보 부분
 .title {
   font-size: 14px;
   font-weight: 700;
+  height: 35px;
+  display: flex;
+  align-items: center;
 }
 
+//상품 정보 부분
 .Reservation-content {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  gap: 10px;
+}
+
+.Reservation-content img {
+  width: 101px;
+  height: 101px;
 }
 
 .hotel-name {
@@ -50,7 +48,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e5e5e5;
+  background-color: rgba(229, 229, 229, 0.6);
   border-radius: 7px;
   padding: 15px;
 }
@@ -86,4 +84,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 15px;
+}
+
+.pay-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333333;
+}
+
+.pay-amount {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.border {
+  height: 1px;
+  width: 90%;
+  background-color: #e5e5e5;
+  margin-bottom: 10px;
 }

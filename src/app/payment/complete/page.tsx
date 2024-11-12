@@ -2,6 +2,9 @@ import React from "react";
 import cn from "classnames/bind";
 import PaymentComplete from "@/views/Payment/PaymentCompletePage.view";
 import { ReservationContentProps } from "@/views/Payment/Payment.view";
+import styles from "@/views/Payment/Payment.view.module.scss";
+
+const cx = cn.bind(styles);
 
 export default function PaymentCompletePage() {
   const reservations: ReservationContentProps[] = [
@@ -46,5 +49,11 @@ export default function PaymentCompletePage() {
     },
   ];
 
-  return <PaymentComplete reservations={reservations} />;
+  return (
+    <div className={cx("page-layout")}>
+      <div className={cx("page")}>
+        <PaymentComplete reservations={reservations} />
+      </div>
+    </div>
+  );
 }

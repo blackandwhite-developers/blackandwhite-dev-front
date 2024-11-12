@@ -2,16 +2,15 @@
 import React, { useState } from "react";
 import styles from "./PaymentCompletePage.view.module.scss";
 import cn from "classnames/bind";
-import PaymentCard from "./PaymentCard.view";
 import Header from "@/app/components/Header/Header";
 import { ReservationContentProps } from "./Payment.view";
 import Badge from "@/app/components/badge/Badge";
+import PaymentCard from "./PaymentCard.view";
 
 const cx = cn.bind(styles);
 
 const PaymentCompleteCard = (props: ReservationContentProps) => {
   const {
-    title,
     hotelName,
     roomImage,
     roomType,
@@ -26,7 +25,6 @@ const PaymentCompleteCard = (props: ReservationContentProps) => {
 
   return (
     <div className={cx("Reservation-container")}>
-      <p className={cx("title")}>{title}</p>
       <div className={cx("Reservation-content")}>
         <img src={roomImage} alt="room-image" />
         <div className={cx("hotel-content")}>
@@ -68,12 +66,12 @@ const PaymentComplete = ({
   reservations: ReservationContentProps[];
 }) => {
   return (
-    <div className={cx("wrapper")}>
+    <PaymentCard title="상품 정보 ">
       {reservations.map((data, index) => {
         return (
           <PaymentCompleteCard
-            title="상품 정보"
             key={index}
+            roomImage={data.roomImage}
             hotelName={data.hotelName}
             roomType={data.roomType}
             checkInDate={data.checkInDate}
@@ -87,7 +85,7 @@ const PaymentComplete = ({
           />
         );
       })}
-    </div>
+    </PaymentCard>
   );
 };
 
