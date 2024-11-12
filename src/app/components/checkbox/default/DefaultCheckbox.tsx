@@ -31,21 +31,24 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
     fontWeight = 500,
     fontSize = 14,
   } = props;
+
   const [check, setCheck] = React.useState(checked);
   const handleClick = () => {
     setCheck((prev) => !prev);
   };
+
 
   return (
     <div className={cx("Container", className)}>
       <label className={cx("Wrapper")}>
         <div
           className={cx("Checkmark", {
-            Checked: check,
+            Checked: checked,
             Transparent: isTransparent,
             isCircle,
           })}
         >
+
           <FaCheck
             className={cx("CheckIcon", {
               Transparent: isTransparent,
@@ -66,11 +69,9 @@ export default function DefaultCheckBox(props: CheckBoxProps) {
         </span>
         <input
           type="checkbox"
-          readOnly
           hidden
           onChange={(e) => {
             if (onChange) onChange(e);
-            handleClick();
           }}
         />
       </label>
