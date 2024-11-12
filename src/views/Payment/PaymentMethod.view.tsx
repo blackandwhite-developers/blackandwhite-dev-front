@@ -35,7 +35,10 @@ const PaymentMethodButton = (props: PaymentMethodButtonProps) => {
 
 const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
   const router = useRouter();
+  const [privacyChecked, setPrivacyChecked] = React.useState(false);
+  const [privacy2Checked, setPrivacy2Checked] = React.useState(false);
 
+  console.log("privacyChecked", privacyChecked, privacy2Checked);
   return (
     <PaymentCard title="결제 수단 선택">
       <div className={cx("button-container")}>
@@ -58,12 +61,24 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
       <div className={cx("checkbox-container")}>
         <DefaultCheckBox
           label="필수 약관 전체 동의"
+          checked={privacyChecked && privacy2Checked}
+          onChange={(e) => {
+            if (e.target.checked) {
+              setPrivacy2Checked(true);
+              setPrivacyChecked(true);
+            } else {
+              setPrivacy2Checked(false);
+              setPrivacyChecked(false);
+            }
+          }}
           fontWeight={700}
           fontSize={14}
         />
         <DefaultCheckBox
           label="[필수] 개인정보 수집 및 이용"
           isTransparent={true}
+          checked={privacyChecked}
+          onChange={(e) => setPrivacyChecked(e.target.checked)}
           isLabelGray={true}
           fontWeight={400}
           fontSize={12}
@@ -71,6 +86,8 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
         <DefaultCheckBox
           label="[필수] 개인정보 제 3자 제공"
           isTransparent={true}
+          checked={privacy2Checked}
+          onChange={(e) => setPrivacy2Checked(e.target.checked)}
           isLabelGray={true}
           fontWeight={400}
           fontSize={12}
@@ -82,10 +99,17 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
           </span>
         </div>
       </div>
-      <DisableBtn
-        label={`${(totalPrice || 0).toLocaleString()}원 결제하기`}
-        onClick={() => router.push("/payment/complete")}
-      />
+      {privacyChecked && privacy2Checked ? (
+        <AbleBtn
+          label={`${(totalPrice || 0).toLocaleString()}원 결제하기`}
+          onClick={() => router.push("/payment/complete")}
+        />
+      ) : (
+        <DisableBtn
+          label={`${(totalPrice || 0).toLocaleString()}원 결제하기`}
+          onClick={() => router.push("/payment/complete")}
+        />
+      )}
     </PaymentCard>
   );
 };
