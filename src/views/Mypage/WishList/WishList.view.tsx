@@ -26,7 +26,6 @@ const wishListData = [
         location: "부산, 대한민국",
         price: "₩ 20,000",
     },
-    // 추가적인 위시리스트 항목 데이터
 ];
 
 const WishList = () => {
