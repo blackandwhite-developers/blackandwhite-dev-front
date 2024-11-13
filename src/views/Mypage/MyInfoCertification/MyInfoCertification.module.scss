@@ -1,0 +1,42 @@
+.CertificationWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 360px;
+    height: 100vh;
+    padding: 60px 0;
+}
+
+.CertificationWrapper h1 {
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.CertificationWrapper p {
+    font-size: 14px;
+}
+
+.CertificationInputWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+
+    .CertificationInputTitle {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid #d9e4ff;
+    }
+
+    .CertificationInputTitle label {
+        width: 110px;
+        color: #7f7f7f;
+        font-size: 14px;
+    }
+}
+.AbleBtnWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: auto;
+}

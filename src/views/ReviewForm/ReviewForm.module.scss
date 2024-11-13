@@ -1,0 +1,87 @@
+.ReviewContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 360px;
+    height: 100vh;
+    padding: 60px 0;
+
+    .RatingWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10pxpx;
+
+        .Rating {
+            font-size: 24px;
+            font-weight: 700;
+            color: #8728ff;
+        }
+
+        .RatingStar {
+            font-size: 22px;
+        }
+
+        .RatingInform {
+            font-size: 14px;
+        }
+    }
+
+    .ReviewWritingWrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+
+        .ReviewWritingTitle {
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
+
+        .ReviewWritingArea {
+            background-color: #f6f6f6;
+            width: 100%;
+            max-width: 320px;
+            height: 118px;
+            resize: none;
+            padding: 10px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            ::placeholder {
+                color: #7f7f7f;
+            }
+        }
+    }
+    .PhotoUploadWrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+        .PhotoUploadTitle {
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
+
+        .PhotoUpload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 110px;
+            height: 88px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+    }
+    .UploadButton {
+        display: flex;
+        justify-content: flex;
+        align-items: center;
+        margin-top: auto;
+    }
+}
