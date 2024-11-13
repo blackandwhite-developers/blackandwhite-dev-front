@@ -8,7 +8,7 @@ import FooterBar from "@/app/components/footer/FooterBar";
 import { GoChevronRight } from "react-icons/go";
 import { PiMedalLight } from "react-icons/pi";
 import { RiCoupon3Line } from "react-icons/ri";
-import { Dialog } from "@/app/components/dialog/Dialog"; // Dialog 컴포넌트 import
+import { Dialog } from "@/app/components/dialog/Dialog";
 
 const cx = cn.bind(styles);
 
