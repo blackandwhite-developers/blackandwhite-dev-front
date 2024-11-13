@@ -17,6 +17,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
+import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import Review from "@/app/components/Review/Review";
+import TotalReviewCard from "@/app/components/TotalReviewCard/TotalReviewCard";
 
 const cx = cn.bind(styles);
 
@@ -67,6 +70,45 @@ const ProductDetail = () => {
         "/images/HotelImage1.png",
         "/images/HotelImage1.png",
         "/images/HotelImage1.png",
+    ];
+
+    /** 후기 더미 데이터 */
+    const totalReviewData = {
+        ratingAverage: "4.5",
+        totalReview: 1136,
+        reviewCounting: 80,
+    };
+
+    /** 후기 더미 데이터 */
+    const reviews = [
+        {
+            imageUrl: [
+                "/images/HotelImage1.png",
+                "/images/HotelImage1.png",
+                "/images/HotelImage1.png",
+            ],
+            rating: "4.5",
+            nickname: "홍길동",
+            date: "2024.11.23",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent:
+                "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
+        },
+        {
+            imageUrl: ["/images/HotelImage1.png"],
+            rating: "1.0",
+            nickname: "홍길동",
+            date: "2024.11.10",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "너무 추워요ㅜ",
+        },
+        {
+            rating: "5.0",
+            nickname: "홍길동",
+            date: "2024.11.05",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "너무 좋았습니당",
+        },
     ];
 
     const [selectedTab, setSelectedTab] = useState("room");
@@ -157,22 +199,56 @@ const ProductDetail = () => {
                     <div className={cx("ProductCategoryLine")}></div>
 
                     <div>
-                        <div className={cx("ReservationSelectBtn")}>
-                            <DateBtn label={""} />
-                            <MemberBtn label={"성인 1명"} />
-                        </div>
-
-                        <div>
-                            {productDetailsArray.map((product, index) => (
-                                <ProductDetailCard
-                                    key={index}
-                                    imageUrl={product.imageUrl}
-                                    label={product.label}
-                                    title={product.title}
-                                    infomation={product.infomation}
+                        {selectedTab === "review" && (
+                            <div>
+                                <TotalReviewCard
+                                    ratingAverage={
+                                        totalReviewData.ratingAverage
+                                    }
+                                    totalReview={totalReviewData.totalReview}
+                                    reviewCounting={
+                                        totalReviewData.reviewCounting
+                                    }
                                 />
-                            ))}
-                        </div>
+                                {reviews.map((review, index) => (
+                                    <Review
+                                        key={index}
+                                        imageUrl={review.imageUrl}
+                                        rating={review.rating}
+                                        nickname={review.nickname}
+                                        date={review.date}
+                                        serviceProduct={review.serviceProduct}
+                                        reviewContent={review.reviewContent}
+                                    />
+                                ))}
+                                <div className={cx("ReviewWriteBtn")}>
+                                    <AbleBtn label={"후기 작성하기"} />
+                                </div>
+                            </div>
+                        )}
+
+                        {selectedTab === "room" && (
+                            <div>
+                                {" "}
+                                <div className={cx("ReservationSelectBtn")}>
+                                    <DateBtn label={""} />
+                                    <MemberBtn label={""} />
+                                </div>
+                                <div className={cx("ProductSelectCard")}>
+                                    {productDetailsArray.map(
+                                        (product, index) => (
+                                            <ProductDetailCard
+                                                key={index}
+                                                imageUrl={product.imageUrl}
+                                                label={product.label}
+                                                title={product.title}
+                                                infomation={product.infomation}
+                                            />
+                                        )
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

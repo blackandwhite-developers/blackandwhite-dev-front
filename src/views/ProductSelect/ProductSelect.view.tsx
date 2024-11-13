@@ -5,7 +5,7 @@ import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.view.module.scss";
 import { IoIosHeartEmpty } from "react-icons/io";
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar, FaAngleLeft } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import Header from "@/app/components/Header/Header";
@@ -16,11 +16,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
-import { FaAngleLeft } from "react-icons/fa6";
+import TotalReviewCard from "@/app/components/TotalReviewCard/TotalReviewCard";
+import Review from "@/app/components/Review/Review";
+import { AbleBtn } from "@/app/components/Button/AbleBtn";
 
 const cx = cn.bind(styles);
 
-const ProductDetail = () => {
+const ProductSelect = () => {
     const title = "김포 마리나베이 호텔";
 
     /** 상품 카드 더미 데이터 */
@@ -74,6 +76,45 @@ const ProductDetail = () => {
         "/images/HotelImage1.png",
         "/images/HotelImage1.png",
         "/images/HotelImage1.png",
+    ];
+
+    /** 후기 더미 데이터 */
+    const totalReviewData = {
+        ratingAverage: "4.5",
+        totalReview: 1136,
+        reviewCounting: 80,
+    };
+
+    /** 후기 더미 데이터 */
+    const reviews = [
+        {
+            imageUrl: [
+                "/images/HotelImage1.png",
+                "/images/HotelImage1.png",
+                "/images/HotelImage1.png",
+            ],
+            rating: "4.5",
+            nickname: "홍길동",
+            date: "2024.11.23",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent:
+                "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
+        },
+        {
+            imageUrl: ["/images/HotelImage1.png"],
+            rating: "1.0",
+            nickname: "홍길동",
+            date: "2024.11.10",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "너무 추워요ㅜ",
+        },
+        {
+            rating: "5.0",
+            nickname: "홍길동",
+            date: "2024.11.05",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "너무 좋았습니당",
+        },
     ];
 
     const [selectedTab, setSelectedTab] = useState("room");
@@ -166,22 +207,54 @@ const ProductDetail = () => {
                     <div className={cx("ProductCategoryLine")}></div>
 
                     <div>
-                        <div className={cx("ReservationSelectBtn")}>
-                            <DateBtn label={""} />
-                            <MemberBtn label={""} />
-                        </div>
-
-                        <div>
-                            {productSelectData.map((product, index) => (
-                                <ProductSelectCard
-                                    key={index}
-                                    imageUrl={product.imageUrl}
-                                    label={product.label}
-                                    title={product.title}
-                                    infomation={product.infomation}
+                        {selectedTab === "review" && (
+                            <div>
+                                <TotalReviewCard
+                                    ratingAverage={
+                                        totalReviewData.ratingAverage
+                                    }
+                                    totalReview={totalReviewData.totalReview}
+                                    reviewCounting={
+                                        totalReviewData.reviewCounting
+                                    }
                                 />
-                            ))}
-                        </div>
+                                {reviews.map((review, index) => (
+                                    <Review
+                                        key={index}
+                                        imageUrl={review.imageUrl}
+                                        rating={review.rating}
+                                        nickname={review.nickname}
+                                        date={review.date}
+                                        serviceProduct={review.serviceProduct}
+                                        reviewContent={review.reviewContent}
+                                    />
+                                ))}
+                                <div className={cx("ReviewWriteBtn")}>
+                                    <AbleBtn label={"후기 작성하기"} />
+                                </div>
+                            </div>
+                        )}
+
+                        {selectedTab === "room" && (
+                            <div>
+                                {" "}
+                                <div className={cx("ReservationSelectBtn")}>
+                                    <DateBtn label={""} />
+                                    <MemberBtn label={""} />
+                                </div>
+                                <div className={cx("ProductSelectCard")}>
+                                    {productSelectData.map((product, index) => (
+                                        <ProductSelectCard
+                                            key={index}
+                                            imageUrl={product.imageUrl}
+                                            label={product.label}
+                                            title={product.title}
+                                            infomation={product.infomation}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -189,4 +262,4 @@ const ProductDetail = () => {
     );
 };
 
-export default ProductDetail;
+export default ProductSelect;
