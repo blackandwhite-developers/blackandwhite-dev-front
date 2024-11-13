@@ -1,108 +1,120 @@
 .MypageWrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    max-width: 360px;
-    padding: 30px 15px;
-    // outline: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 360px;
+  padding: 30px 15px;
+  // outline: 1px solid red;
 }
 
 .MyInformation {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    font-size: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
 
-    .NicknameWrapper {
-        padding-left: 10px;
-    }
+  .NicknameWrapper {
+    padding-left: 10px;
+  }
 
-    .Nickname {
-        font-weight: 700;
-    }
+  .Nickname {
+    font-weight: 700;
+  }
 }
 
 .EditProfileWrapper {
-    position: absolute;
-    top: 30px;
-    right: 0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 14px;
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
 
-    .EditProfile {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: #999999;
-    }
-    .EditProfilIcon {
-        font-size: 20px;
-    }
+  .EditProfile {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #999999;
+  }
+  .EditProfilIcon {
+    font-size: 20px;
+  }
 }
 
 .EarnedBenefits {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  padding: 10px 0;
+  margin: 15px 0;
+  border-radius: 10px;
+
+  .PointsWrapper {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    background-color: #f6f6f6;
-    font-size: 14px;
-    padding: 10px 0;
-    margin: 15px 0;
-    border-radius: 10px;
+    flex-direction: column;
 
-    .PointsWrapper {
-        display: flex;
-        flex-direction: column;
-
-        .PointsTitle {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .PointsTitleName {
-            padding-left: 3px;
-        }
+    .PointsTitle {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
 
-    .CouponsWrapper {
-        display: flex;
-        flex-direction: column;
-
-        .CouponsTitle {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .CouponsTitleName {
-            padding-left: 3px;
-        }
+    .PointsTitleName {
+      padding-left: 3px;
     }
+  }
+
+  .CouponsWrapper {
+    display: flex;
+    flex-direction: column;
+
+    .CouponsTitle {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .CouponsTitleName {
+      padding-left: 3px;
+    }
+  }
 }
 
 .Amount {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .MypageCategoryWrapper {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .MypageCategory {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0;
-    font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  font-size: 14px;
+  align-items: center;
 }
 
 .FooterBar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+//페이지 이동 화살표 버튼
+.MypageCategory button[type="button"] {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #999999;
+  width: 17px;
+  height: 17px;
 }

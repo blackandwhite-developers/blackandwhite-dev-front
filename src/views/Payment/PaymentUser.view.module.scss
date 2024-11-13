@@ -20,7 +20,7 @@
   font-weight: 700;
   &::after {
     content: "*";
-    color: #d53560;
+    color: var(--main-pink);
   }
 }
 
