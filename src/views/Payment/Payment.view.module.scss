@@ -1,3 +1,4 @@
+//전체적인 페이지 레이아웃
 .page-layout {
   display: flex;
   align-items: center;
@@ -22,6 +23,24 @@
   font-size: 12px;
   font-weight: 500;
   color: var(--gray600);
+}
+
+.ablebutton-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.error-message {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--sub-red);
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .wrapper {

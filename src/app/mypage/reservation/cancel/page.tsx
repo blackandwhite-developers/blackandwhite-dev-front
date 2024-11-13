@@ -40,16 +40,13 @@ export default function MypageReservationDetailPage() {
           <UserContent userName="허태영" userPhoneNumber="010-1234-5678" />
         </PaymentCard>
         <CompletePayMethod />
-        <div className={cx("ablebutton-box")}>
-          <p className={cx("error-message")}>
-            *예약 취소는 결제 후 1시간 이내로만 가능합니다.
-          </p>
-          <AbleBtn
-            label="예약 취소"
-            onClick={() => router.push("/mypage/reservation/cancle")}
-            type="button"
-          />
-        </div>
+      </div>
+      <div className={cx("error-message")}>
+        <AbleBtn
+          label="예약 취소"
+          onClick={() => router.push("/home")}
+          type="button"
+        />
       </div>
     </div>
   );

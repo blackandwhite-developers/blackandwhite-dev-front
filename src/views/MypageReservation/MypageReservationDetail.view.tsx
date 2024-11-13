@@ -75,12 +75,6 @@ const MypageReservationDetail = ({
 }: {
   reservations: ReservationContentProps[];
 }) => {
-  const [selectedTab, setSelectedTab] = useState("reservations");
-
-  const handleTabClick = (tab: string) => {
-    setSelectedTab(tab);
-  };
-
   return (
     <div className={cx("wrapper")}>
       <PaymentCard title="상품 정보">
