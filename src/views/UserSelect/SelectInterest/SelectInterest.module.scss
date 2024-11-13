@@ -1,0 +1,51 @@
+.SelectInterestWrapper {
+    margin: 0 auto;
+    max-width: 360px;
+    max-height: 760px;
+    display: flex;
+    flex-direction: column;
+
+    .SelectInterestContent {
+        padding-top: 70px;
+        display: flex;
+        flex-direction: column;
+
+        .SelectInterest {
+            font-size: 25px;
+            color: #8728ff;
+        }
+    }
+
+    .SelectInterestCategoryWrapper {
+        padding: 30px 0 60px;
+        display: grid;
+        grid-template-columns: 105px 105px 105px;
+        gap: 5px;
+
+        .SelectInterestCategory {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #8728ff;
+            font-size: 14px;
+            font-weight: 700;
+            width: 105px;
+            height: 105px;
+            border: 1px solid #e9d8ff;
+            border-radius: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        .SelectInterestCategory.selected {
+            background-color: #e9d8ff;
+            border: 1px solid #8728ff;
+        }
+    }
+}
+.SelectInterestNextBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

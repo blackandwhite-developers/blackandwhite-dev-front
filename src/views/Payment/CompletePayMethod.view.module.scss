@@ -1,0 +1,24 @@
+.paydata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.paydata-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+}
+
+.title-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.value-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray600);
+}

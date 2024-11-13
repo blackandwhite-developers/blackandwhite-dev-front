@@ -1,0 +1,31 @@
+.SelectGenderWrapper {
+    margin: 0 auto;
+    max-width: 360px;
+    max-height: 760px;
+    display: flex;
+    flex-direction: column;
+
+    .SelectGenderContent {
+        padding-top: 70px;
+        display: flex;
+        flex-direction: column;
+
+        .SelectGender {
+            font-size: 25px;
+            color: #8728ff;
+        }
+    }
+
+    .SelectGenderRadioBtn {
+        display: flex;
+        flex-direction: column;
+        padding: 30px 0 60px;
+        gap: 10px;
+    }
+}
+.SelectGenderNextBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
