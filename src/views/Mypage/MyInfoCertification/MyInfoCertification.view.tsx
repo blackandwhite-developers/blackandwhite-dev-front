@@ -1,15 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import cn from "classnames/bind";
 import styles from "./MyInfoCertification.module.scss";
 import { FaAngleLeft } from "react-icons/fa6";
 import Header from "@/app/components/Header/Header";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import { DisableBtn } from "@/app/components/Button/DisableBtn";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
-const MyInfo = () => {
+const MyInfoCertification = () => {
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (name && phone) {
+            setIsButtonDisabled(false);
+        } else {
+            setIsButtonDisabled(true);
+        }
+    }, [name, phone]);
+
+    const handleConfirmation = () => {
+        router.push("/mypage/myinfo");
+    };
+
     return (
         <div className={cx("CertificationWrapper")}>
             <Header title={"내정보 수정"} leftIcon={<FaAngleLeft />} />
@@ -21,18 +40,30 @@ const MyInfo = () => {
             <div className={cx("CertificationInputWrapper")}>
                 <div className={cx("CertificationInputTitle")}>
                     <label htmlFor="name">이름</label>
-                    <input type="text" />
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </div>
                 <div className={cx("CertificationInputTitle")}>
                     <label htmlFor="phone">휴대전화 번호</label>
-                    <input type="text" />
+                    <input
+                        type="text"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                    />
                 </div>
             </div>
             <div className={cx("AbleBtnWrapper")}>
-                <AbleBtn label={"확인"} />
+                {isButtonDisabled ? (
+                    <DisableBtn label={"확인"} />
+                ) : (
+                    <AbleBtn label={"확인"} onClick={handleConfirmation} />
+                )}
             </div>
         </div>
     );
 };
 
-export default MyInfo;
+export default MyInfoCertification;

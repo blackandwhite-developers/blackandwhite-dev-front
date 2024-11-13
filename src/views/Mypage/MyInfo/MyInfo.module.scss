@@ -3,6 +3,7 @@
     flex-direction: column;
     margin: 0 auto;
     max-width: 360px;
+    max-height: 760px;
     padding: 60px 0;
 }
 
@@ -49,6 +50,7 @@
     display: flex;
     flex-direction: column;
     padding-top: 30px;
+    margin: 10px;
 
     .ProfileInputTitle {
         display: flex;
@@ -78,5 +80,39 @@
         color: #999999;
         font-size: 14px;
         cursor: pointer;
+    }
+}
+
+.BtnWrapper {
+    padding-top: 200px;
+    margin: 0 auto;
+}
+
+.MyInfoWrapper {
+    position: relative;
+}
+
+.ThumbnailEdit {
+    cursor: pointer;
+}
+
+/*사진 업로드 모달*/
+.ModalWrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+    right: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    z-index: 1000;
+
+    .ModalContent {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 13px;
     }
 }
