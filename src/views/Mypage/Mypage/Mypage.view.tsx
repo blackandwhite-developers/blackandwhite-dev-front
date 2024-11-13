@@ -60,11 +60,7 @@ const Mypage = () => {
         </div>
         <div className={cx("MypageCategory")}>
           <p>예약내역</p>
-          <button
-            type="button"
-            className={cx("arrow-icon")}
-            onClick={() => router.push("/mypage/reservation")}
-          >
+          <button type="button" className={cx("arrow-icon")} onClick={() => router.push("/mypage/reservation")}>
             <IoIosArrowForward />
           </button>
         </div>
