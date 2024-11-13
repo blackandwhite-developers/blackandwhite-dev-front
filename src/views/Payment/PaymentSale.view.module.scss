@@ -24,7 +24,7 @@
 .text {
   font-size: 14px;
   font-weight: 500;
-  color: #4c4c4c;
+  color: var(--gray700);
 }
 
 .amount {
@@ -36,5 +36,5 @@
 .border {
   height: 1px;
   width: 100%;
-  background-color: #e5e5e5;
+  background-color: var(--gray100);
 }
