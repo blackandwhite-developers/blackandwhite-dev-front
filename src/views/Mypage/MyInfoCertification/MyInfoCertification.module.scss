@@ -3,7 +3,7 @@
     flex-direction: column;
     margin: 0 auto;
     max-width: 360px;
-    max-height: 760px;
+    height: 100vh;
     padding: 60px 0;
 }
 
@@ -38,6 +38,5 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    padding-top: 410px;
-    margin: 0 auto;
+    margin-top: auto;
 }
