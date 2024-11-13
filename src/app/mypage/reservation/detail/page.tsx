@@ -4,11 +4,13 @@ import styles from "@/views/Payment/Payment.view.module.scss";
 import MypageReservation from "@/views/MypageReservation/MypageReservation.view";
 import { ReservationContentProps } from "@/views/Payment/Payment.view";
 import PaymentCard from "@/views/Payment/PaymentCard.view";
-import PaymentCompleteCard from "@/views/Payment/PaymentCompletePage.view";
+import MypageReservationDetail from "@/views/MypageReservation/MypageReservationDetail.view";
+import { UserContent } from "@/views/Payment/PaymentUesr.view";
+import CompletePayMethod from "@/views/Payment/CompletePayMethod.view";
 
 const cx = cn.bind(styles);
 
-export default function MypageReservationPage() {
+export default function MypageReservationDetailPage() {
   const reservations: ReservationContentProps[] = [
     {
       hotelName: "김포 마리나베이 호텔",
@@ -80,11 +82,11 @@ export default function MypageReservationPage() {
   return (
     <div className={cx("page-layout")}>
       <div className={cx("page")}>
-        <MypageReservation reservations={reservations} />
-        {/* <PaymentCompleteCard reservations={reservations} /> */}
-        <div className={cx("bottom-box")}>
-          <p>예약/취소내역은 최대 2년까지 조회할 수 있습니다.</p>
-        </div>
+        <MypageReservationDetail reservations={reservations} />
+        <PaymentCard title="예약자 정보">
+          <UserContent userName="허태영" userPhoneNumber="010-1234-5678" />
+        </PaymentCard>
+        <CompletePayMethod />
       </div>
     </div>
   );

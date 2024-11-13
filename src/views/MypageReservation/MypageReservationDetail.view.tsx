@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import styles from "./MypageReservation.view.module.scss";
+import styles from "./MypageReservationDetail.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "../Payment/PaymentCard.view";
 import Header from "@/app/components/Header/Header";
@@ -11,10 +11,11 @@ import { ReservationContentProps } from "../Payment/Payment.view";
 import PaymentComplete from "../Payment/PaymentCompletePage.view";
 import Badge from "@/app/components/badge/Badge";
 import { IoIosArrowForward } from "react-icons/io";
+import { UserContent } from "../Payment/PaymentUesr.view";
 
 const cx = cn.bind(styles);
 
-const MypageReservationCard = (props: ReservationContentProps) => {
+const MypageReservationDetailCard = (props: ReservationContentProps) => {
   const router = useRouter();
 
   const {
@@ -44,14 +45,6 @@ const MypageReservationCard = (props: ReservationContentProps) => {
           </p>
           <p className={cx("room-detailcontent")}>{roomType}</p>
         </div>
-        <button
-          type="button"
-          className={cx("arrow-icon")}
-          onClick={() => router.push("/mypage/reservation/detail")}
-        >
-          상세내역
-          <IoIosArrowForward />
-        </button>
       </div>
       <div className={cx("time-content")}>
         <p className={cx("use-time")}>이용시간</p>
@@ -77,7 +70,7 @@ const MypageReservationCard = (props: ReservationContentProps) => {
   );
 };
 
-const MypageReservation = ({
+const MypageReservationDetail = ({
   reservations,
 }: {
   reservations: ReservationContentProps[];
@@ -90,28 +83,10 @@ const MypageReservation = ({
 
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("category-container")}>
-        <button
-          className={cx("CategoryLink", {
-            selected: selectedTab === "reservations",
-          })}
-          onClick={() => handleTabClick("reservations")}
-        >
-          <p>예약내역</p>
-        </button>
-        <button
-          className={cx("CategoryLink", {
-            selected: selectedTab === "cancle",
-          })}
-          onClick={() => handleTabClick("cancle")}
-        >
-          <p>취소내역</p>
-        </button>
-      </div>
-      <PaymentCard title="2023.06.15 (수)">
+      <PaymentCard title="상품 정보">
         {reservations.map((data, index) => {
           return (
-            <MypageReservationCard
+            <MypageReservationDetailCard
               key={index}
               roomImage={data.roomImage}
               hotelName={data.hotelName}
@@ -132,4 +107,4 @@ const MypageReservation = ({
   );
 };
 
-export default MypageReservation;
+export default MypageReservationDetail;
