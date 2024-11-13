@@ -10,6 +10,8 @@ import Badge from "@/app/components/badge/Badge";
 import Header from "@/app/components/Header/Header";
 import Link from "next/link";
 
+import SortOptions from "@/app/components/BottomSheet/SortOptions/SortOptions";
+
 const cx = cn.bind(styles);
 
 const SearchResultPageView = () => {
@@ -124,6 +126,7 @@ const SearchResultPageView = () => {
           </div>
         </div>
       </div>
+      <SortOptions sortOptions={["가영이 추천순", "리뷰 많은 순", "평점 높은 순", "거리 순", "낮은 가격순", "높은 가격 순"]}></SortOptions>
     </div>
   );
 };
