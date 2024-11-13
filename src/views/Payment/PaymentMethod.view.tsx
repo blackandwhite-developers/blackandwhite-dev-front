@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import styles from "./PaymentMethod.view.module.scss";
 import cn from "classnames/bind";
-import PaymentTitle from "./PaymentTitle.view";
+import PaymentCard from "./PaymentCard.view";
 import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
@@ -35,9 +35,12 @@ const PaymentMethodButton = (props: PaymentMethodButtonProps) => {
 
 const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
   const router = useRouter();
+  const [privacyChecked, setPrivacyChecked] = React.useState(false);
+  const [privacy2Checked, setPrivacy2Checked] = React.useState(false);
 
+  console.log("privacyChecked", privacyChecked, privacy2Checked);
   return (
-    <PaymentTitle title="결제 수단 선택">
+    <PaymentCard title="결제 수단 선택">
       <div className={cx("button-container")}>
         <PaymentMethodButton
           icon="/icon-asset/payment-asset/card.png"
@@ -56,16 +59,38 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
         />
       </div>
       <div className={cx("checkbox-container")}>
-        <DefaultCheckBox label="필수 약관 전체 동의" isLabelBold={true} />
+        <DefaultCheckBox
+          label="필수 약관 전체 동의"
+          checked={privacyChecked && privacy2Checked}
+          onChange={(e) => {
+            if (e.target.checked) {
+              setPrivacy2Checked(true);
+              setPrivacyChecked(true);
+            } else {
+              setPrivacy2Checked(false);
+              setPrivacyChecked(false);
+            }
+          }}
+          fontWeight={700}
+          fontSize={14}
+        />
         <DefaultCheckBox
           label="[필수] 개인정보 수집 및 이용"
           isTransparent={true}
+          checked={privacyChecked}
+          onChange={(e) => setPrivacyChecked(e.target.checked)}
           isLabelGray={true}
+          fontWeight={400}
+          fontSize={12}
         />
         <DefaultCheckBox
           label="[필수] 개인정보 제 3자 제공"
           isTransparent={true}
+          checked={privacy2Checked}
+          onChange={(e) => setPrivacy2Checked(e.target.checked)}
           isLabelGray={true}
+          fontWeight={400}
+          fontSize={12}
         />
         <div className={cx("caption-container")}>
           <span>
@@ -74,8 +99,18 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
           </span>
         </div>
       </div>
-      <DisableBtn label={`${(totalPrice || 0).toLocaleString()}원 결제하기`} />
-    </PaymentTitle>
+      {privacyChecked && privacy2Checked ? (
+        <AbleBtn
+          label={`${(totalPrice || 0).toLocaleString()}원 결제하기`}
+          onClick={() => router.push("/payment/complete")}
+        />
+      ) : (
+        <DisableBtn
+          label={`${(totalPrice || 0).toLocaleString()}원 결제하기`}
+          onClick={() => router.push("/payment/complete")}
+        />
+      )}
+    </PaymentCard>
   );
 };
 

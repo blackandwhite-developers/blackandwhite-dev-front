@@ -2,13 +2,15 @@
 import React, { useState } from "react";
 import styles from "./Payment.view.module.scss";
 import cn from "classnames/bind";
-import PaymentCard from "./PaymentTitle.view";
+import PaymentCard from "./PaymentCard.view";
 import Badge from "@/app/components/badge/Badge";
+import Header from "@/app/components/Header/Header";
 
 const cx = cn.bind(styles);
 
 export interface ReservationContentProps {
   title: string;
+  roomImage?: string;
   roomType: string;
   night: number;
   checkInDate: string;
@@ -35,8 +37,9 @@ const ReservetionContent = (props: ReservationContentProps) => {
 
   return (
     <div className={cx("wrapper")}>
+      {/* <Header title="예약" /> */}
       <div className={cx("reservation-container")}>
-        <Badge shape="round" color="black">
+        <Badge shape="round" color="point">
           호텔
         </Badge>
         <p className={cx("hotelname-title")}>{title}</p>

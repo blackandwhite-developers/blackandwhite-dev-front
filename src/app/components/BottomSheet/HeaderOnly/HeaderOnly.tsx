@@ -3,11 +3,12 @@ import styles from "./HeaderOnly.module.scss";
 import cn from "classnames";
 
 type HeaderOnlyBottomSheetProps = {
-    title: string;
+    title: ReactNode;
     content?: ReactNode;
     isOpen: boolean;
     onClose: () => void;
     className?: string;
+    scrollable?: boolean; 
 };
 
 const HeaderOnly = ({
@@ -16,6 +17,7 @@ const HeaderOnly = ({
     isOpen,
     onClose,
     className,
+    scrollable = true, 
 }: HeaderOnlyBottomSheetProps) => {
     if (!isOpen) return null;
     return (
@@ -33,9 +35,10 @@ const HeaderOnly = ({
                         <h1 className={styles.title}>{title}</h1>
                         {content && (
                             <div
-                                className={styles.content}
-                                dangerouslySetInnerHTML={{ __html: content }}
-                            />
+                                className={cn(styles.content, { [styles.scrollable]: scrollable })}
+                            >{content}
+                            </div>
+
                         )}
                     </div>
                 </div>

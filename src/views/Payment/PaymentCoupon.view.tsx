@@ -4,89 +4,100 @@ import React, { useState } from "react";
 import styles from "./PaymentCoupon.view.module.scss";
 import cn from "classnames/bind";
 import { IoIosArrowForward } from "react-icons/io";
-import PaymentTitle from "./PaymentTitle.view";
+import PaymentCard from "./PaymentCard.view";
 
 const cx = cn.bind(styles);
 
-const ReservetionUser = () => {
+interface PaymentCouponProps {
+  title: string;
+  ableCoupon?: number;
+  couponName?: string;
+  discountAmount?: number;
+}
+
+const PaymentCoupon = (props: PaymentCouponProps) => {
   const router = useRouter();
 
   return (
-    <PaymentTitle title="쿠폰 및 포인트 사용">
-      <div className={cx("coupon-container")}>
-        <div className={cx("coupon-box")}>
-          <p className={cx("coupon-text")}>쿠폰</p>
-        </div>
-        <div className={cx("botton-box")}>
-          <p className={cx("available")}>사용 가능 쿠폰 2장</p>
-          <button
-            type="button"
-            className={cx("arrow-icon")}
-            onClick={() => router.push("/dashboard")}
-          >
-            <IoIosArrowForward />
-          </button>
-        </div>
+    <div className={cx("coupon-container")}>
+      <div className={cx("coupon-box")}>
+        <p className={cx("coupon-text")}>{props.title}</p>
       </div>
-      <div className={cx("point-container")}>
-        <div className={cx("point-box")}>
-          <p className={cx("point-text")}>포인트</p>
-          <p className={cx("point-caption")}>1,200P 사용가능</p>
-        </div>
-        <div className={cx("pointuse-box")}>
-          <p className={cx("available")}>-0P</p>
-          <button
-            type="button"
-            className={cx("arrow-icon")}
-            onClick={() => router.push("/dashboard")}
-          >
-            {" "}
-            <span>전액 사용</span>
-          </button>
-        </div>
+      <div className={cx("botton-box")}>
+        <p className={cx("available")}>사용 가능 쿠폰 {props.ableCoupon}장</p>
+        <button
+          type="button"
+          className={cx("arrow-icon")}
+          onClick={() => router.push("/payment/coupon")}
+        >
+          <IoIosArrowForward />
+        </button>
       </div>
-    </PaymentTitle>
+    </div>
   );
-
-  // return (
-  //   <div className={cx("Wrapper")}>
-  //     <div className={cx("title-box")}>
-  //       <p className={cx("title-text")}>쿠폰 및 포인트 사용</p>
-  //     </div>
-  //     <div className={cx("coupon-container")}>
-  //       <div className={cx("coupon-box")}>
-  //         <p className={cx("coupon-text")}>쿠폰</p>
-  //       </div>
-  //       <div className={cx("botton-box")}>
-  //         <p className={cx("available")}>사용 가능 쿠폰 2장</p>
-  //         <button
-  //           type="button"
-  //           className={cx("arrow-icon")}
-  //           onClick={() => router.push("/dashboard")}
-  //         >
-  //           <IoIosArrowForward />
-  //         </button>
-  //       </div>
-  //     </div>
-  //     <div className={cx("point-container")}>
-  //       <div className={cx("point-box")}>
-  //         <p className={cx("point-text")}>포인트</p>
-  //         <p className={cx("point-caption")}>1,200P 사용가능</p>
-  //       </div>
-  //       <div className={cx("pointuse-box")}>
-  //         <p className={cx("available")}>-0P</p>
-  //         <button
-  //           type="button"
-  //           className={cx("arrow-icon")}
-  //           onClick={() => router.push("/dashboard")}
-  //         >
-  //           {" "}
-  //           <span>전액 사용</span>
-  //         </button>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
 
-export default ReservetionUser;
+interface PaymentPointProps {
+  title: string;
+  usablePointAmount: number;
+  usableCouponCount: number;
+}
+
+const PaymentPoint = (props: PaymentPointProps) => {
+  const { title, usablePointAmount, usableCouponCount } = props;
+  const [usedPointAmount, setUsedPointAmount] = React.useState(0);
+  const router = useRouter();
+
+  return (
+    <div className={cx("point-container")}>
+      <div className={cx("point-box")}>
+        <p className={cx("point-text")}>{title}</p>
+        <p className={cx("point-caption")}>
+          {usablePointAmount.toLocaleString()}P 사용가능
+        </p>
+      </div>
+      <div className={cx("pointuse-box")}>
+        <input
+          type="number"
+          className={cx("point-input")}
+          min={0}
+          defaultValue={0}
+          value={usedPointAmount}
+          onChange={(e) => {
+            const newValue = e.target.value;
+
+            setUsedPointAmount(Number(newValue));
+          }}
+        />
+        <button
+          type="button"
+          className={cx("arrow-icon")}
+          onClick={() => setUsedPointAmount(usablePointAmount)}
+        >
+          <span>전액 사용</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const ReservetionCoupon = ({
+  usablePointAmount,
+  usableCouponCount,
+}: {
+  usablePointAmount: number;
+  usableCouponCount: number;
+}) => {
+  return (
+    <PaymentCard title="쿠폰 및 포인트 사용">
+      <PaymentCoupon title="쿠폰" ableCoupon={usableCouponCount} />
+      <PaymentPoint
+        title="포인트"
+        usablePointAmount={usablePointAmount}
+        usableCouponCount={usableCouponCount}
+      />
+    </PaymentCard>
+  );
+};
+
+export default ReservetionCoupon;
