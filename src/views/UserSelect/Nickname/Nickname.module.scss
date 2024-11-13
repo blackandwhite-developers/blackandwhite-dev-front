@@ -1,0 +1,36 @@
+.SelectNicknameWrapper {
+    margin: 0 auto;
+    max-width: 360px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .SelectNicknameContent {
+        padding: 70px 0 30px;
+        display: flex;
+        flex-direction: column;
+
+        .SelectNickname {
+            font-size: 25px;
+            color: #8728ff;
+        }
+    }
+
+    .InputWrapper {
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+
+        background-color: #f6f6f6;
+        width: 320px;
+        height: 55px;
+    }
+}
+.SelectGenderNextBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding-bottom: 30px;
+}
