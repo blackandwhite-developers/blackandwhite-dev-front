@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Search.view.module.scss";
+import styles from "./SearchResult.view.module.scss";
 import cn from "classnames/bind";
 import SearchBar from "@/app/components/input/SearchBar/SearchBar";
 import { DateBtn } from "@/app/components/Button/DateBtn";
@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const SearchPageView = () => {
+const SearchResultPageView = () => {
   const Data = [
     {
       img: "/images/search/search_01.svg",
@@ -128,4 +128,4 @@ const SearchPageView = () => {
   );
 };
 
-export default SearchPageView;
+export default SearchResultPageView;

@@ -1,0 +1,76 @@
+.search-container {
+  width: 360px;
+  margin: 0 auto;
+  padding: 10px 20px;
+
+  .search-input {
+    margin: 40px auto 10px auto;
+  }
+
+  .about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .search {
+    .current-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+
+      span {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 23.17px;
+        letter-spacing: -0.045em;
+        text-align: left;
+      }
+
+      button {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 17.38px;
+        letter-spacing: -0.045em;
+        text-align: center;
+        color: #8728ff;
+      }
+    }
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      .current-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      .recommend-wrapper {
+        p {
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 23.17px;
+          letter-spacing: -0.045em;
+          text-align: left;
+          padding: 10px 0;
+        }
+
+        .recommend-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+        }
+      }
+
+      .popular-content {
+        p {
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 23.17px;
+          letter-spacing: -0.045em;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
