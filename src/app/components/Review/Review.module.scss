@@ -1,0 +1,63 @@
+.ReviewContainer {
+    margin: 0 auto;
+    max-width: 320px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+
+    .ReviewWriteWrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        position: relative;
+
+        .ReviewAuthorInform {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .ReviewNickname {
+                font-size: 14px;
+            }
+            .ReviewRationg {
+                display: flex;
+                gap: 5px;
+
+                .StarRating {
+                    font-size: 14px;
+                }
+
+                .RatingAverage {
+                    font-size: 12px;
+                }
+            }
+        }
+        .ReviewTimestamp {
+            position: absolute;
+            top: 15pxpx;
+            right: 0;
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .ServiceProduct {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            margin: 5px 0 10px 50px;
+            padding: 3px;
+            font-size: 10px;
+            background-color: #f3eaff;
+            width: fit-content;
+            height: 20px;
+        }
+
+        .ReviewContent {
+            font-size: 12px;
+            padding: 0 0 10 50px;
+        }
+        .ReviewContent p {
+            padding-bottom: 10px;
+        }
+    }
+}
