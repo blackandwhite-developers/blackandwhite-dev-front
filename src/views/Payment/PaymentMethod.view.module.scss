@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #e9d8ff;
+  border: 1px solid var(--sub-purple);
   border-radius: 11px;
   cursor: pointer;
 }
@@ -20,7 +20,7 @@
   background: none;
   border: none;
   outline: none;
-  color: #8728ff;
+  color: var(--main-purple);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,8 +44,8 @@
 //약관 안내 문구 부분
 .caption-container {
   height: 90px;
-  background-color: #f6f6f6;
-  border-radius: 10px;
+  background-color: var(--gray50);
+  border-radius: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,6 +55,6 @@
 .caption-container span {
   font-size: 12px;
   font-weight: 500;
-  color: #666666;
+  color: var(--gray600);
   padding: 12px;
 }
