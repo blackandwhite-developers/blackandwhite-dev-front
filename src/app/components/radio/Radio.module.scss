@@ -7,6 +7,13 @@
   border: 1.4px solid #e5e5e5;
   gap: 8px;
   cursor: pointer;
+  &.nonBorder {
+    padding: 0;
+    border: none;
+    &.check {
+      border: none;
+    }
+  }
   &.check {
     border: 1.4px solid #8728ff;
     color: #8728ff;
@@ -36,6 +43,7 @@
     background-color: #8728ff;
   }
 }
+
 .Label {
   display: flex;
   text-align: justify;
