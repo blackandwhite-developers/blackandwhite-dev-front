@@ -13,7 +13,7 @@ interface CouponContentProps {
   exp?: string;
 }
 
-const CouponCard = () => {
+const MypageReservationCard = () => {
   return (
     <div className={cx("coupon-container")}>
       <label className={cx("custom-checkbox")}>
@@ -27,26 +27,33 @@ const CouponCard = () => {
   );
 };
 
-const CouponPage = () => {
+const MypageReservation = () => {
+  const [selectedTab, setSelectedTab] = useState("reservations");
+
+  const handleTabClick = (tab: string) => {
+    setSelectedTab(tab);
+  };
+
   return (
-    <div className={cx("wrapper")}>
-      {/* <button
-              className={cx("CategoryLink", {
-                selected: selectedTab === "room",
-              })}
-              onClick={() => handleTabClick("room")}
-            >
-              객실 선택
-            </button> */}
-      <div className={cx("no-coupon-container")}>
-        <label className={cx("custom-checkbox")}>
-          <input type="checkbox" checked />
-          <span></span>
-          <p>적용 안함</p>
-        </label>
-      </div>
+    <div className={cx("category-container")}>
+      <button
+        className={cx("CategoryLink", {
+          selected: selectedTab === "reservations",
+        })}
+        onClick={() => handleTabClick("reservations")}
+      >
+        <p>예약내역</p>
+      </button>
+      <button
+        className={cx("CategoryLink", {
+          selected: selectedTab === "cancle",
+        })}
+        onClick={() => handleTabClick("cancle")}
+      >
+        <p>취소내역</p>
+      </button>
     </div>
   );
 };
 
-export default CouponPage;
+export default MypageReservation;

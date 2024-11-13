@@ -1,15 +1,15 @@
 import React from "react";
 import cn from "classnames/bind";
-import CouponPage from "@/views/Payment/PaymentCouponPage.view";
 import styles from "@/views/Payment/Payment.view.module.scss";
+import MypageReservation from "@/views/MypageReservation/MypageReservation.view";
 
 const cx = cn.bind(styles);
 
-export default function PaymentCouponPage() {
+export default function MypageReservationPagePage() {
   return (
     <div className={cx("page-layout")}>
       <div className={cx("page")}>
-        <CouponPage />
+        <MypageReservation />
       </div>
     </div>
   );
