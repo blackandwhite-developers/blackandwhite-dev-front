@@ -1,0 +1,31 @@
+.wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    margin: 0 auto;
+    width: 360px;
+    height: 760px;
+    background-color: var(--white); 
+}
+
+.container {
+    text-align: center;
+    padding: 10px;
+}
+
+.logo img {
+    display: block;
+    margin: 0 auto; 
+    margin-bottom: 20px;
+}
+
+.logo img:last-child {
+    height: 50px;
+    width: auto;
+}
+
+.content p {
+    font-size: 24px;
+    color: var(--main-purple);
+    line-height: 1.2;
+}
