@@ -5,15 +5,13 @@
 .customDayPicker {
     .rdpContainer {
         width: 300px;
-        height: 300px;
+        height: 230px;
         border-radius: 10px;
         margin: 0 auto;
     }
 
     .dayMonths {
         position: relative;
-        margin: 0 auto;
-        height: 100%;
     }
     .dayMonth {
         padding: 20px;
@@ -24,14 +22,14 @@
     }
 
     .dayBtn {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         border: none;
         background-color: transparent;
     }
 
     .monthCaption {
-        padding-bottom: 25px;
+        padding-bottom: 15px;
     }
 
     .navBtn {
@@ -46,30 +44,37 @@
 .calenderWrapper {
     position: relative;
     width: 300px;
-    height: 335px;
+    height: 310px;
     background-color: #fff;
     border: 1px solid #8728ff;
     border-radius: 10px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
+.buttonwrapper {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
 .buttonwrapper button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
     border-radius: 10px;
     padding: 3px 10px;
     cursor: pointer;
 }
 
 .cancleBtn {
-    position: absolute;
-    bottom: 6px;
-    left: 160px;
     background-color: #fff;
     border: 1px solid #8728ff;
 }
 
 .confirmBtn {
-    position: absolute;
-    bottom: 6px;
-    right: 25px;
     background-color: #8728ff;
     border: 1px solid #8728ff;
     color: #fff;
