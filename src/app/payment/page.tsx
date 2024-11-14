@@ -11,6 +11,8 @@ import ReservationSection from "@/views/Payment/Payment.view";
 import PaymentSale from "@/views/Payment/PaymentSale.view";
 import PaymentMethod from "@/views/Payment/PaymentMethod.view";
 import ReservetionCoupon from "@/views/Payment/PaymentCoupon.view";
+import Header from "../components/Header/Header";
+import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
 
@@ -66,6 +68,7 @@ export default function PaymentPage() {
   return (
     <div className={cx("page-layout")}>
       <div className={cx("page")}>
+        <Header title={"예약"} leftIcon={<FaAngleLeft />} />
         <ReservationSection reservations={reservations} />
         <ReservetionUser />
         <ReservetionCoupon usablePointAmount={1200} usableCouponCount={2} />

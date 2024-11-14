@@ -78,7 +78,6 @@ const MypageReservationDetail = ({
 }) => {
   return (
     <div className={cx("wrapper")}>
-      <Header title={"예약내역 상세"} leftIcon={<FaAngleLeft />} />
       <PaymentCard title="상품 정보">
         {reservations.map((data, index) => {
           return (

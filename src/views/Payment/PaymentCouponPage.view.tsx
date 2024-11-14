@@ -7,7 +7,7 @@ import Header from "@/app/components/Header/Header";
 
 const cx = cn.bind(styles);
 
-interface CouponContentProps {
+export interface CouponContentProps {
   title: string;
   couponAmount?: number;
   exp?: string;
@@ -29,7 +29,7 @@ const CouponCard = (props: CouponContentProps) => {
   );
 };
 
-const CouponPage = () => {
+const CouponPage = ({ coupons }: { coupons: CouponContentProps[] }) => {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("no-coupon-container")}>
@@ -39,16 +39,17 @@ const CouponPage = () => {
           <p>적용 안함</p>
         </label>
       </div>
-      <CouponCard
-        title="여름 파격 세일!"
-        couponAmount={5000}
-        exp="(~23.07.19 까지)"
-      />
-      <CouponCard
-        title="떠나요 둘이서, 코코시 썸머 쿠폰"
-        couponAmount={10000}
-        exp="(~23.08.19 까지)"
-      />
+      {coupons.map((data, index) => {
+        return (
+          <div>
+            <CouponCard
+              title={data.title}
+              couponAmount={data.couponAmount}
+              exp={data.exp}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
