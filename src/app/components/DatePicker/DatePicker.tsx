@@ -23,17 +23,19 @@ const DatePicker = () => {
                     <DayPicker
                         mode="range"
                         locale={ko}
-                        classNames={{
-                            root: styles.rdpContainer,
-                            day_button: styles.dayBtn,
-                            day_selected: styles.selected,
-                            months: styles.dayMonths,
-                            month: styles.dayMonth,
-                            month_caption: styles.monthCaption,
-                            nav: styles.navBtn,
-                            month_grid: styles.monthGrid,
-                            weekday: styles.weekday,
-                        }}
+                        classNames={
+                            {
+                                // root: styles.rdpContainer,
+                                // day_button: styles.dayBtn,
+                                // day_selected: styles.selected,
+                                // months: styles.dayMonths,
+                                // month: styles.dayMonth,
+                                // month_caption: styles.monthCaption,
+                                // nav: styles.navBtn,
+                                // month_grid: styles.monthGrid,
+                                // weekday: styles.weekday,
+                            }
+                        }
                     />
                     <div className={cx("buttonwrapper")}>
                         <button

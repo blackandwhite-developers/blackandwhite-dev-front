@@ -1,50 +1,51 @@
-.rdp-root {
-    --rdp-accent-color: #8728ff;
-    --rdp-accent-background-color: #fff;
-}
-.customDayPicker {
-    .rdpContainer {
-        width: 300px;
-        height: 230px;
-        border-radius: 10px;
-        margin: 0 auto;
-    }
+// .rdp-root {
+//     --rdp-accent-color: #8728ff;
+//     --rdp-accent-background-color: #fff;
+// }
+// .customDayPicker {
+//     .rdpContainer {
+//         width: 300px;
+//         height: 230px;
+//         border-radius: 10px;
+//         margin: 0 auto;
+//     }
 
-    .dayMonths {
-        position: relative;
-    }
-    .dayMonth {
-        padding: 20px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+//     .dayMonths {
+//         position: relative;
+//     }
+//     .dayMonth {
+//         padding: 20px;
+//         height: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//     }
 
-    .dayBtn {
-        width: 30px;
-        height: 30px;
-        border: none;
-        background-color: transparent;
-    }
+//     .dayBtn {
+//         width: 30px;
+//         height: 30px;
+//         border: none;
+//         background-color: transparent;
+//     }
 
-    .monthCaption {
-        padding-bottom: 15px;
-    }
+//     .monthCaption {
+//         padding-bottom: 15px;
+//     }
 
-    .navBtn {
-        position: absolute;
-        top: 20px;
-        right: 25px;
-        color: #8728ff;
-        gap: 30px;
-    }
-}
+//     .navBtn {
+//         position: absolute;
+//         top: 20px;
+//         right: 25px;
+//         color: #8728ff;
+//         gap: 30px;
+//     }
+// }
 
 .calenderWrapper {
     position: relative;
-    width: 300px;
-    height: 310px;
+    padding: 10px 5px;
+    width: 320px;
+    height: 360px;
     background-color: #fff;
     border: 1px solid #8728ff;
     border-radius: 10px;
@@ -56,7 +57,7 @@
     padding: 10px 20px;
     position: absolute;
     bottom: 0px;
-    right: 0px;
+    right: -10px;
 }
 
 .buttonwrapper button {
@@ -67,12 +68,12 @@
     border-radius: 10px;
     padding: 3px 10px;
     cursor: pointer;
-    color: #fff;
 }
 
 .cancleBtn {
     background-color: #fff;
     border: 1px solid #8728ff;
+    color: #8728ff;
 }
 
 .confirmBtn {
