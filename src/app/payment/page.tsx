@@ -2,6 +2,7 @@ import React from "react";
 import PaymentView, {
   ReservationContentProps,
 } from "@/views/Payment/Payment.view";
+import { UserContentProps } from "@/views/Payment/PaymentUesr.view";
 import PaymentUser from "@/views/Payment/PaymentUesr.view";
 import PaymentCoupon from "@/views/Payment/PaymentCoupon.view";
 import ReservetionUser from "@/views/Payment/PaymentUesr.view";
@@ -55,6 +56,10 @@ export default function PaymentPage() {
       discountPrice: 3000,
     },
   ];
+  const user: UserContentProps = {
+    userName: "허태영",
+    userPhoneNumber: "010-1234-5678",
+  };
 
   const price = reservations.reduce((prev, cur) => {
     return cur.price + prev;
@@ -70,7 +75,7 @@ export default function PaymentPage() {
       <div className={cx("page")}>
         <Header title={"예약"} leftIcon={<FaAngleLeft />} />
         <ReservationSection reservations={reservations} />
-        <ReservetionUser />
+        <ReservetionUser user={user} />
         <ReservetionCoupon usablePointAmount={1200} usableCouponCount={2} />
         <PaymentSale
           price={price}
