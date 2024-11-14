@@ -10,35 +10,35 @@ import cn from "classnames/bind";
 const cx = cn.bind(styles);
 
 const DatePicker = () => {
-    // const [selected, setSelected] = useState<Date>();
+  // const [selected, setSelected] = useState<Date>();
 
-    return (
-        <div className={cx("calenderWrapper")}>
-            <div className={styles.customDayPicker}>
-                <DayPicker
-                    mode="range"
-                    // selected={selected}
-                    // onSelect={setSelected}
-                    locale={ko}
-                    classNames={{
-                        root: styles.rdpContainer,
-                        day_button: styles.dayBtn,
-                        day_selected: styles.selected,
-                        months: styles.dayMonths,
-                        month: styles.dayMonth,
-                        month_caption: styles.monthCaption,
-                        nav: styles.navBtn,
-                        month_grid: styles.monthGrid,
-                        weekday: styles.weekday,
-                    }}
-                />
-                <div className={cx("buttonwrapper")}>
-                    <button className={cx("cancleBtn")}>취소</button>
-                    <button className={cx("confirmBtn")}>확인</button>
-                </div>
-            </div>
+  return (
+    <div className={cx("calenderWrapper")}>
+      <div className={styles.customDayPicker}>
+        <DayPicker
+          mode="range"
+          // selected={selected}
+          // onSelect={setSelected}
+          locale={ko}
+          classNames={{
+            root: styles.rdpContainer,
+            day_button: styles.dayBtn,
+            day_selected: styles.selected,
+            months: styles.dayMonths,
+            month: styles.dayMonth,
+            month_caption: styles.monthCaption,
+            nav: styles.navBtn,
+            month_grid: styles.monthGrid,
+            weekday: styles.weekday,
+          }}
+        />
+        <div className={cx("buttonwrapper")}>
+          <button className={cx("cancleBtn")}>취소</button>
+          <button className={cx("confirmBtn")}>확인</button>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default DatePicker;
