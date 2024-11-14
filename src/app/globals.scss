@@ -28,6 +28,20 @@
     --main-blue: #088eec;
 }
 
+/*DayPicker CSS!!!!! */
+* {
+    --rdp-accent-color: #8728ff;
+    --rdp-range_start-date-background-color: #8728ff;
+    --rdp-range_end-date-background-color: #8728ff;
+    --rdp-today-color: #8728ff;
+    --rdp-day_button-border-radius: 20px;
+    --rdp-outline: 2px solid#8727ff;
+    --rdp-range_start-color: #ffffff;
+    --rdp-range_middle-foreground-color: #ffffff;
+    --rdp-range_end-color: #ffffff;
+    --rdp-selected-border: 1px solid #8728ff;
+}
+
 /* box-sizing 규칙을 명시합니다. */
 *,
 *::before,

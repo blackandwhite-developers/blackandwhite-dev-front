@@ -7,7 +7,7 @@ import Header from "@/app/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { RiHome6Line } from "react-icons/ri";
 import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
-import { title } from "process";
+// import { title } from "process";
 import Badge from "@/app/components/badge/Badge";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { Dialog } from "@/app/components/dialog/Dialog";
@@ -105,7 +105,7 @@ const Cartview = () => {
                                     <img src={item.img} alt={item.title} />
                                 </div>
                                 <div className={cx("room-info")}>
-                                    <Badge shape="round" children={item.type} />
+                                    <Badge shape="round">{item.type}</Badge>
                                     <p className={cx("title")}>{item.title}</p>
                                     <p className={cx("date")}>
                                         {item.operate.checkInDate} ~{" "}
@@ -127,10 +127,9 @@ const Cartview = () => {
                                 </span>
                             </div>
                             <div className={cx("bottom-info")}>
-                                <Badge
-                                    shape="square"
-                                    children={"선착순 3,000원 특가"}
-                                />
+                                <Badge shape="square">
+                                    {"선착순 3,000원 특가"}
+                                </Badge>
                                 <div className={cx("rest-info")}>
                                     <p className={cx("count")}>
                                         {item.roomCount}개 남음

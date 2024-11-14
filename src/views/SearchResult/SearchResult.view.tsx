@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Search.view.module.scss";
+import styles from "./SearchResult.view.module.scss";
 import cn from "classnames/bind";
 import SearchBar from "@/app/components/input/SearchBar/SearchBar";
 import { DateBtn } from "@/app/components/Button/DateBtn";
@@ -10,9 +10,11 @@ import Badge from "@/app/components/badge/Badge";
 import Header from "@/app/components/Header/Header";
 import Link from "next/link";
 
+import SortOptions from "@/app/components/BottomSheet/SortOptions/SortOptions";
+
 const cx = cn.bind(styles);
 
-const SearchPageView = () => {
+const SearchResultPageView = () => {
   const Data = [
     {
       img: "/images/search/search_01.svg",
@@ -124,8 +126,11 @@ const SearchPageView = () => {
           </div>
         </div>
       </div>
+      <div className={cx("bottom-sheet")}>
+        <SortOptions sortOptions={["가영이 추천순", "리뷰 많은 순", "평점 높은 순", "거리 순", "낮은 가격순", "높은 가격 순"]}></SortOptions>
+      </div>
     </div>
   );
 };
 
-export default SearchPageView;
+export default SearchResultPageView;
