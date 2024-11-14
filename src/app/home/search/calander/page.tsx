@@ -1,4 +1,4 @@
-import CalanderView from "@/views/Home/Search/Calander/Calander.view";
+import CalanderView from "@/views/SearchResult/Calander/Calander.view";
 
 const CalanderPage = () => {
   return <CalanderView />;

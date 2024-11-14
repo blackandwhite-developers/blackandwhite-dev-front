@@ -20,6 +20,8 @@ const CalanderView = () => {
     event.stopPropagation();
     if (operation === "increase") {
       setAdultCount(adultCount + 1);
+    } else if (adultCount <= 0) {
+      return alert("성인은 0명 아래로 내려갈 수 없습니다.");
     } else {
       setAdultCount(adultCount - 1);
     }
@@ -29,6 +31,8 @@ const CalanderView = () => {
     event.stopPropagation();
     if (operation === "increase") {
       setChildCount(childCount + 1);
+    } else if (childCount <= 0) {
+      return alert("아동은 0명 아래로 내려갈 수 없습니다.");
     } else {
       setChildCount(childCount - 1);
     }
