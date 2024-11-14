@@ -1,73 +1,105 @@
 .calander-contianer {
-  margin: 0 auto;
-  width: 360px;
-
-  .about {
-    margin-top: 45px;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 20px;
-  }
-
-  .middle-line {
-    width: 360px;
-    height: 6px;
-    background: #e5e5e5;
-  }
-
-  .member-info {
-    padding: 20px;
+    margin: 0 auto;
+    max-width: 360px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 
-    h4 {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 23.17px;
-      letter-spacing: -0.08em;
-    }
-    .member {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-
-      .adult {
+    .about {
+        margin-top: 45px;
         display: flex;
         justify-content: space-between;
+        padding: 5px 20px;
+    }
+
+    .calander {
+        padding-left: 30px;
+    }
+
+    .middle-line {
+        width: 360px;
+        height: 5px;
+        margin-top: 20px;
+        background: #e5e5e5;
+    }
+
+    .member-info {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        h4 {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 23.17px;
+            letter-spacing: -0.08em;
+        }
+        .member {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .adult {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                span {
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 20.27px;
+                    letter-spacing: -0.08em;
+                }
+
+                .adult-containder {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+
+            .child {
+                display: flex;
+                justify-content: space-between;
+
+                span {
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 20.27px;
+                    letter-spacing: -0.08em;
+                }
+
+                .child-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+        }
+    }
+    .bottomBtn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
         align-items: center;
+        margin-top: auto;
+        padding-bottom: 30px;
 
-        span {
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 20.27px;
-          letter-spacing: -0.08em;
+        .confirmBtn {
+            background-color: #8728ff;
+            border: none;
+            outline: none;
+            width: auto;
+            height: 50px;
+            border-radius: 5px;
+            padding: 10px 26px 10px 26px;
+            color: white;
+            font-weight: 500;
+            line-height: 23.17px;
+            letter-spacing: -5%;
+            font-size: 15px;
+            text-align: center;
         }
-
-        .adult-containder {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-      }
-
-      .child {
-        display: flex;
-        justify-content: space-between;
-
-        span {
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 20.27px;
-          letter-spacing: -0.08em;
-        }
-
-        .child-container {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-      }
     }
-  }
 }
