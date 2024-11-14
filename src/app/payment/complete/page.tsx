@@ -1,13 +1,18 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import cn from "classnames/bind";
 import PaymentComplete from "@/views/Payment/PaymentCompletePage.view";
 import { ReservationContentProps } from "@/views/Payment/Payment.view";
 import styles from "@/views/Payment/Payment.view.module.scss";
 import CompletePayMethod from "@/views/Payment/CompletePayMethod.view";
+import { AbleBtn } from "@/app/components/Button/AbleBtn";
 
 const cx = cn.bind(styles);
 
 export default function PaymentCompletePage() {
+  const router = useRouter();
+
   const reservations: ReservationContentProps[] = [
     {
       hotelName: "김포 마리나베이 호텔",
@@ -55,6 +60,13 @@ export default function PaymentCompletePage() {
       <div className={cx("page")}>
         <PaymentComplete reservations={reservations} />
         <CompletePayMethod />
+      </div>
+      <div className={cx("ablebutton-box")}>
+        <AbleBtn
+          label="홈으로 돌아가기"
+          onClick={() => router.push("/mypage/reservation/cancle")}
+          type="button"
+        />
       </div>
     </div>
   );

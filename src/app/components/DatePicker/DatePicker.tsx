@@ -14,6 +14,7 @@ const DatePicker = () => {
     const handleClose = () => {
         setIsVisible(false);
     };
+    // const [selected, setSelected] = useState<Date>();
 
     return (
         isVisible && (
