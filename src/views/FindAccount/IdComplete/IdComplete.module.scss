@@ -1,36 +1,40 @@
-.SelectNicknameWrapper {
+.IdCompleteWrapper {
     margin: 0 auto;
     max-width: 360px;
     height: 100vh;
     display: flex;
     flex-direction: column;
 
-    .SelectNicknameContent {
-        padding: 70px 0 30px;
+    .IdCompleteContent {
+        padding-top: 70px;
         display: flex;
         flex-direction: column;
 
-        .SelectNickname {
+        .IdComplete {
             font-size: 25px;
             color: #8728ff;
         }
     }
-
-    .InputWrapper {
-        display: flex;
-        align-items: center;
-        padding-left: 20px;
-
+    .UserIdWrapper {
         background-color: #f6f6f6;
-        width: 360px;
-        height: 55px;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        margin-top: 30px;
+        border-radius: 5px;
+
+        .UserSignupDate {
+            font-size: 12px;
+            color: #7f7f7f;
+        }
     }
 }
-.SelectGenderNextBtn {
+.IncompleteBtn {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: auto;
     padding-bottom: 30px;
+    gap: 10px;
 }
