@@ -7,56 +7,56 @@ import PaymentCard from "./PaymentCard.view";
 import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
+import PaymentMethodButton from "@/app/components/Button/PaymentBtn";
 
 const cx = cn.bind(styles);
 
-interface PaymentMethodButtonProps {
-  icon: string;
-  method: string;
-  router: string;
-}
-
-const PaymentMethodButton = (props: PaymentMethodButtonProps) => {
-  const router = useRouter();
-
-  return (
-    <div className={cx("button-box")}>
-      <button
-        type="button"
-        className={cx("button-icon")}
-        onClick={() => router.push(props.router)}
-      >
-        <img src={props.icon} alt="method-icon" className={cx("method-icon")} />
-        <p>{props.method}</p>
-      </button>
-    </div>
-  );
-};
+const paymentArr = [
+  {
+    title: "신용카드",
+    icon: "/icon-asset/payment-asset/card.png",
+  },
+  {
+    title: "실시간 계좌이체",
+    icon: "/icon-asset/payment-asset/cash.png",
+  },
+  {
+    title: "카카오페이",
+    icon: "/icon-asset/payment-asset/kakaopay.png",
+  },
+];
 
 const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
   const router = useRouter();
   const [privacyChecked, setPrivacyChecked] = React.useState(false);
   const [privacy2Checked, setPrivacy2Checked] = React.useState(false);
 
-  console.log("privacyChecked", privacyChecked, privacy2Checked);
+  const [isChecked, setIsChecked] = useState<boolean[]>(
+    Array(paymentArr.length).fill(false)
+  );
+
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>, idx: number) {
+    e.preventDefault();
+    const newArr = Array(paymentArr.length).fill(false);
+    newArr[idx] = true;
+    setIsChecked(newArr);
+  }
+
   return (
     <PaymentCard title="결제 수단 선택">
       <div className={cx("button-container")}>
-        <PaymentMethodButton
-          icon="/icon-asset/payment-asset/card.png"
-          method="신용카드"
-          router="/dashboard"
-        />
-        <PaymentMethodButton
-          icon="/icon-asset/payment-asset/cash.png"
-          method="실시간 계좌이체"
-          router="/dashboard"
-        />
-        <PaymentMethodButton
-          icon="/icon-asset/payment-asset/kakaopay.png"
-          method="카카오페이"
-          router="/dashboard"
-        />
+        {paymentArr.map((item, index) => {
+          return (
+            <PaymentMethodButton
+              key={index}
+              icon={item.icon}
+              isSelected={isChecked[index]}
+              method={item.title}
+              idx={index}
+              handleClick={handleClick}
+            />
+          );
+        })}
       </div>
       <div className={cx("checkbox-container")}>
         <DefaultCheckBox

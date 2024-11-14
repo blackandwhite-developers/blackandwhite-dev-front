@@ -1,0 +1,73 @@
+.calander-contianer {
+  margin: 0 auto;
+  width: 360px;
+
+  .about {
+    margin-top: 45px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+  }
+
+  .middle-line {
+    width: 360px;
+    height: 6px;
+    background: #e5e5e5;
+  }
+
+  .member-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 23.17px;
+      letter-spacing: -0.08em;
+    }
+    .member {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .adult {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20.27px;
+          letter-spacing: -0.08em;
+        }
+
+        .adult-containder {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+
+      .child {
+        display: flex;
+        justify-content: space-between;
+
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20.27px;
+          letter-spacing: -0.08em;
+        }
+
+        .child-container {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+.filter-container {
+  width: 360px;
+  margin: 0 auto;
+
+  .main {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 23.17px;
+      letter-spacing: -0.08em;
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    .room-type {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 8px;
+
+      > * {
+        flex: 0 0 calc(50% - 5px);
+        min-width: 156px;
+      }
+    }
+
+    .keyword-container {
+      h3 {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 23.17px;
+        letter-spacing: -0.08em;
+        text-align: left;
+        margin-bottom: 16px;
+      }
+
+      .keyword-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
+  }
+}
