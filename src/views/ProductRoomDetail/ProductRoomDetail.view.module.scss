@@ -1,6 +1,7 @@
 .ProductDetailWrapper {
     margin: 0 auto;
     max-width: 360px;
+    height: 100vh;
     // max-height: 760px;
 }
 
@@ -103,4 +104,16 @@
     display: flex;
     padding-top: 20px;
     gap: 10px;
+}
+.ReservationWrapper {
+    position: relative;
+
+    .DatePickerWrapper {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 }

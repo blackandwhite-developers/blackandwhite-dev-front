@@ -109,7 +109,7 @@ const ProductDetail = () => {
                 <div className={cx("ProductCategoryWrapper")}>
                     <div className={cx("ProductCategoryLine")}></div>
 
-                    <div>
+                    <div className={cx("ReservationWrapper")}>
                         <div className={cx("ReservationSelectBtn")}>
                             <DateBtn label={""} onClick={toggleDatePicker} />
                             <MemberBtn label={""} />
