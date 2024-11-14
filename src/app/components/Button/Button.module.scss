@@ -2,258 +2,300 @@
 
 // 버튼 공통 스타일
 :global(button) {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 // 노말버튼
 .NomalBtn {
-    background-color: white;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    width: 320px;
-    height: 50px;
-    padding: 10px 26px 10px 26px;
-    letter-spacing: -5%;
-    text-align: center;
-    color: #a55eff;
-    line-height: 26.06px;
-    font-size: 16px;
-    font-weight: 500;
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 320px;
+  height: 50px;
+  padding: 10px 26px 10px 26px;
+  letter-spacing: -5%;
+  text-align: center;
+  color: #a55eff;
+  line-height: 26.06px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 // 비활성버튼
 .DisableBtn {
-    background-color: #b2b2b2;
-    border: none;
-    outline: none;
-    width: 320px;
-    height: 50px;
-    border-radius: 5px;
-    padding: 10px 26px 10px 26px;
-    color: white;
-    font-weight: 500;
-    line-height: 23.17px;
-    letter-spacing: -5%;
-    font-size: 18px;
-    text-align: center;
+  background-color: #b2b2b2;
+  border: none;
+  outline: none;
+  width: 320px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 10px 26px 10px 26px;
+  color: white;
+  font-weight: 500;
+  line-height: 23.17px;
+  letter-spacing: -5%;
+  font-size: 18px;
+  text-align: center;
 }
 
 // 활성화버튼
 
 .AbleBtn {
-    background-color: #8728ff;
-    border: none;
-    outline: none;
-    width: 320px;
-    height: 52px;
-    border-radius: 5px;
-    padding: 10px 26px 10px 26px;
-    color: white;
-    font-weight: 500;
-    line-height: 23.17px;
-    letter-spacing: -5%;
-    font-size: 18px;
-    text-align: center;
+  background-color: #8728ff;
+  border: none;
+  outline: none;
+  width: 320px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 10px 26px 10px 26px;
+  color: white;
+  font-weight: 500;
+  line-height: 23.17px;
+  letter-spacing: -5%;
+  font-size: 18px;
+  text-align: center;
 }
 
 //비밀번호 찾기 버튼
 .FindPasswordBtn {
-    width: 156px;
-    height: 50px;
-    border: none;
-    outline: none;
-    background: #b2b2b2;
-    padding: 10px 26px;
-    border-radius: 5px;
-    color: white;
-    font-weight: 500;
-    line-height: 23.17px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
+  width: 156px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: #b2b2b2;
+  padding: 10px 26px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  line-height: 23.17px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 //로그인 버튼
 
 .LoginBtn {
-    width: 156px;
-    height: 50px;
-    border: none;
-    outline: none;
-    background: #8728ff;
-    padding: 10px 26px;
-    border-radius: 5px;
-    color: white;
-    font-weight: 500;
-    line-height: 23.17px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
+  width: 156px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: #8728ff;
+  padding: 10px 26px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  line-height: 23.17px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 //날짜 버튼
 .DateBtn {
-    width: 200px;
-    height: 37px;
-    border-radius: 18.5px;
-    outline: none;
-    border: none;
-    background: #f6f6f6;
-    display: flex;
-    justify-self: start;
-    align-items: center;
-    gap: 10px;
-    padding-left: 17px;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20.27px;
-    text-align: left;
-    cursor: pointer;
+  width: 200px;
+  height: 37px;
+  border-radius: 18.5px;
+  outline: none;
+  border: none;
+  background: #f6f6f6;
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  gap: 10px;
+  padding-left: 17px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20.27px;
+  text-align: left;
+  cursor: pointer;
 }
 
 //맴버 버튼
 .MemberBtn {
-    width: 106px;
-    height: 36px;
-    display: flex;
-    justify-self: start;
-    align-items: center;
-    gap: 5px;
-    border-radius: 18.5px;
-    outline: none;
-    border: none;
-    background: #f6f6f6;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20.27px;
-    padding-left: 10px;
-    cursor: pointer;
+  width: 106px;
+  height: 36px;
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  gap: 5px;
+  border-radius: 18.5px;
+  outline: none;
+  border: none;
+  background: #f6f6f6;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20.27px;
+  padding-left: 10px;
+  cursor: pointer;
 }
 
 //목록보기 버튼
 .ListBtn {
-    width: 82px;
-    height: 36px;
-    border: 1px solid #8728ff;
-    border-radius: 18px;
-    box-shadow: 0px 4px 4px 0px #00000024;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    background: #ffffff;
-    font-size: 12px;
-    background-color: transparent;
-    font-weight: 500;
-    line-height: 17.38px;
+  width: 82px;
+  height: 36px;
+  border: 1px solid #8728ff;
+  border-radius: 18px;
+  box-shadow: 0px 4px 4px 0px #00000024;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  background: #ffffff;
+  font-size: 12px;
+  background-color: transparent;
+  font-weight: 500;
+  line-height: 17.38px;
 }
 
 .ClickListBtn {
-    width: 82px;
-    height: 36px;
-    border: 1px solid #8728ff;
-    border-radius: 18px;
-    box-shadow: 0px 4px 4px 0px #00000024;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #8728ff;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 17.38px;
-    color: white;
-    gap: 2px;
+  width: 82px;
+  height: 36px;
+  border: 1px solid #8728ff;
+  border-radius: 18px;
+  box-shadow: 0px 4px 4px 0px #00000024;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #8728ff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17.38px;
+  color: white;
+  gap: 2px;
 }
 
 //맵 버트으은
 .MapBtn {
-    width: 82px;
-    height: 36px;
-    border: 1px solid #8728ff;
-    border-radius: 18px;
-    box-shadow: 0px 4px 4px 0px #00000024;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #8728ff;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 17.38px;
-    color: white;
-    gap: 2px;
+  width: 82px;
+  height: 36px;
+  border: 1px solid #8728ff;
+  border-radius: 18px;
+  box-shadow: 0px 4px 4px 0px #00000024;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #8728ff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17.38px;
+  color: white;
+  gap: 2px;
 }
 
 .ResearchBtn {
-    width: 106px;
-    height: 36px;
-    border-radius: 18px;
-    border: 1px solid #8728ff;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 17.38px;
+  width: 106px;
+  height: 36px;
+  border-radius: 18px;
+  border: 1px solid #8728ff;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17.38px;
 }
 
 //객실 예약하기 버튼
 .ReservationBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 85px;
-    height: 27px;
-    border: none;
-    outline: none;
-    background: #8728ff;
-    border-radius: 5px;
-    color: white;
-    font-weight: 500;
-    line-height: 23.17px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85px;
+  height: 27px;
+  border: none;
+  outline: none;
+  background: #8728ff;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  line-height: 23.17px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 //대실 예약하기 버튼
 .RoomReservationBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 68px;
-    height: 27px;
-    border: none;
-    outline: none;
-    background: #8728ff;
-    border-radius: 5px;
-    color: white;
-    font-weight: 500;
-    line-height: 23.17px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 27px;
+  border: none;
+  outline: none;
+  background: #8728ff;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  line-height: 23.17px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 //숙박 예약하기 버튼
 .StayReservationBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 68px;
-    height: 27px;
-    border: none;
-    outline: none;
-    background: #8728ff;
-    border-radius: 5px;
-    color: white;
-    font-weight: 500;
-    line-height: 23.17px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 27px;
+  border: none;
+  outline: none;
+  background: #8728ff;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  line-height: 23.17px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+// payment box
+
+
+
+.button-box {
+  width: 104px;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--sub-purple);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: .3s ease all;
+
+  &.active {
+    background-color: var(--sub-purple);
+    border: 1px solid var(--main-purple);
+  }
+}
+
+
+.button-box button[type="button"] {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--main-purple);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.button-icon p {
+  font-size: 12px;
+  font-weight: 500;
 }

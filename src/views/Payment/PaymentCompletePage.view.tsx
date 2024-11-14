@@ -2,16 +2,16 @@
 import React, { useState } from "react";
 import styles from "./PaymentCompletePage.view.module.scss";
 import cn from "classnames/bind";
-import PaymentCard from "./PaymentCard.view";
 import Header from "@/app/components/Header/Header";
 import { ReservationContentProps } from "./Payment.view";
 import Badge from "@/app/components/badge/Badge";
+import PaymentCard from "./PaymentCard.view";
 
 const cx = cn.bind(styles);
 
 const PaymentCompleteCard = (props: ReservationContentProps) => {
   const {
-    title,
+    hotelName,
     roomImage,
     roomType,
     checkInDate,
@@ -31,7 +31,7 @@ const PaymentCompleteCard = (props: ReservationContentProps) => {
           <Badge shape="round" color="point">
             호텔
           </Badge>
-          <p className={cx("hotel-name")}>{title}</p>
+          <p className={cx("hotel-name")}>{hotelName}</p>
           <p className={cx("date-text")}>
             {checkInDate}~{checkOutDate},{night}박
           </p>
@@ -40,13 +40,15 @@ const PaymentCompleteCard = (props: ReservationContentProps) => {
       </div>
       <div className={cx("time-content")}>
         <p className={cx("use-time")}>이용시간</p>
-        <div className={cx("checkin-time")}>
-          <p className={cx("date-text")}>체크인</p>
-          <p className={cx("room-detailcontent")}>{checkInTime}</p>
-        </div>
-        <div className={cx("checkout-time")}>
-          <p className={cx("date-text")}>체크아웃</p>
-          <p className={cx("room-detailcontent")}>{checkOutTime}</p>
+        <div className={cx("time-box")}>
+          <div className={cx("check-box")}>
+            <p className={cx("checktime-text")}>체크인</p>
+            <p className={cx("time-text")}>{checkInTime}</p>
+          </div>
+          <div className={cx("check-box")}>
+            <p className={cx("checktime-text")}>체크아웃</p>
+            <p className={cx("time-text")}>{checkOutTime}</p>
+          </div>
         </div>
       </div>
       <div className={cx("pay-container")}>
@@ -66,12 +68,13 @@ const PaymentComplete = ({
   reservations: ReservationContentProps[];
 }) => {
   return (
-    <div className={cx("wrapper")}>
+    <PaymentCard title="상품 정보 ">
       {reservations.map((data, index) => {
         return (
           <PaymentCompleteCard
             key={index}
-            title={data.title}
+            roomImage={data.roomImage}
+            hotelName={data.hotelName}
             roomType={data.roomType}
             checkInDate={data.checkInDate}
             checkInTime={data.checkInTime}
@@ -84,7 +87,7 @@ const PaymentComplete = ({
           />
         );
       })}
-    </div>
+    </PaymentCard>
   );
 };
 

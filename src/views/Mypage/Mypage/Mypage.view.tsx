@@ -1,6 +1,6 @@
 "use client";
-
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React from "react";
 import cn from "classnames/bind";
 import styles from "./Mypage.module.scss";
 import Image from "next/image";
@@ -9,21 +9,12 @@ import { GoChevronRight } from "react-icons/go";
 import { PiMedalLight } from "react-icons/pi";
 import { RiCoupon3Line } from "react-icons/ri";
 import { Dialog } from "@/app/components/dialog/Dialog";
+import { IoIosArrowForward } from "react-icons/io";
 
 const cx = cn.bind(styles);
 
 const Mypage = () => {
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-    const myPageData = [
-        { name: "위시리스트" },
-        { name: "예약내역" },
-        { name: "1:1 카카오 문의", onClick: () => setIsDialogOpen(true) },
-        { name: "자주 묻는 질문" },
-        { name: "설정" },
-    ];
-
-    const closeDialog = () => setIsDialogOpen(false);
+    const router = useRouter();
 
     return (
         <div className={cx("MypageWrapper")}>
@@ -43,7 +34,7 @@ const Mypage = () => {
                 <div className={cx("EditProfileWrapper")}>
                     <a href="" className={cx("EditProfile")}>
                         내 정보 수정
-                        <GoChevronRight className={cx("EditProfileIcon")} />
+                        <GoChevronRight className={cx("EditProfilIcon")} />
                     </a>
                 </div>
             </div>
@@ -55,6 +46,7 @@ const Mypage = () => {
                         </p>
                         <p className={cx("PointsTitleName")}>포인트</p>
                     </div>
+
                     <p className={cx("Amount")}>500P</p>
                 </div>
                 <div className={cx("CouponsWrapper")}>
@@ -68,30 +60,36 @@ const Mypage = () => {
                 </div>
             </div>
             <div className={cx("MypageCategoryWrapper")}>
-                {myPageData.map((item, index) => (
+                <div className={cx("MypageCategory")}>
+                    <p>위시리스트</p>
+                    <GoChevronRight />
+                </div>
+                <div className={cx("MypageCategory")}>
+                    <p>예약내역</p>
                     <button
-                        key={index}
-                        className={cx("MypageCategory")}
-                        onClick={item.onClick}
+                        type="button"
+                        className={cx("arrow-icon")}
+                        onClick={() => router.push("/mypage/reservation")}
                     >
-                        <p>{item.name}</p>
-                        <GoChevronRight />
+                        <IoIosArrowForward />
                     </button>
-                ))}
+                </div>
+                <div className={cx("MypageCategory")}>
+                    <p>1:1 카카오 문의</p>
+                    <GoChevronRight />
+                </div>
+                <div className={cx("MypageCategory")}>
+                    <p>자주 묻는 질문</p>
+                    <GoChevronRight />
+                </div>
+                <div className={cx("MypageCategory")}>
+                    <p>설정</p>
+                    <GoChevronRight />
+                </div>
+                <div className={cx("FooterBar")}>
+                    <FooterBar />
+                </div>
             </div>
-            <div className={cx("FooterBar")}>
-                <FooterBar />
-            </div>
-
-            {isDialogOpen && (
-                <Dialog
-                    content={"코코시에서 카카오톡을 연결하겠습니까?"}
-                    leftButtonText="취소"
-                    rightButtonText="확인"
-                    onLeftButtonClick={closeDialog}
-                    onRightButtonClick={closeDialog}
-                />
-            )}
         </div>
     );
 };

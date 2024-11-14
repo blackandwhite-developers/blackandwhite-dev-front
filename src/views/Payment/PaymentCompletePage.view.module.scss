@@ -1,101 +1,122 @@
-.wrapper {
-  margin: 0 auto;
-  width: 360px;
-  background-color: #ffffff;
+.Reservation-container {
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  padding: 16px;
-}
-
-//적용안함 부분
-.no-coupon-container {
-  width: 320px;
-  height: 47px;
-  border: 1.4px solid #8728ff;
-  border-radius: 10px;
-  display: flex;
-  justify-content: flex-start;
   align-items: center;
-  padding-left: 20px;
+  gap: 15px;
 }
 
-//쿠폰 체크했을때 부분
-.coupon-container {
-  border: 1.4px solid #8728ff;
-  border-radius: 10px;
-  width: 320px;
-  height: 92px;
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  height: 35px;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 20px;
+  align-items: center;
+}
+
+//상품 정보 부분
+.Reservation-content {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.Reservation-content img {
+  width: 101px;
+  height: 101px;
+}
+
+.hotel-content {
+  display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.custom-checkbox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.custom-checkbox input[type="checkbox"] {
-  display: none; /* 기본 체크박스 숨기기 */
-}
-
-.custom-checkbox span {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%; /* 동그란 모양 만들기 */
-  border: 0.7px solid #999999; /* 테두리 색상 */
-  position: relative;
-  cursor: pointer;
-  margin-right: 5px; /* 텍스트와의 간격 */
-  transition: background-color 0.2s ease;
-}
-
-.custom-checkbox input[type="checkbox"]:checked + span {
-  background-color: #ffffff; /* 체크된 상태일 때 배경색 */
-  border: 0.7px solid #8728ff;
-}
-
-.custom-checkbox span::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background-color: #8728ff;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.2s ease;
-}
-
-.custom-checkbox input[type="checkbox"]:checked + span::before {
-  transform: translate(-50%, -50%) scale(1); /* 체크 표시 나타내기 */
-}
-
-.custom-checkbox p {
-  font-size: 12px;
-  font-weight: 500;
-  color: #8728ff;
-}
-
-.coupon-amount {
-  font-size: 12px;
+.hotel-name {
+  font-size: 14px;
   font-weight: 700;
-  color: #191919;
-  margin-left: 22px;
 }
 
-.coupon-exp {
+.date-text {
   font-size: 12px;
   font-weight: 500;
-  color: #7f7f7f;
-  margin-left: 20px;
+  color: var(--gray900);
 }
 
-//쿠폰 체크 안했을때 부분
+.room-detailcontent {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray500);
+}
+
+//이용시간 부분
+.time-content {
+  width: 100%;
+  // width: 320px;
+  height: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(229, 229, 229, 0.6);
+  border-radius: 7px;
+  padding: 0 20px;
+}
+
+.time-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  gap: 27px;
+}
+
+.use-time {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray800);
+}
+
+.check-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.checktime-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray500);
+}
+
+.time-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray700);
+}
+
+//결제금액 부분
+.pay-container {
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.pay-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray800);
+}
+
+.pay-amount {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.border {
+  height: 1px;
+  width: 98%;
+  background-color: var(--gray100);
+  margin-bottom: 10px;
+}
