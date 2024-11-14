@@ -19,10 +19,7 @@ const Nickname = () => {
                 </p>
             </div>
             <div className={cx("InputWrapper")}>
-                <label
-                    htmlFor="nickname"
-                    className={cx("NicknameInput")}
-                ></label>
+                <label htmlFor="nickname"></label>
                 <input
                     id="nickname"
                     type="text"

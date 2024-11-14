@@ -258,18 +258,41 @@
   cursor: pointer;
 }
 
-//text 버튼
-.TextBtn {
-  padding: 10px 20px;
-  border-radius: 18.5px;
-  opacity: 0px;
-  background: #f6f6f6;
-  font-family: Noto Sans KR;
-  font-size: 14px;
+// payment box
+
+.button-box {
+  width: 104px;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--sub-purple);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: 0.3s ease all;
+
+  &.active {
+    background-color: var(--sub-purple);
+    border: 1px solid var(--main-purple);
+  }
+}
+
+.button-box button[type="button"] {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--main-purple);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.button-icon p {
+  font-size: 12px;
   font-weight: 500;
-  line-height: 20.27px;
-  letter-spacing: -0.045em;
-  text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
 }
