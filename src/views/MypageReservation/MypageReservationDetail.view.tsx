@@ -12,6 +12,7 @@ import PaymentComplete from "../Payment/PaymentCompletePage.view";
 import Badge from "@/app/components/badge/Badge";
 import { IoIosArrowForward } from "react-icons/io";
 import { UserContent } from "../Payment/PaymentUesr.view";
+import { FaAngleLeft } from "react-icons/fa";
 
 const cx = cn.bind(styles);
 
@@ -77,6 +78,7 @@ const MypageReservationDetail = ({
 }) => {
   return (
     <div className={cx("wrapper")}>
+      <Header title={"예약내역 상세"} leftIcon={<FaAngleLeft />} />
       <PaymentCard title="상품 정보">
         {reservations.map((data, index) => {
           return (

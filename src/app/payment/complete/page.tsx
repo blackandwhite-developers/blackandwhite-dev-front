@@ -64,7 +64,7 @@ export default function PaymentCompletePage() {
       <div className={cx("ablebutton-box")}>
         <AbleBtn
           label="홈으로 돌아가기"
-          onClick={() => router.push("/mypage/reservation/cancle")}
+          onClick={() => router.push("/home")}
           type="button"
         />
       </div>
