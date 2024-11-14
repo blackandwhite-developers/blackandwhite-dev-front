@@ -5,18 +5,25 @@ import "./FooterBar.scss";
 import MapIcon from "../icon/MapIcon";
 import HomeIcon from "../icon/HomeIcon";
 import MypageIcon from "../icon/MypageIcon";
+import { usePathname, useRouter } from "next/navigation";
 
-type FooterBarProps = {
-  defaultSelected?: "map" | "home" | "mypage";
-};
-
-const FooterBar = (prop: FooterBarProps) => {
-  const { defaultSelected } = prop;
-  const [select, setSelect] = React.useState(defaultSelected);
-
+const FooterBar = () => {
+  const pathName = usePathname();
+  const [select, setSelect] = React.useState(pathName === "/map" ? "map" : pathName === "/" ? "home" : "mypage");
+  const router = useRouter();
   const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, selected: "map" | "home" | "mypage") => {
     setSelect(selected);
-    // page move
+    switch (selected) {
+      case "map":
+        router.push("/map");
+        break;
+      case "home":
+        router.push("/");
+        break;
+      case "mypage":
+        router.push("/mypage");
+        break;
+    }
   };
 
   return (
