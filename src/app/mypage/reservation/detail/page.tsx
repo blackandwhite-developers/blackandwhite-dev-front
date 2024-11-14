@@ -10,6 +10,8 @@ import MypageReservationDetail from "@/views/MypageReservation/MypageReservation
 import { UserContent } from "@/views/Payment/PaymentUesr.view";
 import CompletePayMethod from "@/views/Payment/CompletePayMethod.view";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import Header from "@/app/components/Header/Header";
+import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
 
@@ -35,6 +37,7 @@ export default function MypageReservationDetailPage() {
   return (
     <div className={cx("page-layout")}>
       <div className={cx("page")}>
+        <Header title={"예약내역 상세"} leftIcon={<FaAngleLeft />} />
         <MypageReservationDetail reservations={reservations} />
         <PaymentCard title="예약자 정보">
           <UserContent userName="허태영" userPhoneNumber="010-1234-5678" />

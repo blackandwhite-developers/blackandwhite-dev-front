@@ -7,6 +7,8 @@ import { ReservationContentProps } from "@/views/Payment/Payment.view";
 import styles from "@/views/Payment/Payment.view.module.scss";
 import CompletePayMethod from "@/views/Payment/CompletePayMethod.view";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import Header from "@/app/components/Header/Header";
+import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
 
@@ -58,13 +60,17 @@ export default function PaymentCompletePage() {
   return (
     <div className={cx("page-layout")}>
       <div className={cx("page")}>
+        <Header
+          title={"결제 완료"}
+          leftIcon={<img src="/icon-asset/arrow/x.png" alt="x-button" />}
+        />
         <PaymentComplete reservations={reservations} />
         <CompletePayMethod />
       </div>
       <div className={cx("ablebutton-box")}>
         <AbleBtn
           label="홈으로 돌아가기"
-          onClick={() => router.push("/mypage/reservation/cancle")}
+          onClick={() => router.push("/home")}
           type="button"
         />
       </div>
