@@ -12,7 +12,7 @@ const reservationCancelView = () => {
     };
 
     const handleGoToReservationHistory = () => {
-        router.push("/reservation-history");
+        router.push("/mypage/reservation/detail");
     };
 
     return(
