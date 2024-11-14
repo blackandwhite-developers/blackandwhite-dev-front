@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductRoomDetail.view.module.scss";
@@ -14,6 +14,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
+import DatePicker from "@/app/components/DatePicker/DatePicker";
 
 const cx = cn.bind(styles);
 
@@ -51,6 +52,12 @@ const ProductDetail = () => {
         "/images/HotelImage1.png",
         "/images/HotelImage1.png",
     ];
+
+    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+    const toggleDatePicker = () => {
+        setIsDatePickerOpen((prev) => !prev);
+    };
+
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
@@ -104,10 +111,14 @@ const ProductDetail = () => {
 
                     <div>
                         <div className={cx("ReservationSelectBtn")}>
-                            <DateBtn label={""} />
+                            <DateBtn label={""} onClick={toggleDatePicker} />
                             <MemberBtn label={""} />
                         </div>
-
+                        {isDatePickerOpen && (
+                            <div className={cx("DatePickerWrapper")}>
+                                <DatePicker />
+                            </div>
+                        )}
                         <div>
                             {productDetailsArray.map((product, index) => (
                                 <ProductRoomDetailCard
