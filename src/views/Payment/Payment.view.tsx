@@ -4,7 +4,7 @@ import styles from "./Payment.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
 import Badge from "@/app/components/badge/Badge";
-import Header from "@/app/components/Header/Header";
+import Radio from "@/app/components/radio/Radio";
 
 const cx = cn.bind(styles);
 
@@ -23,18 +23,8 @@ export interface ReservationContentProps {
 }
 
 const ReservetionContent = (props: ReservationContentProps) => {
-  const {
-    hotelName,
-    roomType,
-    checkInDate,
-    checkInTime,
-    checkOutDate,
-    checkOutTime,
-    visitMethod,
-    price,
-    discountPrice,
-  } = props;
-
+  const { hotelName, roomType, checkInDate, checkInTime, checkOutDate, checkOutTime, visitMethod, price, discountPrice } = props;
+  const [visit, setVisit] = useState(visitMethod);
   return (
     <div className={cx("wrapper")}>
       {/* <Header title="예약" /> */}
@@ -66,14 +56,26 @@ const ReservetionContent = (props: ReservationContentProps) => {
         <div className={cx("visit-box")}>
           <p className={cx("visit-text")}>방문수단</p>
           <div className={cx("visit-checkBox")}>
-            <label className={cx("custom-checkbox")}>
-              <input type="checkbox" checked={visitMethod === "walking"} />
-              <span></span>도보
-            </label>
-            <label className={cx("custom-checkbox")}>
-              <input type="checkbox" checked={visitMethod === "car"} />
-              <span></span>차량
-            </label>
+            <Radio
+              name="visitMethod"
+              value="walking"
+              label="도보"
+              onChange={() => {
+                setVisit("walking");
+              }}
+              className={cx("custom-checkbox")}
+              checked={visit === "walking"}
+            />
+            <Radio
+              name="visitMethod"
+              value="car"
+              label="차량"
+              onChange={() => {
+                setVisit("car");
+              }}
+              className={cx("custom-checkbox")}
+              checked={visit === "car"}
+            />
           </div>
         </div>
       </div>
@@ -83,9 +85,7 @@ const ReservetionContent = (props: ReservationContentProps) => {
           <Badge shape="square" color="point">
             선착순 {discountPrice.toLocaleString()}원 특가
           </Badge>
-          <p className={cx("pay-amount")}>
-            {(price - discountPrice).toLocaleString()}원
-          </p>
+          <p className={cx("pay-amount")}>{(price - discountPrice).toLocaleString()}원</p>
         </div>
       </div>
       <div className={cx("border")}></div>
@@ -93,11 +93,7 @@ const ReservetionContent = (props: ReservationContentProps) => {
   );
 };
 
-const ReservationSection = ({
-  reservations,
-}: {
-  reservations: ReservationContentProps[];
-}) => {
+const ReservationSection = ({ reservations }: { reservations: ReservationContentProps[] }) => {
   return (
     <PaymentCard>
       {reservations.map((data, index) => {

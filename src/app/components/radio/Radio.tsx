@@ -11,10 +11,12 @@ type RadioProps = {
   value?: string;
   checked?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+  nonBorder?: boolean;
 };
 
 export default function Radio(props: RadioProps) {
-  const { label, name, value, checked, onChange } = props;
+  const { label, name, value, checked, onChange, className, nonBorder = true } = props;
   const [check, setCheck] = React.useState(checked);
 
   useEffect(() => {
@@ -22,14 +24,22 @@ export default function Radio(props: RadioProps) {
   }, [checked]);
 
   const handleClick = () => {
+    if (check) {
+      return;
+    }
     setCheck((prev) => !prev);
   };
 
   return (
     <label
-      className={cx("Radio", {
-        check,
-      })}
+      className={cx(
+        "Radio",
+        {
+          check,
+          nonBorder,
+        },
+        className
+      )}
     >
       <div className={cx("RadioMark", { check })} />
       <span
