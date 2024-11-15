@@ -57,20 +57,12 @@ const Nickname = () => {
             setNickname(newNickname);
         }
 
-        // 중복된 닉네임 *예시*
-        const existingNicknames = ["호캉스123", "편안한집353", "힐링스테이890"];
-
         // 국문/숫자 외의 문자 입력 시 오류 메시지
         const regex = /^[가-힣0-9]*$/;
         if (!regex.test(newNickname)) {
             setErrorMessage("닉네임은 국문/숫자만 입력 가능합니다.");
         } else {
             setErrorMessage("");
-        }
-
-        // 중복된 닉네임 오류 메시지 //(API 연동하고 재작성 필욥! )//
-        if (existingNicknames.includes(newNickname)) {
-            setErrorMessage("중복된 닉네임입니다.");
         }
     };
 
