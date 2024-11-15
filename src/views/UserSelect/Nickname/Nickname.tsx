@@ -20,17 +20,26 @@ const Nickname = () => {
     };
 
     const [nickname, setNickname] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const generateRandomNickname = () => {
-        const characters =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        let randomNickname = "";
-        for (let i = 0; i < 8; i++) {
-            randomNickname += characters.charAt(
-                Math.floor(Math.random() * characters.length)
-            );
-        }
-        return randomNickname;
+        const lodgingWords = [
+            "편안한방",
+            "여유로운숙소",
+            "힐링스테이",
+            "호캉스",
+            "안락한방",
+            "포근한숙소",
+            "편안한집",
+            "휴식",
+            "여유",
+        ];
+
+        const randomIndex = Math.floor(Math.random() * lodgingWords.length);
+        const randomWord = lodgingWords[randomIndex];
+        const randomNumber = Math.floor(Math.random() * 100000);
+
+        return `${randomWord}${randomNumber}`;
     };
 
     useEffect(() => {
@@ -39,7 +48,30 @@ const Nickname = () => {
     }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNickname(e.target.value);
+        let newNickname = e.target.value;
+
+        // 줄바꿈 제거
+        newNickname = newNickname.replace(/\n/g, "");
+
+        if (newNickname.length <= 20) {
+            setNickname(newNickname);
+        }
+
+        // 중복된 닉네임 *예시*
+        const existingNicknames = ["호캉스123", "편안한집353", "힐링스테이890"];
+
+        // 국문/숫자 외의 문자 입력 시 오류 메시지
+        const regex = /^[가-힣0-9]*$/;
+        if (!regex.test(newNickname)) {
+            setErrorMessage("닉네임은 국문/숫자만 입력 가능합니다.");
+        } else {
+            setErrorMessage("");
+        }
+
+        // 중복된 닉네임 오류 메시지 //(API 연동하고 재작성 필욥! )//
+        if (existingNicknames.includes(newNickname)) {
+            setErrorMessage("중복된 닉네임입니다.");
+        }
     };
 
     return (
@@ -60,11 +92,15 @@ const Nickname = () => {
                     className={cx("NicknameInput")}
                     value={nickname}
                     onChange={handleInputChange}
+                    maxLength={20}
                 />
             </div>
+            {errorMessage && (
+                <p className={cx("ErrorMessage")}>{errorMessage}</p>
+            )}
 
             <div className={cx("SelectGenderNextBtn")}>
-                {nickname ? (
+                {nickname && !errorMessage ? (
                     <Link href="/login">
                         <AbleBtn label={"다음"} />
                     </Link>
