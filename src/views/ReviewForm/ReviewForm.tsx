@@ -7,19 +7,37 @@ import Header from "@/app/components/Header/Header";
 import { FaAngleLeft, FaRegStar } from "react-icons/fa6";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
-const ReviewForm = () => {
+export interface ReviewFormProps {
+    rating: number;
+    starRating: string;
+    reviewContent: string | number;
+    image: string;
+}
+
+const ReviewForm = (props: ReviewFormProps) => {
+    const { rating, starRating, reviewContent, image } = props;
     const [reviewText, setReviewText] = useState("");
 
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setReviewText(e.target.value);
     };
 
+    /** 뒤로가기 */
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
+
     return (
         <div className={cx("ReviewContainer")}>
-            <Header title="후기 작성하기" leftIcon={<FaAngleLeft />} />
+            <Header
+                title="후기 작성하기"
+                leftIcon={<FaAngleLeft onClick={handleGoBack} />}
+            />
             <div className={cx("RatingWrapper")}>
                 <p className={cx("Rating")}>0.0</p>
                 <div className={cx("RatingStar")}>

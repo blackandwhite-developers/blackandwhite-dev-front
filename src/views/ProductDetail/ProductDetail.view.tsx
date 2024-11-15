@@ -23,7 +23,30 @@ import TotalReviewCard from "@/app/components/TotalReviewCard/TotalReviewCard";
 
 const cx = cn.bind(styles);
 
-const ProductDetail = () => {
+export interface ProductDetailProps {
+    roomType: string;
+    roomName: string;
+    rating: number;
+    starRating: string;
+    review: number;
+    location: string;
+    wishlist: boolean;
+    reservationDate: string | number;
+    reservationCount: string | number;
+    cart: boolean;
+}
+const ProductDetail = (props: ProductDetailProps) => {
+    const {
+        roomType,
+        roomName,
+        rating,
+        starRating,
+        review,
+        location,
+        wishlist,
+        reservationDate,
+        reservationCount,
+    } = props;
     const title = "김포 마리나베이 호텔";
 
     const productDetailsArray = [

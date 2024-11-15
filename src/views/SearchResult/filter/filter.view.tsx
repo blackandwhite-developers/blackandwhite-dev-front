@@ -5,6 +5,8 @@ import Header from "@/app/components/Header/Header";
 import { MdClose } from "react-icons/md";
 import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 import { TextBtn } from "@/app/components/Button/TextBtn";
+import Radio from "@/app/components/radio/Radio";
+import PriceRangeSlider from "@/app/components/priceBar/PriceBar";
 
 const cx = cn.bind(styles);
 
@@ -18,9 +20,9 @@ const FilterPageView = () => {
       </div>
 
       <div className={cx("main")}>
-        <div className={cx("room-type")}>
+        <div className={cx("room-container")}>
           <h3>숙소 유형</h3>
-          <div className="">
+          <div className={cx("room")}>
             {roomData.map((a, i) => {
               return (
                 <div className={cx("checkbox-wrapper")} key={i}>
@@ -41,10 +43,10 @@ const FilterPageView = () => {
               );
             })}
           </div>
-
-          <div className={cx("price-bar")}>
-            <h3> 가격대</h3>
-          </div>
+        </div>
+        <div className={cx("price-container")}>
+          <h3> 가격대</h3>
+          <PriceRangeSlider />
         </div>
       </div>
     </div>

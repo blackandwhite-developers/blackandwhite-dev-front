@@ -1,16 +1,33 @@
+"use client";
+
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./FIndPw.module.scss";
 import Header from "@/app/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const FIndPw = () => {
+export interface FindPwProps {
+    userId: string | number;
+    userPhone: number;
+}
+
+const FIndPw = (props: FindPwProps) => {
+    const { userId, userPhone } = props;
+
+    /** 뒤로가기 */
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
+
     return (
         <div className={cx("FindPwWrapper")}>
-            <Header leftIcon={<FaAngleLeft />} />
+            <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
             <div className={cx("FindPwContent")}>
                 <p className={cx("FindPw")}>비밀번호 찾기</p>
                 <p className={cx("FindPwInform")}>
@@ -21,6 +38,7 @@ const FIndPw = () => {
             </div>
             <div className={cx("PwInputWrapper")}>
                 <label htmlFor="Pw"></label>
+                {userId}
                 <input
                     id="id"
                     type="text"
@@ -28,6 +46,7 @@ const FIndPw = () => {
                     className={cx("PwInput")}
                 />
                 <label htmlFor="phone"></label>
+                {userPhone}
                 <input
                     id="phone"
                     type="text"
@@ -36,7 +55,9 @@ const FIndPw = () => {
                 />
             </div>
             <div className={cx("FindPwNextBtn")}>
-                <AbleBtn label={"확인"} />
+                <Link href="/findaccount/newpassword">
+                    <AbleBtn label={"확인"} />
+                </Link>
             </div>
         </div>
     );

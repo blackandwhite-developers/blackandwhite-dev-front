@@ -7,7 +7,7 @@ import Header from "@/app/components/Header/Header";
 
 const cx = cn.bind(styles);
 
-interface UserContentProps {
+export interface UserContentProps {
   title: string;
   inPutText?: string;
 }
@@ -41,11 +41,14 @@ const UserCard = (props: UserContentProps) => {
   );
 };
 
-const UserPage = () => {
+const UserPage = ({ userinput }: { userinput: UserContentProps[] }) => {
   return (
     <div className={cx("wrapper")}>
-      <UserCard title="예약자 이름" inPutText="허태영" />
-      <UserCard title="휴대폰 번호" inPutText="010-1234-5678" />
+      {userinput.map((data, index) => {
+        return (
+          <UserCard key={index} title={data.title} inPutText={data.inPutText} />
+        );
+      })}
     </div>
   );
 };

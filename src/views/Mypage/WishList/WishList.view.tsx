@@ -7,6 +7,17 @@ import ProductInfoCard from "@/app/components/ProductInfoCard/ProductInfoCard";
 
 const cx = cn.bind(styles);
 
+export interface WishListProps {
+    roomImage: string;
+    roomType: string;
+    roomName: string;
+    rating: string | number;
+    starRating: string;
+    review: number;
+    location: string | number;
+    price: string | number;
+}
+
 const wishListData = [
     {
         imageUrl: "/images/HotelImage1.png",
@@ -28,7 +39,17 @@ const wishListData = [
     },
 ];
 
-const WishList = () => {
+const WishList = (props: WishListProps) => {
+    const {
+        roomImage,
+        roomType,
+        roomName,
+        rating,
+        starRating,
+        review,
+        location,
+        price,
+    } = props;
     return (
         <div className={cx("WishListContainer")}>
             <Header title="위시리스트" leftIcon={<FaAngleLeft />} />

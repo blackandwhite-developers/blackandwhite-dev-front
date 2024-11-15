@@ -1,18 +1,36 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Mypage.module.scss";
 import Image from "next/image";
 import FooterBar from "@/app/components/footer/FooterBar";
-import { GoChevronRight } from "react-icons/go";
 import { PiMedalLight } from "react-icons/pi";
 import { RiCoupon3Line } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const Mypage = () => {
+export interface MypageProps {
+    thumbnail?: string;
+    userNickname: string | number;
+    point: number;
+    coupon: number;
+    wishlist: string[];
+    reservationList: string[];
+}
+
+const Mypage = (props: MypageProps) => {
+    const {
+        thumbnail,
+        userNickname,
+        point,
+        coupon,
+        wishlist,
+        reservationList,
+    } = props;
     const router = useRouter();
 
     return (
@@ -31,10 +49,13 @@ const Mypage = () => {
                     <p className={cx("Nickname")}>KOKOSHI2024님.</p>
                 </div>
                 <div className={cx("EditProfileWrapper")}>
-                    <a href="" className={cx("EditProfile")}>
+                    <Link
+                        href="/mypage/certification"
+                        className={cx("EditProfile")}
+                    >
                         내 정보 수정
-                        <GoChevronRight className={cx("EditProfilIcon")} />
-                    </a>
+                        <IoIosArrowForward className={cx("EditProfilIcon")} />
+                    </Link>
                 </div>
             </div>
             <div className={cx("EarnedBenefits")}>
@@ -59,32 +80,37 @@ const Mypage = () => {
                 </div>
             </div>
             <div className={cx("MypageCategoryWrapper")}>
-                <div className={cx("MypageCategory")}>
-                    <p>위시리스트</p>
-                    <GoChevronRight />
-                </div>
-                <div className={cx("MypageCategory")}>
-                    <p>예약내역</p>
-                    <button
-                        type="button"
-                        className={cx("arrow-icon")}
-                        onClick={() => router.push("/mypage/reservation")}
-                    >
+                <Link
+                    href="/mypage/wishlist"
+                    style={{ textDecoration: "none" }}
+                >
+                    <div className={cx("MypageCategory")}>
+                        <p>위시리스트</p>
                         <IoIosArrowForward />
-                    </button>
-                </div>
-                <div className={cx("MypageCategory")}>
+                    </div>
+                </Link>
+                <Link
+                    href="/mypage/reservation"
+                    style={{ textDecoration: "none" }}
+                >
+                    <div className={cx("MypageCategory")}>
+                        <p>예약내역</p> <IoIosArrowForward />
+                    </div>
+                </Link>
+                {/* <div className={cx("MypageCategory")}>
                     <p>1:1 카카오 문의</p>
-                    <GoChevronRight />
-                </div>
-                <div className={cx("MypageCategory")}>
-                    <p>자주 묻는 질문</p>
-                    <GoChevronRight />
-                </div>
-                <div className={cx("MypageCategory")}>
+                    <IoIosArrowForward />
+                </div> */}
+                <Link href="/mypage/faq" style={{ textDecoration: "none" }}>
+                    <div className={cx("MypageCategory")}>
+                        <p>자주 묻는 질문</p>
+                        <IoIosArrowForward />
+                    </div>
+                </Link>
+                {/* <div className={cx("MypageCategory")}>
                     <p>설정</p>
-                    <GoChevronRight />
-                </div>
+                    <IoIosArrowForward />
+                </div> */}
                 <div className={cx("FooterBar")}>
                     <FooterBar />
                 </div>

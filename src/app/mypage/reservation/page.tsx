@@ -5,6 +5,8 @@ import MypageReservation from "@/views/MypageReservation/MypageReservation.view"
 import { ReservationContentProps } from "@/views/Payment/Payment.view";
 import PaymentCard from "@/views/Payment/PaymentCard.view";
 import PaymentCompleteCard from "@/views/Payment/PaymentCompletePage.view";
+import Header from "@/app/components/Header/Header";
+import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
 
@@ -80,6 +82,7 @@ export default function MypageReservationPage() {
   return (
     <div className={cx("page-layout")}>
       <div className={cx("page")}>
+        <Header title={"예약내역"} leftIcon={<FaAngleLeft />} />
         <MypageReservation reservations={reservations} />
         {/* <PaymentCompleteCard reservations={reservations} /> */}
         <div className={cx("bottom-box")}>
