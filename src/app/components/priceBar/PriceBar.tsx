@@ -33,11 +33,11 @@ const PriceRangeSlider = () => {
     <div className="price-bar-container">
       <div className="price-bar">
         {/* 배경 트랙 */}
-        <div className="absolute w-full h-1 bg-gray-200 rounded top-1/2 -translate-y-1/2" />
+        <div className="track" />
 
         {/* 선택된 범위 표시 */}
         <div
-          className="absolute h-1 bg-blue-500 rounded top-1/2 -translate-y-1/2"
+          className="select-bar"
           style={{
             left: `${minPercent}%`,
             right: `${100 - maxPercent}%`,
@@ -52,7 +52,7 @@ const PriceRangeSlider = () => {
           step={STEP}
           value={minValue}
           onChange={handleMinChange}
-          className="absolute w-full appearance-none bg-transparent pointer-events-none"
+          className="minsilder"
           style={{
             height: "20px",
             WebkitAppearance: "none",
@@ -67,7 +67,7 @@ const PriceRangeSlider = () => {
           step={STEP}
           value={maxValue}
           onChange={handleMaxChange}
-          className="absolute w-full appearance-none bg-transparent pointer-events-none"
+          className="max-silder"
           style={{
             height: "20px",
             WebkitAppearance: "none",
@@ -75,10 +75,9 @@ const PriceRangeSlider = () => {
         />
       </div>
 
-      {/* 가격 표시 */}
-      <div className="flex justify-between">
-        <span className="text-sm">{minValue.toLocaleString()}원</span>
-        <span className="text-sm">{maxValue.toLocaleString()}원</span>
+      <div className="text-text">
+        <span className="text">{minValue.toLocaleString()}원</span>
+        <span className="text">{maxValue.toLocaleString()}원</span>
       </div>
     </div>
   );
