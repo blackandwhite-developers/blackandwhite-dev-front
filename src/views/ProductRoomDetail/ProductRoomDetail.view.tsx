@@ -18,7 +18,31 @@ import DatePicker from "@/app/components/DatePicker/DatePicker";
 
 const cx = cn.bind(styles);
 
-const ProductDetail = () => {
+export interface ProductDetailProps {
+    roomType: string;
+    roomName: string;
+    rating: number;
+    starRating: string;
+    review: number;
+    location: number;
+    wishlist: boolean;
+    reservationDate: string | number;
+    reservationCount: string | number;
+    cart: boolean;
+}
+const ProductDetail = (props: ProductDetailProps) => {
+    const {
+        roomType,
+        roomName,
+        rating,
+        starRating,
+        review,
+        location,
+        wishlist,
+        reservationDate,
+        reservationCount,
+        cart,
+    } = props;
     /** 상품 카드 더미 데이터 */
     const productDetailsArray = [
         {
@@ -109,7 +133,7 @@ const ProductDetail = () => {
                 <div className={cx("ProductCategoryWrapper")}>
                     <div className={cx("ProductCategoryLine")}></div>
 
-                    <div>
+                    <div className={cx("ReservationWrapper")}>
                         <div className={cx("ReservationSelectBtn")}>
                             <DateBtn label={""} onClick={toggleDatePicker} />
                             <MemberBtn label={""} />

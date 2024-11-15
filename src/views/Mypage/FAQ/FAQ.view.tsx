@@ -7,6 +7,11 @@ import Accordion from "@/app/components/accordion/Accordion";
 
 const cx = cn.bind(styles);
 
+export interface FAQProps {
+    question: string;
+    answer: string;
+}
+
 const faqData = [
     {
         question: "예약확인은 어떻게 하나요?",
@@ -30,7 +35,8 @@ const faqData = [
     },
 ];
 
-const FAQ = () => {
+const FAQ = (props: FAQProps) => {
+    const { question, answer } = props;
     return (
         <div className={cx("AccordionContainer")}>
             <Header title={"자주 묻는 질문"} leftIcon={<FaAngleLeft />} />

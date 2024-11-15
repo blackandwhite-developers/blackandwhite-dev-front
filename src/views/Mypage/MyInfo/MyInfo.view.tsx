@@ -7,14 +7,24 @@ import Image from "next/image";
 import { FaAngleLeft } from "react-icons/fa6";
 import { MdOutlinePhotoCamera } from "react-icons/md";
 import Header from "@/app/components/Header/Header";
-// import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
 import { NomalBtn } from "@/app/components/Button/NomalBtn";
 import { Dialog } from "@/app/components/dialog/Dialog";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const MyInfo = () => {
+export interface MyInfoProps {
+    thumbnail?: string;
+    userName: string;
+    userPhone: number;
+    userBirth: number;
+    userNickname: string | number;
+}
+
+const MyInfo = (props: MyInfoProps) => {
+    const { thumbnail, userName, userPhone, userBirth, userNickname } = props;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [dialog, setDialog] = useState({
@@ -50,7 +60,7 @@ const MyInfo = () => {
             setDialog({
                 title: "탈퇴하기",
                 content:
-                    "탈퇴하면 현재 계정으로 작정한 글,댓글 등을 수정하거나 삭제할 수 없습니다.지금 탈퇴하시겠습니까?",
+                    "탈퇴하면 현재 계정으로 작성한 글, 댓글 등을 수정하거나 삭제할 수 없습니다. 지금 탈퇴하시겠습니까?",
                 leftButtonText: "취소",
                 rightButtonText: "탈퇴하기",
             });
@@ -70,9 +80,28 @@ const MyInfo = () => {
         }));
     };
 
+    const handleLogout = () => {
+        router.push("/login");
+        setIsDialogOpen(false);
+    };
+
+    const handleWithdraw = () => {
+        router.push("/login");
+        setIsDialogOpen(false);
+    };
+
+    /** 뒤로가기 */
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
+
     return (
         <div className={cx("MyInfoWrapper")}>
-            <Header title={"내정보 수정"} leftIcon={<FaAngleLeft />} />
+            <Header
+                title={"내정보 수정"}
+                leftIcon={<FaAngleLeft onClick={handleGoBack} />}
+            />
 
             <div className={cx("Thumbnail")}>
                 <Image
@@ -86,11 +115,20 @@ const MyInfo = () => {
                 </div>
             </div>
 
+            {/* 파일 올리는 기능 구현 필요 */}
             {/* 모달 */}
             {isModalOpen && (
                 <div className={cx("ModalWrapper")}>
                     <div className={cx("ModalContent")}>
-                        <NomalBtn label={"사진 보관함"} />
+                        <label htmlFor="thumbnail-photo-upload">
+                            <NomalBtn label={"사진 보관함"} />
+                        </label>
+                        <input
+                            type="file"
+                            id="thumbnail-photo-upload"
+                            name="thumbnail-photo-upload"
+                        />
+
                         <DisableBtn label={"취소"} onClick={closeModal} />
                     </div>
                 </div>
@@ -157,7 +195,11 @@ const MyInfo = () => {
                     leftButtonText={dialog.leftButtonText}
                     rightButtonText={dialog.rightButtonText}
                     onLeftButtonClick={closeDialog}
-                    onRightButtonClick={closeDialog}
+                    onRightButtonClick={
+                        dialog.rightButtonText === "로그아웃"
+                            ? handleLogout
+                            : handleWithdraw
+                    }
                 />
             )}
         </div>

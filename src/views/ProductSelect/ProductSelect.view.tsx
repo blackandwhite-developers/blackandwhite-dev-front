@@ -23,7 +23,31 @@ import { AbleBtn } from "@/app/components/Button/AbleBtn";
 
 const cx = cn.bind(styles);
 
-const ProductSelect = () => {
+export interface ProductSelectProps {
+    roomType: string;
+    roomName: string;
+    rating: number;
+    starRating: string;
+    review: number;
+    location: string;
+    wishlist: boolean;
+    reservationDate: string | number;
+    reservationCount: string | number;
+    cart: boolean;
+}
+
+const ProductSelect = (props: ProductSelectProps) => {
+    const {
+        roomType,
+        roomName,
+        rating,
+        starRating,
+        review,
+        location,
+        wishlist,
+        reservationDate,
+        reservationCount,
+    } = props;
     const title = "김포 마리나베이 호텔";
 
     /** 상품 카드 더미 데이터 */

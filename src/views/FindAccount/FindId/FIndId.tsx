@@ -1,16 +1,33 @@
+"use client";
+
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./FIndId.module.scss";
 import Header from "@/app/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
-const FIndId = () => {
+export interface FindIdProps {
+    username: string;
+    userPhone: number;
+}
+
+const FIndId = (props: FindIdProps) => {
+    const { username, userPhone } = props;
+
+    /** 뒤로가기 */
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
+
     return (
         <div className={cx("FindIdWrapper")}>
-            <Header leftIcon={<FaAngleLeft />} />
+            <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
             <div className={cx("FindIdContent")}>
                 <p className={cx("FindId")}>아이디 찾기</p>
                 <p className={cx("FindIdInform")}>
@@ -21,6 +38,7 @@ const FIndId = () => {
             </div>
             <div className={cx("IdInputWrapper")}>
                 <label htmlFor="id"></label>
+                {username}
                 <input
                     id="id"
                     type="text"
@@ -28,6 +46,7 @@ const FIndId = () => {
                     className={cx("IdInput")}
                 />
                 <label htmlFor="phone"></label>
+                {userPhone}
                 <input
                     id="phone"
                     type="text"
@@ -36,7 +55,9 @@ const FIndId = () => {
                 />
             </div>
             <div className={cx("FindIdNextBtn")}>
-                <AbleBtn label={"확인"} />
+                <Link href="/findaccount/idcomplete">
+                    <AbleBtn label={"확인"} />
+                </Link>
             </div>
         </div>
     );
