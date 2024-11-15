@@ -10,9 +10,13 @@ import PriceRangeSlider from "@/app/components/priceBar/PriceBar";
 
 const cx = cn.bind(styles);
 
-const FilterPageView = () => {
-  const roomData = ["전체", "호텔", "팬션", "풀빌라", "캠핑", "게스트하우스", "리조트"];
-  const keyDate = ["여름특가", "수영장", "조식", "야외 수영장", "주차가능", "바다전망", "PC룸"];
+export interface FilterPageViewProps {
+  roomData: string[];
+  keyData: string[];
+}
+
+const FilterPageView = (props: FilterPageViewProps) => {
+  const { roomData, keyData } = props;
   return (
     <div className={cx("filter-container")}>
       <div>
@@ -35,7 +39,7 @@ const FilterPageView = () => {
         <div className={cx("keyword-container")}>
           <h3>키워드</h3>
           <div className={cx("keyword-wrapper")}>
-            {keyDate.map((a, i) => {
+            {keyData.map((a, i) => {
               return (
                 <div className={cx("keyword")} key={i}>
                   <TextBtn label={a} />
