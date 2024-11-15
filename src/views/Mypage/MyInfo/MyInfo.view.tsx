@@ -11,20 +11,26 @@ import { DisableBtn } from "@/app/components/Button/DisableBtn";
 import { NomalBtn } from "@/app/components/Button/NomalBtn";
 import { Dialog } from "@/app/components/dialog/Dialog";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const cx = cn.bind(styles);
 
 export interface MyInfoProps {
     thumbnail?: string;
-    userName: string;
-    userPhone: number;
-    userBirth: number;
-    userNickname: string | number;
+    // userName: string;
+    // userPhone: number;
+    // userBirth: number;
+    // userNickname: string | number;
+    profileFields: ProfileFields[];
+}
+
+export interface ProfileFields {
+    label: string;
+    name: string;
+    value: string;
 }
 
 const MyInfo = (props: MyInfoProps) => {
-    const { thumbnail, userName, userPhone, userBirth, userNickname } = props;
+    const { thumbnail, profileFields } = props;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [dialog, setDialog] = useState({
@@ -105,7 +111,7 @@ const MyInfo = (props: MyInfoProps) => {
 
             <div className={cx("Thumbnail")}>
                 <Image
-                    src={"/mypage/Thumbnail.png"}
+                    src={thumbnail || "/mypage/Thumbnail.png"}
                     alt="Profile"
                     width={68}
                     height={68}
@@ -128,7 +134,6 @@ const MyInfo = (props: MyInfoProps) => {
                             id="thumbnail-photo-upload"
                             name="thumbnail-photo-upload"
                         />
-
                         <DisableBtn label={"취소"} onClick={closeModal} />
                     </div>
                 </div>
@@ -141,42 +146,17 @@ const MyInfo = (props: MyInfoProps) => {
             </div>
 
             <div className={cx("ProfileInputWrapper")}>
-                <div className={cx("ProfileInputTitle")}>
-                    <label htmlFor="name">이름</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={profile.name}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className={cx("ProfileInputTitle")}>
-                    <label htmlFor="phone">휴대전화 번호</label>
-                    <input
-                        type="text"
-                        name="phone"
-                        value={profile.phone}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className={cx("ProfileInputTitle")}>
-                    <label htmlFor="birthdate">생년월일</label>
-                    <input
-                        type="text"
-                        name="birthdate"
-                        value={profile.birthdate}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className={cx("ProfileInputTitle")}>
-                    <label htmlFor="nickname">닉네임</label>
-                    <input
-                        type="text"
-                        name="nickname"
-                        value={profile.nickname}
-                        onChange={handleInputChange}
-                    />
-                </div>
+                {profileFields.map((field) => (
+                    <div key={field.name} className={cx("ProfileInputTitle")}>
+                        <label htmlFor={field.name}>{field.label}</label>
+                        <input
+                            type="text"
+                            name={field.name}
+                            value={profile[field.name as keyof typeof profile]}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                ))}
             </div>
 
             <div className={cx("LogoutWrapper")}>

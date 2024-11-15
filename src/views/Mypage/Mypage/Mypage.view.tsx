@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Mypage.module.scss";
@@ -18,27 +17,25 @@ export interface MypageProps {
     userNickname: string | number;
     point: number;
     coupon: number;
+    category: MypageCategory;
+    categoryLinks: { title: string; href: string }[];
+}
+
+export interface MypageCategory {
     wishlist: string[];
     reservationList: string[];
+    faqList: string[];
 }
 
 const Mypage = (props: MypageProps) => {
-    const {
-        thumbnail,
-        userNickname,
-        point,
-        coupon,
-        wishlist,
-        reservationList,
-    } = props;
-    const router = useRouter();
+    const { thumbnail, userNickname, point, coupon, categoryLinks } = props;
 
     return (
         <div className={cx("MypageWrapper")}>
             <div className={cx("MyInformation")}>
                 <div className={cx("Thumbnail")}>
                     <Image
-                        src={"/mypage/Thumbnail.png"}
+                        src={thumbnail || "/mypage/Thumbnail.png"}
                         alt=""
                         width={51}
                         height={51}
@@ -46,7 +43,7 @@ const Mypage = (props: MypageProps) => {
                 </div>
                 <div className={cx("NicknameWrapper")}>
                     <p className={cx("welcomeMessage")}>안녕하세요!</p>
-                    <p className={cx("Nickname")}>KOKOSHI2024님.</p>
+                    <p className={cx("Nickname")}>{userNickname}님.</p>
                 </div>
                 <div className={cx("EditProfileWrapper")}>
                     <Link
@@ -67,7 +64,7 @@ const Mypage = (props: MypageProps) => {
                         <p className={cx("PointsTitleName")}>포인트</p>
                     </div>
 
-                    <p className={cx("Amount")}>500P</p>
+                    <p className={cx("Amount")}>{point}P</p>
                 </div>
                 <div className={cx("CouponsWrapper")}>
                     <div className={cx("CouponsTitle")}>
@@ -76,41 +73,22 @@ const Mypage = (props: MypageProps) => {
                         </p>
                         <p className={cx("CouponsTitleName")}>보유한 쿠폰</p>
                     </div>
-                    <p className={cx("Amount")}>3개</p>
+                    <p className={cx("Amount")}>{coupon}개</p>
                 </div>
             </div>
             <div className={cx("MypageCategoryWrapper")}>
-                <Link
-                    href="/mypage/wishlist"
-                    style={{ textDecoration: "none" }}
-                >
-                    <div className={cx("MypageCategory")}>
-                        <p>위시리스트</p>
-                        <IoIosArrowForward />
-                    </div>
-                </Link>
-                <Link
-                    href="/mypage/reservation"
-                    style={{ textDecoration: "none" }}
-                >
-                    <div className={cx("MypageCategory")}>
-                        <p>예약내역</p> <IoIosArrowForward />
-                    </div>
-                </Link>
-                {/* <div className={cx("MypageCategory")}>
-                    <p>1:1 카카오 문의</p>
-                    <IoIosArrowForward />
-                </div> */}
-                <Link href="/mypage/faq" style={{ textDecoration: "none" }}>
-                    <div className={cx("MypageCategory")}>
-                        <p>자주 묻는 질문</p>
-                        <IoIosArrowForward />
-                    </div>
-                </Link>
-                {/* <div className={cx("MypageCategory")}>
-                    <p>설정</p>
-                    <IoIosArrowForward />
-                </div> */}
+                {categoryLinks.map((link, index) => (
+                    <Link
+                        key={index}
+                        href={link.href}
+                        style={{ textDecoration: "none" }}
+                    >
+                        <div className={cx("MypageCategory")}>
+                            <p>{link.title}</p>
+                            <IoIosArrowForward />
+                        </div>
+                    </Link>
+                ))}
                 <div className={cx("FooterBar")}>
                     <FooterBar />
                 </div>
