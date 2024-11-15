@@ -10,12 +10,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 const cx = cn.bind(styles);
 
-export interface NicknameProps {
-    userNickname: string | number;
-}
-const Nickname = (props: NicknameProps) => {
-    const { userNickname } = props;
-
+const Nickname = () => {
     /** 뒤로가기 */
     const router = useRouter();
     const handleGoBack = () => {

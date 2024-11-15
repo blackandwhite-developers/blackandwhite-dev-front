@@ -11,12 +11,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const cx = cn.bind(styles);
-export interface SelectGenderProps {
-    gender: string | number | boolean;
-}
 
-const SelectGender = (props: SelectGenderProps) => {
-    const { userGender } = props;
+const SelectGender = () => {
     const [selectedGender, setSelectedGender] = useState<string | null>(null);
 
     const handleGenderSelect = (gender: string) => {
