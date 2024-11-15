@@ -8,10 +8,17 @@ import Header from "@/app/components/Header/Header";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const MyInfoCertification = () => {
+export interface MyInfoCertificationProps {
+    userName: string;
+    userPhone: number;
+}
+
+const MyInfoCertification = (props: MyInfoCertificationProps) => {
+    const { userName, userPhone } = props;
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -29,9 +36,17 @@ const MyInfoCertification = () => {
         router.push("/mypage/myinfo");
     };
 
+    /** 뒤로가기 */
+    const handleGoBack = () => {
+        router.back();
+    };
+
     return (
         <div className={cx("CertificationWrapper")}>
-            <Header title={"내정보 수정"} leftIcon={<FaAngleLeft />} />
+            <Header
+                title={"내정보 수정"}
+                leftIcon={<FaAngleLeft onClick={handleGoBack} />}
+            />
             <h1 className={cx("UserInfoCheck")}>회원정보 확인</h1>
             <p>
                 정보를 안전하게 보호하기 위해 보인인 실명과 핸드폰 뒷자리 번호를
@@ -55,12 +70,15 @@ const MyInfoCertification = () => {
                     />
                 </div>
             </div>
+
             <div className={cx("AbleBtnWrapper")}>
-                {isButtonDisabled ? (
-                    <DisableBtn label={"확인"} />
-                ) : (
-                    <AbleBtn label={"확인"} onClick={handleConfirmation} />
-                )}
+                <Link href="/mypage/myinfo">
+                    {isButtonDisabled ? (
+                        <DisableBtn label={"확인"} />
+                    ) : (
+                        <AbleBtn label={"확인"} onClick={handleConfirmation} />
+                    )}
+                </Link>
             </div>
         </div>
     );

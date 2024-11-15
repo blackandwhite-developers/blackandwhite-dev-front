@@ -7,45 +7,47 @@ import Header from "@/app/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import Image from "next/image";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const SelectInterest = () => {
+export interface SelectInterestProps {
+    title: string;
+    image: string;
+}
+
+const SelectInterest = (props: SelectInterestProps) => {
+    const { title, src } = props;
+
     /** 카테고리 데이터 */
     const categories = [
         {
-            id: "hotel",
-            label: "호캉스",
+            title: "호캉스",
             src: "/categoryImage/ic_home_hotel.svg",
         },
         {
-            id: "pool",
-            label: "풀빌라",
+            title: "풀빌라",
             src: "/categoryImage/ic_home_pool.svg",
         },
         {
-            id: "motel",
-            label: "모텔",
+            title: "모텔",
             src: "/categoryImage/ic_home_motel.svg",
         },
         {
-            id: "camping",
-            label: "캠핑",
+            title: "캠핑",
             src: "/categoryImage/ic_home_camping.svg",
         },
         {
-            id: "guesthouse",
-            label: "게스트하우스",
+            title: "게스트하우스",
             src: "/categoryImage/ic_home_guesthouse.svg",
         },
         {
-            id: "leisure",
-            label: "레저",
+            title: "레저",
             src: "/categoryImage/ic_home_leisure.svg",
         },
         {
-            id: "airport",
-            label: "공항",
+            title: "공항",
             src: "/categoryImage/ic_home_airport.svg",
         },
     ];
@@ -58,9 +60,15 @@ const SelectInterest = () => {
         setSelectedCategory((prev) => (prev === category ? null : category));
     };
 
+    /** 뒤로가기 */
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
+
     return (
         <div className={cx("SelectInterestWrapper")}>
-            <Header leftIcon={<FaAngleLeft />} />
+            <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
             <div className={cx("SelectInterestContent")}>
                 <p className={cx("SelectInterest")}>관심사 선택</p>
                 <p className={cx("SelectInterestInform")}>
@@ -71,24 +79,27 @@ const SelectInterest = () => {
             <div className={cx("SelectInterestCategoryWrapper")}>
                 {categories.map((category) => (
                     <button
-                        key={category.id}
+                        key={category.title}
                         className={cx("SelectInterestCategory", {
-                            selected: selectedCategory === category.id,
+                            selected: selectedCategory === category.title,
                         })}
-                        onClick={() => handleCategoryClick(category.id)}
+                        onClick={() => handleCategoryClick(category.title)}
                     >
                         <Image
                             src={category.src}
-                            alt={`${category.label} 이미지`}
+                            alt={`${category.title} 이미지`}
                             width={45}
                             height={45}
                         />
-                        <p>{category.label}</p>
+                        <p>{category.title}</p>
                     </button>
                 ))}
             </div>
+
             <div className={cx("SelectInterestNextBtn")}>
-                <AbleBtn label={"다음"} />
+                <Link href="/userselect/nickname">
+                    <AbleBtn label={"다음"} />
+                </Link>
             </div>
         </div>
     );

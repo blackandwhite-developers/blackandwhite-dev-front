@@ -1,16 +1,29 @@
+"use client";
+
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Nickname.module.scss";
 import Header from "@/app/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
-
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 const cx = cn.bind(styles);
 
-const Nickname = () => {
+export interface NicknameProps {
+    userNickname: string | number;
+}
+const Nickname = (props: NicknameProps) => {
+    const { userNickname } = props;
+
+    /** 뒤로가기 */
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
     return (
         <div className={cx("SelectNicknameWrapper")}>
-            <Header leftIcon={<FaAngleLeft />} />
+            <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
             <div className={cx("SelectNicknameContent")}>
                 <p className={cx("SelectNickname")}>닉네임 입력</p>
                 <p className={cx("SelectNicknameInform")}>
@@ -26,8 +39,12 @@ const Nickname = () => {
                     className={cx("NicknameInput")}
                 />
             </div>
+
             <div className={cx("SelectGenderNextBtn")}>
-                <AbleBtn label={"다음"} />
+                {" "}
+                <Link href="/login">
+                    <AbleBtn label={"다음"} />{" "}
+                </Link>
             </div>
         </div>
     );
