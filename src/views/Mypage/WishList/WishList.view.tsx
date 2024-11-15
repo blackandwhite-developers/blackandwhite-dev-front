@@ -12,7 +12,7 @@ const cx = cn.bind(styles);
 export interface WishListProps {
     data: {
         roomImage: string;
-        roomType: string;
+        roomCategory: string;
         roomName: string;
         rating: string;
         starRating: string;
@@ -31,7 +31,7 @@ const WishList = ({ data }: WishListProps) => {
                     <ProductInfoCard
                         key={index}
                         imageUrl={item.roomImage}
-                        label={item.roomType}
+                        label={item.roomCategory}
                         title={item.roomName}
                         rating={item.rating}
                         review={item.review}

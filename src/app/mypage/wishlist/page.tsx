@@ -2,7 +2,7 @@ import WishListView from "@/views/Mypage/WishList/WishList.view";
 const data = [
     {
         roomImage: "/images/HotelImage1.png",
-        roomType: "호텔",
+        roomCategory: "호텔",
         roomName: "김포 마리나베이 호텔",
         rating: "4.5",
         starRating: "4.5",
@@ -12,7 +12,7 @@ const data = [
     },
     {
         roomImage: "/images/HotelImage1.png",
-        roomType: "펜션",
+        roomCategory: "펜션",
         roomName: "고성 호크 펜션",
         rating: "4.0",
         starRating: "4.0",

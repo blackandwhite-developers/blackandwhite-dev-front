@@ -22,26 +22,17 @@ export interface ProductDetailProps {
     roomType: string;
     roomName: string;
     rating: number;
-    starRating: string;
     review: number;
     location: number;
-    wishlist: boolean;
-    reservationDate: string | number;
-    reservationCount: string | number;
-    cart: boolean;
 }
+
 const ProductDetail = (props: ProductDetailProps) => {
     const {
-        roomType,
-        roomName,
-        rating,
-        starRating,
-        review,
-        location,
-        wishlist,
-        reservationDate,
-        reservationCount,
-        cart,
+        // roomType,
+        // roomName,
+        // rating,
+        // review,
+        // location,
     } = props;
     /** 상품 카드 더미 데이터 */
     const productDetailsArray = [
