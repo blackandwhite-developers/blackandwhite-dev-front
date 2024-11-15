@@ -2,7 +2,7 @@ import React from "react";
 
 import Homeview from "@/views/Home/Home.view";
 const HomePage = () => {
-  const categori = [
+  const category = [
     {
       id: "motel",
       name: "모텔",
@@ -66,7 +66,7 @@ const HomePage = () => {
     },
   ];
 
-  return <Homeview categori={categori} currentDate={currentDate} />;
+  return <Homeview category={category} currentDate={currentDate} />;
 };
 
 export default HomePage;

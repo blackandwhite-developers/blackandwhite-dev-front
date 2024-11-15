@@ -10,12 +10,12 @@ import Link from "next/link";
 const cx = cn.bind(styles);
 
 export interface HomeviewProps {
-  categori: Array<{ id: string; name: string; image: string }>;
+  category: Array<{ id: string; name: string; image: string }>;
   currentDate: Array<{ id: string; thumbnail: string; title: string; price: number }>;
 }
 
 const Homeview = (props: HomeviewProps) => {
-  const { categori, currentDate } = props;
+  const { category, currentDate } = props;
 
   return (
     <div>
@@ -34,7 +34,7 @@ const Homeview = (props: HomeviewProps) => {
       <main className={cx("main-container")}>
         <SearchBar />
         <div className={cx("grid-container")}>
-          {categori.map((a, i) => {
+          {category.map((a, i) => {
             return (
               <Link href={`/product/list/${a.image}`} key={a.id}>
                 <div className={cx("grid-item")}>

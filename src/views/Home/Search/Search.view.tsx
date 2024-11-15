@@ -8,10 +8,16 @@ import SearchBar from "@/app/components/input/SearchBar/SearchBar";
 import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
 import { TextBtn } from "@/app/components/Button/TextBtn";
+import { number } from "yup";
 
 const cx = cn.bind(styles);
 
-const SearchView = () => {
+export interface SearchViewProps {
+  aboutData: { date: string; member: string };
+}
+
+const SearchView = (props: SearchViewProps) => {
+  const { aboutData } = props;
   return (
     <div className={cx("search-container")}>
       <Header title={"검색"} leftIcon={<FaAngleLeft />} />
@@ -20,8 +26,8 @@ const SearchView = () => {
         <SearchBar />
       </div>
       <div className={cx("about")}>
-        <DateBtn label={"6.14 수 - 6.15 목"} />
-        <MemberBtn label={"성인 2명"} />
+        <DateBtn label={aboutData.date} />
+        <MemberBtn label={aboutData.member} />
       </div>
 
       <div className={cx("search")}>
