@@ -12,16 +12,7 @@ import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-export interface NewpasswordProps {
-    userPassword?: string | number;
-    newPassword: string | number;
-}
-
 const NewPassword = () => {
-    /** props 주석처리 (props 해결 시 사용)*/
-    // const NewPassword = (props: NewpasswordProps) => {
-    //     const { newPassword } = props;
-
     /** 뒤로가기 */
     const router = useRouter();
     const handleGoBack = () => {

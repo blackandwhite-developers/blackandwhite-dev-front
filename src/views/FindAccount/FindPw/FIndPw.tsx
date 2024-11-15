@@ -11,14 +11,7 @@ import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-export interface FindPwProps {
-    userId: string | number;
-    userPhone: number;
-}
-
-const FIndPw = (props: FindPwProps) => {
-    const { userId, userPhone } = props;
-
+const FIndPw = () => {
     /** 뒤로가기 */
     const router = useRouter();
     const handleGoBack = () => {
@@ -38,7 +31,7 @@ const FIndPw = (props: FindPwProps) => {
             </div>
             <div className={cx("PwInputWrapper")}>
                 <label htmlFor="Pw"></label>
-                {userId}
+
                 <input
                     id="id"
                     type="text"
@@ -46,7 +39,7 @@ const FIndPw = (props: FindPwProps) => {
                     className={cx("PwInput")}
                 />
                 <label htmlFor="phone"></label>
-                {userPhone}
+
                 <input
                     id="phone"
                     type="text"

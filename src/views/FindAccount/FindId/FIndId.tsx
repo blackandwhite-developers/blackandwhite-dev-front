@@ -11,14 +11,7 @@ import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
-export interface FindIdProps {
-    username: string;
-    userPhone: number;
-}
-
-const FIndId = (props: FindIdProps) => {
-    const { username, userPhone } = props;
-
+const FIndId = () => {
     /** 뒤로가기 */
     const router = useRouter();
     const handleGoBack = () => {
@@ -38,7 +31,7 @@ const FIndId = (props: FindIdProps) => {
             </div>
             <div className={cx("IdInputWrapper")}>
                 <label htmlFor="id"></label>
-                {username}
+
                 <input
                     id="id"
                     type="text"
@@ -46,7 +39,7 @@ const FIndId = (props: FindIdProps) => {
                     className={cx("IdInput")}
                 />
                 <label htmlFor="phone"></label>
-                {userPhone}
+
                 <input
                     id="phone"
                     type="text"
