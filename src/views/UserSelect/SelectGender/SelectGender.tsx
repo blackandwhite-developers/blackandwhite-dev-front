@@ -16,7 +16,9 @@ const SelectGender = () => {
     const [selectedGender, setSelectedGender] = useState<string | null>(null);
 
     const handleGenderSelect = (gender: string) => {
-        setSelectedGender(gender);
+        setSelectedGender((prevGender) =>
+            prevGender === gender ? null : gender
+        );
     };
 
     /** 뒤로가기 */
@@ -41,7 +43,7 @@ const SelectGender = () => {
                     })}
                     onClick={() => handleGenderSelect("남성")}
                 >
-                    <Radio label={"남성"} />
+                    <Radio label={"남성"} checked={selectedGender === "남성"} />
                 </div>
                 <div
                     className={cx("SelectGenderBtn", {
@@ -49,7 +51,7 @@ const SelectGender = () => {
                     })}
                     onClick={() => handleGenderSelect("여성")}
                 >
-                    <Radio label={"여성"} />
+                    <Radio label={"여성"} checked={selectedGender === "여성"} />
                 </div>
                 <div
                     className={cx("SelectGenderBtn", {
@@ -57,7 +59,7 @@ const SelectGender = () => {
                     })}
                     onClick={() => handleGenderSelect("기타")}
                 >
-                    <Radio label={"기타"} />
+                    <Radio label={"기타"} checked={selectedGender === "기타"} />
                 </div>
             </div>
 

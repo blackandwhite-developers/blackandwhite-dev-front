@@ -18,7 +18,7 @@ export interface SelectInterestProps {
 
 const SelectInterest = ({ data }: SelectInterestProps) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(
-        null
+        data.length > 0 ? data[0].title : null
     );
 
     const handleCategoryClick = (category: string) => {
