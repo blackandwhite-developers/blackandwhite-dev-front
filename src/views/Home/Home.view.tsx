@@ -9,31 +9,13 @@ import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const Homeview = () => {
-  const categori = ["모텔", "호텔", "팬션/풀빌라", "캠핑", "게스트하우스", "레저/티켓", "해외숙소", "항공"];
-  const categoriImg = ["Motel", "Hotel", "Pool", "Camping", "Guesthouse", "Leisure", "Othercountry", "Airport"];
-  const currentDate = [
-    {
-      thumbnail: "/home/hotel/hotel_01.svg",
-      title: "코코시하우스",
-      price: "45,000",
-    },
-    {
-      thumbnail: "/home/hotel/hotel_02.svg",
-      title: "알라베티호텔",
-      price: "253,000",
-    },
-    {
-      thumbnail: "/home/hotel/hotel_03.svg",
-      title: "루첼라 루 호텔",
-      price: "85,000",
-    },
-    {
-      thumbnail: "/home/hotel/hotel_02.svg",
-      title: "알라베티호텔",
-      price: "253,000",
-    },
-  ];
+export interface HomeviewProps {
+  categori: Array<{ id: string; name: string; image: string }>;
+  currentDate: Array<{ id: string; thumbnail: string; title: string; price: number }>;
+}
+
+const Homeview = (props: HomeviewProps) => {
+  const { categori, currentDate } = props;
 
   return (
     <div>
@@ -54,10 +36,10 @@ const Homeview = () => {
         <div className={cx("grid-container")}>
           {categori.map((a, i) => {
             return (
-              <Link href={`/product/list/${categoriImg[i]}`} key={i}>
+              <Link href={`/product/list/${a.image}`} key={a.id}>
                 <div className={cx("grid-item")}>
-                  <img src={`/categoryImage/ic_home_${categoriImg[i]}.svg`} alt="motel" />
-                  <div className={cx("title")}>{categori[i]}</div>
+                  <img src={`/categoryImage/ic_home_${a.image}.svg`} alt={a.name} />
+                  <div className={cx("title")}>{a.name}</div>
                 </div>
               </Link>
             );
@@ -72,7 +54,7 @@ const Homeview = () => {
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
             {currentDate.map((item, index) => (
-              <div className={cx("list-item")} key={index}>
+              <div className={cx("list-item")} key={item.id}>
                 <div className={cx("list-image")}>
                   <img src={item.thumbnail} alt={item.title} />
                 </div>
