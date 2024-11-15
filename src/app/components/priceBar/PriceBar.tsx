@@ -32,10 +32,8 @@ const PriceRangeSlider = () => {
   return (
     <div className="price-bar-container">
       <div className="price-bar">
-        {/* 배경 트랙 */}
         <div className="track" />
 
-        {/* 선택된 범위 표시 */}
         <div
           className="select-bar"
           style={{
@@ -44,7 +42,6 @@ const PriceRangeSlider = () => {
           }}
         />
 
-        {/* 최소값 슬라이더 */}
         <input
           type="range"
           min={MIN_PRICE}
@@ -59,7 +56,6 @@ const PriceRangeSlider = () => {
           }}
         />
 
-        {/* 최대값 슬라이더 */}
         <input
           type="range"
           min={MIN_PRICE}
