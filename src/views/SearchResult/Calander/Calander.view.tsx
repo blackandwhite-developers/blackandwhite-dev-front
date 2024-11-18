@@ -12,9 +12,16 @@ import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
 // import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { ko } from "date-fns/locale";
+import { useRouter } from "next/navigation";
 const cx = cn.bind(styles);
 
 const CalanderView = () => {
+    /** 뒤로가기 */
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
+
     const [adultCount, setAdultCount] = useState<number>(0);
     const [childCount, setChildCount] = useState<number>(0);
 
@@ -48,7 +55,10 @@ const CalanderView = () => {
 
     return (
         <div className={cx("calander-contianer")}>
-            <Header title={"날짜 선택"} leftIcon={<MdClose />} />
+            <Header
+                title={"날짜 선택"}
+                leftIcon={<MdClose onClick={handleGoBack} />}
+            />
             <div className={cx("about")}>
                 <DateBtn label="6.2화 - 6.3수"></DateBtn>
                 <MemberBtn label="성인 2명"></MemberBtn>

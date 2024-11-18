@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductRoomDetail.view.module.scss";
@@ -14,7 +14,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
-import DatePicker from "@/app/components/DatePicker/DatePicker";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
@@ -68,9 +69,13 @@ const ProductDetail = (props: ProductDetailProps) => {
         "/images/HotelImage1.png",
     ];
 
-    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-    const toggleDatePicker = () => {
-        setIsDatePickerOpen((prev) => !prev);
+    const router = useRouter();
+    const handleDateBtnClick = () => {
+        router.push("/searchResult/calander");
+    };
+
+    const handleMemberBtnClick = () => {
+        router.push("/searchResult/calander");
     };
 
     return (
@@ -79,7 +84,11 @@ const ProductDetail = (props: ProductDetailProps) => {
                 <Header
                     title={"객실상세"}
                     leftIcon={<FaAngleLeft />}
-                    rightIcon={<BsCart2 />}
+                    rightIcon={
+                        <Link href="/home/detail/cart">
+                            <BsCart2 />
+                        </Link>
+                    }
                 />
                 <a href="" className={cx("CartIcon")}>
                     <BsCart2 />
@@ -126,15 +135,15 @@ const ProductDetail = (props: ProductDetailProps) => {
 
                     <div className={cx("ReservationWrapper")}>
                         <div className={cx("ReservationSelectBtn")}>
-                            <DateBtn label={""} onClick={toggleDatePicker} />
-                            <MemberBtn label={""} />
+                            <DateBtn label={""} onClick={handleDateBtnClick} />
+                            <MemberBtn
+                                label={""}
+                                onClick={handleMemberBtnClick}
+                            />
                         </div>
-                        {isDatePickerOpen && (
-                            <div className={cx("DatePickerWrapper")}>
-                                <DatePicker />
-                            </div>
-                        )}
+
                         <div>
+                            {/* 상품 카드 표시 */}
                             {productDetailsArray.map((product, index) => (
                                 <ProductRoomDetailCard
                                     key={index}

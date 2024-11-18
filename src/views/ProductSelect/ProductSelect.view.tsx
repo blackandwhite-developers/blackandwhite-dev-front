@@ -21,6 +21,7 @@ import TotalReviewCard from "@/app/components/TotalReviewCard/TotalReviewCard";
 import Review from "@/app/components/Review/Review";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
@@ -140,13 +141,27 @@ const ProductSelect = (props: ProductSelectProps) => {
         setSelectedTab(tab);
     };
 
+    const router = useRouter();
+
+    const handleDateBtnClick = () => {
+        router.push("/searchResult/calander");
+    };
+
+    const handleMemberBtnClick = () => {
+        router.push("/searchResult/calander");
+    };
+
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
                 <Header
                     title={"객실상세"}
                     leftIcon={<FaAngleLeft />}
-                    rightIcon={<BsCart2 />}
+                    rightIcon={
+                        <Link href="/home/detail/cart">
+                            <BsCart2 />
+                        </Link>
+                    }
                 />
                 <a href="" className={cx("CartIcon")}>
                     <BsCart2 />
@@ -252,27 +267,36 @@ const ProductSelect = (props: ProductSelectProps) => {
                             </div>
                         )}
 
-                        {selectedTab === "room" && (
-                            <div>
-                                <Link href="/searchResult/calander">
+                        <div>
+                            {selectedTab === "room" && (
+                                <div>
                                     <div className={cx("ReservationSelectBtn")}>
-                                        <DateBtn label={""} />
-                                        <MemberBtn label={""} />
+                                        <button onClick={handleDateBtnClick}>
+                                            <DateBtn label={""} />
+                                        </button>
+                                        <button onClick={handleMemberBtnClick}>
+                                            <MemberBtn label={""} />
+                                        </button>
                                     </div>
-                                </Link>
-                                <div className={cx("ProductSelectCard")}>
-                                    {productSelectData.map((product, index) => (
-                                        <ProductSelectCard
-                                            key={index}
-                                            imageUrl={product.imageUrl}
-                                            label={product.label}
-                                            title={product.title}
-                                            infomation={product.infomation}
-                                        />
-                                    ))}
+
+                                    <div className={cx("ProductSelectCard")}>
+                                        {productSelectData.map(
+                                            (product, index) => (
+                                                <ProductSelectCard
+                                                    key={index}
+                                                    imageUrl={product.imageUrl}
+                                                    label={product.label}
+                                                    title={product.title}
+                                                    infomation={
+                                                        product.infomation
+                                                    }
+                                                />
+                                            )
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
