@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames/bind";
 import styles from "./NewPassword.module.scss";
 import Header from "@/app/components/Header/Header";
@@ -8,24 +8,45 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import TextInput from "@/app/components/input/TextInput/TextInput";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-export interface NewpasswordProps {
-    userPassword?: string | number;
-    newPassword: string | number;
-}
-
 const NewPassword = () => {
-    /** props 주석처리 (props 해결 시 사용)*/
-    // const NewPassword = (props: NewpasswordProps) => {
-    //     const { newPassword } = props;
-
     /** 뒤로가기 */
     const router = useRouter();
     const handleGoBack = () => {
         router.back();
+    };
+
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    // 비밀번호 유효성 검사 [영문, 숫자 조합 8자 이상]
+    const validatePassword = (password: string) => {
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        return passwordRegex.test(password);
+    };
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    };
+
+    const handleConfirmPasswordChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setConfirmPassword(e.target.value);
+    };
+
+    const handleSubmit = () => {
+        if (!validatePassword(password)) {
+            setErrorMessage("영문, 숫자를 조합하여 8자 이상으로 입력해주세요.");
+        } else if (password !== confirmPassword) {
+            setErrorMessage("비밀번호가 일치하지 않습니다.");
+        } else {
+            setErrorMessage("");
+            router.push("/login");
+        }
     };
 
     return (
@@ -39,33 +60,35 @@ const NewPassword = () => {
                 </p>
             </div>
             <div className={cx("PwInputWrapper")}>
-                <label htmlFor="Pw"></label>
-                <div className={cx("PasswordInputContainer")}>
-                    <TextInput
-                        type="password"
-                        placeholder="비밀번호 (영문과 숫자로 8자 이상)"
-                        showToggle
-                    />
-                </div>
-
-                <label htmlFor="phone"></label>
                 <div className={cx("PasswordInputContainer")}>
                     <TextInput
                         type="password"
                         placeholder="비밀번호"
+                        value={password}
+                        onChange={handlePasswordChange}
                         showToggle
                     />
                 </div>
+
+                <div className={cx("PasswordInputContainer")}>
+                    <TextInput
+                        type="password"
+                        placeholder="비밀번호 확인"
+                        value={confirmPassword}
+                        onChange={handleConfirmPasswordChange}
+                        showToggle
+                    />
+
+                    {errorMessage && confirmPassword && (
+                        <p className={cx("ErrorMessage")}>{errorMessage}</p>
+                    )}
+                </div>
             </div>
             <div className={cx("ChangePwBtn")}>
-                <Link href="/login">
-                    <AbleBtn label={"비밀번호 변경"} />
-                </Link>
+                <AbleBtn label={"비밀번호 변경"} onClick={handleSubmit} />
             </div>
         </div>
     );
 };
 
 export default NewPassword;
-
-//에러문구는 아직 작성 x

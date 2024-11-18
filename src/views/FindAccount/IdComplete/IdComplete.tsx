@@ -19,6 +19,7 @@ export interface InCompleteProps {
 
 const FIndId = (props: InCompleteProps) => {
     const { userId, signupDate } = props;
+
     /** 뒤로가기 */
     const router = useRouter();
     const handleGoBack = () => {

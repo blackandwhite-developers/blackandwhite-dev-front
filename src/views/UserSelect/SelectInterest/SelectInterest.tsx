@@ -13,47 +13,12 @@ import Link from "next/link";
 const cx = cn.bind(styles);
 
 export interface SelectInterestProps {
-    title: string;
-    image: string;
+    data: { title: string; src: string }[];
 }
 
-const SelectInterest = (props: SelectInterestProps) => {
-    const { title, src } = props;
-
-    /** 카테고리 데이터 */
-    const categories = [
-        {
-            title: "호캉스",
-            src: "/categoryImage/ic_home_hotel.svg",
-        },
-        {
-            title: "풀빌라",
-            src: "/categoryImage/ic_home_pool.svg",
-        },
-        {
-            title: "모텔",
-            src: "/categoryImage/ic_home_motel.svg",
-        },
-        {
-            title: "캠핑",
-            src: "/categoryImage/ic_home_camping.svg",
-        },
-        {
-            title: "게스트하우스",
-            src: "/categoryImage/ic_home_guesthouse.svg",
-        },
-        {
-            title: "레저",
-            src: "/categoryImage/ic_home_leisure.svg",
-        },
-        {
-            title: "공항",
-            src: "/categoryImage/ic_home_airport.svg",
-        },
-    ];
-
+const SelectInterest = ({ data }: SelectInterestProps) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(
-        null
+        data.length > 0 ? data[0].title : null
     );
 
     const handleCategoryClick = (category: string) => {
@@ -77,7 +42,7 @@ const SelectInterest = (props: SelectInterestProps) => {
                 </p>
             </div>
             <div className={cx("SelectInterestCategoryWrapper")}>
-                {categories.map((category) => (
+                {data.map((category) => (
                     <button
                         key={category.title}
                         className={cx("SelectInterestCategory", {

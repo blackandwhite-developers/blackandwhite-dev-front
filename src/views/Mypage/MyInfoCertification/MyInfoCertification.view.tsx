@@ -12,13 +12,7 @@ import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-export interface MyInfoCertificationProps {
-    userName: string;
-    userPhone: number;
-}
-
-const MyInfoCertification = (props: MyInfoCertificationProps) => {
-    const { userName, userPhone } = props;
+const MyInfoCertification = () => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
