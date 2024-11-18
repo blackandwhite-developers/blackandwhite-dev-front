@@ -1,76 +1,107 @@
-$primary-color: #8728FF;
+$primary-color: #8728ff;
 $background-color: #f4f4f4;
 
 .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 360px;
-    height: 760px;
-    background-color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 360px;
+  height: 760px;
+  background-color: #fff;
 }
 
 .container {
-    width: 100%;
-    max-width: 360px;
-    max-height: 760px;
-    padding: 20px;
-    text-align: center;
+  width: 100%;
+  max-width: 360px;
+  max-height: 760px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 
-    h1 {
-        font-size: 2rem;
-        color: $primary-color;
-        text-align: left;
-        margin-bottom: 20px;
-        font-weight: 700;
-    }
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 
-    .AbleBtn {
-        margin: 20px 0 10px 0; 
-    }
+  h1 {
+    font-size: 2rem;
+    color: $primary-color;
+    text-align: left;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .AbleBtn {
+    margin: 20px 0 10px 0;
+  }
 }
 
+.textInput {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray400);
+}
 
+.gapcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
 
 .authLinks {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 
-    a {
-        text-decoration: none;
-        color: $primary-color;
+  a {
+    text-decoration: none;
+    color: $primary-color;
+    font-size: 14px;
+    font-weight: 400;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    a:not(:last-child)::after {
-        content: "|";
-        margin-left: 8px;
-        color: $primary-color;
-    }
+  a:not(:last-child)::after {
+    content: "|";
+    margin-left: 8px;
+    color: $primary-color;
+  }
 }
 
 .line_with_text {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-top: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
 
-    &::before,
-    &::after {
-        content: '';
-        flex: 1;
-        border-bottom: 1px solid $primary-color; 
-    }
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid $primary-color;
+  }
 
-    span {
-        margin: 0 10px; 
-        font-size: 14px;
-        color: $primary-color;
-    }
+  span {
+    margin: 0 10px;
+    font-size: 14px;
+    color: $primary-color;
+    font-weight: 400;
+  }
+}
+
+.another_login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }

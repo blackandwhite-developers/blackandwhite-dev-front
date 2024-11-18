@@ -9,17 +9,41 @@ const LoginView = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1>로그인</h1>
-        <TextInput type="text" placeholder="이메일" className="textInput" />
-        <TextInput type="password" placeholder="비밀번호" showToggle className="textInput" />
+        <div className={styles.inputContainer}>
+          <TextInput
+            type="text"
+            placeholder="이메일"
+            className={styles.textInput}
+          />
+          <TextInput
+            type="password"
+            placeholder="비밀번호"
+            showToggle
+            className={styles.textInput}
+          />
+        </div>
 
-        <AbleBtn label="로그인" />
-        <div className={styles.authLinks}>
-          <a href="./FindID">아이디찾기</a>
-          <a href="./FindPW">비밀번호 찾기</a>
-          <a href="./signup">회원가입</a>
+        <div className={styles.gapcontainer}>
+          <AbleBtn label="로그인" />
+          <div className={styles.authLinks}>
+            <a href="./findaccount/findid">아이디찾기</a>
+            <a href="./findaccount/findpw">비밀번호 찾기</a>
+            <a href="./signup">회원가입</a>
+          </div>
         </div>
         <div className={styles.line_with_text}>
           <span>혹은</span>
+        </div>
+        <div className={styles.another_login}>
+          <a href="#">
+            <img src="/icon-asset/login-asset/naver.png" alt="naver_login" />
+          </a>
+          <a href="#">
+            <img src="/icon-asset/login-asset/kakao.png" alt="kakao_login" />
+          </a>
+          <a href="#">
+            <img src="/icon-asset/login-asset/apple.png" alt="apple_login" />
+          </a>
         </div>
       </div>
     </div>
