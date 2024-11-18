@@ -13,14 +13,14 @@ const cx = cn.bind(styles);
 
 export interface SearchViewProps {
   aboutData: { date: string; member: string };
-  recommendData: Array<{ recommend: string }>;
+  recommendData: string[];
 }
 
 const RECENT_SEARCHES_KEY = "recentSearches";
-const MAX_RECENT_SEARCHES = 5;
+const MAX_RECENT_SEARCHES = 8;
 
 const SearchView = (props: SearchViewProps) => {
-  const { aboutData } = props;
+  const { aboutData, recommendData } = props;
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
   useEffect(() => {
@@ -81,15 +81,17 @@ const SearchView = (props: SearchViewProps) => {
           <div className={cx("recommend-wrapper")}>
             <p>추천 검색어</p>
             <div className={cx("recommend-container")}>
-              {recentSearches.slice(0, 3).map((term, index) => (
-                <TextBtn key={index} label={term} onClick={() => handleSearch(term)} />
+              {recommendData.map((term, index) => (
+                <div className={cx("recommendBtn")}>
+                  <TextBtn key={index} label={term} onClick={() => handleSearch(term)} />
+                </div>
               ))}
             </div>
           </div>
 
           <div className={cx("popular-content")}>
             <p>인기 검색어</p>
-            <button>{recommendData}</button>
+            <button></button>
           </div>
         </div>
       </div>
