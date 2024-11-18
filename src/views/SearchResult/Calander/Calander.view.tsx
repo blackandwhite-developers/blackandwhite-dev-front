@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Calander.view.module.scss";
 import "react-day-picker/style.css";
 import cn from "classnames/bind";
@@ -27,18 +27,41 @@ const CalanderView = () => {
         DateRange | undefined
     >(undefined);
 
+    useEffect(() => {
+        const storedAdultCount = localStorage.getItem("adultCount");
+        const storedChildCount = localStorage.getItem("childCount");
+        const storedSelectedDateRange =
+            localStorage.getItem("selectedDateRange");
+
+        if (storedAdultCount) {
+            setAdultCount(Number(storedAdultCount));
+        }
+        if (storedChildCount) {
+            setChildCount(Number(storedChildCount));
+        }
+        if (storedSelectedDateRange) {
+            const [fromDate, toDate] = storedSelectedDateRange.split(" ~ ");
+            const from = new Date(fromDate);
+            const to = new Date(toDate);
+            setSelectedDateRange({ from, to });
+        }
+    }, []);
+
     const handleAdultCountChange = (
         operation: "increase" | "decrease",
         event: React.MouseEvent
     ) => {
         event.stopPropagation();
+        let newCount = adultCount;
         if (operation === "increase") {
-            setAdultCount(adultCount + 1);
-        } else if (adultCount <= 0) {
-            return alert("성인은 0명 아래로 내려갈 수 없습니다.");
+            newCount = adultCount + 1;
+        } else if (adultCount > 0) {
+            newCount = adultCount - 1;
         } else {
-            setAdultCount(adultCount - 1);
+            return alert("성인은 0명 아래로 내려갈 수 없습니다.");
         }
+        setAdultCount(newCount);
+        localStorage.setItem("adultCount", newCount.toString());
     };
 
     const handleChildCountChange = (
@@ -46,18 +69,35 @@ const CalanderView = () => {
         event: React.MouseEvent
     ) => {
         event.stopPropagation();
+        let newCount = childCount;
         if (operation === "increase") {
-            setChildCount(childCount + 1);
-        } else if (childCount <= 0) {
-            return alert("아동은 0명 아래로 내려갈 수 없습니다.");
+            newCount = childCount + 1;
+        } else if (childCount > 0) {
+            newCount = childCount - 1;
         } else {
-            setChildCount(childCount - 1);
+            return alert("아동은 0명 아래로 내려갈 수 없습니다.");
         }
+        setChildCount(newCount);
+        localStorage.setItem("childCount", newCount.toString());
     };
 
-    /*날짜 선택*/
     const handleDateChange = (date: DateRange | undefined) => {
         setSelectedDateRange(date);
+        if (date && date.from && date.to) {
+            const formatDate = (date: Date) => {
+                const year = date.getFullYear().toString();
+                const month = String(date.getMonth() + 1).padStart(2, "0");
+                const day = String(date.getDate()).padStart(2, "0");
+                const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][
+                    date.getDay()
+                ];
+                return `${year}.${month}.${day} (${dayOfWeek})`;
+            };
+            const formattedDateRange = `${formatDate(date.from)} ~ ${formatDate(
+                date.to
+            )}`;
+            localStorage.setItem("selectedDateRange", formattedDateRange);
+        }
     };
 
     const formatSelectedDate = () => {
@@ -70,10 +110,13 @@ const CalanderView = () => {
         }
 
         const formatDate = (date: Date) => {
-            const year = date.getFullYear().toString().slice(-2);
+            const year = date.getFullYear();
             const month = String(date.getMonth() + 1).padStart(2, "0");
             const day = String(date.getDate()).padStart(2, "0");
-            return `${year}.${month}.${day}`;
+            const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][
+                date.getDay()
+            ];
+            return `${year}.${month}.${day} (${dayOfWeek})`;
         };
 
         return `${formatDate(selectedDateRange.from)} ~ ${formatDate(
@@ -81,8 +124,25 @@ const CalanderView = () => {
         )}`;
     };
 
+    const handleConfirmClick = () => {
+        if (
+            !selectedDateRange ||
+            !selectedDateRange.from ||
+            !selectedDateRange.to
+        ) {
+            alert("날짜를 선택해주세요.");
+            return;
+        }
+        if (adultCount <= 0 && childCount <= 0) {
+            alert("인원을 선택해주세요.");
+            return;
+        }
+
+        router.back();
+    };
+
     return (
-        <div className={cx("calander-contianer")}>
+        <div className={cx("calander-container")}>
             <Header
                 title={"날짜 선택"}
                 leftIcon={<MdClose onClick={handleGoBack} />}
@@ -116,7 +176,7 @@ const CalanderView = () => {
                 <div className={cx("member")}>
                     <div className={cx("adult")}>
                         <span>성인</span>
-                        <div className={cx("adult-containder")}>
+                        <div className={cx("adult-container")}>
                             <button
                                 className={cx("minus")}
                                 onClick={(e) =>
@@ -165,7 +225,10 @@ const CalanderView = () => {
             </div>
 
             <div className={cx("bottomBtn")}>
-                <button className={cx("confirmBtn")}>
+                <button
+                    className={cx("confirmBtn")}
+                    onClick={handleConfirmClick}
+                >
                     {formatSelectedDate()}, 총 {adultCount + childCount}명
                 </button>
             </div>

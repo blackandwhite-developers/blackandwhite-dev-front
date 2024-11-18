@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductRoomDetail.view.module.scss";
@@ -77,6 +77,19 @@ const ProductDetail = (props: ProductDetailProps) => {
     const handleMemberBtnClick = () => {
         router.push("/searchResult/calander");
     };
+    const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+    const [adultCount, setAdultCount] = useState<number>(0);
+    const [childCount, setChildCount] = useState<number>(0);
+
+    useEffect(() => {
+        const storedDateRange = localStorage.getItem("selectedDateRange");
+        const storedAdultCount = localStorage.getItem("adultCount");
+        const storedChildCount = localStorage.getItem("childCount");
+
+        if (storedDateRange) setSelectedDateRange(storedDateRange);
+        if (storedAdultCount) setAdultCount(Number(storedAdultCount));
+        if (storedChildCount) setChildCount(Number(storedChildCount));
+    }, []);
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -135,15 +148,25 @@ const ProductDetail = (props: ProductDetailProps) => {
 
                     <div className={cx("ReservationWrapper")}>
                         <div className={cx("ReservationSelectBtn")}>
-                            <DateBtn label={""} onClick={handleDateBtnClick} />
+                            <DateBtn
+                                label={
+                                    selectedDateRange || "날짜를 선택해주세요"
+                                }
+                                onClick={handleDateBtnClick}
+                            />
                             <MemberBtn
-                                label={""}
+                                label={
+                                    <>
+                                        성인 {adultCount}명
+                                        <br />
+                                        아동 {childCount}명
+                                    </>
+                                }
                                 onClick={handleMemberBtnClick}
                             />
                         </div>
 
                         <div>
-                            {/* 상품 카드 표시 */}
                             {productDetailsArray.map((product, index) => (
                                 <ProductRoomDetailCard
                                     key={index}

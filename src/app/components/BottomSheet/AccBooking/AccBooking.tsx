@@ -1,8 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./AccBooking.module.scss";
 import Link from "next/link";
+
 const cx = cn.bind(styles);
 
 type AccBookingProps = {
@@ -10,6 +13,19 @@ type AccBookingProps = {
 };
 
 const AccBooking = ({ onClose }: AccBookingProps) => {
+    const [checkInDate, setCheckInDate] = useState<string | null>(null);
+    const [checkOutDate, setCheckOutDate] = useState<string | null>(null);
+
+    useEffect(() => {
+        const storedDateRange = localStorage.getItem("selectedDateRange");
+
+        if (storedDateRange) {
+            const [checkIn, checkOut] = storedDateRange.split(" ~ ");
+            setCheckInDate(checkIn);
+            setCheckOutDate(checkOut);
+        }
+    });
+
     return (
         <div className={cx("AccBookingWrapper")}>
             <div className={cx("AccBookingTapBar")} onClick={onClose}>
@@ -23,10 +39,9 @@ const AccBooking = ({ onClose }: AccBookingProps) => {
             <h1 className={cx("AccBookingTitle")}>숙박 예약</h1>
             <div className={cx("AccBookingDetailWrapper")}>
                 <p className={cx("AccBookingImage")}>
-                    {" "}
                     <Image
                         src="/images/Hotel.png"
-                        alt="탭 바 이미지"
+                        alt="호텔 이미지"
                         width={95}
                         height={95}
                     />
@@ -36,14 +51,22 @@ const AccBooking = ({ onClose }: AccBookingProps) => {
                     <div className={cx("ReservationDetail")}>
                         <ul>
                             <li className={cx("CheckIn")}>체크인</li>
-                            <li>2024.11.05(화)</li>
-                            <li>16:00</li>
+                            {checkInDate && (
+                                <>
+                                    <li>{checkInDate}</li>
+                                    <li>16:00</li>
+                                </>
+                            )}
                         </ul>
                         <p className={cx("StayNight")}>1박</p>
                         <ul>
                             <li className={cx("CheckOut")}>체크아웃</li>
-                            <li>2024.11.06(수)</li>
-                            <li>11:00</li>
+                            {checkOutDate && (
+                                <>
+                                    <li>{checkOutDate}</li>
+                                    <li>11:00</li>
+                                </>
+                            )}
                         </ul>
                     </div>
                 </div>

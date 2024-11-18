@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
@@ -149,6 +149,20 @@ const ProductDetail = (props: ProductDetailProps) => {
     const handleMemberBtnClick = () => {
         router.push("/searchResult/calander");
     };
+    const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+    const [adultCount, setAdultCount] = useState<number>(0);
+    const [childCount, setChildCount] = useState<number>(0);
+
+    useEffect(() => {
+        const storedDateRange = localStorage.getItem("selectedDateRange");
+        const storedAdultCount = localStorage.getItem("adultCount");
+        const storedChildCount = localStorage.getItem("childCount");
+
+        if (storedDateRange) setSelectedDateRange(storedDateRange);
+        if (storedAdultCount) setAdultCount(Number(storedAdultCount));
+        if (storedChildCount) setChildCount(Number(storedChildCount));
+    }, []);
+
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
@@ -269,12 +283,23 @@ const ProductDetail = (props: ProductDetailProps) => {
                             {selectedTab === "room" && (
                                 <div>
                                     <div className={cx("ReservationSelectBtn")}>
-                                        <button onClick={handleDateBtnClick}>
-                                            <DateBtn label={""} />
-                                        </button>
-                                        <button onClick={handleMemberBtnClick}>
-                                            <MemberBtn label={""} />
-                                        </button>
+                                        <DateBtn
+                                            label={
+                                                selectedDateRange ||
+                                                "날짜를 선택해주세요"
+                                            }
+                                            onClick={handleDateBtnClick}
+                                        />
+                                        <MemberBtn
+                                            label={
+                                                <>
+                                                    성인 {adultCount}명
+                                                    <br />
+                                                    아동 {childCount}명
+                                                </>
+                                            }
+                                            onClick={handleMemberBtnClick}
+                                        />
                                     </div>
                                     <div className={cx("ProductSelectCard")}>
                                         {productDetailsArray.map(

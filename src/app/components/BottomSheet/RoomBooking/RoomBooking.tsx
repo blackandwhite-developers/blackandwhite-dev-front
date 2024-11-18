@@ -7,7 +7,7 @@ import styles from "./RoomBooking.module.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type RoomBookingProps = {
     onClose: () => void;
@@ -18,8 +18,21 @@ const cx = cn.bind(styles);
 const RoomBooking = ({ onClose }: RoomBookingProps) => {
     const [availableTimes, setAvailableTimes] = useState<string[]>([]);
     const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
+    const [checkInDate, setCheckInDate] = useState<string>("");
+    const [checkOutDate, setCheckOutDate] = useState<string>("");
+    const [checkInTime, setCheckInTime] = useState<string>("00:00");
+    const [checkOutTime, setCheckOutTime] = useState<string>("00:00");
+    const [stayDuration, setStayDuration] = useState<number>(0);
 
     useEffect(() => {
+        const storedDateRange = localStorage.getItem("selectedDateRange");
+
+        if (storedDateRange) {
+            const [checkIn, checkOut] = storedDateRange.split(" ~ ");
+            setCheckInDate(checkIn);
+            setCheckOutDate(checkOut);
+        }
+
         const startHour = 14;
         const endHour = 21;
         const times = Array.from(
@@ -28,6 +41,33 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
         );
         setAvailableTimes(times);
     }, []);
+
+    useEffect(() => {
+        if (selectedTimes.length > 0) {
+            const minTime = selectedTimes[0];
+            const maxTime = selectedTimes[selectedTimes.length - 1];
+            setCheckInTime(minTime);
+            setCheckOutTime(maxTime);
+        } else {
+            setCheckInTime("00:00");
+            setCheckOutTime("00:00");
+        }
+    }, [selectedTimes]);
+
+    useEffect(() => {
+        const calculateDuration = () => {
+            const [startHour, startMinute] = checkInTime.split(":").map(Number);
+            const [endHour, endMinute] = checkOutTime.split(":").map(Number);
+
+            const startTotalMinutes = startHour * 60 + startMinute;
+            const endTotalMinutes = endHour * 60 + endMinute;
+
+            const duration = (endTotalMinutes - startTotalMinutes) / 60;
+            setStayDuration(duration > 0 ? duration : 0);
+        };
+
+        calculateDuration();
+    }, [checkInTime, checkOutTime]);
 
     const handleTimeSelect = (time: string) => {
         const timeIndex = availableTimes.indexOf(time);
@@ -72,6 +112,14 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
             }
         }
     };
+    const router = useRouter();
+    const handleReservationClick = () => {
+        if (selectedTimes.length === 0) {
+            alert("시간을 선택해주세요!");
+        } else {
+            router.push("/payment");
+        }
+    };
 
     return (
         <div className={cx("RoomBookingWrapper")}>
@@ -98,14 +146,14 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
                     <div className={cx("ReservationDetail")}>
                         <ul>
                             <li className={cx("CheckIn")}>체크인</li>
-                            <li>2024.11.05(화)</li>
-                            <li>16:00</li>
+                            <li>{checkInDate}</li>
+                            <li>{checkInTime}</li>
                         </ul>
-                        <p className={cx("StayHour")}>4시간</p>
+                        <p className={cx("StayHour")}>{stayDuration}시간</p>
                         <ul>
                             <li className={cx("CheckOut")}>체크아웃</li>
-                            <li>2024.11.05(화)</li>
-                            <li>20:00</li>
+                            <li>{checkOutDate}</li>
+                            <li>{checkOutTime}</li>
                         </ul>
                     </div>
                 </div>
@@ -144,17 +192,18 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
             <div className={cx("ReservationInfo")}>
                 <div className={cx("ReservationIfoStayNight")}>
                     <p>대실</p>
-                    <span>(4시간)</span>
+                    <span>({stayDuration}시간)</span>
                 </div>
                 <p>75,000원</p>
             </div>
             <div className={cx("ButtonWrapper")}>
                 <button className={cx("CartButton")}>장바구니 담기</button>
-                <Link href="/payment" style={{ textDecoration: "none" }}>
-                    <button className={cx("ReservationButton")}>
-                        예약하기
-                    </button>
-                </Link>
+                <button
+                    className={cx("ReservationButton")}
+                    onClick={handleReservationClick}
+                >
+                    예약하기
+                </button>
             </div>
         </div>
     );
