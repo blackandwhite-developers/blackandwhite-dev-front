@@ -15,6 +15,7 @@ type AccBookingProps = {
 const AccBooking = ({ onClose }: AccBookingProps) => {
     const [checkInDate, setCheckInDate] = useState<string | null>(null);
     const [checkOutDate, setCheckOutDate] = useState<string | null>(null);
+    const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
 
     useEffect(() => {
         const storedDateRange = localStorage.getItem("selectedDateRange");
@@ -24,7 +25,15 @@ const AccBooking = ({ onClose }: AccBookingProps) => {
             setCheckInDate(checkIn);
             setCheckOutDate(checkOut);
         }
-    });
+    }, []);
+
+    const handleAddToCart = () => {
+        setIsCartPopupVisible(true);
+
+        setTimeout(() => {
+            setIsCartPopupVisible(false);
+        }, 2000);
+    };
 
     return (
         <div className={cx("AccBookingWrapper")}>
@@ -88,7 +97,9 @@ const AccBooking = ({ onClose }: AccBookingProps) => {
                 <p>75,000원</p>
             </div>
             <div className={cx("ButtonWrapper")}>
-                <button className={cx("CartButton")}>장바구니 담기</button>
+                <button className={cx("CartButton")} onClick={handleAddToCart}>
+                    장바구니 담기
+                </button>
 
                 <Link href="/payment" style={{ textDecoration: "none" }}>
                     <button className={cx("ReservationButton")}>
@@ -96,6 +107,18 @@ const AccBooking = ({ onClose }: AccBookingProps) => {
                     </button>
                 </Link>
             </div>
+
+            {/* 장바구니 팝업 */}
+            {isCartPopupVisible && (
+                <div className={cx("CartPopup")}>
+                    <div className={cx("CartItem")}>
+                        <p>장바구니에 상품이 담겼습니다.</p>
+                        <Link href="/detail/cart">
+                            <p className={cx("LookCart")}>장바구니 보기</p>
+                        </Link>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

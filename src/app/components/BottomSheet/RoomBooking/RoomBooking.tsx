@@ -8,6 +8,7 @@ import styles from "./RoomBooking.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type RoomBookingProps = {
     onClose: () => void;
@@ -23,6 +24,7 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
     const [checkInTime, setCheckInTime] = useState<string>("00:00");
     const [checkOutTime, setCheckOutTime] = useState<string>("00:00");
     const [stayDuration, setStayDuration] = useState<number>(0);
+    const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
 
     useEffect(() => {
         const storedDateRange = localStorage.getItem("selectedDateRange");
@@ -112,13 +114,22 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
             }
         }
     };
+
     const router = useRouter();
+
     const handleReservationClick = () => {
         if (selectedTimes.length === 0) {
             alert("시간을 선택해주세요!");
         } else {
             router.push("/payment");
         }
+    };
+
+    const handleAddToCart = () => {
+        setIsCartPopupVisible(true);
+        setTimeout(() => {
+            setIsCartPopupVisible(false);
+        }, 2000);
     };
 
     return (
@@ -197,7 +208,9 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
                 <p>75,000원</p>
             </div>
             <div className={cx("ButtonWrapper")}>
-                <button className={cx("CartButton")}>장바구니 담기</button>
+                <button className={cx("CartButton")} onClick={handleAddToCart}>
+                    장바구니 담기
+                </button>
                 <button
                     className={cx("ReservationButton")}
                     onClick={handleReservationClick}
@@ -205,6 +218,17 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
                     예약하기
                 </button>
             </div>
+            {/* 장바구니 팝업 */}
+            {isCartPopupVisible && (
+                <div className={cx("CartPopup")}>
+                    <div className={cx("CartItem")}>
+                        <p>장바구니에 상품이 담겼습니다.</p>
+                        <Link href="/detail/cart">
+                            <p className={cx("LookCart")}>장바구니 보기</p>
+                        </Link>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
