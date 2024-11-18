@@ -53,7 +53,8 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("currentList")}>
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
-            {currentDate.map((item, index) => (
+            {/*화면 설계서에 6개까지만 나타나도록 표현 */}
+            {currentDate.slice(0, 6).map((item, index) => (
               <div className={cx("list-item")} key={item.id}>
                 <div className={cx("list-image")}>
                   <img src={item.thumbnail} alt={item.title} />
