@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SearchResult.view.module.scss";
 import cn from "classnames/bind";
 import SearchBar from "@/app/components/input/SearchBar/SearchBar";
@@ -13,6 +13,7 @@ import Header from "@/app/components/Header/Header";
 import Link from "next/link";
 
 import SortOptions from "@/app/components/BottomSheet/SortOptions/SortOptions";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
@@ -79,7 +80,58 @@ const SearchResultPageView = () => {
     const handleSortOptionsClose = () => {
         setSortOptionsVisible(false);
     };
+    const router = useRouter();
+    const handleDateClick = () => {
+        router.push("/searchResult/calander");
+    };
 
+    const handleMemberClick = () => {
+        router.push("/searchResult/calander");
+    };
+    const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+    const [adultCount, setAdultCount] = useState<number>(0);
+    const [childCount, setChildCount] = useState<number>(0);
+    useEffect(() => {
+        const storedDateRange = localStorage.getItem("selectedDateRange");
+        const storedAdultCount = localStorage.getItem("adultCount");
+        const storedChildCount = localStorage.getItem("childCount");
+
+        if (!storedAdultCount) setAdultCount(1);
+        if (!storedChildCount) setChildCount(0);
+
+        if (storedDateRange) {
+            const [startDate, endDate] = storedDateRange.split(" ~ ");
+            const formattedStartDate = new Date(startDate);
+            const formattedEndDate = new Date(endDate);
+
+            const startDateWithDay = `${formattedStartDate.getFullYear()}.${(
+                formattedStartDate.getMonth() + 1
+            )
+                .toString()
+                .padStart(2, "0")}.${formattedStartDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} (${formattedStartDate.toLocaleString(
+                "default",
+                { weekday: "short" }
+            )})`;
+            const endDateWithDay = `${formattedEndDate.getFullYear()}.${(
+                formattedEndDate.getMonth() + 1
+            )
+                .toString()
+                .padStart(2, "0")}.${formattedEndDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} (${formattedEndDate.toLocaleString(
+                "default",
+                { weekday: "short" }
+            )})`;
+
+            setSelectedDateRange(`${startDateWithDay} ~ ${endDateWithDay}`);
+        }
+        if (storedAdultCount) setAdultCount(Number(storedAdultCount));
+        if (storedChildCount) setChildCount(Number(storedChildCount));
+    }, []);
     return (
         <div>
             <div className={cx("header")}>
@@ -91,8 +143,20 @@ const SearchResultPageView = () => {
             <div className={cx("about")}>
                 <SearchBar />
                 <div className={cx("about-detail")}>
-                    <DateBtn label={"6.14 수 - 6.15 목"} />
-                    <MemberBtn label={"성인2명"} />
+                    <DateBtn
+                        label={selectedDateRange || "날짜를 선택해주세요"}
+                        onClick={handleDateClick}
+                    />
+                    <MemberBtn
+                        label={
+                            <>
+                                성인 {adultCount}명
+                                <br />
+                                아동 {childCount}명
+                            </>
+                        }
+                        onClick={handleMemberClick}
+                    />
                 </div>
             </div>
 
