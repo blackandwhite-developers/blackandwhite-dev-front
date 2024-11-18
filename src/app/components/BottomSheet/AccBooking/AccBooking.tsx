@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./AccBooking.module.scss";
+import Link from "next/link";
 const cx = cn.bind(styles);
 
 type AccBookingProps = {
@@ -65,7 +66,12 @@ const AccBooking = ({ onClose }: AccBookingProps) => {
             </div>
             <div className={cx("ButtonWrapper")}>
                 <button className={cx("CartButton")}>장바구니 담기</button>
-                <button className={cx("ReservationButton")}>예약하기</button>
+
+                <Link href="/payment" style={{ textDecoration: "none" }}>
+                    <button className={cx("ReservationButton")}>
+                        예약하기
+                    </button>
+                </Link>
             </div>
         </div>
     );

@@ -7,6 +7,7 @@ import styles from "./RoomBooking.module.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Link from "next/link";
 
 type RoomBookingProps = {
     onClose: () => void;
@@ -29,21 +30,45 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
     }, []);
 
     const handleTimeSelect = (time: string) => {
-        const index = availableTimes.indexOf(time);
-        if (index === -1) return;
+        const timeIndex = availableTimes.indexOf(time);
+        if (timeIndex === -1) return;
 
         if (selectedTimes.includes(time)) {
-            const isAtEnds = index === 0 || index === availableTimes.length - 1;
-            setSelectedTimes(
-                isAtEnds ? selectedTimes.filter((t) => t !== time) : []
+            const minSelectedIndex = availableTimes.indexOf(selectedTimes[0]);
+            const maxSelectedIndex = availableTimes.indexOf(
+                selectedTimes[selectedTimes.length - 1]
             );
+
+            if (timeIndex > minSelectedIndex && timeIndex < maxSelectedIndex) {
+                setSelectedTimes([]);
+            } else {
+                setSelectedTimes(selectedTimes.filter((t) => t !== time));
+            }
         } else {
-            if (
-                !selectedTimes.length ||
-                selectedTimes.includes(availableTimes[index - 1]) ||
-                selectedTimes.includes(availableTimes[index + 1])
-            ) {
-                setSelectedTimes([...selectedTimes, time].sort());
+            if (selectedTimes.length === 0) {
+                setSelectedTimes([time]);
+            } else {
+                const minSelectedIndex = availableTimes.indexOf(
+                    selectedTimes[0]
+                );
+                const maxSelectedIndex = availableTimes.indexOf(
+                    selectedTimes[selectedTimes.length - 1]
+                );
+
+                if (
+                    timeIndex < minSelectedIndex ||
+                    timeIndex > maxSelectedIndex
+                ) {
+                    const newStartIndex = Math.min(minSelectedIndex, timeIndex);
+                    const newEndIndex = Math.max(maxSelectedIndex, timeIndex);
+                    const newSelectedTimes = availableTimes.slice(
+                        newStartIndex,
+                        newEndIndex + 1
+                    );
+                    setSelectedTimes(newSelectedTimes);
+                } else {
+                    return;
+                }
             }
         }
     };
@@ -125,7 +150,11 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
             </div>
             <div className={cx("ButtonWrapper")}>
                 <button className={cx("CartButton")}>장바구니 담기</button>
-                <button className={cx("ReservationButton")}>예약하기</button>
+                <Link href="/payment" style={{ textDecoration: "none" }}>
+                    <button className={cx("ReservationButton")}>
+                        예약하기
+                    </button>
+                </Link>
             </div>
         </div>
     );
