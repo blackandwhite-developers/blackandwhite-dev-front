@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Alarm.module.scss";
 import cn from "classnames/bind";
 import Header from "@/app/components/Header/Header";
+import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
 
@@ -28,7 +29,7 @@ const AlarmPageView = () => {
   ];
   return (
     <div className={cx("alert-wrapper")}>
-      <Header title="알림"></Header>
+      <Header leftIcon={<FaAngleLeft />} title="알림" rightIcon=""></Header>
       <div className={cx("alert-container")}>
         {Data.map((a, i) => {
           return (

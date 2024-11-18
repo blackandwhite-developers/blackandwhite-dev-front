@@ -24,7 +24,7 @@ const Homeview = (props: HomeviewProps) => {
           <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
         </div>
 
-        <Link href={"/alert"}>
+        <Link href={"/home/alarm"}>
           <div className={cx("bell")}>
             <PiBellSimpleThin style={{ width: "20px", height: "20px" }} />
           </div>
@@ -36,7 +36,7 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("grid-container")}>
           {category.map((a, i) => {
             return (
-              <Link href={`/product/list/${a.image}`} key={a.id}>
+              <Link href={`home/list/${a.id}`} key={a.id}>
                 <div className={cx("grid-item")}>
                   <img src={`/categoryImage/ic_home_${a.image}.svg`} alt={a.name} />
                   <div className={cx("title")}>{a.name}</div>
