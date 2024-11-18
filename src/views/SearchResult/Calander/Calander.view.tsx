@@ -77,8 +77,7 @@ const CalanderView = () => {
                         <span>성인</span>
                         <div className={cx("adult-containder")}>
                             <button
-                                className="minus"
-                                style={{ color: "#8728ff" }}
+                                className={cx("minus")}
                                 onClick={(e) =>
                                     handleAdultCountChange("decrease", e)
                                 }
@@ -87,8 +86,7 @@ const CalanderView = () => {
                             </button>
                             {adultCount}
                             <button
-                                className="plus"
-                                style={{ color: "#8728ff" }}
+                                className={cx("plus")}
                                 onClick={(e) =>
                                     handleAdultCountChange("increase", e)
                                 }
@@ -102,7 +100,7 @@ const CalanderView = () => {
                         <span>아동</span>
                         <div className={cx("child-container")}>
                             <button
-                                className="minus"
+                                className={cx("minus")}
                                 style={{ color: "#8728ff" }}
                                 onClick={(e) =>
                                     handleChildCountChange("decrease", e)
@@ -112,7 +110,7 @@ const CalanderView = () => {
                             </button>
                             {childCount}
                             <button
-                                className="plus"
+                                className={cx("plus")}
                                 style={{ color: "#8728ff" }}
                                 onClick={(e) =>
                                     handleChildCountChange("increase", e)
@@ -128,7 +126,6 @@ const CalanderView = () => {
                 <button className={cx("confirmBtn")}>
                     2023.06.02(화) ~ 2023.06.03(수),총 2명
                 </button>
-                {/* <AbleBtn label=""></AbleBtn> */}
             </div>
         </div>
     );

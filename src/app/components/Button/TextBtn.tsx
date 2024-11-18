@@ -4,11 +4,15 @@ import styles from "./Button.module.scss";
 
 const cx = cn.bind(styles);
 
-type TextBtnProps = {
+interface TextBtnProps {
   label: string;
-};
+  onClick?: () => void; // onClick prop 추가
+}
 
-export const TextBtn = (props: TextBtnProps) => {
-  const { label } = props;
-  return <button className={cx("TextBtn")}>{label}</button>;
+export const TextBtn: React.FC<TextBtnProps> = ({ label, onClick }) => {
+  return (
+    <button onClick={onClick} className="text-btn">
+      {label}
+    </button>
+  );
 };
