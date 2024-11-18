@@ -87,7 +87,7 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
                 </div>
             </div>
             <div className={cx("reservationBtn")}>
-                <Link href="/product/room">
+                <Link href="/home/room" style={{ textDecoration: "none" }}>
                     <ReservationBtn label={"객실 예약하기"} />
                 </Link>
             </div>
