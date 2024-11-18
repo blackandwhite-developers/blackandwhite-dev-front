@@ -10,6 +10,9 @@ import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
 import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 import HeaderOnly from "@/app/components/BottomSheet/HeaderOnly/HeaderOnly";
+import Header from "@/app/components/Header/Header";
+import { FaAngleLeft } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 interface FormValues {
     name: string;
@@ -122,9 +125,23 @@ const SignUpView = () => {
         setValue,
     ]);
 
+    /** 뒤로가기 */
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
             <div className={styles.container}>
+                <Header
+                    leftIcon={
+                        <FaAngleLeft
+                            onClick={handleGoBack}
+                            className={styles.headerIcon}
+                        />
+                    }
+                />
                 <h1>회원가입</h1>
 
                 <Controller
