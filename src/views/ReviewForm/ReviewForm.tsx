@@ -11,15 +11,7 @@ import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
-export interface ReviewFormProps {
-    rating: number;
-    starRating: string;
-    reviewContent: string | number;
-    image: string;
-}
-
-const ReviewForm = (props: ReviewFormProps) => {
-    const { rating, starRating, reviewContent, image } = props;
+const ReviewForm = () => {
     const [reviewText, setReviewText] = useState("");
 
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

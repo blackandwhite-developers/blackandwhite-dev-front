@@ -27,28 +27,27 @@ export interface ProductDetailProps {
     roomType: string;
     roomName: string;
     rating: number;
-    starRating: string;
     review: number;
     location: string;
-    wishlist: boolean;
-    reservationDate: string | number;
-    reservationCount: string | number;
-    cart: boolean;
 }
 const ProductDetail = (props: ProductDetailProps) => {
     const {
-        roomType,
-        roomName,
-        rating,
-        starRating,
-        review,
-        location,
-        wishlist,
-        reservationDate,
-        reservationCount,
+        // roomType,
+        // roomName,
+        // rating,
+        // review,
+        // location,
     } = props;
-    const title = "김포 마리나베이 호텔";
-
+    const data = {
+        roomType: "호텔",
+        roomName: "김포 마리나베이 호텔",
+        rating: "4.5",
+        starRating: "4.5",
+        review: "1,135",
+        location: "김포공항역 3분",
+        reservationDate: "24.11.15 ~ 24.11.16",
+        reservationCount: "성인 2명",
+    };
     const productDetailsArray = [
         {
             imageUrl: "/images/HotelImage1.png",
@@ -173,16 +172,16 @@ const ProductDetail = (props: ProductDetailProps) => {
                 </Swiper>
             </div>
             <div className={cx("ProductInform")}>
-                <p className={cx("ProductCategory")}>호텔</p>
+                <p className={cx("ProductCategory")}>{data.roomType}</p>
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
-                        <h1 className={cx("ProductTitle")}>{title}</h1>
+                        <h1 className={cx("ProductTitle")}>{data.roomName}</h1>
                         <a href="" className={cx("ProductFavorite")}>
                             <IoIosHeartEmpty />
                         </a>
                     </div>
                     <div className={cx("ProductRating")}>
-                        <p className={cx("ProductRatingText")}>4.0</p>
+                        <p className={cx("ProductRatingText")}>{data.rating}</p>
                         <p className={cx("ProductStarRating")}>
                             <FaRegStar />
                             <FaRegStar />
@@ -190,13 +189,15 @@ const ProductDetail = (props: ProductDetailProps) => {
                             <FaRegStar />
                             <FaRegStar />
                         </p>
-                        <p className={cx("ProductReviewCount")}>(1,136)</p>
+                        <p className={cx("ProductReviewCount")}>
+                            {data.review}
+                        </p>
                     </div>
                     <div className={cx("ProductLocation")}>
                         <p className={cx("ProductLocationIcon")}>
                             <IoLocationOutline />
                         </p>
-                        <p>김포공항역 3분</p>
+                        <p>{data.location}</p>
                     </div>
                 </div>
 

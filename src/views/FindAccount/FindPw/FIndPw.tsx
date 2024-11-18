@@ -1,28 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames/bind";
 import styles from "./FIndPw.module.scss";
 import Header from "@/app/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import { DisableBtn } from "@/app/components/Button/DisableBtn"; // Assuming you have this component
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-export interface FindPwProps {
-    userId: string | number;
-    userPhone: number;
-}
-
-const FIndPw = (props: FindPwProps) => {
-    const { userId, userPhone } = props;
+const FIndPw = () => {
+    const router = useRouter();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [isValid, setIsValid] = useState(false);
 
     /** 뒤로가기 */
-    const router = useRouter();
     const handleGoBack = () => {
         router.back();
+    };
+
+    const validateInputs = () => {
+        const isValidInput = (input: string) =>
+            input.length > 0 && input.length <= 20 && !input.includes("\n");
+
+        setIsValid(isValidInput(name) && isValidInput(email));
     };
 
     return (
@@ -38,26 +43,40 @@ const FIndPw = (props: FindPwProps) => {
             </div>
             <div className={cx("PwInputWrapper")}>
                 <label htmlFor="Pw"></label>
-                {userId}
                 <input
-                    id="id"
+                    id="name"
                     type="text"
                     placeholder="이름"
+                    maxLength={20}
+                    value={name}
+                    onChange={(e) => {
+                        setName(e.target.value);
+                        validateInputs();
+                    }}
                     className={cx("PwInput")}
                 />
                 <label htmlFor="phone"></label>
-                {userPhone}
                 <input
-                    id="phone"
+                    id="email"
                     type="text"
                     placeholder="이메일"
+                    maxLength={20}
+                    value={email}
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                        validateInputs();
+                    }}
                     className={cx("EmailInput")}
                 />
             </div>
             <div className={cx("FindPwNextBtn")}>
-                <Link href="/findaccount/newpassword">
-                    <AbleBtn label={"확인"} />
-                </Link>
+                {isValid ? (
+                    <Link href="/findaccount/newpassword">
+                        <AbleBtn label={"확인"} />
+                    </Link>
+                ) : (
+                    <DisableBtn label={"확인"} />
+                )}
             </div>
         </div>
     );

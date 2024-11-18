@@ -27,26 +27,17 @@ export interface ProductSelectProps {
     roomType: string;
     roomName: string;
     rating: number;
-    starRating: string;
     review: number;
     location: string;
-    wishlist: boolean;
-    reservationDate: string | number;
-    reservationCount: string | number;
-    cart: boolean;
 }
 
 const ProductSelect = (props: ProductSelectProps) => {
     const {
-        roomType,
-        roomName,
-        rating,
-        starRating,
-        review,
-        location,
-        wishlist,
-        reservationDate,
-        reservationCount,
+        // roomType,
+        // roomName,
+        // rating,
+        // review,
+        // location,
     } = props;
     const title = "김포 마리나베이 호텔";
 
