@@ -133,15 +133,15 @@ const SignUpView = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
+            <Header
+                leftIcon={
+                    <FaAngleLeft
+                        onClick={handleGoBack}
+                        className={styles.headerIcon}
+                    />
+                }
+            />
             <div className={styles.container}>
-                <Header
-                    leftIcon={
-                        <FaAngleLeft
-                            onClick={handleGoBack}
-                            className={styles.headerIcon}
-                        />
-                    }
-                />
                 <h1>회원가입</h1>
 
                 <Controller
