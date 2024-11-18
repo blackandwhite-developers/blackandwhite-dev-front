@@ -21,7 +21,7 @@ const CalanderView = () => {
         router.back();
     };
 
-    const [adultCount, setAdultCount] = useState<number>(0);
+    const [adultCount, setAdultCount] = useState<number>(1);
     const [childCount, setChildCount] = useState<number>(0);
     const [selectedDateRange, setSelectedDateRange] = useState<
         DateRange | undefined
@@ -30,8 +30,7 @@ const CalanderView = () => {
     useEffect(() => {
         const storedAdultCount = localStorage.getItem("adultCount");
         const storedChildCount = localStorage.getItem("childCount");
-        const storedSelectedDateRange =
-            localStorage.getItem("selectedDateRange");
+        const storedDateRange = localStorage.getItem("selectedDateRange");
 
         if (storedAdultCount) {
             setAdultCount(Number(storedAdultCount));
@@ -39,11 +38,18 @@ const CalanderView = () => {
         if (storedChildCount) {
             setChildCount(Number(storedChildCount));
         }
-        if (storedSelectedDateRange) {
-            const [fromDate, toDate] = storedSelectedDateRange.split(" ~ ");
-            const from = new Date(fromDate);
-            const to = new Date(toDate);
-            setSelectedDateRange({ from, to });
+        if (storedDateRange) {
+            const [fromDate, toDate] = storedDateRange.split(" ~ ");
+            const parsedFromDate = new Date(fromDate);
+            const parsedToDate = new Date(toDate);
+            setSelectedDateRange({ from: parsedFromDate, to: parsedToDate });
+        } else {
+            const today = new Date();
+            const formattedToday = {
+                from: today,
+                to: today,
+            };
+            setSelectedDateRange(formattedToday);
         }
     }, []);
 
@@ -150,13 +156,7 @@ const CalanderView = () => {
             <div className={cx("about")}>
                 <DateBtn label={formatSelectedDate()} />
                 <MemberBtn
-                    label={
-                        <>
-                            성인 {adultCount}명
-                            <br />
-                            아동 {childCount}명
-                        </>
-                    }
+                    label={<>{`성인 ${adultCount}명\n아동 ${childCount}명`}</>}
                 />
             </div>
 

@@ -86,7 +86,36 @@ const ProductDetail = (props: ProductDetailProps) => {
         const storedAdultCount = localStorage.getItem("adultCount");
         const storedChildCount = localStorage.getItem("childCount");
 
-        if (storedDateRange) setSelectedDateRange(storedDateRange);
+        if (storedDateRange) {
+            const [startDate, endDate] = storedDateRange.split(" ~ ");
+            const formattedStartDate = new Date(startDate);
+            const formattedEndDate = new Date(endDate);
+
+            const startDateWithDay = `${formattedStartDate.getFullYear()}.${(
+                formattedStartDate.getMonth() + 1
+            )
+                .toString()
+                .padStart(2, "0")}.${formattedStartDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} (${formattedStartDate.toLocaleString(
+                "default",
+                { weekday: "short" }
+            )})`;
+            const endDateWithDay = `${formattedEndDate.getFullYear()}.${(
+                formattedEndDate.getMonth() + 1
+            )
+                .toString()
+                .padStart(2, "0")}.${formattedEndDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} (${formattedEndDate.toLocaleString(
+                "default",
+                { weekday: "short" }
+            )})`;
+
+            setSelectedDateRange(`${startDateWithDay} ~ ${endDateWithDay}`);
+        }
         if (storedAdultCount) setAdultCount(Number(storedAdultCount));
         if (storedChildCount) setChildCount(Number(storedChildCount));
     }, []);
