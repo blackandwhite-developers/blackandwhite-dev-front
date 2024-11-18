@@ -20,6 +20,7 @@ import "swiper/css/pagination";
 import TotalReviewCard from "@/app/components/TotalReviewCard/TotalReviewCard";
 import Review from "@/app/components/Review/Review";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
@@ -253,11 +254,12 @@ const ProductSelect = (props: ProductSelectProps) => {
 
                         {selectedTab === "room" && (
                             <div>
-                                {" "}
-                                <div className={cx("ReservationSelectBtn")}>
-                                    <DateBtn label={""} />
-                                    <MemberBtn label={""} />
-                                </div>
+                                <Link href="/searchResult/calander">
+                                    <div className={cx("ReservationSelectBtn")}>
+                                        <DateBtn label={""} />
+                                        <MemberBtn label={""} />
+                                    </div>
+                                </Link>
                                 <div className={cx("ProductSelectCard")}>
                                     {productSelectData.map((product, index) => (
                                         <ProductSelectCard
