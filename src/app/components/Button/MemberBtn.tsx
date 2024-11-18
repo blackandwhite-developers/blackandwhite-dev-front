@@ -6,16 +6,16 @@ import { CgProfile } from "react-icons/cg";
 const cx = cn.bind(styles);
 
 type MemberBtnProps = {
-  label: string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    label: string | JSX.Element;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const MemberBtn = (props: MemberBtnProps) => {
-  const { label, onClick } = props;
-  return (
-    <button className={cx("MemberBtn")} onClick={onClick}>
-      <CgProfile />
-      {label}
-    </button>
-  );
+    const { label, onClick } = props;
+    return (
+        <button className={cx("MemberBtn")} onClick={onClick}>
+            <CgProfile />
+            {label}
+        </button>
+    );
 };

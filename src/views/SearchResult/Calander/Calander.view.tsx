@@ -2,17 +2,16 @@
 import React, { useState } from "react";
 import styles from "./Calander.view.module.scss";
 import "react-day-picker/style.css";
-
 import cn from "classnames/bind";
-import { DayPicker } from "react-day-picker";
+import { DayPicker, DateRange } from "react-day-picker";
 import Header from "@/app/components/Header/Header";
 import { MdClose } from "react-icons/md";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { DateBtn } from "@/app/components/Button/DateBtn";
 import { MemberBtn } from "@/app/components/Button/MemberBtn";
-// import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { ko } from "date-fns/locale";
 import { useRouter } from "next/navigation";
+
 const cx = cn.bind(styles);
 
 const CalanderView = () => {
@@ -24,6 +23,9 @@ const CalanderView = () => {
 
     const [adultCount, setAdultCount] = useState<number>(0);
     const [childCount, setChildCount] = useState<number>(0);
+    const [selectedDateRange, setSelectedDateRange] = useState<
+        DateRange | undefined
+    >(undefined);
 
     const handleAdultCountChange = (
         operation: "increase" | "decrease",
@@ -53,6 +55,32 @@ const CalanderView = () => {
         }
     };
 
+    /*날짜 선택*/
+    const handleDateChange = (date: DateRange | undefined) => {
+        setSelectedDateRange(date);
+    };
+
+    const formatSelectedDate = () => {
+        if (
+            !selectedDateRange ||
+            !selectedDateRange.from ||
+            !selectedDateRange.to
+        ) {
+            return "날짜를 선택해주세요";
+        }
+
+        const formatDate = (date: Date) => {
+            const year = date.getFullYear().toString().slice(-2);
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const day = String(date.getDate()).padStart(2, "0");
+            return `${year}.${month}.${day}`;
+        };
+
+        return `${formatDate(selectedDateRange.from)} ~ ${formatDate(
+            selectedDateRange.to
+        )}`;
+    };
+
     return (
         <div className={cx("calander-contianer")}>
             <Header
@@ -60,12 +88,25 @@ const CalanderView = () => {
                 leftIcon={<MdClose onClick={handleGoBack} />}
             />
             <div className={cx("about")}>
-                <DateBtn label="6.2화 - 6.3수"></DateBtn>
-                <MemberBtn label="성인 2명"></MemberBtn>
+                <DateBtn label={formatSelectedDate()} />
+                <MemberBtn
+                    label={
+                        <>
+                            성인 {adultCount}명
+                            <br />
+                            아동 {childCount}명
+                        </>
+                    }
+                />
             </div>
 
             <div className={cx("calander")}>
-                <DayPicker locale={ko} mode="range" />
+                <DayPicker
+                    locale={ko}
+                    mode="range"
+                    selected={selectedDateRange}
+                    onSelect={handleDateChange}
+                />
             </div>
 
             <div className={cx("middle-line")}></div>
@@ -122,9 +163,10 @@ const CalanderView = () => {
                     </div>
                 </div>
             </div>
+
             <div className={cx("bottomBtn")}>
                 <button className={cx("confirmBtn")}>
-                    2023.06.02(화) ~ 2023.06.03(수),총 2명
+                    {formatSelectedDate()}, 총 {adultCount + childCount}명
                 </button>
             </div>
         </div>
