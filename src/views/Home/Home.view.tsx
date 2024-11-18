@@ -24,21 +24,21 @@ const Homeview = (props: HomeviewProps) => {
   const { category, currentDate } = props;
   const [src, setSrc] = useState("/home/home_banner_desktop.png");
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setSrc("/home/img_home_banner.svg");
-      } else {
-        setSrc("/home/home_banner_desktop.png");
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth < 768) {
+  //       setSrc("/home/img_home_banner.svg");
+  //     } else {
+  //       setSrc("/home/home_banner_desktop.png");
+  //     }
+  //   };
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   return (
     <div className={cx("main-wrap")}>
@@ -61,10 +61,7 @@ const Homeview = (props: HomeviewProps) => {
             return (
               <Link href={`/product/list/${a.image}`} key={a.id}>
                 <div className={cx("grid-item")}>
-                  <img
-                    src={`/categoryImage/ic_home_${a.image}.svg`}
-                    alt={a.name}
-                  />
+                  <img src={`/categoryImage/ic_home_${a.image}.svg`} alt={a.name} />
                   <div className={cx("title")}>{a.name}</div>
                 </div>
               </Link>
@@ -79,8 +76,6 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("currentList")}>
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
-            {/*화면 설계서에 6개까지만 나타나도록 표현 */}
-            {currentDate.slice(0, 6).map((item, index) => (
             {currentDate.map((item) => (
               <div className={cx("list-item")} key={item.id}>
                 <div className={cx("list-image")}>

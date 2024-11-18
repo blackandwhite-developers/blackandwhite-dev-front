@@ -1,4 +1,4 @@
-@import '../../app/mixins';
+@import "../../app/mixins";
 
 /*헤더*/
 .header-container {
@@ -20,7 +20,6 @@
     fill: var(--main-purple);
   }
 }
-
 
 /*메인*/
 
@@ -95,7 +94,7 @@
 
 .main-container .currentList .list-title p {
   font-family: Noto Sans KR;
-  font-size: .75rem;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
@@ -106,37 +105,33 @@
   line-height: 23.17px;
 }
 
+// @include mobile {
+//   .header-container .bell {
+//     width: 20px;
+//     height: 20px;
+//   }
 
+//   .main-container .list-container {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }
 
-@include mobile {
-  .header-container .bell {
-    width: 20px;
-    height: 20px;
-  }
+// @include tablet {
+//   .header-container .bell {
+//     width: 23px;
+//     height: 23px;
+//   }
+// }
 
-  .main-container .list-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
+// @include desktop {
+//   .main-wrap {
+//     max-width: 1024px;
+//     margin: 0 auto;
+//     margin-bottom: 68px;
+//   }
 
-
-}
-
-@include tablet {
-  .header-container .bell {
-    width: 23px;
-    height: 23px;
-  }
-}
-
-@include desktop {
-  .main-wrap {
-    max-width: 1024px;
-    margin: 0 auto;
-    margin-bottom: 68px;
-  }
-
-  .header-container .bell {
-    width: 37px;
-    height: 37px;
-  }
-}
+//   .header-container .bell {
+//     width: 37px;
+//     height: 37px;
+//   }
+// }
