@@ -5,8 +5,8 @@ import cn from "classnames/bind";
 import styles from "./FIndPw.module.scss";
 import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
-import { DisableBtn } from "@/app/components/Button/DisableBtn";
+import { AbleBtn } from "@/components/Button/AbleBtn";
+import { DisableBtn } from "@/components/Button/DisableBtn";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
