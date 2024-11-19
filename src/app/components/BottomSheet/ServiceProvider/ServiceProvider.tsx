@@ -10,17 +10,24 @@ const cx = cn.bind(styles);
 
 type ServiceProviderProps = {
     carriers?: string[];
+    onClose: () => void;
 };
 
-const ServiceProvider = ({ carriers = [] }: ServiceProviderProps) => {
+const ServiceProvider = ({ carriers = [], onClose }: ServiceProviderProps) => {
     return (
         <div>
-            <CarrierList carriers={carriers} />
+            <CarrierList carriers={carriers} onClose={onClose} />
         </div>
     );
 };
 
-const CarrierList = ({ carriers }: { carriers: string[] }) => {
+const CarrierList = ({
+    carriers,
+    onClose,
+}: {
+    carriers: string[];
+    onClose: () => void;
+}) => {
     const [selectedCarrier, setSelectedCarrier] = useState<string | null>(null);
 
     const handleCarrierClick = (carrier: string) => {
@@ -33,7 +40,7 @@ const CarrierList = ({ carriers }: { carriers: string[] }) => {
 
     return (
         <div className={cx("CategoryWrapper")}>
-            <div className={cx("CategoryTapBar")}>
+            <div className={cx("CategoryTapBar")} onClick={onClose}>
                 <Image
                     src="/images/TapBar.png"
                     alt="탭 바 이미지"

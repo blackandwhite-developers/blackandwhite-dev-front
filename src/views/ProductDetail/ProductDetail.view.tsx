@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
@@ -20,6 +20,8 @@ import "swiper/css/pagination";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import Review from "@/app/components/Review/Review";
 import TotalReviewCard from "@/app/components/TotalReviewCard/TotalReviewCard";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
@@ -138,14 +140,71 @@ const ProductDetail = (props: ProductDetailProps) => {
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
     };
+    const router = useRouter();
 
+    const handleDateBtnClick = () => {
+        router.push("/searchResult/calander");
+    };
+
+    const handleMemberBtnClick = () => {
+        router.push("/searchResult/calander");
+    };
+    const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+    const [adultCount, setAdultCount] = useState<number>(0);
+    const [childCount, setChildCount] = useState<number>(0);
+
+    useEffect(() => {
+        const storedDateRange = localStorage.getItem("selectedDateRange");
+        const storedAdultCount = localStorage.getItem("adultCount");
+        const storedChildCount = localStorage.getItem("childCount");
+
+        if (!storedAdultCount) setAdultCount(1);
+        if (!storedChildCount) setChildCount(0);
+
+        if (storedDateRange) {
+            const [startDate, endDate] = storedDateRange.split(" ~ ");
+            const formattedStartDate = new Date(startDate);
+            const formattedEndDate = new Date(endDate);
+
+            const startDateWithDay = `${formattedStartDate.getFullYear()}.${(
+                formattedStartDate.getMonth() + 1
+            )
+                .toString()
+                .padStart(2, "0")}.${formattedStartDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} (${formattedStartDate.toLocaleString(
+                "default",
+                { weekday: "short" }
+            )})`;
+            const endDateWithDay = `${formattedEndDate.getFullYear()}.${(
+                formattedEndDate.getMonth() + 1
+            )
+                .toString()
+                .padStart(2, "0")}.${formattedEndDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} (${formattedEndDate.toLocaleString(
+                "default",
+                { weekday: "short" }
+            )})`;
+
+            setSelectedDateRange(`${startDateWithDay} ~ ${endDateWithDay}`);
+        }
+        if (storedAdultCount) setAdultCount(Number(storedAdultCount));
+        if (storedChildCount) setChildCount(Number(storedChildCount));
+    }, []);
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
                 <Header
                     title={"객실상세"}
                     leftIcon={<FaAngleLeft />}
-                    rightIcon={<BsCart2 />}
+                    rightIcon={
+                        <Link href="/home/detail/cart">
+                            <BsCart2 />
+                        </Link>
+                    }
                 />
             </div>
 
@@ -251,28 +310,46 @@ const ProductDetail = (props: ProductDetailProps) => {
                             </div>
                         )}
 
-                        {selectedTab === "room" && (
-                            <div>
-                                {" "}
-                                <div className={cx("ReservationSelectBtn")}>
-                                    <DateBtn label={""} />
-                                    <MemberBtn label={""} />
+                        <div>
+                            {selectedTab === "room" && (
+                                <div>
+                                    <div className={cx("ReservationSelectBtn")}>
+                                        <DateBtn
+                                            label={
+                                                selectedDateRange ||
+                                                "날짜를 선택해주세요"
+                                            }
+                                            onClick={handleDateBtnClick}
+                                        />
+                                        <MemberBtn
+                                            label={
+                                                <>
+                                                    성인 {adultCount}명
+                                                    <br />
+                                                    아동 {childCount}명
+                                                </>
+                                            }
+                                            onClick={handleMemberBtnClick}
+                                        />
+                                    </div>
+                                    <div className={cx("ProductSelectCard")}>
+                                        {productDetailsArray.map(
+                                            (product, index) => (
+                                                <ProductDetailCard
+                                                    key={index}
+                                                    imageUrl={product.imageUrl}
+                                                    label={product.label}
+                                                    title={product.title}
+                                                    infomation={
+                                                        product.infomation
+                                                    }
+                                                />
+                                            )
+                                        )}
+                                    </div>
                                 </div>
-                                <div className={cx("ProductSelectCard")}>
-                                    {productDetailsArray.map(
-                                        (product, index) => (
-                                            <ProductDetailCard
-                                                key={index}
-                                                imageUrl={product.imageUrl}
-                                                label={product.label}
-                                                title={product.title}
-                                                infomation={product.infomation}
-                                            />
-                                        )
-                                    )}
-                                </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,8 @@ import Link from "next/link";
 const cx = cn.bind(styles);
 
 const SelectGender = () => {
-    const [selectedGender, setSelectedGender] = useState<string | null>(null);
+    // Set default selectedGender to "남성"
+    const [selectedGender, setSelectedGender] = useState<string | null>("남성");
 
     const handleGenderSelect = (gender: string) => {
         setSelectedGender((prevGender) =>

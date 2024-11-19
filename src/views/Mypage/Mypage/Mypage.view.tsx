@@ -46,10 +46,7 @@ const Mypage = (props: MypageProps) => {
                     <p className={cx("Nickname")}>{userNickname}님.</p>
                 </div>
                 <div className={cx("EditProfileWrapper")}>
-                    <Link
-                        href="/mypage/certification"
-                        className={cx("EditProfile")}
-                    >
+                    <Link href="/mypage/myinfo" className={cx("EditProfile")}>
                         내 정보 수정
                         <IoIosArrowForward className={cx("EditProfilIcon")} />
                     </Link>
