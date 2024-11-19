@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductRoomDetail.view.module.scss";
@@ -14,7 +14,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
-import DatePicker from "@/app/components/DatePicker/DatePicker";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
@@ -68,10 +69,56 @@ const ProductDetail = (props: ProductDetailProps) => {
         "/images/HotelImage1.png",
     ];
 
-    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-    const toggleDatePicker = () => {
-        setIsDatePickerOpen((prev) => !prev);
+    const router = useRouter();
+    const handleDateBtnClick = () => {
+        router.push("/searchResult/calander");
     };
+
+    const handleMemberBtnClick = () => {
+        router.push("/searchResult/calander");
+    };
+    const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+    const [adultCount, setAdultCount] = useState<number>(0);
+    const [childCount, setChildCount] = useState<number>(0);
+
+    useEffect(() => {
+        const storedDateRange = localStorage.getItem("selectedDateRange");
+        const storedAdultCount = localStorage.getItem("adultCount");
+        const storedChildCount = localStorage.getItem("childCount");
+
+        if (storedDateRange) {
+            const [startDate, endDate] = storedDateRange.split(" ~ ");
+            const formattedStartDate = new Date(startDate);
+            const formattedEndDate = new Date(endDate);
+
+            const startDateWithDay = `${formattedStartDate.getFullYear()}.${(
+                formattedStartDate.getMonth() + 1
+            )
+                .toString()
+                .padStart(2, "0")}.${formattedStartDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} (${formattedStartDate.toLocaleString(
+                "default",
+                { weekday: "short" }
+            )})`;
+            const endDateWithDay = `${formattedEndDate.getFullYear()}.${(
+                formattedEndDate.getMonth() + 1
+            )
+                .toString()
+                .padStart(2, "0")}.${formattedEndDate
+                .getDate()
+                .toString()
+                .padStart(2, "0")} (${formattedEndDate.toLocaleString(
+                "default",
+                { weekday: "short" }
+            )})`;
+
+            setSelectedDateRange(`${startDateWithDay} ~ ${endDateWithDay}`);
+        }
+        if (storedAdultCount) setAdultCount(Number(storedAdultCount));
+        if (storedChildCount) setChildCount(Number(storedChildCount));
+    }, []);
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -79,7 +126,11 @@ const ProductDetail = (props: ProductDetailProps) => {
                 <Header
                     title={"객실상세"}
                     leftIcon={<FaAngleLeft />}
-                    rightIcon={<BsCart2 />}
+                    rightIcon={
+                        <Link href="/home/detail/cart">
+                            <BsCart2 />
+                        </Link>
+                    }
                 />
                 <a href="" className={cx("CartIcon")}>
                     <BsCart2 />
@@ -126,14 +177,24 @@ const ProductDetail = (props: ProductDetailProps) => {
 
                     <div className={cx("ReservationWrapper")}>
                         <div className={cx("ReservationSelectBtn")}>
-                            <DateBtn label={""} onClick={toggleDatePicker} />
-                            <MemberBtn label={""} />
+                            <DateBtn
+                                label={
+                                    selectedDateRange || "날짜를 선택해주세요"
+                                }
+                                onClick={handleDateBtnClick}
+                            />
+                            <MemberBtn
+                                label={
+                                    <>
+                                        성인 {adultCount}명
+                                        <br />
+                                        아동 {childCount}명
+                                    </>
+                                }
+                                onClick={handleMemberBtnClick}
+                            />
                         </div>
-                        {isDatePickerOpen && (
-                            <div className={cx("DatePickerWrapper")}>
-                                <DatePicker />
-                            </div>
-                        )}
+
                         <div>
                             {productDetailsArray.map((product, index) => (
                                 <ProductRoomDetailCard

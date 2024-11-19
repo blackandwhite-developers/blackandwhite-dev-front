@@ -11,6 +11,7 @@ import { DisableBtn } from "@/app/components/Button/DisableBtn";
 import { NomalBtn } from "@/app/components/Button/NomalBtn";
 import { Dialog } from "@/app/components/dialog/Dialog";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
@@ -140,9 +141,10 @@ const MyInfo = (props: MyInfoProps) => {
             )}
 
             <div className={cx("ProfileInfoWrapper")}>
-                <label htmlFor="name" className={cx("ProfileInfo")}>
-                    회원 정보
-                </label>
+                <p className={cx("ProfileInfo")}>회원 정보</p>
+                <Link href="/mypage/certification">
+                    <p className={cx("ProfileEdit")}>수정</p>
+                </Link>
             </div>
 
             <div className={cx("ProfileInputWrapper")}>

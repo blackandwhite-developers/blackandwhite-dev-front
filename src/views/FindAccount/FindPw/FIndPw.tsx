@@ -60,7 +60,6 @@ const FIndPw = () => {
                     id="email"
                     type="text"
                     placeholder="이메일"
-                    maxLength={20}
                     value={email}
                     onChange={(e) => {
                         setEmail(e.target.value);

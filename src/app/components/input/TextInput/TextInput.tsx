@@ -1,8 +1,8 @@
-"use client"
-import React, { useState } from 'react';
-import { LuEye, LuEyeOff } from 'react-icons/lu';
-import cn from 'classnames/bind';
-import styles from './TextInput.module.scss';
+"use client";
+import React, { useState } from "react";
+import { LuEye, LuEyeOff } from "react-icons/lu";
+import cn from "classnames/bind";
+import styles from "./TextInput.module.scss";
 
 const cx = cn.bind(styles);
 
@@ -11,21 +11,22 @@ interface TextInputProps {
     placeholder: string;
     showToggle?: boolean;
     className?: string;
-    errorMessage? : string;
+    errorMessage?: string;
     value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; 
+    maxLength?: number;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput = ({ 
-    type, 
-    placeholder, 
-    showToggle, 
-    className, 
-    errorMessage, 
-    value, 
-    onChange 
+const TextInput = ({
+    type,
+    placeholder,
+    showToggle,
+    className,
+    errorMessage,
+    value,
+    onChange,
+    maxLength,
 }: TextInputProps) => {
-
     const [inputType, setInputType] = useState(type);
 
     const toggleVisibility = () => {
@@ -35,24 +36,27 @@ const TextInput = ({
     const isError = Boolean(errorMessage);
 
     return (
-        <div className={cx('inputWrapper', className)}>
+        <div className={cx("inputWrapper", className)}>
             <input
-                className={cx('inputField')}
+                className={cx("inputField")}
                 type={inputType}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
+                maxLength={maxLength}
             />
             {showToggle && (
                 <button
                     type="button"
-                    className={cx('toggleButton', { eyeOff: inputType === 'password' })}
+                    className={cx("toggleButton", {
+                        eyeOff: inputType === "password",
+                    })}
                     onClick={toggleVisibility}
                 >
-                    {inputType === 'password' ? <LuEyeOff /> : <LuEye />}
+                    {inputType === "password" ? <LuEyeOff /> : <LuEye />}
                 </button>
             )}
-            {isError && <p className={cx('errorMessage')}>{errorMessage}</p>}
+            {isError && <p className={cx("errorMessage")}>{errorMessage}</p>}
         </div>
     );
 };

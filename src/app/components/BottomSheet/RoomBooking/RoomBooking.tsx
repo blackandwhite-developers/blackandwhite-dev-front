@@ -7,6 +7,8 @@ import styles from "./RoomBooking.module.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type RoomBookingProps = {
     onClose: () => void;
@@ -17,8 +19,22 @@ const cx = cn.bind(styles);
 const RoomBooking = ({ onClose }: RoomBookingProps) => {
     const [availableTimes, setAvailableTimes] = useState<string[]>([]);
     const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
+    const [checkInDate, setCheckInDate] = useState<string>("");
+    const [checkOutDate, setCheckOutDate] = useState<string>("");
+    const [checkInTime, setCheckInTime] = useState<string>("00:00");
+    const [checkOutTime, setCheckOutTime] = useState<string>("00:00");
+    const [stayDuration, setStayDuration] = useState<number>(0);
+    const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
 
     useEffect(() => {
+        const storedDateRange = localStorage.getItem("selectedDateRange");
+
+        if (storedDateRange) {
+            const [checkIn, checkOut] = storedDateRange.split(" ~ ");
+            setCheckInDate(checkIn);
+            setCheckOutDate(checkOut);
+        }
+
         const startHour = 14;
         const endHour = 21;
         const times = Array.from(
@@ -28,24 +44,92 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
         setAvailableTimes(times);
     }, []);
 
+    useEffect(() => {
+        if (selectedTimes.length > 0) {
+            const minTime = selectedTimes[0];
+            const maxTime = selectedTimes[selectedTimes.length - 1];
+            setCheckInTime(minTime);
+            setCheckOutTime(maxTime);
+        } else {
+            setCheckInTime("00:00");
+            setCheckOutTime("00:00");
+        }
+    }, [selectedTimes]);
+
+    useEffect(() => {
+        const calculateDuration = () => {
+            const [startHour, startMinute] = checkInTime.split(":").map(Number);
+            const [endHour, endMinute] = checkOutTime.split(":").map(Number);
+
+            const startTotalMinutes = startHour * 60 + startMinute;
+            const endTotalMinutes = endHour * 60 + endMinute;
+
+            const duration = (endTotalMinutes - startTotalMinutes) / 60;
+            setStayDuration(duration > 0 ? duration : 0);
+        };
+
+        calculateDuration();
+    }, [checkInTime, checkOutTime]);
+
     const handleTimeSelect = (time: string) => {
-        const index = availableTimes.indexOf(time);
-        if (index === -1) return;
+        const timeIndex = availableTimes.indexOf(time);
+        if (timeIndex === -1) return;
 
         if (selectedTimes.includes(time)) {
-            const isAtEnds = index === 0 || index === availableTimes.length - 1;
-            setSelectedTimes(
-                isAtEnds ? selectedTimes.filter((t) => t !== time) : []
+            const minSelectedIndex = availableTimes.indexOf(selectedTimes[0]);
+            const maxSelectedIndex = availableTimes.indexOf(
+                selectedTimes[selectedTimes.length - 1]
             );
+
+            if (timeIndex > minSelectedIndex && timeIndex < maxSelectedIndex) {
+                setSelectedTimes([]);
+            } else {
+                setSelectedTimes(selectedTimes.filter((t) => t !== time));
+            }
         } else {
-            if (
-                !selectedTimes.length ||
-                selectedTimes.includes(availableTimes[index - 1]) ||
-                selectedTimes.includes(availableTimes[index + 1])
-            ) {
-                setSelectedTimes([...selectedTimes, time].sort());
+            if (selectedTimes.length === 0) {
+                setSelectedTimes([time]);
+            } else {
+                const minSelectedIndex = availableTimes.indexOf(
+                    selectedTimes[0]
+                );
+                const maxSelectedIndex = availableTimes.indexOf(
+                    selectedTimes[selectedTimes.length - 1]
+                );
+
+                if (
+                    timeIndex < minSelectedIndex ||
+                    timeIndex > maxSelectedIndex
+                ) {
+                    const newStartIndex = Math.min(minSelectedIndex, timeIndex);
+                    const newEndIndex = Math.max(maxSelectedIndex, timeIndex);
+                    const newSelectedTimes = availableTimes.slice(
+                        newStartIndex,
+                        newEndIndex + 1
+                    );
+                    setSelectedTimes(newSelectedTimes);
+                } else {
+                    return;
+                }
             }
         }
+    };
+
+    const router = useRouter();
+
+    const handleReservationClick = () => {
+        if (selectedTimes.length === 0) {
+            alert("시간을 선택해주세요!");
+        } else {
+            router.push("/payment");
+        }
+    };
+
+    const handleAddToCart = () => {
+        setIsCartPopupVisible(true);
+        setTimeout(() => {
+            setIsCartPopupVisible(false);
+        }, 2000);
     };
 
     return (
@@ -73,14 +157,14 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
                     <div className={cx("ReservationDetail")}>
                         <ul>
                             <li className={cx("CheckIn")}>체크인</li>
-                            <li>2024.11.05(화)</li>
-                            <li>16:00</li>
+                            <li>{checkInDate}</li>
+                            <li>{checkInTime}</li>
                         </ul>
-                        <p className={cx("StayHour")}>4시간</p>
+                        <p className={cx("StayHour")}>{stayDuration}시간</p>
                         <ul>
                             <li className={cx("CheckOut")}>체크아웃</li>
-                            <li>2024.11.05(화)</li>
-                            <li>20:00</li>
+                            <li>{checkOutDate}</li>
+                            <li>{checkOutTime}</li>
                         </ul>
                     </div>
                 </div>
@@ -119,14 +203,32 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
             <div className={cx("ReservationInfo")}>
                 <div className={cx("ReservationIfoStayNight")}>
                     <p>대실</p>
-                    <span>(4시간)</span>
+                    <span>({stayDuration}시간)</span>
                 </div>
                 <p>75,000원</p>
             </div>
             <div className={cx("ButtonWrapper")}>
-                <button className={cx("CartButton")}>장바구니 담기</button>
-                <button className={cx("ReservationButton")}>예약하기</button>
+                <button className={cx("CartButton")} onClick={handleAddToCart}>
+                    장바구니 담기
+                </button>
+                <button
+                    className={cx("ReservationButton")}
+                    onClick={handleReservationClick}
+                >
+                    예약하기
+                </button>
             </div>
+            {/* 장바구니 팝업 */}
+            {isCartPopupVisible && (
+                <div className={cx("CartPopup")}>
+                    <div className={cx("CartItem")}>
+                        <p>장바구니에 상품이 담겼습니다.</p>
+                        <Link href="/detail/cart">
+                            <p className={cx("LookCart")}>장바구니 보기</p>
+                        </Link>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

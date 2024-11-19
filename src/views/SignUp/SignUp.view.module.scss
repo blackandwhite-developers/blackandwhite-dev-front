@@ -4,11 +4,15 @@
     align-items: center;
     margin: 0 auto;
     width: 360px;
-    height: 760px;
+    height: auto;
+    padding-top: 45px;
     background-color: var(--white);
     position: relative;
 }
-
+.headerIcon {
+    color: #8728ff;
+    font-size: 24px;
+}
 .container {
     width: 100%;
     max-width: 360px;
@@ -16,13 +20,18 @@
     padding: 20px;
     text-align: center;
 
-
     h1 {
         font-size: 2rem;
         color: var(--main-purple);
         text-align: left;
         margin-bottom: 20px;
         font-weight: 700;
+    }
+
+    .textInput {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--gray400);
     }
 }
 
@@ -36,8 +45,6 @@
         text-decoration: none;
     }
 
-    
-
     button {
         all: unset;
         color: var(--main-purple);
@@ -50,7 +57,6 @@
             opacity: 0.8;
         }
     }
-
 }
 
 .error {
@@ -60,7 +66,6 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
 
 .overlay {
     position: fixed;
@@ -77,30 +82,30 @@
     }
 }
 
-.bottomSheet {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--white);
-    border-radius: 16px 16px 0 0;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    z-index: 101;
-    max-height: 80vh;
+// .bottomSheet {
+//     position: fixed;
+//     bottom: 0;
+//     left: 0;
+//     width: 100%;
+//     background-color: var(--white);
+//     border-radius: 16px 16px 0 0;
+//     transform: translateY(100%);
+//     transition: transform 0.3s ease;
+//     z-index: 101;
+//     max-height: 80vh;
 
-    &.open {
-        transform: translateY(0);
-    }
-}
+//     &.open {
+//         transform: translateY(0);
+//     }
+// }
 
-.wrapper_bottomSheet {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    height: 100%;
-}
+// .wrapper_bottomSheet {
+//     display: flex;
+//     justify-content: center;
+//     align-items: flex-start;
+//     width: 100%;
+//     height: 100%;
+// }
 
 .container_bottomSheet {
     width: 100%;
@@ -108,11 +113,16 @@
     height: 100%;
     background-color: var(--white);
 
-    p, div {
+    p,
+    div {
         margin-bottom: 10px;
     }
 
-    div ul{
-        list-style-position: inside; 
+    div ul {
+        list-style-position: inside;
     }
+}
+
+.checkBox button {
+    font-size: 12px;
 }

@@ -10,32 +10,39 @@ const cx = cn.bind(styles);
 
 type SortOptionProps = {
     sortOptions?: string[];
+    onClose: () => void;
 };
 
-const SortOption = ({ sortOptions = [] }: SortOptionProps) => {
+const SortOption = ({ sortOptions = [], onClose }: SortOptionProps) => {
     return (
         <div>
-            <SortOptionList sortOptions={sortOptions} />
+            <SortOptionList sortOptions={sortOptions} onClose={onClose} />
         </div>
     );
 };
 
-const SortOptionList = ({ sortOptions }: { sortOptions: string[] }) => {
-    const [selectedSortOptions, setSelectedSortOptions] = useState<
-        string | null
-    >(null);
+const SortOptionList = ({
+    sortOptions,
+    onClose,
+}: {
+    sortOptions: string[];
+    onClose: () => void;
+}) => {
+    const [selectedSortOption, setSelectedSortOption] = useState<string | null>(
+        null
+    );
 
-    const handleSortOptionsClick = (sortOptions: string) => {
-        if (selectedSortOptions === sortOptions) {
-            setSelectedSortOptions(null);
+    const handleSortOptionClick = (sortOption: string) => {
+        if (selectedSortOption === sortOption) {
+            setSelectedSortOption(null);
         } else {
-            setSelectedSortOptions(sortOptions);
+            setSelectedSortOption(sortOption);
         }
     };
 
     return (
         <div className={cx("CategoryWrapper")}>
-            <div className={cx("CategoryTapBar")}>
+            <div className={cx("CategoryTapBar")} onClick={onClose}>
                 <Image
                     src="/images/TapBar.png"
                     alt="탭 바 이미지"
@@ -45,17 +52,17 @@ const SortOptionList = ({ sortOptions }: { sortOptions: string[] }) => {
             </div>
             <h1 className={cx("CategoryTitle")}>정렬</h1>
             <div className={cx("CategoryListWrapper")}>
-                {sortOptions.map((sortOptions, index) => (
+                {sortOptions.map((sortOption, index) => (
                     <div
                         className={cx("CategoryList", {
-                            selectedSortOptions:
-                                selectedSortOptions === sortOptions,
+                            selectedSortOption:
+                                selectedSortOption === sortOption,
                         })}
                         key={index}
-                        onClick={() => handleSortOptionsClick(sortOptions)}
+                        onClick={() => handleSortOptionClick(sortOption)}
                     >
-                        <p className={cx("CategoryItem")}>{sortOptions}</p>
-                        {selectedSortOptions === sortOptions && (
+                        <p className={cx("CategoryItem")}>{sortOption}</p>
+                        {selectedSortOption === sortOption && (
                             <FaCheck className={cx("CategoryItemCheck")} />
                         )}
                     </div>
