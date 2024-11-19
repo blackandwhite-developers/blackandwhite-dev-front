@@ -88,7 +88,7 @@ const Homeview = (props: HomeviewProps) => {
                   <p>{item.title}</p>
                 </div>
                 <div className={cx("list-price")}>
-                  <p>{item.price}</p>
+                  <p>{item.price.toLocaleString()}원</p>
                 </div>
               </div>
             ))}
