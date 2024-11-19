@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import cn from "classnames/bind";
 import styles from "./NewPassword.module.scss";
 import Header from "@/app/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import { DisableBtn } from "@/app/components/Button/DisableBtn";
 import TextInput from "@/app/components/input/TextInput/TextInput";
 import { useRouter } from "next/navigation";
 
@@ -21,12 +22,17 @@ const NewPassword = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [isValid, setIsValid] = useState(false);
 
     // 비밀번호 유효성 검사 [영문, 숫자 조합 8자 이상]
     const validatePassword = (password: string) => {
         const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
         return passwordRegex.test(password);
     };
+
+    useEffect(() => {
+        setIsValid(password.length > 0 && confirmPassword.length > 0);
+    }, [password, confirmPassword]);
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
@@ -85,7 +91,11 @@ const NewPassword = () => {
                 </div>
             </div>
             <div className={cx("ChangePwBtn")}>
-                <AbleBtn label={"비밀번호 변경"} onClick={handleSubmit} />
+                {isValid ? (
+                    <AbleBtn label={"비밀번호 변경"} onClick={handleSubmit} />
+                ) : (
+                    <DisableBtn label={"비밀번호 변경"} />
+                )}
             </div>
         </div>
     );
