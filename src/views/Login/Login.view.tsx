@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "./Login.view.module.scss";
 import TextInput from "@/app/components/input/TextInput/TextInput";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
+<<<<<<< HEAD
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
 
 const LoginView = () => {
@@ -81,6 +82,26 @@ const LoginView = () => {
                     </a>
                 </div>
             </div>
+=======
+import Link from "next/link";
+
+const LoginView = () => {
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <h1>로그인</h1>
+        <div className={styles.inputContainer}>
+          <TextInput type="text" placeholder="이메일" className="textInput" />
+          <TextInput type="password" placeholder="비밀번호" showToggle className="textInput" />
+        </div>
+
+        <AbleBtn label="로그인" />
+
+        <div className={styles.authLinks}>
+          <Link href="/findaccount/findid">아이디찾기</Link>
+          <Link href="/findaccount/findpw">비밀번호 찾기</Link>
+          <Link href="/signup">회원가입</Link>
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
         </div>
     );
 };

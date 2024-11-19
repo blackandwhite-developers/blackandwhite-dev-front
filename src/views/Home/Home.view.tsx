@@ -25,21 +25,21 @@ const Homeview = (props: HomeviewProps) => {
   const { category, currentDate } = props;
   const [src, setSrc] = useState("/home/home_banner_desktop.png");
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setSrc("/home/img_home_banner.svg");
-      } else {
-        setSrc("/home/home_banner_desktop.png");
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth < 768) {
+  //       setSrc("/home/img_home_banner.svg");
+  //     } else {
+  //       setSrc("/home/home_banner_desktop.png");
+  //     }
+  //   };
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   return (
     <div className={cx("main-wrap")}>

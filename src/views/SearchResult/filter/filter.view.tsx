@@ -7,6 +7,8 @@ import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
 import { TextBtn } from "@/app/components/Button/TextBtn";
 import Radio from "@/app/components/radio/Radio";
 import PriceRangeSlider from "@/app/components/priceBar/PriceBar";
+import PriceBar from "@/app/components/priceBar/PriceBar";
+import { AbleBtn } from "@/app/components/Button/AbleBtn";
 
 const cx = cn.bind(styles);
 
@@ -49,9 +51,10 @@ const FilterPageView = (props: FilterPageViewProps) => {
           </div>
         </div>
         <div className={cx("price-container")}>
-          <h3> 가격대</h3>
-          <PriceRangeSlider />
+          <PriceBar />
         </div>
+
+        <AbleBtn label={"필터 적용하기"} />
       </div>
     </div>
   );

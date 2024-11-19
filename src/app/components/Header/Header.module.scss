@@ -16,6 +16,7 @@
 }
 
 @include mobile {
+<<<<<<< HEAD
     .Container {
         margin: 0 20px;
         gap: 20px;
@@ -37,6 +38,29 @@
         gap: 20px;
         width: 1024px;
     }
+=======
+  .Container {
+    margin: 0 20px;
+    gap: 20px;
+    width: 320px;
+  }
+}
+
+@include tablet {
+  .Container {
+    margin: 0 204px;
+    gap: 20px;
+    width: 360px;
+  }
+}
+
+@include desktop {
+  .Container {
+    margin: 0 448px;
+    gap: 20px;
+    width: 1024px;
+  }
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
 }
 
 .Container {
@@ -57,6 +81,7 @@
 }
 
 .HeaderTitle {
+<<<<<<< HEAD
     display: flex;
     font-size: 16px;
     font-weight: 500;
@@ -64,4 +89,13 @@
     align-items: center;
     flex-grow: 1;
     transform: translateX(-14.5px);
+=======
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  transform: translateX(-14.5px);
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
 }

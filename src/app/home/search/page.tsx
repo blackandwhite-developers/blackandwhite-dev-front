@@ -7,6 +7,10 @@ const SearchPage = () => {
   };
 
   const recommendData = ["양양", "강릉", "여행가고싶다", "겨울바다", "모두연"];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
   return <SearchView aboutData={aboutData} recommendData={recommendData} />;
 };
 

@@ -40,6 +40,7 @@ $background-color: #f4f4f4;
   }
 }
 
+<<<<<<< HEAD
 .textInput {
   font-size: 14px;
   font-weight: 500;
@@ -54,6 +55,8 @@ $background-color: #f4f4f4;
   gap: 15px;
 }
 
+=======
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
 .authLinks {
   display: flex;
   justify-content: center;
@@ -62,8 +65,11 @@ $background-color: #f4f4f4;
   a {
     text-decoration: none;
     color: $primary-color;
+<<<<<<< HEAD
     font-size: 14px;
     font-weight: 400;
+=======
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
 
     &:hover {
       text-decoration: underline;
@@ -82,7 +88,11 @@ $background-color: #f4f4f4;
   align-items: center;
   text-align: center;
   width: 100%;
+<<<<<<< HEAD
   margin-top: 20px;
+=======
+  margin-top: 40px;
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
 
   &::before,
   &::after {
@@ -95,6 +105,7 @@ $background-color: #f4f4f4;
     margin: 0 10px;
     font-size: 14px;
     color: $primary-color;
+<<<<<<< HEAD
     font-weight: 400;
   }
 }
@@ -104,4 +115,7 @@ $background-color: #f4f4f4;
   justify-content: center;
   align-items: center;
   gap: 10px;
+=======
+  }
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
 }

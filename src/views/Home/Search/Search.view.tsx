@@ -17,7 +17,7 @@ export interface SearchViewProps {
 }
 
 const RECENT_SEARCHES_KEY = "recentSearches";
-const MAX_RECENT_SEARCHES = 5;
+const MAX_RECENT_SEARCHES = 8;
 
 const SearchView = (props: SearchViewProps) => {
   const { aboutData, recommendData } = props;
@@ -81,9 +81,15 @@ const SearchView = (props: SearchViewProps) => {
           <div className={cx("recommend-wrapper")}>
             <p>추천 검색어</p>
             <div className={cx("recommend-container")}>
+<<<<<<< HEAD
               {recommendData.slice(0, 5).map((term, index) => (
                 <div className={cx("TextBtn")}>
                   <TextBtn key={index} label={term} />
+=======
+              {recommendData.map((term, index) => (
+                <div className={cx("recommendBtn")}>
+                  <TextBtn key={index} label={term} onClick={() => handleSearch(term)} />
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
                 </div>
               ))}
             </div>
@@ -91,7 +97,11 @@ const SearchView = (props: SearchViewProps) => {
 
           <div className={cx("popular-content")}>
             <p>인기 검색어</p>
+<<<<<<< HEAD
             <button>인기검색어</button>
+=======
+            <button></button>
+>>>>>>> 70b901b81c4325e45ffbd9e342a12876ebcd45fd
           </div>
         </div>
       </div>
