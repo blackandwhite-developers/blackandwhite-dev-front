@@ -8,11 +8,14 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { DisableBtn } from "@/components/Button/DisableBtn";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const Phone = () => {
+type PhoneProps = {
+    PhoneFunc: (phone: string) => void;
+};
+const Phone = (props: PhoneProps) => {
+    const { PhoneFunc } = props;
     const router = useRouter();
     /** 뒤로가기 */
     const handleGoBack = () => {
@@ -51,6 +54,14 @@ const Phone = () => {
 
     const isFormValid = name.length > 0 && phone.length > 0;
 
+    const onPhone = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        if (phone === null) {
+            return;
+        }
+        PhoneFunc(phone);
+    };
+
     return (
         <div className={cx("SelectPhoneWrapper")}>
             <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
@@ -86,9 +97,7 @@ const Phone = () => {
 
             <div className={cx("PhoneNextBtn")}>
                 {isFormValid ? (
-                    <Link href="/userselect">
-                        <AbleBtn label={"확인"} />
-                    </Link>
+                    <AbleBtn label={"확인"} onClick={onPhone} />
                 ) : (
                     <DisableBtn label={"확인"} />
                 )}
