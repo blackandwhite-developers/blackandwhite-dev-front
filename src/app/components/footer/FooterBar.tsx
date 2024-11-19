@@ -18,7 +18,7 @@ const FooterBar = () => {
         router.push("/map");
         break;
       case "home":
-        router.push("/");
+        router.push("/home");
         break;
       case "mypage":
         router.push("/mypage");

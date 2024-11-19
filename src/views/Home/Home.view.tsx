@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Home.view.module.scss";
 import FooterBar from "../../app/components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
 import SearchBar from "../../app/components/input/SearchBar/SearchBar";
+import { useRouter } from "next/router";
 
 import Link from "next/link";
 
