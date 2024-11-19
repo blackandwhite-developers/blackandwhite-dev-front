@@ -84,16 +84,18 @@ const Cartview = (props: CartviewProps) => {
                   </p>
                 </div>
               </div>
-              <div className={cx("middle-info")}>
-                <span className={cx("time")}>이용시간</span>
-                <span className={cx("checkIn")}>체크인 : {item.operate.checkInTime}</span>
-                <span className={cx("checkOut")}>체크아웃 : {item.operate.checkOutTime}</span>
-              </div>
-              <div className={cx("bottom-info")}>
-                <Badge shape="square">{"선착순 3,000원 특가"}</Badge>
-                <div className={cx("rest-info")}>
-                  <p className={cx("count")}>{item.roomCount}개 남음</p>
-                  <p className={cx("price")}>{item.price}원</p>
+              <div className="middle-info-wrap">
+                <div className={cx("middle-info")}>
+                  <span className={cx("time")}>이용시간</span>
+                  <span className={cx("checkIn")}>체크인 : {item.operate.checkInTime}</span>
+                  <span className={cx("checkOut")}>체크아웃 : {item.operate.checkOutTime}</span>
+                </div>
+                <div className={cx("bottom-info")}>
+                  <Badge shape="square">{"선착순 3,000원 특가"}</Badge>
+                  <div className={cx("rest-info")}>
+                    <p className={cx("count")}>{item.roomCount}개 남음</p>
+                    <p className={cx("price")}>{item.price}원</p>
+                  </div>
                 </div>
               </div>
             </div>
