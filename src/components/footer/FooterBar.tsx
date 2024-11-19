@@ -9,7 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 const FooterBar = () => {
   const pathName = usePathname();
-  const [select, setSelect] = React.useState(pathName === "/map" ? "map" : pathName === "/" ? "home" : "mypage");
+  const [select, setSelect] = React.useState(pathName === "/map" ? "map" : pathName === "/home" ? "home" : "mypage");
   const router = useRouter();
   const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, selected: "map" | "home" | "mypage") => {
     setSelect(selected);
@@ -18,7 +18,7 @@ const FooterBar = () => {
         router.push("/map");
         break;
       case "home":
-        router.push("/");
+        router.push("/home");
         break;
       case "mypage":
         router.push("/mypage");
