@@ -1,5 +1,5 @@
 import { pathToUrl } from "@/utils/url";
-import axios, { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 
 const AUTH_ROUTES = {
   LOGIN: `/api/auth/login`,
@@ -16,13 +16,19 @@ const AUTH_ROUTES = {
 export class AuthService {
   _ajax: AxiosInstance;
 
-  constructor(_ajax: AxiosInstance = axios.create()) {
+  constructor(_ajax: AxiosInstance) {
     this._ajax = _ajax;
   }
 
   async login(req: loginRequest): Promise<loginResponse> {
-    const { path, params, body } = req;
-    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.LOGIN, path ?? {}), { params, data: body });
+    const { path, body } = req;
+    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.LOGIN, path ?? {}), body);
+    return data;
+  }
+
+  async refresh(req: refreshRequest): Promise<refreshResponse> {
+    const { path, body } = req;
+    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.REFRESH, path ?? {}), body);
     return data;
   }
 }

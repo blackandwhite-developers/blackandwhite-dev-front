@@ -8,17 +8,16 @@ import { FaAngleLeft } from "react-icons/fa6";
 import Image from "next/image";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const cx = cn.bind(styles);
 
 export interface SelectInterestProps {
   data: { title: string; src: string }[];
+  selectInterestFunc: (interest: string) => void;
 }
 
-const SelectInterest = ({ data }: SelectInterestProps) => {
+const SelectInterest = ({ data, selectInterestFunc }: SelectInterestProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(data.length > 0 ? data[0].title : null);
-
   const handleCategoryClick = (category: string) => {
     setSelectedCategory((prev) => (prev === category ? null : category));
   };
@@ -27,6 +26,14 @@ const SelectInterest = ({ data }: SelectInterestProps) => {
   const router = useRouter();
   const handleGoBack = () => {
     router.back();
+  };
+
+  const handleNext = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (selectedCategory === null) {
+      return;
+    }
+    selectInterestFunc(selectedCategory);
   };
 
   return (
@@ -53,11 +60,8 @@ const SelectInterest = ({ data }: SelectInterestProps) => {
           </button>
         ))}
       </div>
-
       <div className={cx("SelectInterestNextBtn")}>
-        <Link href="/userselect/nickname">
-          <AbleBtn label={"다음"} />
-        </Link>
+        <AbleBtn label={"다음"} onClick={handleNext} />
       </div>
     </div>
   );

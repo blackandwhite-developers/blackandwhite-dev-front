@@ -8,16 +8,27 @@ import { FaAngleLeft } from "react-icons/fa6";
 import Radio from "@/components/radio/Radio";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const SelectGender = () => {
-  // Set default selectedGender to "남성"
-  const [selectedGender, setSelectedGender] = useState<string | null>("남성");
+type SelectGenderProps = {
+  genderSelectFunc: (gender: string) => void;
+};
 
+const SelectGender = (props: SelectGenderProps) => {
+  // Set default selectedGender to "남성"
+  const [selectedGender, setSelectedGender] = useState<string | null>("M");
+  const { genderSelectFunc } = props;
   const handleGenderSelect = (gender: string) => {
     setSelectedGender((prevGender) => (prevGender === gender ? null : gender));
+  };
+
+  const onGenderSelect = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (selectedGender === null) {
+      return;
+    }
+    genderSelectFunc(selectedGender);
   };
 
   /** 뒤로가기 */
@@ -36,34 +47,32 @@ const SelectGender = () => {
       <div className={cx("SelectGenderRadioBtn")}>
         <div
           className={cx("SelectGenderBtn", {
-            selected: selectedGender === "남성",
+            selected: selectedGender === "M",
           })}
-          onClick={() => handleGenderSelect("남성")}
+          onClick={() => handleGenderSelect("M")}
         >
-          <Radio label={"남성"} checked={selectedGender === "남성"} />
+          <Radio label={"남성"} checked={selectedGender === "M"} />
         </div>
         <div
           className={cx("SelectGenderBtn", {
-            selected: selectedGender === "여성",
+            selected: selectedGender === "F",
           })}
-          onClick={() => handleGenderSelect("여성")}
+          onClick={() => handleGenderSelect("F")}
         >
-          <Radio label={"여성"} checked={selectedGender === "여성"} />
+          <Radio label={"여성"} checked={selectedGender === "F"} />
         </div>
         <div
           className={cx("SelectGenderBtn", {
-            selected: selectedGender === "기타",
+            selected: selectedGender === "E",
           })}
-          onClick={() => handleGenderSelect("기타")}
+          onClick={() => handleGenderSelect("E")}
         >
-          <Radio label={"기타"} checked={selectedGender === "기타"} />
+          <Radio label={"기타"} checked={selectedGender === "E"} />
         </div>
       </div>
 
       <div className={cx("SelectGenderNextBtn")}>
-        <Link href="userselect/userinterest">
-          <AbleBtn label={"다음"} />
-        </Link>
+        <AbleBtn label={"다음"} onClick={onGenderSelect} />
       </div>
     </div>
   );

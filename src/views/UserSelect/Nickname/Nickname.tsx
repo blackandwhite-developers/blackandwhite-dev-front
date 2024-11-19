@@ -8,12 +8,16 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { DisableBtn } from "@/components/Button/DisableBtn";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const Nickname = () => {
+type NicknameProps = {
+  nicknameSelectFunc: (nickname: string) => void;
+};
+
+const Nickname = (props: NicknameProps) => {
   const router = useRouter();
+  const { nicknameSelectFunc } = props;
   /** 뒤로가기 */
   const handleGoBack = () => {
     router.back();
@@ -56,6 +60,14 @@ const Nickname = () => {
     }
   };
 
+  const handleNext = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (nickname === "") {
+      return;
+    }
+    nicknameSelectFunc(nickname);
+  };
+
   return (
     <div className={cx("SelectNicknameWrapper")}>
       <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
@@ -69,15 +81,7 @@ const Nickname = () => {
       </div>
       {errorMessage && <p className={cx("ErrorMessage")}>{errorMessage}</p>}
 
-      <div className={cx("SelectGenderNextBtn")}>
-        {nickname && !errorMessage ? (
-          <Link href="/login">
-            <AbleBtn label={"다음"} />
-          </Link>
-        ) : (
-          <DisableBtn label={"다음"} />
-        )}
-      </div>
+      <div className={cx("SelectGenderNextBtn")}>{nickname && !errorMessage ? <AbleBtn label={"다음"} onClick={handleNext} /> : <DisableBtn label={"다음"} />}</div>
     </div>
   );
 };

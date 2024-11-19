@@ -1,85 +1,85 @@
 .wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    width: 360px;
-    height: auto;
-    padding-top: 45px;
-    background-color: var(--white);
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 360px;
+  height: auto;
+  padding-top: 45px;
+  background-color: var(--white);
+  position: relative;
 }
 .headerIcon {
-    color: #8728ff;
-    font-size: 24px;
+  color: #8728ff;
+  font-size: 24px;
 }
 .container {
-    width: 100%;
-    max-width: 360px;
-    max-height: 760px;
-    padding: 20px;
-    text-align: center;
+  width: 100%;
+  max-width: 360px;
+  max-height: 760px;
+  padding: 20px;
+  text-align: center;
 
-    h1 {
-        font-size: 2rem;
-        color: var(--main-purple);
-        text-align: left;
-        margin-bottom: 20px;
-        font-weight: 700;
-    }
+  h1 {
+    font-size: 2rem;
+    color: var(--main-purple);
+    text-align: left;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
 
-    .textInput {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--gray400);
-    }
+  .textInput {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray400);
+  }
 }
 
 .checkBox {
-    display: flex;
-    justify-content: space-between;
-    margin: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
 
-    a {
-        color: var(--main-purple);
-        text-decoration: none;
+  a {
+    color: var(--main-purple);
+    text-decoration: none;
+  }
+
+  button {
+    all: unset;
+    color: var(--main-purple);
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+      opacity: 0.8;
     }
-
-    button {
-        all: unset;
-        color: var(--main-purple);
-        cursor: pointer;
-        text-decoration: none;
-        border: none;
-        background-color: transparent;
-
-        &:hover {
-            opacity: 0.8;
-        }
-    }
+  }
 }
 
 .error {
-    color: var(--sub-red);
-    font-size: 14px;
-    text-align: left;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  color: var(--sub-red);
+  font-size: 14px;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 100;
 
-    &.open {
-        display: block;
-    }
+  &.open {
+    display: block;
+  }
 }
 
 // .bottomSheet {
@@ -108,21 +108,21 @@
 // }
 
 .container_bottomSheet {
-    width: 100%;
-    max-width: 360px;
-    height: 100%;
-    background-color: var(--white);
+  width: 100%;
+  max-width: 360px;
+  height: 100%;
+  background-color: var(--white);
 
-    p,
-    div {
-        margin-bottom: 10px;
-    }
+  p,
+  div {
+    margin-bottom: 10px;
+  }
 
-    div ul {
-        list-style-position: inside;
-    }
+  div ul {
+    list-style-position: inside;
+  }
 }
 
 .checkBox button {
-    font-size: 12px;
+  font-size: 12px;
 }

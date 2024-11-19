@@ -43,7 +43,13 @@ const validationSchema = yup.object().shape({
   allAgree: yup.boolean().default(false),
 });
 
-const SignUpView = () => {
+type SignUpViewProps = {
+  submitFunc?: (data: any) => void;
+};
+
+const SignUpView = (props: SignUpViewProps) => {
+  const { submitFunc } = props;
+
   const {
     handleSubmit,
     control,
@@ -60,6 +66,18 @@ const SignUpView = () => {
 
   const onSubmit = (data: any) => {
     console.log("Form Data:", data);
+    const req = {
+      terms: {
+        locationBasedService: data.locationTerms,
+        marketingInfoAgree: data.marketingTerms,
+        privacyPolicy: data.privacyPolicy,
+        termsOfService: data.serviceTerms,
+      },
+      email: data.email,
+      name: data.name,
+      password: data.password,
+    };
+    if (submitFunc) submitFunc(req);
   };
 
   const openBottomSheet = (title: React.ReactNode, content: React.ReactNode) => {

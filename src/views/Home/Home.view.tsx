@@ -61,7 +61,10 @@ const Homeview = (props: HomeviewProps) => {
             return (
               <Link href={`/product/list/${a.image}`} key={a.id}>
                 <div className={cx("grid-item")}>
-                  <img src={`/categoryImage/ic_home_${a.image}.svg`} alt={a.name} />
+                  <img
+                    src={`/categoryImage/ic_home_${a.image}.svg`}
+                    alt={a.name}
+                  />
                   <div className={cx("title")}>{a.name}</div>
                 </div>
               </Link>
@@ -85,16 +88,14 @@ const Homeview = (props: HomeviewProps) => {
                   <p>{item.title}</p>
                 </div>
                 <div className={cx("list-price")}>
-                  <p>{item.price}</p>
+                  <p>{item.price.toLocaleString()}원</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </main>
-      <footer>
-        <FooterBar />
-      </footer>
+      <FooterBar />
     </div>
   );
 };
