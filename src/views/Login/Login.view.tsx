@@ -6,14 +6,7 @@ import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
 
 const LoginView = () => {
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value.length <= 20) {
-            setEmail(e.target.value);
-        }
-    };
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value.length <= 20) {
@@ -21,7 +14,7 @@ const LoginView = () => {
         }
     };
 
-    const isAbleToLogin = email && password;
+    const isAbleToLogin = password;
 
     return (
         <div className={styles.wrapper}>
@@ -32,8 +25,6 @@ const LoginView = () => {
                         type="text"
                         placeholder="이메일"
                         className={styles.textInput}
-                        value={email}
-                        onChange={handleEmailChange}
                     />
                     <TextInput
                         type="password"
