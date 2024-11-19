@@ -27,9 +27,15 @@ export class UserService {
     this._ajax = _ajax;
   }
 
+  async signUp(req: signUpRequest): Promise<signUpResponse> {
+    const { body } = req;
+    const { data } = await this._ajax.post(pathToUrl(USER_ROUTES.SIGN_UP, {}), { ...body });
+    return data;
+  }
+
   async resetPassword(req: resetPasswordRequest): Promise<resetPasswordResponse> {
     const { path, params, body } = req;
-    const { data } = await this._ajax.post(pathToUrl(USER_ROUTES.RESET_PASSWORD, path ?? {}), { params, data: body });
+    const { data } = await this._ajax.post(pathToUrl(USER_ROUTES.RESET_PASSWORD, path ?? {}), { params, ...body });
     return data;
   }
 }
