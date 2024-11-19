@@ -5,7 +5,7 @@ import MypageReservation from "@/views/MypageReservation/MypageReservation.view"
 import { ReservationContentProps } from "@/views/Payment/Payment.view";
 import PaymentCard from "@/views/Payment/PaymentCard.view";
 import PaymentCompleteCard from "@/views/Payment/PaymentCompletePage.view";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);

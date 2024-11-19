@@ -1,4 +1,6 @@
 import axios from "axios";
+import { UserService } from "./user.service";
+import { AuthService } from "./auth.service";
 
 const apiServer = axios.create({
   baseURL: "http://localhost:4000",
@@ -25,3 +27,6 @@ apiServer.interceptors.response.use(
     console.error(error);
   }
 );
+
+export const authService = new AuthService(apiServer);
+export const userService = new UserService(apiServer);
