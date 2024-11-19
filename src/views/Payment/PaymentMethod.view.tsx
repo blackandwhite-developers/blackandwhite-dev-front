@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import styles from "./PaymentMethod.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
-import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
-import { DisableBtn } from "@/app/components/Button/DisableBtn";
-import PaymentMethodButton from "@/app/components/Button/PaymentBtn";
+import DefaultCheckBox from "@/components/checkbox/default/DefaultCheckbox";
+import { AbleBtn } from "@/components/Button/AbleBtn";
+import { DisableBtn } from "@/components/Button/DisableBtn";
+import PaymentMethodButton from "@/components/Button/PaymentBtn";
 
 const cx = cn.bind(styles);
 
@@ -31,9 +31,7 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
   const [privacyChecked, setPrivacyChecked] = React.useState(false);
   const [privacy2Checked, setPrivacy2Checked] = React.useState(false);
 
-  const [isChecked, setIsChecked] = useState<boolean[]>(
-    Array(paymentArr.length).fill(false)
-  );
+  const [isChecked, setIsChecked] = useState<boolean[]>(Array(paymentArr.length).fill(false));
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>, idx: number) {
     e.preventDefault();
@@ -46,16 +44,7 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
     <PaymentCard title="결제 수단 선택">
       <div className={cx("button-container")}>
         {paymentArr.map((item, index) => {
-          return (
-            <PaymentMethodButton
-              key={index}
-              icon={item.icon}
-              isSelected={isChecked[index]}
-              method={item.title}
-              idx={index}
-              handleClick={handleClick}
-            />
-          );
+          return <PaymentMethodButton key={index} icon={item.icon} isSelected={isChecked[index]} method={item.title} idx={index} handleClick={handleClick} />;
         })}
       </div>
       <div className={cx("checkbox-container")}>
@@ -93,22 +82,13 @@ const PaymentMethod = ({ totalPrice }: { totalPrice: number }) => {
           fontSize={12}
         />
         <div className={cx("caption-container")}>
-          <span>
-            • 코코시는 통신판매중개자로서 통신판매의 당사자가 아니며, 상품의
-            예약, 이용 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
-          </span>
+          <span>• 코코시는 통신판매중개자로서 통신판매의 당사자가 아니며, 상품의 예약, 이용 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.</span>
         </div>
       </div>
       {privacyChecked && privacy2Checked ? (
-        <AbleBtn
-          label={`${(totalPrice || 0).toLocaleString()}원 결제하기`}
-          onClick={() => router.push("/payment/complete")}
-        />
+        <AbleBtn label={`${(totalPrice || 0).toLocaleString()}원 결제하기`} onClick={() => router.push("/payment/complete")} />
       ) : (
-        <DisableBtn
-          label={`${(totalPrice || 0).toLocaleString()}원 결제하기`}
-          onClick={() => router.push("/payment/complete")}
-        />
+        <DisableBtn label={`${(totalPrice || 0).toLocaleString()}원 결제하기`} onClick={() => router.push("/payment/complete")} />
       )}
     </PaymentCard>
   );

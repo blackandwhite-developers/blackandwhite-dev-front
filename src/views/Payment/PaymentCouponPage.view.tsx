@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "./PaymentCouponPage.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 
 const cx = cn.bind(styles);
 
@@ -42,11 +42,7 @@ const CouponPage = ({ coupons }: { coupons: CouponContentProps[] }) => {
       {coupons.map((data, index) => {
         return (
           <div>
-            <CouponCard
-              title={data.title}
-              couponAmount={data.couponAmount}
-              exp={data.exp}
-            />
+            <CouponCard title={data.title} couponAmount={data.couponAmount} exp={data.exp} />
           </div>
         );
       })}

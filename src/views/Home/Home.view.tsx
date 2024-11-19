@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import cn from "classnames/bind";
 import styles from "./Home.view.module.scss";
-import FooterBar from "../../app/components/footer/FooterBar";
+import FooterBar from "../../components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
-import SearchBar from "../../app/components/input/SearchBar/SearchBar";
+import SearchBar from "../../components/input/SearchBar/SearchBar";
 
 import Link from "next/link";
 
@@ -61,10 +61,7 @@ const Homeview = (props: HomeviewProps) => {
             return (
               <Link href={`/product/list/${a.image}`} key={a.id}>
                 <div className={cx("grid-item")}>
-                  <img
-                    src={`/categoryImage/ic_home_${a.image}.svg`}
-                    alt={a.name}
-                  />
+                  <img src={`/categoryImage/ic_home_${a.image}.svg`} alt={a.name} />
                   <div className={cx("title")}>{a.name}</div>
                 </div>
               </Link>

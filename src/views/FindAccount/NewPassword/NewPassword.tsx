@@ -3,12 +3,11 @@
 import React, { useState } from "react";
 import cn from "classnames/bind";
 import styles from "./NewPassword.module.scss";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
-import TextInput from "@/app/components/input/TextInput/TextInput";
+import { AbleBtn } from "@/components/Button/AbleBtn";
+import TextInput from "@/components/input/TextInput/TextInput";
 import { useRouter } from "next/navigation";
-import { DisableBtn } from "@/app/components/Button/DisableBtn";
 
 const cx = cn.bind(styles);
 
@@ -54,16 +53,16 @@ const NewPassword = () => {
     <div className={cx("FindPwWrapper")}>
       <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
       <div className={cx("FindPwContent")}>
-        <p className={cx("FindPw")}>새 비밀번호</p>
+        <p className={cx("FindPw")}>비밀번호 찾기</p>
         <p className={cx("FindPwInform")}>
-          <span className={cx("Highlight")}>새 비밀번호</span>를 설정해주세요!
+          <span className={cx("Highlight")}>새 비밀번호</span>를 설정해주세요.
         </p>
       </div>
       <div className={cx("PwInputWrapper")}>
         <div className={cx("PasswordInputContainer")}>
           <TextInput
             type="password"
-            placeholder="비밀번호 (영문과 숫자로 8자 이상)"
+            placeholder="비밀번호"
             value={password}
             onChange={handlePasswordChange}
             showToggle

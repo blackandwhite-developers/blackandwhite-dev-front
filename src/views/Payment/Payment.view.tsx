@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import styles from "./Payment.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
-import Badge from "@/app/components/badge/Badge";
-import Radio from "@/app/components/radio/Radio";
+import Badge from "@/components/badge/Badge";
+import Radio from "@/components/radio/Radio";
 
 const cx = cn.bind(styles);
 
