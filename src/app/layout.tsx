@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import { MockProvider } from "@/mockProvider";
-import RecoilProvider from "@/recoilProvider";
+import JotaiProvider from "@/jotaiProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <MockProvider>
-          <RecoilProvider>{children}</RecoilProvider>
+          <JotaiProvider>{children}</JotaiProvider>
         </MockProvider>
       </body>
     </html>

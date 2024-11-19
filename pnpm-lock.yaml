@@ -23,6 +23,9 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
+      jotai:
+        specifier: ^2.10.2
+        version: 2.10.2(@types/react@18.3.12)(react@19.0.0-rc-02c0e824-20241028)
       next:
         specifier: 15.0.2
         version: 15.0.2(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028)(sass@1.80.6)
@@ -41,12 +44,6 @@ importers:
       react-icons:
         specifier: ^5.3.0
         version: 5.3.0(react@19.0.0-rc-02c0e824-20241028)
-      recoil:
-        specifier: ^0.7.7
-        version: 0.7.7(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028)
-      recoil-persist:
-        specifier: ^5.1.0
-        version: 5.1.0(recoil@0.7.7(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028))
       sass:
         specifier: ^1.80.6
         version: 1.80.6
@@ -1132,9 +1129,6 @@ packages:
     resolution: {integrity: sha512-GGTKBX4SD7Wdb8mqeDLni2oaRGYQWjWHGKPQ24ZMnUtKfcsVoiv4uX8+LJr1K6U5VW2Lu1BwJnj7uiori0YtRw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
-  hamt_plus@1.0.2:
-    resolution: {integrity: sha512-t2JXKaehnMb9paaYA7J0BX8QQAY8lwfQ9Gjf4pg/mk4krt+cmwmU652HOoWonf+7+EQV97ARPMhhVgU1ra2GhA==}
-
   has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
 
@@ -1324,6 +1318,18 @@ packages:
   jiti@1.21.6:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
+
+  jotai@2.10.2:
+    resolution: {integrity: sha512-DqsBTlRglIBviuJLfK6JxZzpd6vKfbuJ4IqRCz70RFEDeZf46Fcteb/FXxNr1UnoxR5oUy3oq7IE8BrEq0G5DQ==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -1693,23 +1699,6 @@ packages:
   readdirp@4.0.2:
     resolution: {integrity: sha512-yDMz9g+VaZkqBYS/ozoBJwaBhTbZo3UNYQHNRw1D3UFQB8oHB4uS/tAODO+ZLjGWmUbKnIlOWO+aaIiAxrUWHA==}
     engines: {node: '>= 14.16.0'}
-
-  recoil-persist@5.1.0:
-    resolution: {integrity: sha512-sew4k3uBVJjRWKCSFuBw07Y1p1pBOb0UxLJPxn4G2bX/9xNj+r2xlqYy/BRfyofR/ANfqBU04MIvulppU4ZC0w==}
-    peerDependencies:
-      recoil: ^0.7.2
-
-  recoil@0.7.7:
-    resolution: {integrity: sha512-8Og5KPQW9LwC577Vc7Ug2P0vQshkv1y3zG3tSSkWMqkWSwHmE+by06L8JtnGocjW6gcCvfwB3YtrJG6/tWivNQ==}
-    peerDependencies:
-      react: '>=16.13.1'
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
 
   reflect.getprototypeof@1.0.6:
     resolution: {integrity: sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==}
@@ -3283,8 +3272,6 @@ snapshots:
 
   graphql@16.9.0: {}
 
-  hamt_plus@1.0.2: {}
-
   has-bigints@1.0.2: {}
 
   has-flag@4.0.0: {}
@@ -3457,6 +3444,11 @@ snapshots:
       '@pkgjs/parseargs': 0.11.0
 
   jiti@1.21.6: {}
+
+  jotai@2.10.2(@types/react@18.3.12)(react@19.0.0-rc-02c0e824-20241028):
+    optionalDependencies:
+      '@types/react': 18.3.12
+      react: 19.0.0-rc-02c0e824-20241028
 
   js-tokens@4.0.0: {}
 
@@ -3802,17 +3794,6 @@ snapshots:
       picomatch: 2.3.1
 
   readdirp@4.0.2: {}
-
-  recoil-persist@5.1.0(recoil@0.7.7(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028)):
-    dependencies:
-      recoil: 0.7.7(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028)
-
-  recoil@0.7.7(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028):
-    dependencies:
-      hamt_plus: 1.0.2
-      react: 19.0.0-rc-02c0e824-20241028
-    optionalDependencies:
-      react-dom: 19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028)
 
   reflect.getprototypeof@1.0.6:
     dependencies:
