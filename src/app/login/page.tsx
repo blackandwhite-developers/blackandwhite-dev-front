@@ -3,6 +3,7 @@ import LoginView from "@/views/Login/Login.view";
 
 const LoginPage = () => {
   const loginFn = async (email: string, password: string) => {
+    "use server";
     const response = await authService.login({ body: { email, password } });
     const { accessToken, refreshToken } = response;
     localStorage.setItem("accessToken", accessToken);
