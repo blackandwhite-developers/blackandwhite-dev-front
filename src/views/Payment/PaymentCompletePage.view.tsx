@@ -2,26 +2,15 @@
 import React, { useState } from "react";
 import styles from "./PaymentCompletePage.view.module.scss";
 import cn from "classnames/bind";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { ReservationContentProps } from "./Payment.view";
-import Badge from "@/app/components/badge/Badge";
+import Badge from "@/components/badge/Badge";
 import PaymentCard from "./PaymentCard.view";
 
 const cx = cn.bind(styles);
 
 const PaymentCompleteCard = (props: ReservationContentProps) => {
-  const {
-    hotelName,
-    roomImage,
-    roomType,
-    checkInDate,
-    checkInTime,
-    checkOutDate,
-    checkOutTime,
-    night,
-    price,
-    discountPrice,
-  } = props;
+  const { hotelName, roomImage, roomType, checkInDate, checkInTime, checkOutDate, checkOutTime, night, price, discountPrice } = props;
 
   return (
     <div className={cx("Reservation-container")}>
@@ -53,20 +42,14 @@ const PaymentCompleteCard = (props: ReservationContentProps) => {
       </div>
       <div className={cx("pay-container")}>
         <p className={cx("pay-text")}>결제금액</p>
-        <p className={cx("pay-amount")}>
-          {(price - discountPrice).toLocaleString()}원
-        </p>
+        <p className={cx("pay-amount")}>{(price - discountPrice).toLocaleString()}원</p>
       </div>
       <div className={cx("border")}></div>
     </div>
   );
 };
 
-const PaymentComplete = ({
-  reservations,
-}: {
-  reservations: ReservationContentProps[];
-}) => {
+const PaymentComplete = ({ reservations }: { reservations: ReservationContentProps[] }) => {
   return (
     <PaymentCard title="상품 정보 ">
       {reservations.map((data, index) => {

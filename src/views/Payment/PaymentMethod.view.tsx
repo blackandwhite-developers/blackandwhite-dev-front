@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import styles from "./PaymentMethod.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
-import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
-import { DisableBtn } from "@/app/components/Button/DisableBtn";
-import PaymentMethodButton from "@/app/components/Button/PaymentBtn";
+import DefaultCheckBox from "@/components/checkbox/default/DefaultCheckbox";
+import { AbleBtn } from "@/components/Button/AbleBtn";
+import { DisableBtn } from "@/components/Button/DisableBtn";
+import PaymentMethodButton from "@/components/Button/PaymentBtn";
 
 const cx = cn.bind(styles);
 

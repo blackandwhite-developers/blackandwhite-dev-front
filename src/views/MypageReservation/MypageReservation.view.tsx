@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import styles from "./MypageReservation.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "../Payment/PaymentCard.view";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { time } from "console";
 import { title } from "process";
 import { ReservationContentProps } from "../Payment/Payment.view";
 import PaymentComplete from "../Payment/PaymentCompletePage.view";
-import Badge from "@/app/components/badge/Badge";
+import Badge from "@/components/badge/Badge";
 import { IoIosArrowForward } from "react-icons/io";
 
 const cx = cn.bind(styles);
@@ -17,18 +17,7 @@ const cx = cn.bind(styles);
 const MypageReservationCard = (props: ReservationContentProps) => {
   const router = useRouter();
 
-  const {
-    hotelName,
-    roomImage,
-    roomType,
-    checkInDate,
-    checkInTime,
-    checkOutDate,
-    checkOutTime,
-    night,
-    price,
-    discountPrice,
-  } = props;
+  const { hotelName, roomImage, roomType, checkInDate, checkInTime, checkOutDate, checkOutTime, night, price, discountPrice } = props;
 
   return (
     <div className={cx("reservation-container")}>
@@ -44,11 +33,7 @@ const MypageReservationCard = (props: ReservationContentProps) => {
           </p>
           <p className={cx("room-detailcontent")}>{roomType}</p>
         </div>
-        <button
-          type="button"
-          className={cx("arrow-icon")}
-          onClick={() => router.push("/mypage/reservation/detail")}
-        >
+        <button type="button" className={cx("arrow-icon")} onClick={() => router.push("/mypage/reservation/detail")}>
           상세내역
           <IoIosArrowForward />
         </button>
@@ -68,20 +53,14 @@ const MypageReservationCard = (props: ReservationContentProps) => {
       </div>
       <div className={cx("pay-container")}>
         <p className={cx("pay-text")}>결제금액</p>
-        <p className={cx("pay-amount")}>
-          {(price - discountPrice).toLocaleString()}원
-        </p>
+        <p className={cx("pay-amount")}>{(price - discountPrice).toLocaleString()}원</p>
       </div>
       <div className={cx("border")}></div>
     </div>
   );
 };
 
-const MypageReservation = ({
-  reservations,
-}: {
-  reservations: ReservationContentProps[];
-}) => {
+const MypageReservation = ({ reservations }: { reservations: ReservationContentProps[] }) => {
   const [selectedTab, setSelectedTab] = useState("reservations");
 
   const handleTabClick = (tab: string) => {

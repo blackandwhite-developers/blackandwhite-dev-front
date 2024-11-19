@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import cn from "classnames/bind";
 import styles from "./FIndPw.module.scss";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/app/components/Button/AbleBtn";
 import { DisableBtn } from "@/app/components/Button/DisableBtn";
@@ -23,12 +23,17 @@ const FIndPw = () => {
         router.back();
     };
 
-    useEffect(() => {
+    const validateInputs = () => {
         const isValidInput = (input: string) =>
             input.length > 0 && input.length <= 20 && !input.includes("\n");
+        useEffect(() => {
+            const isValidInput = (input: string) =>
+                input.length > 0 && input.length <= 20 && !input.includes("\n");
 
+            setIsValid(isValidInput(name) && isValidInput(email));
+        }, [name, email]);
         setIsValid(isValidInput(name) && isValidInput(email));
-    }, [name, email]);
+    };
 
     return (
         <div className={cx("FindPwWrapper")}>
@@ -42,21 +47,29 @@ const FIndPw = () => {
                 </p>
             </div>
             <div className={cx("PwInputWrapper")}>
+                <label htmlFor="Pw"></label>
                 <input
                     id="name"
                     type="text"
                     placeholder="이름"
                     maxLength={20}
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => {
+                        setName(e.target.value);
+                        validateInputs();
+                    }}
                     className={cx("PwInput")}
                 />
+                <label htmlFor="phone"></label>
                 <input
                     id="email"
                     type="text"
                     placeholder="이메일"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                        validateInputs();
+                    }}
                     className={cx("EmailInput")}
                 />
             </div>

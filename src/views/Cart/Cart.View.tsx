@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import styles from "./Cart.view.module.scss";
 import cn from "classnames/bind";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { RiHome6Line } from "react-icons/ri";
-import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
-import Badge from "@/app/components/badge/Badge";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
-import { Dialog } from "@/app/components/dialog/Dialog";
+import DefaultCheckBox from "@/components/checkbox/default/DefaultCheckbox";
+import Badge from "@/components/badge/Badge";
+import { AbleBtn } from "@/components/Button/AbleBtn";
+import { Dialog } from "@/components/dialog/Dialog";
 
 const cx = cn.bind(styles);
 

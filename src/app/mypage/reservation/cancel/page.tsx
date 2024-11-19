@@ -9,7 +9,7 @@ import PaymentCard from "@/views/Payment/PaymentCard.view";
 import MypageReservationDetail from "@/views/MypageReservation/MypageReservationDetail.view";
 import { UserContent } from "@/views/Payment/PaymentUesr.view";
 import CompletePayMethod from "@/views/Payment/CompletePayMethod.view";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import { AbleBtn } from "@/components/Button/AbleBtn";
 
 const cx = cn.bind(styles);
 
@@ -42,11 +42,7 @@ export default function MypageReservationDetailPage() {
         <CompletePayMethod />
       </div>
       <div className={cx("error-message")}>
-        <AbleBtn
-          label="예약 취소"
-          onClick={() => router.push("/home")}
-          type="button"
-        />
+        <AbleBtn label="예약 취소" onClick={() => router.push("/home")} type="button" />
       </div>
     </div>
   );
