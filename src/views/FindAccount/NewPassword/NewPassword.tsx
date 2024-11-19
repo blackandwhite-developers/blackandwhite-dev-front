@@ -5,9 +5,9 @@ import cn from "classnames/bind";
 import styles from "./NewPassword.module.scss";
 import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
-import { DisableBtn } from "@/app/components/Button/DisableBtn";
-import TextInput from "@/app/components/input/TextInput/TextInput";
+import { AbleBtn } from "@/components/Button/AbleBtn";
+import { DisableBtn } from "@/components/Button/DisableBtn";
+import TextInput from "@/components/input/TextInput/TextInput";
 import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
