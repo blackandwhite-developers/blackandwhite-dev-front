@@ -1,6 +1,9 @@
 import axios from "axios";
 import { UserService } from "./user.service";
 import { AuthService } from "./auth.service";
+import { CategoryService } from "./category.service";
+import { getDefaultStore } from "jotai";
+import { authAtom } from "@/atoms/authAtom";
 
 const apiServer = axios.create({
   baseURL: "http://localhost:4000",
@@ -8,10 +11,12 @@ const apiServer = axios.create({
   timeout: 3000,
 });
 
-apiServer.interceptors.request.use((config) => {
+const store = getDefaultStore();
+
+apiServer.interceptors.request.use(async (config) => {
   // console.log(config);
-  const authData = localStorage.getItem("auth");
-  const accessToken = authData ? JSON.parse(authData).accessToken : null;
+  const auth = store.get(authAtom);
+  const accessToken = auth.accessToken;
   if (accessToken) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;
   }
@@ -25,13 +30,13 @@ apiServer.interceptors.response.use(
   },
   async (error) => {
     if (error.status === 401) {
-      const authData = localStorage.getItem("auth");
-      const refreshToken = authData ? JSON.parse(authData).refreshToken : null;
+      const auth = store.get(authAtom);
+      const refreshToken = auth.refreshToken;
       if (refreshToken) {
         const response = await authService.refresh({ body: { refreshToken } });
         if (response) {
           const { accessToken, refreshToken } = response;
-          localStorage.setItem("auth", JSON.stringify({ accessToken, refreshToken, isAuth: true }));
+          store.set(authAtom, { ...auth, accessToken, refreshToken });
           return apiServer.request(error.config);
         }
       }
@@ -42,3 +47,4 @@ apiServer.interceptors.response.use(
 
 export const authService = new AuthService(apiServer);
 export const userService = new UserService(apiServer);
+export const categoryService = new CategoryService(apiServer);
