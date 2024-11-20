@@ -1,44 +1,52 @@
 .SelectNicknameWrapper {
-    margin: 0 auto;
-    max-width: 360px;
-    height: 100vh;
+  margin: 0 auto;
+  max-width: 360px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+
+  .SelectNicknameContent {
+    padding: 70px 0 30px;
     display: flex;
     flex-direction: column;
+    gap: 7px;
 
-    .SelectNicknameContent {
-        padding: 70px 0 30px;
-        display: flex;
-        flex-direction: column;
-
-        .SelectNickname {
-            font-size: 25px;
-            color: #8728ff;
-        }
+    .SelectNickname {
+      font-size: 25px;
+      color: #8728ff;
+      font-weight: 500;
     }
 
-    .InputWrapper {
-        display: flex;
-        align-items: center;
-        padding-left: 20px;
-        background-color: #f6f6f6;
-        width: 360px;
-        height: 55px;
-
-        .NicknameInput {
-            width: 100%;
-        }
+    .SelectNicknameInform {
+      font-size: 16px;
+      font-weight: 400;
     }
+  }
+
+  .InputWrapper {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    background-color: #f6f6f6;
+    width: 100%;
+    height: 55px;
+
+    .NicknameInput {
+      width: 100%;
+    }
+  }
 }
 .SelectGenderNextBtn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
-    padding-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  padding-bottom: 30px;
 }
 .ErrorMessage {
-    color: #ff0045;
-    font-size: 14px;
-    margin-top: 8px;
+  color: #ff0045;
+  font-size: 14px;
+  margin-top: 8px;
 }
