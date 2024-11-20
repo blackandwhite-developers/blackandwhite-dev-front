@@ -1,0 +1,116 @@
+.PriceBar-container {
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+
+  .header {
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+}
+
+.price-input {
+  width: 100%;
+  display: flex;
+  margin: 30px 0 35px;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+
+    span {
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      font-size: 19px;
+      margin-left: 12px;
+      border-radius: 5px;
+      text-align: center;
+      border: 1px solid #999;
+      appearance: textfield;
+
+      &[type="number"] {
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
+      }
+    }
+  }
+
+  .seperator {
+    width: 130px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.slider {
+  height: 5px;
+  position: relative;
+  background: #ddd;
+  border-radius: 5px;
+
+  .range-input {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .progress {
+    height: 100%;
+    left: 25%;
+    right: 25%;
+    position: absolute;
+    background: #8728ff;
+
+    border-radius: 5px;
+  }
+}
+
+.range-input {
+  position: relative;
+
+  input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -5px;
+    background: none;
+    pointer-events: none;
+    appearance: none;
+
+    &[type="range"] {
+      &::-webkit-slider-thumb {
+        height: 17px;
+        width: 17px;
+        border-radius: 50%;
+        background: white;
+        border: 1.3px solid #8728ff;
+        pointer-events: auto;
+        -webkit-appearance: none;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+      }
+
+      &::-moz-range-thumb {
+        height: 17px;
+        width: 17px;
+        border: none;
+        border-radius: 50%;
+        border: 2px solid #8728ff;
+        pointer-events: auto;
+        -moz-appearance: none;
+      }
+    }
+  }
+}

@@ -10,17 +10,8 @@ import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
-type BirthProps = {
-    BirthFunc: (birth: string) => void;
-};
-
-const Birth = (props: BirthProps) => {
-    const { BirthFunc } = props;
+const Birth = () => {
     const router = useRouter();
-
-    const [year, setYear] = useState("");
-    const [month, setMonth] = useState("");
-    const [day, setDay] = useState("");
 
     /** 뒤로가기 */
     const handleGoBack = () => {
@@ -31,34 +22,38 @@ const Birth = (props: BirthProps) => {
         e: React.ChangeEvent<HTMLInputElement>,
         type: "year" | "month" | "day"
     ) => {
-        const value = e.target.value.replace(/[^0-9]/g, "");
+        const target = e.target;
+        if (target instanceof HTMLInputElement) {
+            let value = target.value;
 
-        if (type === "year") {
-            const yearValue = parseInt(value);
-            if (value.length === 4 && (yearValue < 1900 || yearValue > 2024)) {
-                setYear(yearValue < 1900 ? "1900" : "2024");
-            } else {
-                setYear(value);
+            value = value.replace(/[^0-9]/g, "");
+
+            if (type === "year") {
+                const yearValue = parseInt(value);
+                if (
+                    value.length === 4 &&
+                    (yearValue < 1900 || yearValue > 2024)
+                ) {
+                    value = yearValue < 1900 ? "1900" : "2024";
+                }
+            } else if (type === "month") {
+                const monthValue = parseInt(value);
+                if (monthValue > 12) {
+                    value = "12";
+                } else if (monthValue < 1) {
+                    value = "01";
+                }
+            } else if (type === "day") {
+                const dayValue = parseInt(value);
+                if (dayValue > 31) {
+                    value = "31";
+                } else if (dayValue < 1) {
+                    value = "01";
+                }
             }
-        } else if (type === "month") {
-            const monthValue = parseInt(value);
-            setMonth(monthValue > 12 ? "12" : monthValue < 1 ? "01" : value);
-        } else if (type === "day") {
-            const dayValue = parseInt(value);
-            setDay(dayValue > 31 ? "31" : dayValue < 1 ? "01" : value);
-        }
-    };
 
-    const onBirth = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
-        if (!year || !month || !day) {
-            return;
+            target.value = value;
         }
-        const birth = `${year}-${month.padStart(2, "0")}-${day.padStart(
-            2,
-            "0"
-        )}`;
-        BirthFunc(birth);
     };
 
     return (
@@ -80,7 +75,6 @@ const Birth = (props: BirthProps) => {
                         className={cx("BirthInput")}
                         required
                         maxLength={4}
-                        value={year}
                         onChange={(e) => handleInputChange(e, "year")}
                     />
                     /
@@ -92,7 +86,6 @@ const Birth = (props: BirthProps) => {
                         className={cx("BirthInput")}
                         required
                         maxLength={2}
-                        value={month}
                         onChange={(e) => handleInputChange(e, "month")}
                     />
                     /
@@ -104,13 +97,14 @@ const Birth = (props: BirthProps) => {
                         className={cx("BirthInput")}
                         required
                         maxLength={2}
-                        value={day}
                         onChange={(e) => handleInputChange(e, "day")}
                     />
                 </div>
             </form>
             <div className={cx("BirthNextBtn")}>
-                <AbleBtn label={"확인"} onClick={onBirth} />
+                <Link href="/userselect/phone">
+                    <AbleBtn label={"확인"} />
+                </Link>
             </div>
         </div>
     );
