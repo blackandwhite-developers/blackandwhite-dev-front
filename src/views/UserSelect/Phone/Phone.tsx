@@ -97,9 +97,9 @@ const Phone = (props: PhoneProps) => {
 
       <div className={cx("PhoneNextBtn")}>
         {isFormValid ? (
-          <AbleBtn label={"확인"} onClick={onPhone} />
+          <AbleBtn label={"다음"} onClick={onPhone} />
         ) : (
-          <DisableBtn label={"확인"} />
+          <DisableBtn label={"다음"} />
         )}
       </div>
     </div>
