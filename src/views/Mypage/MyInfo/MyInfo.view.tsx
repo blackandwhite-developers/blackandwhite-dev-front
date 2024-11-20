@@ -8,7 +8,6 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { MdOutlinePhotoCamera } from "react-icons/md";
 import Header from "@/components/Header/Header";
 import { DisableBtn } from "@/components/Button/DisableBtn";
-import { NomalBtn } from "@/components/Button/NomalBtn";
 import { Dialog } from "@/components/dialog/Dialog";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -122,7 +121,6 @@ const MyInfo = (props: MyInfoProps) => {
                 </div>
             </div>
 
-            {/* 파일 올리는 기능 구현 필요 */}
             {/* 모달 */}
             {isModalOpen && (
                 <div className={cx("ModalWrapper")}>
@@ -130,8 +128,11 @@ const MyInfo = (props: MyInfoProps) => {
                         className={cx("ModalContent")}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <label htmlFor="thumbnail-photo-upload">
-                            <NomalBtn label={"사진 보관함"} />
+                        <label
+                            htmlFor="thumbnail-photo-upload"
+                            className={cx("Button")}
+                        >
+                            사진 보관함
                         </label>
                         <input
                             type="file"

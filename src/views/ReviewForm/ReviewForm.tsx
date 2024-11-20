@@ -8,7 +8,6 @@ import { FaAngleLeft, FaRegStar } from "react-icons/fa6";
 import { DisableBtn } from "@/components/Button/DisableBtn";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { useRouter } from "next/navigation";
-import { NomalBtn } from "@/components/Button/NomalBtn";
 
 const cx = cn.bind(styles);
 
@@ -77,7 +76,6 @@ const ReviewForm = () => {
                     hidden
                 />
             </div>
-            {/* 파일 올리는 기능 구현 필요 */}
             {/* 모달 */}
             {isModalOpen && (
                 <div className={cx("ModalWrapper")}>
@@ -85,11 +83,11 @@ const ReviewForm = () => {
                         className={cx("ModalContent")}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <label htmlFor="review-photo-upload">
-                            <NomalBtn
-                                label={"사진 보관함"}
-                                onClick={openModal}
-                            />
+                        <label
+                            htmlFor="review-photo-upload"
+                            className={cx("Button")}
+                        >
+                            사진 보관함
                         </label>
                         <input
                             type="file"
