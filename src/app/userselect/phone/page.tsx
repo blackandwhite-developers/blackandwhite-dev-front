@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 
 export default function Phone() {
     const router = useRouter();
-    const SignUpData = localStorage.getItem("SignUpData");
-    const data = SignUpData ? JSON.parse(SignUpData) : null;
+    const signUpData = localStorage.getItem("signUpData");
+    const data = signUpData ? JSON.parse(signUpData) : null;
     if (!data) {
         router.push("/signup");
     }
