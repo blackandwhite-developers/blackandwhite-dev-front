@@ -55,7 +55,7 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("grid-container")}>
           {category.map((a) => {
             return (
-              <Link href={`/product/list/${a.path}`} key={a.id}>
+              <Link href={`/home/list/${a.path}`} key={a.id}>
                 <MainCategory
                   categoryName={a.title}
                   categoryIcon={`Http://${a.thumbnail}.svg`}
