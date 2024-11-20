@@ -59,7 +59,7 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("grid-container")}>
           {category.map((a) => {
             return (
-              <Link href={`/product/list/${a.image}`} key={a.id}>
+              <Link href={`/home/list/${a.image}`} key={a.id}>
                 <div className={cx("grid-item")}>
                   <img
                     src={`/categoryImage/ic_home_${a.image}.svg`}
