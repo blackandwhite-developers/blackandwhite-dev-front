@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import cn from "classnames/bind";
 import styles from "./Birth.module.scss";
 import Header from "@/components/Header/Header";
@@ -10,12 +10,30 @@ import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
-const Birth = () => {
-    const router = useRouter();
+type BirthProps = {
+    birthFunc: (birth: string) => void;
+};
 
+const Birth = (props: BirthProps) => {
+    const router = useRouter();
+    const { birthFunc } = props;
+    const year = React.useRef<HTMLInputElement>(null);
+    const month = React.useRef<HTMLInputElement>(null);
+    const day = React.useRef<HTMLInputElement>(null);
     /** 뒤로가기 */
     const handleGoBack = () => {
         router.back();
+    };
+
+    const handleNext = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        const yearValue = year.current?.value;
+        const monthValue = month.current?.value;
+        const dayValue = day.current?.value;
+        if (yearValue && monthValue && dayValue) {
+            const birth = `${yearValue}-${monthValue}-${dayValue}`;
+            birthFunc(birth);
+        }
     };
 
     const handleInputChange = (
@@ -71,6 +89,7 @@ const Birth = () => {
                         type="text"
                         id="year"
                         name="year"
+                        ref={year}
                         placeholder="1990"
                         className={cx("BirthInput")}
                         required
@@ -82,6 +101,7 @@ const Birth = () => {
                         type="text"
                         id="month"
                         name="month"
+                        ref={month}
                         placeholder="01"
                         className={cx("BirthInput")}
                         required
@@ -93,6 +113,7 @@ const Birth = () => {
                         type="text"
                         id="day"
                         name="day"
+                        ref={day}
                         placeholder="01"
                         className={cx("BirthInput")}
                         required
@@ -102,9 +123,7 @@ const Birth = () => {
                 </div>
             </form>
             <div className={cx("BirthNextBtn")}>
-                <Link href="/userselect/phone">
-                    <AbleBtn label={"확인"} />
-                </Link>
+                <AbleBtn label={"확인"} onClick={handleNext} />
             </div>
         </div>
     );
