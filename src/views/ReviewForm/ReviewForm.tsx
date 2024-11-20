@@ -13,6 +13,8 @@ const cx = cn.bind(styles);
 
 const ReviewForm = () => {
     const [reviewText, setReviewText] = useState("");
+    const [uploadedPhotos, setUploadedPhotos] = useState<string[]>([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setReviewText(e.target.value);
@@ -23,7 +25,7 @@ const ReviewForm = () => {
     const handleGoBack = () => {
         router.back();
     };
-    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -31,6 +33,22 @@ const ReviewForm = () => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (files) {
+            const newPhotos = Array.from(files).map((file) =>
+                URL.createObjectURL(file)
+            );
+            setUploadedPhotos((prev) => [...prev, ...newPhotos]);
+        }
+        closeModal();
+    };
+
+    const handlePhotoDelete = (index: number) => {
+        setUploadedPhotos((prev) => prev.filter((_, i) => i !== index));
+    };
+
     return (
         <div className={cx("ReviewContainer")}>
             <Header
@@ -65,6 +83,24 @@ const ReviewForm = () => {
 
             <div className={cx("PhotoUploadWrapper")}>
                 <h1 className={cx("PhotoUploadTitle")}>사진 등록하기</h1>
+                {uploadedPhotos.length > 0 && (
+                    <div className={cx("UploadedPhotos")}>
+                        {uploadedPhotos.map((photo, index) => (
+                            <div key={index} className={cx("PhotoPreview")}>
+                                <img
+                                    src={photo}
+                                    alt={`Uploaded photo ${index + 1}`}
+                                />
+                                <button
+                                    className={cx("DeleteButton")}
+                                    onClick={() => handlePhotoDelete(index)}
+                                >
+                                    삭제
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
                 <button className={cx("PhotoUpload")} onClick={openModal}>
                     +<p>사진 업로드</p>
                 </button>
@@ -74,8 +110,11 @@ const ReviewForm = () => {
                     name="review-photo-upload"
                     className={cx("PhotoUploadInput")}
                     hidden
+                    multiple
+                    onChange={handleFileChange}
                 />
             </div>
+
             {/* 모달 */}
             {isModalOpen && (
                 <div className={cx("ModalWrapper")}>
@@ -94,6 +133,8 @@ const ReviewForm = () => {
                             id="review-photo-upload"
                             name="review-photo-upload"
                             hidden
+                            multiple
+                            onChange={handleFileChange}
                         />
                         <DisableBtn label={"취소"} onClick={closeModal} />
                     </div>
