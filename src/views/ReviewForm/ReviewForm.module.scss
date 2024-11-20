@@ -86,3 +86,24 @@
         margin-top: auto;
     }
 }
+
+/*사진 업로드 모달*/
+.ModalWrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+    right: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    z-index: 1000;
+
+    .ModalContent {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 13px;
+    }
+}
