@@ -1,18 +1,19 @@
+@import "@/app/_mixins.scss";
+
 //전체적인 페이지 레이아웃
 .page-layout {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #ffffff;
 }
 
 .page {
-  width: 360px;
+  max-width: 1024px;
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 8px;
   background-color: var(--gray100);
-  padding-top: 40px;
 }
 
 .bottom-box {
@@ -45,6 +46,7 @@
 }
 
 .wrapper {
+  width: 100%;
   margin: 0 auto;
   background-color: #ffffff;
   display: flex;
@@ -76,17 +78,18 @@
 .reservationdate-container {
   background-color: var(--gray50);
   border-radius: 20px;
-  // width: 320px;
-  height: 101px;
+  padding: 12px 0;
   display: flex;
   justify-content: center;
+  margin-bottom: 7px;
 }
 
 .reservationdate-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 280px;
+  max-width: 360px;
+  gap: 28px;
 }
 
 .check {
@@ -126,23 +129,25 @@
 .visit-container {
   background-color: var(--gray50);
   border-radius: 10px;
-  width: 320px;
+  width: 100%;
   height: 47px;
   display: flex;
   justify-content: center;
 }
 
 .visit-box {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 280px;
+  justify-content: space-around;
 }
 
 .visit-text {
   font-size: 12px;
   font-weight: 500;
   color: var(--gray700);
+
   &::after {
     content: "*";
     color: var(--main-pink);
@@ -166,10 +171,12 @@
 
 .custom-checkbox span {
   display: inline-block;
-  border: none; /* 테두리 색상 */
+  border: none;
+  /* 테두리 색상 */
   position: relative;
   cursor: pointer;
-  margin-right: 5px; /* 텍스트와의 간격 */
+  margin-right: 5px;
+  /* 텍스트와의 간격 */
   transition: background-color 0.2s ease;
 }
 
@@ -205,4 +212,33 @@
   width: 100%;
   background-color: var(--gray100);
   margin-bottom: 10px;
+}
+
+@include mobile {
+  .reservationdate-container {
+    gap: 12px;
+  }
+}
+
+
+@include desktop {
+  .reservation-top-wrapper {
+    display: flex;
+    gap: 20px;
+
+    & .reservationdate-container {
+      flex: 1;
+      gap: 34px;
+    }
+
+    & .visit-pay-wrap {
+      flex: 1;
+    }
+  }
+
+  .reservation-user-coupon {
+    display: flex;
+
+
+  }
 }

@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 7px;
   padding: 16px;
+  height: 100%;
 }
 
 .card-header {
@@ -15,6 +16,7 @@
 .title-required {
   font-size: 14px;
   font-weight: 700;
+
   &::after {
     content: "*";
     color: var(--main-pink);

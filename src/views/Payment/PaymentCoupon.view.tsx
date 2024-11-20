@@ -89,14 +89,16 @@ const ReservetionCoupon = ({
   usableCouponCount: number;
 }) => {
   return (
-    <PaymentCard title="쿠폰 및 포인트 사용">
-      <PaymentCoupon title="쿠폰" ableCoupon={usableCouponCount} />
-      <PaymentPoint
-        title="포인트"
-        usablePointAmount={usablePointAmount}
-        usableCouponCount={usableCouponCount}
-      />
-    </PaymentCard>
+    <div className={cx("reservationCoupons")}>
+      <PaymentCard title="쿠폰 및 포인트 사용">
+        <PaymentCoupon title="쿠폰" ableCoupon={usableCouponCount} />
+        <PaymentPoint
+          title="포인트"
+          usablePointAmount={usablePointAmount}
+          usableCouponCount={usableCouponCount}
+        />
+      </PaymentCard>
+    </div>
   );
 };
 
