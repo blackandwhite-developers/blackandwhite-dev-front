@@ -18,8 +18,6 @@ import { useRouter } from "next/navigation";
 const cx = cn.bind(styles);
 
 const SearchResultPageView = () => {
-  const [isSortOptionsVisible, setSortOptionsVisible] = useState(false);
-
   const Data = [
     {
       img: "/images/search/search_01.svg",
@@ -73,6 +71,7 @@ const SearchResultPageView = () => {
     },
   ];
 
+  const [isSortOptionsVisible, setSortOptionsVisible] = useState(false);
   const handleSortOptionsOpen = () => {
     setSortOptionsVisible(true);
   };
@@ -80,6 +79,7 @@ const SearchResultPageView = () => {
   const handleSortOptionsClose = () => {
     setSortOptionsVisible(false);
   };
+
   const router = useRouter();
   const handleDateClick = () => {
     router.push("/searchResult/calander");
@@ -91,12 +91,13 @@ const SearchResultPageView = () => {
   const [selectedDateRange, setSelectedDateRange] = useState<string>("");
   const [adultCount, setAdultCount] = useState<number>(0);
   const [childCount, setChildCount] = useState<number>(0);
+
   useEffect(() => {
     const storedDateRange = localStorage.getItem("selectedDateRange");
     const storedAdultCount = localStorage.getItem("adultCount");
     const storedChildCount = localStorage.getItem("childCount");
 
-    if (!storedAdultCount) setAdultCount(1);
+    if (!storedAdultCount) setAdultCount(0);
     if (!storedChildCount) setChildCount(0);
 
     if (storedDateRange) {
@@ -104,14 +105,8 @@ const SearchResultPageView = () => {
       const formattedStartDate = new Date(startDate);
       const formattedEndDate = new Date(endDate);
 
-      const startDateWithDay = `${formattedStartDate.getFullYear()}.${(formattedStartDate.getMonth() + 1).toString().padStart(2, "0")}.${formattedStartDate
-        .getDate()
-        .toString()
-        .padStart(2, "0")} (${formattedStartDate.toLocaleString("default", { weekday: "short" })})`;
-      const endDateWithDay = `${formattedEndDate.getFullYear()}.${(formattedEndDate.getMonth() + 1).toString().padStart(2, "0")}.${formattedEndDate
-        .getDate()
-        .toString()
-        .padStart(2, "0")} (${formattedEndDate.toLocaleString("default", { weekday: "short" })})`;
+      const startDateWithDay = `${formattedStartDate.getFullYear()}.${(formattedStartDate.getMonth() + 1).toString().padStart(2, "0")}.${formattedStartDate.getDate().toString().padStart(2, "0")} (${formattedStartDate.toLocaleString("default", { weekday: "short" })})`;
+      const endDateWithDay = `${formattedEndDate.getFullYear()}.${(formattedEndDate.getMonth() + 1).toString().padStart(2, "0")}.${formattedEndDate.getDate().toString().padStart(2, "0")} (${formattedEndDate.toLocaleString("default", { weekday: "short" })})`;
 
       setSelectedDateRange(`${startDateWithDay} ~ ${endDateWithDay}`);
     }
@@ -119,27 +114,34 @@ const SearchResultPageView = () => {
     if (storedChildCount) setChildCount(Number(storedChildCount));
   }, []);
   return (
-    <div>
+    <div className={cx("searchResult-warp")}>
       <div className={cx("header")}>
-        <Link href={"/product/list"}>
+        <Link href={"/home"}>
           <Header title={"검색"} />
         </Link>
       </div>
 
       <div className={cx("about")}>
-        <SearchBar />
+        <div className={cx("searchBar")}>
+          <SearchBar />
+        </div>
+
         <div className={cx("about-detail")}>
-          <DateBtn label={selectedDateRange || "날짜를 선택해주세요"} onClick={handleDateClick} />
-          <MemberBtn
-            label={
-              <>
-                성인 {adultCount}명
-                <br />
-                아동 {childCount}명
-              </>
-            }
-            onClick={handleMemberClick}
-          />
+          <div className={cx("dateBtn")}>
+            <DateBtn label={selectedDateRange || "날짜를 선택해주세요"} onClick={handleDateClick} />
+          </div>
+          <div className={cx("memberBtn")}>
+            <MemberBtn
+              label={
+                <>
+                  성인 {adultCount}명
+                  <br />
+                  아동 {childCount}명
+                </>
+              }
+              onClick={handleMemberClick}
+            />
+          </div>
         </div>
       </div>
 
