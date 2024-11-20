@@ -30,7 +30,11 @@ export interface ProfileFields {
 }
 
 const MyInfo = (props: MyInfoProps) => {
-    const { thumbnail, profileFields } = props;
+    const { thumbnail: initialThumbnail, profileFields } = props;
+
+    const [thumbnail, setThumbnail] = useState(
+        initialThumbnail || "/mypage/Thumbnail.png"
+    );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [dialog, setDialog] = useState({
@@ -46,12 +50,26 @@ const MyInfo = (props: MyInfoProps) => {
         nickname: "",
     });
 
+    const router = useRouter();
+
     const openModal = () => {
         setIsModalOpen(true);
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setThumbnail(reader.result as string);
+                setIsModalOpen(false);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     const openDialog = (action: "logout" | "withdraw") => {
@@ -96,8 +114,6 @@ const MyInfo = (props: MyInfoProps) => {
         setIsDialogOpen(false);
     };
 
-    /** 뒤로가기 */
-    const router = useRouter();
     const handleGoBack = () => {
         router.back();
     };
@@ -109,13 +125,9 @@ const MyInfo = (props: MyInfoProps) => {
                 leftIcon={<FaAngleLeft onClick={handleGoBack} />}
             />
 
+            {/* 프로필 이미지 */}
             <div className={cx("Thumbnail")}>
-                <Image
-                    src={thumbnail || "/mypage/Thumbnail.png"}
-                    alt="Profile"
-                    width={68}
-                    height={68}
-                />
+                <Image src={thumbnail} alt="Profile" width={68} height={68} />
                 <div className={cx("ThumbnailEdit")} onClick={openModal}>
                     <MdOutlinePhotoCamera />
                 </div>
@@ -139,12 +151,14 @@ const MyInfo = (props: MyInfoProps) => {
                             id="thumbnail-photo-upload"
                             name="thumbnail-photo-upload"
                             hidden
+                            onChange={handleFileChange}
                         />
                         <DisableBtn label={"취소"} onClick={closeModal} />
                     </div>
                 </div>
             )}
 
+            {/* 프로필 정보 */}
             <div className={cx("ProfileInfoWrapper")}>
                 <p className={cx("ProfileInfo")}>회원 정보</p>
                 <Link href="/mypage/certification">
@@ -166,6 +180,7 @@ const MyInfo = (props: MyInfoProps) => {
                 ))}
             </div>
 
+            {/* 로그아웃 / 회원 탈퇴 */}
             <div className={cx("LogoutWrapper")}>
                 <a href="#" onClick={() => openDialog("logout")}>
                     로그아웃
@@ -175,6 +190,7 @@ const MyInfo = (props: MyInfoProps) => {
                 </a>
             </div>
 
+            {/* 다이얼로그 */}
             {isDialogOpen && (
                 <Dialog
                     title={dialog.title}
