@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Search.module.scss";
 import cn from "classnames/bind";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
-import SearchBar from "@/app/components/input/SearchBar/SearchBar";
-import { DateBtn } from "@/app/components/Button/DateBtn";
-import { MemberBtn } from "@/app/components/Button/MemberBtn";
-import { TextBtn } from "@/app/components/Button/TextBtn";
+import SearchBar from "@/components/input/SearchBar/SearchBar";
+import { DateBtn } from "@/components/Button/DateBtn";
+import { MemberBtn } from "@/components/Button/MemberBtn";
+import { TextBtn } from "@/components/Button/TextBtn";
 
 const cx = cn.bind(styles);
 

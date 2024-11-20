@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./filter.view.module.scss";
 import cn from "classnames/bind";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { MdClose } from "react-icons/md";
-import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
-import { TextBtn } from "@/app/components/Button/TextBtn";
-import Radio from "@/app/components/radio/Radio";
-import PriceRangeSlider from "@/app/components/priceBar/PriceBar";
+import DefaultCheckBox from "@/components/checkbox/default/DefaultCheckbox";
+import { TextBtn } from "@/components/Button/TextBtn";
+import Radio from "@/components/radio/Radio";
+import PriceRangeSlider from "@/components/priceBar/PriceBar";
 
 const cx = cn.bind(styles);
 

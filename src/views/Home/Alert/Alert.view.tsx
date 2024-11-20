@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Alert.module.scss";
 import cn from "classnames/bind";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 
 const cx = cn.bind(styles);
 

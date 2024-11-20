@@ -1,0 +1,62 @@
+@import "@/app/_mixins.scss";
+
+
+.container {
+  height: 68px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-top: 19px;
+}
+
+.foot-navigation {
+  width: 100%;
+  display: flex;
+  min-height: max-content;
+  margin: 0 auto;
+  align-items: center;
+  justify-self: center;
+  justify-content: space-around;
+  background-color: red;
+  max-width: 1024px;
+}
+
+.footbar-text {
+  cursor: pointer;
+  padding-top: 10px;
+  color: #b2b2b2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 120px;
+}
+
+.footbar-text.selected {
+  color: #8728ff;
+}
+
+.footbar-text.map p {
+  color: #8728ff;
+  font-weight: bold;
+}
+
+.footbar-text:hover {
+  color: #8728ff;
+}
+
+.container svg {
+  width: 27px;
+  height: 27px;
+}
+
+.footbar-text p {
+  font-size: 13px;
+  font-weight: 500;
+}

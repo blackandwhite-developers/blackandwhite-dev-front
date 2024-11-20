@@ -4,11 +4,11 @@ import styles from "./Calander.view.module.scss";
 import "react-day-picker/style.css";
 import cn from "classnames/bind";
 import { DayPicker, DateRange } from "react-day-picker";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { MdClose } from "react-icons/md";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
-import { DateBtn } from "@/app/components/Button/DateBtn";
-import { MemberBtn } from "@/app/components/Button/MemberBtn";
+import { DateBtn } from "@/components/Button/DateBtn";
+import { MemberBtn } from "@/components/Button/MemberBtn";
 import { ko } from "date-fns/locale";
 import { useRouter } from "next/navigation";
 
@@ -156,7 +156,13 @@ const CalanderView = () => {
             <div className={cx("about")}>
                 <DateBtn label={formatSelectedDate()} />
                 <MemberBtn
-                    label={<>{`성인 ${adultCount}명\n아동 ${childCount}명`}</>}
+                    label={
+                        <>
+                            성인 {adultCount}명
+                            <br />
+                            아동 {childCount}명
+                        </>
+                    }
                 />
             </div>
 
