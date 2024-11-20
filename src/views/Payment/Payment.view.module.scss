@@ -5,6 +5,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+
+}
+
+.user-payment-layout {
+  min-height: 100vh;
 }
 
 .page {
@@ -13,7 +18,6 @@
   flex-direction: column;
   width: 100%;
   gap: 8px;
-  background-color: var(--gray100);
 }
 
 .bottom-box {
