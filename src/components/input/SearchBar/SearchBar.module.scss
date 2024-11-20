@@ -15,6 +15,7 @@ $primary-color: #8728ff;
   padding: 3px;
   box-sizing: border-box;
   margin: 0 auto;
+  height: 37px;
 }
 
 .searchInput {
@@ -22,9 +23,11 @@ $primary-color: #8728ff;
   border: none;
   outline: none;
   padding: 5px 35px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 50px;
   box-sizing: border-box;
+  font-weight: 400;
+  color: var(--gray400);
 }
 
 .searchIcon {
