@@ -1,77 +1,78 @@
-// 화면설계서 #37 참고
 "use client";
+
 import React, { useState } from "react";
 import styles from "./Cart.view.module.scss";
 import cn from "classnames/bind";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { RiHome6Line } from "react-icons/ri";
-import DefaultCheckBox from "@/app/components/checkbox/default/DefaultCheckbox";
-// import { title } from "process";
-import Badge from "@/app/components/badge/Badge";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
-import { Dialog } from "@/app/components/dialog/Dialog";
+import DefaultCheckBox from "@/components/checkbox/default/DefaultCheckbox";
+import Badge from "@/components/badge/Badge";
+import { AbleBtn } from "@/components/Button/AbleBtn";
+import { Dialog } from "@/components/dialog/Dialog";
 
 const cx = cn.bind(styles);
 
-const Cartview = () => {
-    const data = [
-        {
-            img: "/images/room/market-91x91/room1.png",
-            title: "김포 마리나베이 호텔",
-            type: "호텔",
-            parlorInfomation: "디럭스 트윈(기준 2명/최대 2명)",
-            operate: {
-                checkInDate: "2023.06.14(화)",
-                checkOutDate: "2023.06.15(수)",
-                checkInTime: "16:00",
-                checkOutTime: "11:00",
-                days: 1,
-            },
-            price: "75,000",
-            roomCount: 1,
-        },
-        {
-            img: "/images/room/market-91x91/room2.png",
-            title: "김포 마리나베이 호텔",
-            type: "호텔",
-            parlorInfomation: "디럭스 트윈(기준 2명/최대 2명)",
-            operate: {
-                checkInDate: "2023.06.14(화)",
-                checkOutDate: "2023.06.15(수)",
-                checkInTime: "16:00",
-                checkOutTime: "11:00",
-                days: 2,
-            },
-            price: "75,000",
-            roomCount: 1,
-        },
-        {
-            img: "/images/room/market-91x91/room3.png",
-            title: "김포 마리나베이 호텔",
-            type: "호텔",
-            parlorInfomation: "디럭스 트윈(기준 2명/최대 2명)",
-            operate: {
-                checkInDate: "2023.06.14(화)",
-                checkOutDate: "2023.06.15(수)",
-                checkInTime: "16:00",
-                checkOutTime: "11:00",
-                days: 3,
-            },
-            price: "75,000",
-            roomCount: 1,
-        },
-    ];
+export interface CartviewProps {
+    data: Array<{
+        id: string;
+        img: string;
+        title: string;
+        type: string;
+        parlorInfomation: string;
+        operate: {
+            checkInDate: string | number;
+            checkOutDate: string;
+            checkInTime: string;
+            checkOutTime: string;
+            days: number;
+        };
+        price: number;
+        roomCount: number;
+        discount: number;
+    }>;
+}
 
+const Cartview = (props: CartviewProps) => {
+    const { data } = props;
+    const totalPrice = data.reduce(
+        (sum, item) => sum + item.price * item.operate.days,
+        0
+    );
+    const discountPrice = data.reduce((sum, item) => sum + item.discount, 0);
+    const resultPrice = totalPrice - discountPrice;
+
+    const [selectedItems, setSelectedItems] = useState<string[]>([]);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const handleCheckBoxClick = () => {
-        setIsDialogOpen(true);
+    const isAllSelected = selectedItems.length === data.length;
+
+    const handleSelectAll = (checked: boolean) => {
+        setSelectedItems(checked ? data.map((item) => item.id) : []);
+    };
+
+    const handleSelectItem = (id: string, checked: boolean) => {
+        setSelectedItems((prev) =>
+            checked ? [...prev, id] : prev.filter((itemId) => itemId !== id)
+        );
+    };
+
+    const handleDeleteSelectedItems = () => {
+        if (selectedItems.length > 0) {
+            setIsDialogOpen(true);
+        }
+    };
+
+    const handleDeleteConfirm = () => {
+        console.log("삭제된 항목:", selectedItems);
+        setIsDialogOpen(false);
+        setSelectedItems([]);
     };
 
     const handleCloseDialog = () => {
         setIsDialogOpen(false);
     };
+
     return (
         <div className={cx("cart-container")}>
             <Header
@@ -82,22 +83,30 @@ const Cartview = () => {
 
             <div className={cx("select-container")}>
                 <div className={cx("defaultCheckBox")}>
-                    <DefaultCheckBox label="전체 선택 " />
+                    <DefaultCheckBox
+                        label="전체 선택"
+                        checked={isAllSelected}
+                        onChange={(e) => handleSelectAll(e.target.checked)}
+                    />
                 </div>
-                <button className={cx("outline-btn")}> 선택 삭제 </button>
+                <button
+                    className={cx("outline-btn")}
+                    onClick={handleDeleteSelectedItems}
+                    disabled={selectedItems.length === 0}
+                >
+                    선택 삭제
+                </button>
             </div>
 
-            {data.map((item, index) => (
-                <div
-                    className={cx("main-container", {
-                        "last-item": index === data.length - 1,
-                    })}
-                    key={index}
-                >
+            {data.map((item) => (
+                <div className={cx("main-container")} key={item.id}>
                     <div className={cx("main-info")}>
                         <DefaultCheckBox
                             label={""}
-                            onChange={handleCheckBoxClick}
+                            checked={selectedItems.includes(item.id)}
+                            onChange={(e) =>
+                                handleSelectItem(item.id, e.target.checked)
+                            }
                         />
                         <div className={cx("info")}>
                             <div className={cx("top-info")}>
@@ -149,16 +158,16 @@ const Cartview = () => {
                 <div className={cx("payment-info")}>
                     <div className={cx("payment")}>
                         <span>결제 금액</span>
-                        <span>234,000원</span>
+                        <span>{totalPrice}원</span>
                     </div>
                     <div className={cx("discount")}>
                         <span>할인 금액</span>
-                        <span>-9,000원</span>
+                        <span>-{discountPrice}</span>
                     </div>
 
                     <div className={cx("amount-price")}>
                         <span>결제 예상 금액</span>
-                        <span>225,000원</span>
+                        <span>{resultPrice}</span>
                     </div>
                 </div>
 
@@ -175,17 +184,20 @@ const Cartview = () => {
 
                 <div className={cx("bottom-sheet")}>
                     <div className={cx("amount-count")}>
-                        <span>총 3건</span>
+                        <span>총{data.length}건</span>
                         <div className={cx("cash")}>
                             <span className={cx("cash-results")}>
                                 결제 예상 금액
                             </span>
-                            <span className={cx("cash-total")}>225,000원</span>
+                            <span className={cx("cash-total")}>
+                                {resultPrice}
+                            </span>
                         </div>
                     </div>
                     <AbleBtn label="예약하기" />
                 </div>
             </div>
+
             {isDialogOpen && (
                 <Dialog
                     title="삭제하기"
@@ -193,10 +205,11 @@ const Cartview = () => {
                     leftButtonText="취소"
                     rightButtonText="삭제"
                     onLeftButtonClick={handleCloseDialog}
-                    onRightButtonClick={handleCloseDialog}
+                    onRightButtonClick={handleDeleteConfirm}
                 />
             )}
         </div>
     );
 };
+
 export default Cartview;

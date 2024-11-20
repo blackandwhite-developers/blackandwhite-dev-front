@@ -1,7 +1,5 @@
 import React from "react";
-import PaymentView, {
-  ReservationContentProps,
-} from "@/views/Payment/Payment.view";
+import PaymentView, { ReservationContentProps } from "@/views/Payment/Payment.view";
 import { UserContentProps } from "@/views/Payment/PaymentUesr.view";
 import PaymentUser from "@/views/Payment/PaymentUesr.view";
 import PaymentCoupon from "@/views/Payment/PaymentCoupon.view";
@@ -12,7 +10,7 @@ import ReservationSection from "@/views/Payment/Payment.view";
 import PaymentSale from "@/views/Payment/PaymentSale.view";
 import PaymentMethod from "@/views/Payment/PaymentMethod.view";
 import ReservetionCoupon from "@/views/Payment/PaymentCoupon.view";
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
@@ -77,11 +75,7 @@ export default function PaymentPage() {
         <ReservationSection reservations={reservations} />
         <ReservetionUser user={user} />
         <ReservetionCoupon usablePointAmount={1200} usableCouponCount={2} />
-        <PaymentSale
-          price={price}
-          discountPrice={discountPrice}
-          totalPrice={totalPrice}
-        />
+        <PaymentSale price={price} discountPrice={discountPrice} totalPrice={totalPrice} />
         <PaymentMethod totalPrice={totalPrice} />
       </div>
     </div>

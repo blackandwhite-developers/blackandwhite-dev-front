@@ -9,8 +9,8 @@ import PaymentCard from "@/views/Payment/PaymentCard.view";
 import MypageReservationDetail from "@/views/MypageReservation/MypageReservationDetail.view";
 import { UserContent } from "@/views/Payment/PaymentUesr.view";
 import CompletePayMethod from "@/views/Payment/CompletePayMethod.view";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
-import Header from "@/app/components/Header/Header";
+import { AbleBtn } from "@/components/Button/AbleBtn";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
@@ -44,14 +44,8 @@ export default function MypageReservationDetailPage() {
         </PaymentCard>
         <CompletePayMethod />
         <div className={cx("ablebutton-box")}>
-          <p className={cx("error-message")}>
-            *예약 취소는 결제 후 1시간 이내로만 가능합니다.
-          </p>
-          <AbleBtn
-            label="예약 취소"
-            onClick={() => router.push("/mypage/reservation/cancle")}
-            type="button"
-          />
+          <p className={cx("error-message")}>*예약 취소는 결제 후 1시간 이내로만 가능합니다.</p>
+          <AbleBtn label="예약 취소" onClick={() => router.push("/mypage/reservation/cancle")} type="button" />
         </div>
       </div>
     </div>

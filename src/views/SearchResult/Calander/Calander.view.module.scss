@@ -1,4 +1,4 @@
-.calander-contianer {
+.calander-container {
     margin: 0 auto;
     max-width: 360px;
     height: 100vh;
@@ -52,10 +52,19 @@
                     letter-spacing: -0.08em;
                 }
 
-                .adult-containder {
+                .adult-container {
                     display: flex;
-                    align-items: center;
+
                     gap: 10px;
+
+                    .minus {
+                        color: #8728ff;
+                        font-size: 20px;
+                    }
+                    .plus {
+                        color: #8728ff;
+                        font-size: 20px;
+                    }
                 }
             }
 
@@ -72,8 +81,15 @@
 
                 .child-container {
                     display: flex;
-                    align-items: center;
                     gap: 10px;
+                    .minus {
+                        color: #8728ff;
+                        font-size: 20px;
+                    }
+                    .plus {
+                        color: #8728ff;
+                        font-size: 20px;
+                    }
                 }
             }
         }

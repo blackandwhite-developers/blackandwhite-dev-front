@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "./PaymentUserPage.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 
 const cx = cn.bind(styles);
 
@@ -22,18 +22,10 @@ const UserCard = (props: UserContentProps) => {
     <div className={cx("user-container")}>
       <span className={cx("title-text")}>{title}</span>
       <label className={cx("custom-input")}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder={inPutText}
-        />
+        <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder={inPutText} />
         {inputValue && (
           <button className={cx("clear-btn")} onClick={handleClearInput}>
-            <img
-              src="/icon-asset/payment-asset/clearbutton-purple.png"
-              alt="clearbutton"
-            />
+            <img src="/icon-asset/payment-asset/clearbutton-purple.png" alt="clearbutton" />
           </button>
         )}
       </label>
@@ -45,9 +37,7 @@ const UserPage = ({ userinput }: { userinput: UserContentProps[] }) => {
   return (
     <div className={cx("wrapper")}>
       {userinput.map((data, index) => {
-        return (
-          <UserCard key={index} title={data.title} inPutText={data.inPutText} />
-        );
+        return <UserCard key={index} title={data.title} inPutText={data.inPutText} />;
       })}
     </div>
   );

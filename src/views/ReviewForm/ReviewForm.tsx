@@ -3,23 +3,16 @@
 import React, { useState } from "react";
 import cn from "classnames/bind";
 import styles from "./ReviewForm.module.scss";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft, FaRegStar } from "react-icons/fa6";
-import { DisableBtn } from "@/app/components/Button/DisableBtn";
-import { AbleBtn } from "@/app/components/Button/AbleBtn";
+import { DisableBtn } from "@/components/Button/DisableBtn";
+import { AbleBtn } from "@/components/Button/AbleBtn";
 import { useRouter } from "next/navigation";
+import { NomalBtn } from "@/components/Button/NomalBtn";
 
 const cx = cn.bind(styles);
 
-export interface ReviewFormProps {
-    rating: number;
-    starRating: string;
-    reviewContent: string | number;
-    image: string;
-}
-
-const ReviewForm = (props: ReviewFormProps) => {
-    const { rating, starRating, reviewContent, image } = props;
+const ReviewForm = () => {
     const [reviewText, setReviewText] = useState("");
 
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -31,7 +24,14 @@ const ReviewForm = (props: ReviewFormProps) => {
     const handleGoBack = () => {
         router.back();
     };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
 
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     return (
         <div className={cx("ReviewContainer")}>
             <Header
@@ -66,12 +66,9 @@ const ReviewForm = (props: ReviewFormProps) => {
 
             <div className={cx("PhotoUploadWrapper")}>
                 <h1 className={cx("PhotoUploadTitle")}>사진 등록하기</h1>
-                <label
-                    htmlFor="review-photo-upload"
-                    className={cx("PhotoUpload")}
-                >
+                <button className={cx("PhotoUpload")} onClick={openModal}>
                     +<p>사진 업로드</p>
-                </label>
+                </button>
                 <input
                     type="file"
                     id="review-photo-upload"
@@ -80,6 +77,30 @@ const ReviewForm = (props: ReviewFormProps) => {
                     hidden
                 />
             </div>
+            {/* 파일 올리는 기능 구현 필요 */}
+            {/* 모달 */}
+            {isModalOpen && (
+                <div className={cx("ModalWrapper")}>
+                    <div
+                        className={cx("ModalContent")}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <label htmlFor="review-photo-upload">
+                            <NomalBtn
+                                label={"사진 보관함"}
+                                onClick={openModal}
+                            />
+                        </label>
+                        <input
+                            type="file"
+                            id="review-photo-upload"
+                            name="review-photo-upload"
+                            hidden
+                        />
+                        <DisableBtn label={"취소"} onClick={closeModal} />
+                    </div>
+                </div>
+            )}
             <div className={cx("UploadButton")}>
                 {reviewText === "" ? (
                     <DisableBtn label={"등록하기"} />

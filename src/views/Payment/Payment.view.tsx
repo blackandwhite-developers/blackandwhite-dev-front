@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import styles from "./Payment.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "./PaymentCard.view";
-import Badge from "@/app/components/badge/Badge";
-import Radio from "@/app/components/radio/Radio";
+import Badge from "@/components/badge/Badge";
+import Radio from "@/components/radio/Radio";
 
 const cx = cn.bind(styles);
 
@@ -23,7 +23,17 @@ export interface ReservationContentProps {
 }
 
 const ReservetionContent = (props: ReservationContentProps) => {
-  const { hotelName, roomType, checkInDate, checkInTime, checkOutDate, checkOutTime, visitMethod, price, discountPrice } = props;
+  const {
+    hotelName,
+    roomType,
+    checkInDate,
+    checkInTime,
+    checkOutDate,
+    checkOutTime,
+    visitMethod,
+    price,
+    discountPrice,
+  } = props;
   const [visit, setVisit] = useState(visitMethod);
   return (
     <div className={cx("wrapper")}>
@@ -85,7 +95,9 @@ const ReservetionContent = (props: ReservationContentProps) => {
           <Badge shape="square" color="point">
             선착순 {discountPrice.toLocaleString()}원 특가
           </Badge>
-          <p className={cx("pay-amount")}>{(price - discountPrice).toLocaleString()}원</p>
+          <p className={cx("pay-amount")}>
+            {(price - discountPrice).toLocaleString()}원
+          </p>
         </div>
       </div>
       <div className={cx("border")}></div>
@@ -93,7 +105,11 @@ const ReservetionContent = (props: ReservationContentProps) => {
   );
 };
 
-const ReservationSection = ({ reservations }: { reservations: ReservationContentProps[] }) => {
+const ReservationSection = ({
+  reservations,
+}: {
+  reservations: ReservationContentProps[];
+}) => {
   return (
     <PaymentCard>
       {reservations.map((data, index) => {

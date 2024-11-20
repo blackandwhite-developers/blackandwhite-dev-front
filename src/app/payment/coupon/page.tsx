@@ -2,11 +2,9 @@ import React from "react";
 import cn from "classnames/bind";
 import CouponPage from "@/views/Payment/PaymentCouponPage.view";
 import styles from "@/views/Payment/Payment.view.module.scss";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
-import PaymentCouponPageview, {
-  CouponContentProps,
-} from "@/views/Payment/PaymentCouponPage.view";
+import PaymentCouponPageview, { CouponContentProps } from "@/views/Payment/PaymentCouponPage.view";
 
 const cx = cn.bind(styles);
 
