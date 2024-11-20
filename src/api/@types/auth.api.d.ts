@@ -1,9 +1,9 @@
-type loginRequestPath = {};
+type loginRequestPath = unknown;
 type loginRequestBody = {
   email: string;
   password: string;
 };
-type loginRequestParams = {};
+type loginRequestParams = unknown;
 
 type loginRequest = {
   path?: loginRequestPath;
@@ -14,13 +14,14 @@ type loginRequest = {
 type loginResponse = {
   accessToken: string;
   refreshToken: string;
+  user: ILoginResponse;
 };
 
-type refreshRequestPath = {};
+type refreshRequestPath = unknown;
 type refreshRequestBody = {
   refreshToken: string;
 };
-type refreshRequestParams = {};
+type refreshRequestParams = unknown;
 
 type refreshRequest = {
   path?: refreshRequestPath;
