@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { RefCallback, useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import cn from "classnames/bind";
 import styles from "./TextInput.module.scss";
@@ -15,7 +15,7 @@ interface TextInputProps {
   value?: string;
   maxLength?: number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  ref?: React.RefObject<HTMLInputElement>;
+  ref?: RefCallback<HTMLInputElement> | null;
 }
 
 const TextInput = ({ type, placeholder, showToggle, className, errorMessage, value, onChange, maxLength, ref }: TextInputProps) => {
