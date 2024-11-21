@@ -19,6 +19,7 @@ export interface HomeviewProps {
 const Homeview = (props: HomeviewProps) => {
   const { category, resentView } = props;
   const [src, setSrc] = useState("/home/home_banner_desktop.png");
+
   const [isAlarm, setIsAlarm] = useState(false);
   useEffect(() => {
     const handleResize = () => {
@@ -31,10 +32,7 @@ const Homeview = (props: HomeviewProps) => {
     window.addEventListener("resize", handleResize);
     handleResize();
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+
 
   useEffect(() => {
     const eventSource = new EventSource("http://localhost:4000/api/event");
@@ -57,7 +55,6 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("logo")}>
           <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
         </div>
-
         <Link href={"/alert"}>
           <div
             className={cx("bell", {
@@ -68,7 +65,6 @@ const Homeview = (props: HomeviewProps) => {
           </div>
         </Link>
       </header>
-
       <main className={cx("main-container")}>
         <SearchBar />
         <div className={cx("grid-container")}>
@@ -84,11 +80,14 @@ const Homeview = (props: HomeviewProps) => {
             );
           })}
         </div>
-
-        <div className={cx("banner")}>
-          <img src={src} alt="" />
-        </div>
-
+                <Link href={"/alert"}>
+                    <div className={cx("bell")}>
+                        <PiBellSimpleThin
+                            style={{ width: "100%", height: "100%" }}
+                        />
+                    </div>
+                </Link>
+            </header>
         <div className={cx("currentList")}>
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
@@ -97,20 +96,34 @@ const Homeview = (props: HomeviewProps) => {
                 <div className={cx("list-image")}>
                   <img src={item.thumbnail} alt={item.title} />
                 </div>
-                <div className={cx("list-title")}>
-                  <p>{item.title}</p>
+                <div className={cx("banner")}>
+                    <img src={src} alt="" />
                 </div>
-                <div className={cx("list-price")}>
-                  <p>{item.price.toLocaleString()}원</p>
+                <div className={cx("currentList")}>
+                    <h4>최근 본 숙소</h4>
+                    <div className={cx("list-container")}>
+                        {currentDate.map((item) => (
+                            <div className={cx("list-item")} key={item.id}>
+                                <div className={cx("list-image")}>
+                                    <img
+                                        src={item.thumbnail}
+                                        alt={item.title}
+                                    />
+                                </div>
+                                <div className={cx("list-title")}>
+                                    <p>{item.title}</p>
+                                </div>
+                                <div className={cx("list-price")}>
+                                    <p>{item.price.toLocaleString()}원</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-              </div>
-            ))}
-          </div>
+            </main>
+            <FooterBar />
         </div>
-      </main>
-      <FooterBar />
-    </div>
-  );
+    );
 };
 
 export default Homeview;
