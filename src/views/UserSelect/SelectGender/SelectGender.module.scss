@@ -1,6 +1,7 @@
 .SelectGenderWrapper {
     margin: 0 auto;
-    max-width: 360px;
+    width: 100%;
+    max-width: 1024px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -43,4 +44,8 @@
     align-items: center;
     margin-top: auto;
     padding-bottom: 30px;
+
+    & a {
+        width: 100%;
+    }
 }
