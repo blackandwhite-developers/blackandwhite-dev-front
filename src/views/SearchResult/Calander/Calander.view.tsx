@@ -230,7 +230,7 @@ const CalanderView = () => {
 };
 
 export default CalanderView;
-export const adultCountAtom = atom(0);
+export const adultCountAtom = atom(1);
 export const childCountAtom = atom(0);
 export const selectedDateRangeAtom = atom<
     { from: Date | undefined; to: Date | undefined } | undefined
