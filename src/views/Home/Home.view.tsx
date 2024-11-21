@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import cn from "classnames/bind";
 import styles from "./Home.view.module.scss";
@@ -6,15 +6,15 @@ import FooterBar from "../../components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
 import SearchBar from "../../components/input/SearchBar/SearchBar";
 
-// import Link from "next/link";
-// import MainCategory from "@/components/category/main/MainCategory";
+import Link from "next/link";
+import MainCategory from "@/components/category/main/MainCategory";
 
-// const cx = cn.bind(styles);
+const cx = cn.bind(styles);
 
-// export interface HomeviewProps {
-//   category: ICategory[];
-//   resentView?: ILodge[];
-// }
+export interface HomeviewProps {
+  category: ICategory[];
+  resentView?: ILodge[];
+}
 
 const Homeview = (props: HomeviewProps) => {
   const { category, resentView } = props;
@@ -47,10 +47,10 @@ const Homeview = (props: HomeviewProps) => {
       }
     });
 
-//     return () => {
-//       eventSource.close();
-//     };
-//   }, []);
+    return () => {
+      eventSource.close();
+    };
+  }, []);
 
   return (
     <div className={cx("main-wrap")}>
@@ -73,11 +73,7 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("grid-container")}>
           {category.map((a) => (
             <Link href={`/home/list/${a.path}`} key={a.id}>
-              <MainCategory
-                categoryName={a.title}
-                categoryIcon={`http://${a.thumbnail}.svg`}
-                categoryKoreanName={a.title}
-              />
+              <MainCategory categoryName={a.title} categoryIcon={`http://${a.thumbnail}.svg`} categoryKoreanName={a.title} />
             </Link>
           ))}
         </div>
@@ -105,4 +101,4 @@ const Homeview = (props: HomeviewProps) => {
   );
 };
 
-// export default Homeview;
+export default Homeview;

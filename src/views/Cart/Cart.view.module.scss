@@ -1,24 +1,15 @@
 @import "../../app/mixins";
 
 .cart-container {
-  padding-top: 45px;
   margin: 0 auto;
+  width: 100%;
 
   .select-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
+    padding: 10px 20px;
 
-    &::after {
-      position: absolute;
-      content: "";
-      top: 40px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: #e5e5e5;
-    }
     .outline-btn {
       font-size: 14px;
       font-weight: 500;
@@ -29,10 +20,7 @@
     }
   }
   .main-container {
-    width: 100%;
-    display: flex;
-
-    padding: 10px 0;
+    padding: 10px 20px;
     align-items: start;
     border-bottom: 1px solid #e5e5e5;
     position: relative;
@@ -50,19 +38,29 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
+        flex: 1;
 
         .top-info {
           display: flex;
           gap: 10px;
+          width: 100%;
 
-          img {
+          .img {
             width: 91px;
             height: 91px;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 4px;
+            }
           }
 
           .room-info {
             display: flex;
             flex-direction: column;
+            flex: 1;
 
             .title {
               font-size: 14px;
@@ -101,7 +99,7 @@
             align-items: center;
             margin-top: 10px;
             padding: 10px 20px;
-            width: 288px;
+            width: 100%;
             border-radius: 7px;
             opacity: 0.4;
 
@@ -264,10 +262,159 @@
 }
 
 @include mobile {
+  .cart-container {
+    background-color: green;
+  }
 }
 
 @include tablet {
+  .cart-container {
+    background-color: blue;
+  }
 }
 
 @include desktop {
+  .cart-container {
+    max-width: 1920px;
+    background-color: bisque;
+    .main-container {
+      .main-info {
+        gap: 10px;
+        width: 100%;
+        .info {
+          .top-info {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+
+            .img {
+              flex-shrink: 0;
+              width: 200px;
+              height: 200px;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+              }
+            }
+
+            .room-info {
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+              flex: 1;
+
+              .title {
+                font-size: 25px;
+                font-weight: 700;
+                line-height: 28.96px;
+                letter-spacing: -0.05em;
+              }
+              .date {
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 23.17px;
+                letter-spacing: -0.05em;
+                text-align: left;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+              }
+              .parlorInfomation {
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 23.17px;
+                letter-spacing: -0.05em;
+                text-align: left;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+              }
+            }
+          }
+
+          .info-product {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .middle-info {
+              margin-top: 10px;
+              padding: 20px 40px;
+              width: 100%;
+              .time,
+              .checkIn,
+              .checkOut {
+                font-size: 20px;
+              }
+            }
+          }
+
+          .bottom-info {
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            width: 40%;
+            .rest-info {
+              padding-top: 10px;
+            }
+            .count {
+              font-size: 15px;
+            }
+            .price {
+              font-size: 25px;
+            }
+          }
+        }
+      }
+    }
+
+    .bottom-container {
+      p {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26.06px;
+      }
+      .payment-info {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      span {
+        font-family: Noto Sans KR;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 26.06px;
+        letter-spacing: -0.05em;
+      }
+
+      .rule li {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24.53px;
+      }
+      .bottom-sheet {
+        .amount-count {
+          span {
+            padding: 10px;
+            font-family: Noto Sans KR;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 27.59px;
+          }
+
+          .cash {
+            .cash-results,
+            .cash-total {
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 20.27px;
+              letter-spacing: -0.05em;
+            }
+          }
+        }
+      }
+    }
+  }
 }
