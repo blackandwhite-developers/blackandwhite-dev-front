@@ -25,7 +25,7 @@ export interface SearchViewProps {
 }
 
 const RECENT_SEARCHES_KEY = "recentSearches";
-const MAX_RECENT_SEARCHES = 5;
+const MAX_RECENT_SEARCHES = 10;
 
 const SearchView = (props: SearchViewProps) => {
   const { aboutData, recommendData, popularcontent } = props;
@@ -100,7 +100,7 @@ const SearchView = (props: SearchViewProps) => {
           <div className={cx("popular-content")}>
             <p>인기 검색어</p>
             {popularcontent.map((item, index) => (
-              <PopularContent key={index} rank={item.rank} content={item.content} arrow={item.arrow} />
+              <PopularContent key={item.rank} rank={item.rank} content={item.content} arrow={item.arrow} />
             ))}
           </div>
         </div>
