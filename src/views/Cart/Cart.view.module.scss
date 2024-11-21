@@ -3,14 +3,12 @@
 .cart-container {
   padding-top: 45px;
   margin: 0 auto;
-  max-width: 360px;
 
   .select-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    position: relative;
 
     &::after {
       position: absolute;
@@ -30,14 +28,14 @@
       color: #606060;
     }
   }
-
   .main-container {
     width: 100%;
     display: flex;
-    padding: 10px 15px;
+
+    padding: 10px 0;
     align-items: start;
-    gap: 20px;
     border-bottom: 1px solid #e5e5e5;
+    position: relative;
 
     &.last-item {
       border-bottom: none;
