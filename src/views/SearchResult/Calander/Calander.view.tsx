@@ -21,7 +21,9 @@ const CalanderView = () => {
     const handleGoBack = () => {
         router.back();
     };
-
+    const defaultAdultCount = 1;
+    const defaultChildCount = 0;
+    const defaultSelectedDateRange = { from: new Date(), to: new Date() };
     const [adultCount, setAdultCount] = useAtom(adultCountAtom);
     const [childCount, setChildCount] = useAtom(childCountAtom);
     const [selectedDateRange, setSelectedDateRange] = useAtom(
@@ -29,15 +31,19 @@ const CalanderView = () => {
     );
 
     useEffect(() => {
+        if (adultCount === undefined) setAdultCount(defaultAdultCount);
+        if (childCount === undefined) setChildCount(defaultChildCount);
         if (!selectedDateRange) {
-            const today = new Date();
-            const formattedToday = {
-                from: today,
-                to: today,
-            };
-            setSelectedDateRange(formattedToday);
+            setSelectedDateRange(defaultSelectedDateRange);
         }
-    }, [setSelectedDateRange]);
+    }, [
+        adultCount,
+        childCount,
+        selectedDateRange,
+        setAdultCount,
+        setChildCount,
+        setSelectedDateRange,
+    ]);
 
     /** 성인 인원 */
     const handleAdultCountChange = (
