@@ -3,38 +3,46 @@
     width: 100%;
     max-width: 1024px;
     height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+
+  .SelectGenderContent {
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
+    gap: 7px;
 
-    .SelectGenderContent {
-        padding-top: 70px;
-        display: flex;
-        flex-direction: column;
-
-        .SelectGender {
-            font-size: 25px;
-            // color: #8728ff;
-        }
+    .SelectGender {
+      font-size: 25px;
+      color: #8728ff;
+      font-weight: 500;
     }
 
-    .SelectGenderRadioBtn {
-        display: flex;
-        flex-direction: column;
-        padding: 30px 0 60px;
-        gap: 10px;
-        color: #999999;
-
-        .SelectGenderBtn {
-            padding: 20px;
-            border: 1px solid #e5e5e5;
-            border-radius: 10px;
-            cursor: pointer;
-
-            &.selected {
-                border-color: #8728ff;
-            }
-        }
+    .SelectGenderInform {
+      font-size: 16px;
+      font-weight: 400;
     }
+  }
+
+  .SelectGenderRadioBtn {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 60px;
+    gap: 10px;
+    color: #999999;
+
+    .SelectGenderBtn {
+      padding: 20px;
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      cursor: pointer;
+
+      &.selected {
+        border-color: #8728ff;
+      }
+    }
+  }
 }
 
 .SelectGenderNextBtn {

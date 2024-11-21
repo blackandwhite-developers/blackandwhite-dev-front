@@ -20,6 +20,7 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 20px;
+
 }
 
 //쿠폰 체크했을때 부분
@@ -37,9 +38,9 @@
 }
 
 .custom-checkbox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .custom-checkbox input[type="checkbox"] {
@@ -69,44 +70,45 @@
 }
 
 .custom-checkbox span::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background-color: var(--main-purple);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.2s ease;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: var(--main-purple);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
 }
 
 .custom-checkbox input[type="checkbox"]:checked+span::before {
   transform: translate(-50%, -50%) scale(1);
   /* 체크 표시 나타내기 */
+
 }
 
 .custom-checkbox p {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--main-purple);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--main-purple);
 }
 
 .coupon-amount {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gray900);
-  margin-left: 22px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray900);
+    margin-left: 22px;
 }
 
 .coupon-exp {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gray500);
-  margin-left: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray500);
+    margin-left: 20px;
 }
 
-//쿠폰 체크 안했을때 부분
+
 @include desktop {
   .custom-checkbox p {
     font-size: 1rem;
@@ -125,4 +127,9 @@
   .coupon-amount {
     font-size: 1rem;
   }
+}
+
+.button-container {
+    margin-top: auto;
+    padding-bottom: 30px;
 }

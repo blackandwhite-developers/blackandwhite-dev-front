@@ -17,8 +17,8 @@ const LoginPage = () => {
   const loginFn = async (email: string, password: string) => {
     try {
       const response = await authService.login({ body: { email, password } });
-      const { accessToken, refreshToken } = response;
-      setAuth({ accessToken, refreshToken, isAuth: true });
+      const { accessToken, refreshToken, user } = response;
+      setAuth({ accessToken, refreshToken, isAuth: true, user });
       router.push("/home");
     } catch (error) {
       console.error(error);

@@ -1,7 +1,14 @@
+"use client";
 import SignUpView from "@/views/SignUp/SignUp.view";
 import React from "react";
-
+import { useRouter } from "next/navigation";
 const SignUpPage = () => {
-  return <SignUpView />;
+    const router = useRouter();
+    const submitFunc = (data: unknown) => {
+        localStorage.setItem("signUpData", JSON.stringify(data));
+        router.push("/userselect/phone");
+    };
+
+    return <SignUpView submitFunc={submitFunc} />;
 };
 export default SignUpPage;

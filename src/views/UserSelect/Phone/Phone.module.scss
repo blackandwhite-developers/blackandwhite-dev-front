@@ -1,0 +1,42 @@
+.SelectPhoneWrapper {
+  margin: 0 auto;
+  max-width: 320px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .SelectPhoneContent {
+    padding: 70px 0 30px;
+    display: flex;
+    flex-direction: column;
+
+    .SelectPhone {
+      font-size: 25px;
+      color: #8728ff;
+      font-weight: 500;
+    }
+  }
+
+  .InputWrapper {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin-top: 10px;
+    background-color: #f6f6f6;
+    // width: 360px;
+    height: 55px;
+    border-radius: 5px;
+
+    .PhoneInput {
+      width: 100%;
+    }
+  }
+}
+.PhoneNextBtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  padding-bottom: 30px;
+}

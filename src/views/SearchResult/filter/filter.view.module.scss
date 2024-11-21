@@ -44,6 +44,17 @@
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
+        .keyword {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20.27px;
+          letter-spacing: -0.045em;
+          text-align: center;
+          gap: 0px;
+          border-radius: 18.5px;
+          border: 1px solid #cccccc;
+          padding: 10px 20px;
+        }
       }
     }
     .price-container {
