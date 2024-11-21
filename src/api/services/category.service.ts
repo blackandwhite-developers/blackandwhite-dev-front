@@ -31,7 +31,6 @@ export class CategoryService {
           parent: null,
         },
       });
-      console.log(res.data.results);
       return res.data;
     } catch (error) {
       console.error(error);

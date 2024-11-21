@@ -27,6 +27,12 @@ export class UserService {
     this._ajax = _ajax;
   }
 
+  async getMyInfo(): Promise<getMyInfoResponse> {
+    const { data } = await this._ajax.get(pathToUrl(USER_ROUTES.GET_MY_INFO, {}));
+    console.log(data);
+    return data;
+  }
+
   async signUp(req: signUpRequest): Promise<signUpResponse> {
     const { body } = req;
     const { data } = await this._ajax.post(pathToUrl(USER_ROUTES.SIGN_UP, {}), { ...body });

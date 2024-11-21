@@ -1,3 +1,24 @@
+interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  profile: {
+    /** ID */
+    id: string;
+    /** 연락처 */
+    phone: string;
+    /** 생년월일 */
+    birth: string;
+    /** 성별 */
+    gender: string;
+    /** 관심사 */
+    interest: string;
+    /** 닉네임 */
+    nickname: string;
+  };
+}
+
 type signUpRequestPath = {};
 type signUpRequestBody = {
   name: string;
@@ -25,26 +46,7 @@ type signUpRequest = {
   params?: signUpRequestParams;
 };
 
-type signUpResponse = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  profile: {
-    /** ID */
-    id: string;
-    /** 연락처 */
-    phone: string;
-    /** 생년월일 */
-    birth: string;
-    /** 성별 */
-    gender: string;
-    /** 관심사 */
-    interest: string;
-    /** 닉네임 */
-    nickname: string;
-  };
-};
+type signUpResponse = IUser;
 
 type resetPasswordRequestPath = {};
 type resetPasswordRequestBody = {};
@@ -57,3 +59,15 @@ type resetPasswordRequest = {
 };
 
 type resetPasswordResponse = {};
+
+type getMyInfoRequestPath = {};
+type getMyInfoRequestBody = {};
+type getMyInfoRequestParams = {};
+
+type getMyInfoRequest = {
+  path?: getMyInfoRequestPath;
+  body?: getMyInfoRequestBody;
+  params?: getMyInfoRequestParams;
+};
+
+type getMyInfoResponse = IUser;
