@@ -30,7 +30,8 @@ const Homeview = (props: HomeviewProps) => {
       }
     };
     window.addEventListener("resize", handleResize);
-    handleResize();
+    handleResize(); 
+  })}
 
 
 
@@ -118,8 +119,10 @@ const Homeview = (props: HomeviewProps) => {
                                 </div>
                             </div>
                         ))}
+            }  
                     </div>
                 </div>
+              </div> 
             </main>
             <FooterBar />
         </div>
