@@ -20,22 +20,34 @@ const Homeview = (props: HomeviewProps) => {
   const { category, resentView } = props;
   const [src, setSrc] = useState("/home/home_banner_desktop.png");
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 768) {
-                setSrc("/home/img_home_banner.svg");
-            } else {
-                setSrc("/home/home_banner_desktop.png");
-            }
-        };
-        window.addEventListener("resize", handleResize);
-        handleResize();
+  const [isAlarm, setIsAlarm] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSrc("/home/img_home_banner.svg");
+      } else {
+        setSrc("/home/home_banner_desktop.png");
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
 
+
+  useEffect(() => {
+    const eventSource = new EventSource("http://localhost:4000/api/event");
+    eventSource.addEventListener("message", (event) => {
+      const parsedEvent = JSON.parse(event.data);
+      console.log(parsedEvent);
+      if (parsedEvent.type === "alarm") {
+        setIsAlarm(true);
+      }
+    });
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
 
   return (
     <div className={cx("main-wrap")}>
@@ -44,7 +56,11 @@ const Homeview = (props: HomeviewProps) => {
           <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
         </div>
         <Link href={"/alert"}>
-          <div className={cx("bell")}>
+          <div
+            className={cx("bell", {
+              alarm: isAlarm,
+            })}
+          >
             <PiBellSimpleThin style={{ width: "100%", height: "100%" }} />
           </div>
         </Link>
@@ -54,8 +70,12 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("grid-container")}>
           {category.map((a) => {
             return (
-              <Link href={`/product/list/${a.path}`} key={a.id}>
-                <MainCategory categoryName={a.title} categoryIcon={`Http://${a.thumbnail}.svg`} categoryKoreanName={a.title} />
+              <Link href={`/home/list/${a.path}`} key={a.id}>
+                <MainCategory
+                  categoryName={a.title}
+                  categoryIcon={`Http://${a.thumbnail}.svg`}
+                  categoryKoreanName={a.title}
+                />
               </Link>
             );
           })}
