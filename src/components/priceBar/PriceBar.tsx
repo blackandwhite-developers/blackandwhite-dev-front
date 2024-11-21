@@ -27,13 +27,13 @@ const PriceBar = () => {
 
       <div className={cx("price-input")}>
         <div className={cx("field")}>
-          <span>최솟값</span>
+          <span>최소 금액</span>
           <input type="number" className={cx("input-min")} value={minValue} onChange={handleMinChange} min="10000" max="500000" />
         </div>
 
         <div className={cx("seperator")}>-</div>
         <div className={cx("field")}>
-          <span>최댓값</span>
+          <span>최대 금액</span>
           <input type="number" className={cx("input-max")} value={maxValue} onChange={handleMaxChange} min="10000" max="500000" />
         </div>
       </div>
