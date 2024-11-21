@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import styles from "./SearchResult.view.module.scss";
 import cn from "classnames/bind";
@@ -11,7 +10,6 @@ import { BiTransfer } from "react-icons/bi";
 import Badge from "@/components/badge/Badge";
 import Header from "@/components/Header/Header";
 import Link from "next/link";
-
 import SortOptions from "@/components/BottomSheet/SortOptions/SortOptions";
 import { useRouter } from "next/navigation";
 import Rating from "./Rating";
