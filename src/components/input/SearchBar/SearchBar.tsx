@@ -13,7 +13,11 @@ interface SearchBarProps {
   className?: string;
 }
 
-const SearchBar = ({ placeholder = "어떤 숙소를 찾으시나요?", searchFunc, className }: SearchBarProps) => {
+const SearchBar = ({
+  placeholder = "어떤 숙소를 찾으시나요?",
+  searchFunc,
+  className,
+}: SearchBarProps) => {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,14 +35,23 @@ const SearchBar = ({ placeholder = "어떤 숙소를 찾으시나요?", searchFu
   };
 
   return (
-    <div className={cx("searchBar", className)}>
-      <input type="text" value={query} onChange={handleInputChange} onKeyDown={handleKeyDown} placeholder={placeholder} className={cx("searchInput")} />
-      <CiSearch className={cx("searchIcon")} />
-      {query && (
-        <button onClick={clearInput} className={cx("clearButton")}>
-          <FiDelete />
-        </button>
-      )}
+    <div className={cx("searchBarwrapper")}>
+      <div className={cx("searchBar", className)}>
+        <input
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          className={cx("searchInput")}
+        />
+        <CiSearch className={cx("searchIcon")} />
+        {query && (
+          <button onClick={clearInput} className={cx("clearButton")}>
+            <FiDelete />
+          </button>
+        )}
+      </div>
     </div>
   );
 };

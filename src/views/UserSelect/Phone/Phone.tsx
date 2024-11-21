@@ -12,28 +12,29 @@ import { useRouter } from "next/navigation";
 const cx = cn.bind(styles);
 
 type PhoneProps = {
-    PhoneFunc: (phone: string) => void;
+  PhoneFunc: (phone: string) => void;
 };
 const Phone = (props: PhoneProps) => {
-    const { PhoneFunc } = props;
-    const router = useRouter();
-    /** 뒤로가기 */
-    const handleGoBack = () => {
-        router.back();
-    };
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
+  const { PhoneFunc } = props;
+  const router = useRouter();
+  /** 뒤로가기 */
+  const handleGoBack = () => {
+    router.back();
+  };
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
 
-    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let newName = e.target.value;
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let newName = e.target.value;
 
-        // 줄바꿈 제거
-        newName = newName.replace(/\n/g, "");
+    // 줄바꿈 제거
+    newName = newName.replace(/\n/g, "");
 
-        if (newName.length <= 20) {
-            setName(newName);
-        }
-    };
+    if (newName.length <= 20) {
+      setName(newName);
+    }
+  };
+
 
     // 전화번호 [000-0000-0000] 하이픈 자동 입력
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,15 +64,17 @@ const Phone = (props: PhoneProps) => {
         setPhone(newPhone);
     };
 
-    const isFormValid = name.length > 0 && phone.length > 0;
 
-    const onPhone = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
-        if (phone === null) {
-            return;
-        }
-        PhoneFunc(phone);
-    };
+  const isFormValid = name.length > 0 && phone.length > 0;
+
+  const onPhone = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (phone === null) {
+      return;
+    }
+    PhoneFunc(phone);
+  };
+
 
     return (
         <div className={cx("SelectPhoneWrapper")}>
@@ -106,15 +109,16 @@ const Phone = (props: PhoneProps) => {
                 />
             </div>
 
-            <div className={cx("PhoneNextBtn")}>
-                {isFormValid ? (
-                    <AbleBtn label={"확인"} onClick={onPhone} />
-                ) : (
-                    <DisableBtn label={"확인"} />
-                )}
-            </div>
-        </div>
-    );
+
+      <div className={cx("PhoneNextBtn")}>
+        {isFormValid ? (
+          <AbleBtn label={"다음"} onClick={onPhone} />
+        ) : (
+          <DisableBtn label={"다음"} />
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Phone;

@@ -7,22 +7,18 @@ import { PiBellSimpleThin } from "react-icons/pi";
 import SearchBar from "../../components/input/SearchBar/SearchBar";
 
 import Link from "next/link";
+import MainCategory from "@/components/category/main/MainCategory";
 
 const cx = cn.bind(styles);
 
 export interface HomeviewProps {
-    category: Array<{ id: string; name: string; image: string }>;
-    currentDate: Array<{
-        id: string;
-        thumbnail: string;
-        title: string;
-        price: number;
-    }>;
+  category: ICategory[];
+  resentView?: ILodge[];
 }
 
 const Homeview = (props: HomeviewProps) => {
-    const { category, currentDate } = props;
-    const [src, setSrc] = useState("/home/home_banner_desktop.png");
+  const { category, resentView } = props;
+  const [src, setSrc] = useState("/home/home_banner_desktop.png");
 
     useEffect(() => {
         const handleResize = () => {
@@ -40,13 +36,30 @@ const Homeview = (props: HomeviewProps) => {
         };
     }, []);
 
-    return (
-        <div className={cx("main-wrap")}>
-            <header className={cx("header-container")}>
-                <div className={cx("logo")}>
-                    <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
-                </div>
 
+  return (
+    <div className={cx("main-wrap")}>
+      <header className={cx("header-container")}>
+        <div className={cx("logo")}>
+          <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
+        </div>
+        <Link href={"/alert"}>
+          <div className={cx("bell")}>
+            <PiBellSimpleThin style={{ width: "100%", height: "100%" }} />
+          </div>
+        </Link>
+      </header>
+      <main className={cx("main-container")}>
+        <SearchBar />
+        <div className={cx("grid-container")}>
+          {category.map((a) => {
+            return (
+              <Link href={`/product/list/${a.path}`} key={a.id}>
+                <MainCategory categoryName={a.title} categoryIcon={`Http://${a.thumbnail}.svg`} categoryKoreanName={a.title} />
+              </Link>
+            );
+          })}
+        </div>
                 <Link href={"/alert"}>
                     <div className={cx("bell")}>
                         <PiBellSimpleThin
@@ -55,31 +68,17 @@ const Homeview = (props: HomeviewProps) => {
                     </div>
                 </Link>
             </header>
-
-            <main className={cx("main-container")}>
-                <Link href="/searchResult/filter">
-                    <SearchBar />
-                </Link>
-                <div className={cx("grid-container")}>
-                    {category.map((a) => {
-                        return (
-                            <Link href={`/product/list/${a.image}`} key={a.id}>
-                                <div className={cx("grid-item")}>
-                                    <img
-                                        src={`/categoryImage/ic_home_${a.image}.svg`}
-                                        alt={a.name}
-                                    />
-                                    <div className={cx("title")}>{a.name}</div>
-                                </div>
-                            </Link>
-                        );
-                    })}
+        <div className={cx("currentList")}>
+          <h4>최근 본 숙소</h4>
+          <div className={cx("list-container")}>
+            {resentView?.map((item) => (
+              <div className={cx("list-item")} key={item.id}>
+                <div className={cx("list-image")}>
+                  <img src={item.thumbnail} alt={item.title} />
                 </div>
-
                 <div className={cx("banner")}>
                     <img src={src} alt="" />
                 </div>
-
                 <div className={cx("currentList")}>
                     <h4>최근 본 숙소</h4>
                     <div className={cx("list-container")}>
