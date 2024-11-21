@@ -72,10 +72,10 @@ const Homeview = (props: HomeviewProps) => {
             {resentView?.map((item) => (
               <div className={cx("list-item")} key={item.id}>
                 <div className={cx("list-image")}>
-                  <img src={item.thumbnail} alt={item.title} />
+                  <img src={item.image} alt={item.name} />
                 </div>
                 <div className={cx("list-title")}>
-                  <p>{item.title}</p>
+                  <p>{item.name}</p>
                 </div>
                 <div className={cx("list-price")}>
                   <p>{item.price.toLocaleString()}원</p>
