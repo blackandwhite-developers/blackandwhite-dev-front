@@ -11,6 +11,7 @@ import { TextBtn } from "@/components/Button/TextBtn";
 import PopularContent from "@/components/popularContent/PopularContent";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
@@ -55,18 +56,23 @@ const SearchView = (props: SearchViewProps) => {
     setRecentSearches([]);
     localStorage.removeItem(RECENT_SEARCHES_KEY);
   };
+  const router = useRouter();
+
+  const gohome = () => {
+    router.push("/home");
+  };
 
   return (
     <div className={cx("search-container")}>
-      <Header title={"검색"} leftIcon={<FaAngleLeft />} />
+      <Header title={"검색"} leftIcon={<FaAngleLeft onClick={gohome} />} />
 
       <div className={cx("search-input")}>
         <SearchBar placeholder="어떤 숙소를 찾으시나요?" searchFunc={handleSearch} />
-      </div>
 
-      <div className={cx("about")}>
-        <DateBtn label={aboutData.date} />
-        <MemberBtn label={aboutData.member} />
+        <div className={cx("about")}>
+          <DateBtn label={aboutData.date} />
+          <MemberBtn label={aboutData.member} />
+        </div>
       </div>
 
       <div className={cx("search")}>
