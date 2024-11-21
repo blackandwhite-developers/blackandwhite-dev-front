@@ -16,7 +16,7 @@ export interface HotelViewProps {
   popData: Array<{
     id: string;
     name: string;
-    rate: string;
+    rating: number;
     count: string;
     distance: string;
     price: number;
@@ -70,7 +70,7 @@ const HotelView = (props: HotelViewProps) => {
               <img src={a.image} alt={a.name} />
               <div className={cx("pop-title")}>{a.name}</div>
               <div className={cx("pop-rate-info")}>
-                <div className={cx("pop-rate")}>{a.rate} </div>
+                <div className={cx("pop-rate")}>{a.rating} </div>
                 <div className={cx("pop-ratestar")}>★★★★☆ </div>
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
@@ -92,7 +92,7 @@ const HotelView = (props: HotelViewProps) => {
               <img src={a.image} alt={a.name} />
               <div className={cx("pop-title")}>{a.name}</div>
               <div className={cx("pop-rate-info")}>
-                <div className={cx("pop-rate")}>{a.rate} </div>
+                <div className={cx("pop-rate")}>{a.rating} </div>
                 <div className={cx("pop-ratestar")}>★★★★☆ </div>
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
