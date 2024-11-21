@@ -29,21 +29,23 @@ const ReservetionUser = ({ user }: { user: UserContentProps }) => {
   const router = useRouter();
 
   return (
-    <PaymentCard title="예약자 정보" required={true}>
-      <div className={cx("userdata-container")}>
-        <UserContent
-          userName={user.userName}
-          userPhoneNumber={user.userPhoneNumber}
-        />
-        <button
-          type="button"
-          className={cx("arrow-icon")}
-          onClick={() => router.push("/payment/user")}
-        >
-          <IoIosArrowForward />
-        </button>
-      </div>
-    </PaymentCard>
+    <div className={cx("paymentUsers")}>
+      <PaymentCard title="예약자 정보" required={true}>
+        <div className={cx("userdata-container")}>
+          <UserContent
+            userName={user.userName}
+            userPhoneNumber={user.userPhoneNumber}
+          />
+          <button
+            type="button"
+            className={cx("arrow-icon")}
+            onClick={() => router.push("/payment/user")}
+          >
+            <IoIosArrowForward />
+          </button>
+        </div>
+      </PaymentCard>
+    </div>
   );
 };
 

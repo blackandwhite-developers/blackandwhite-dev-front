@@ -1,6 +1,5 @@
 import { pathToUrl } from "@/utils/url";
 import { AxiosInstance } from "axios";
-import { console } from "inspector";
 
 const CATEGORY_ROUTES = {
   /** 카테고리 생성 */

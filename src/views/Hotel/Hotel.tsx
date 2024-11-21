@@ -35,7 +35,11 @@ const HotelView = (props: HotelViewProps) => {
     <div className={cx("container")}>
       <div className={cx("header")}>
         <Link href={"/product/list"}>
-          <Header title={titleData} leftIcon={<FaAngleLeft />} onClickLeft={handleGoBack} />
+          <Header
+            title={titleData}
+            leftIcon={<FaAngleLeft />}
+            onClickLeft={handleGoBack}
+          />
         </Link>
       </div>
       <div className={cx("banner")}>
@@ -71,7 +75,9 @@ const HotelView = (props: HotelViewProps) => {
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
               <div className={cx("pop-distance")}>{a.distance}</div>
-              <div className={cx("pop-price")}>{a.price}원</div>
+              <div className={cx("pop-price")}>
+                {a.price.toLocaleString()}원
+              </div>
             </div>
           ))}
         </div>
@@ -91,7 +97,9 @@ const HotelView = (props: HotelViewProps) => {
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
               <div className={cx("pop-distance")}>{a.distance}</div>
-              <div className={cx("pop-price")}>{a.price}원</div>
+              <div className={cx("pop-price")}>
+                {a.price.toLocaleString()}원
+              </div>
             </div>
           ))}
         </div>

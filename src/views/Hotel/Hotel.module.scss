@@ -1,136 +1,149 @@
 .header a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .container .header {
-    width: 360px;
-    margin: 0 auto;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 23.17px;
-    letter-spacing: -0.08em;
-    text-align: center;
-    padding-top: 45px;
+  width: 360px;
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 23.17px;
+  letter-spacing: -0.08em;
+  text-align: center;
+  padding-top: 45px;
 }
 
 .container .banner {
-    width: 360px;
-    margin: 0 auto;
+  width: 360px;
+  margin: 0 auto;
 }
 
 .container .banner img {
-    width: 100%;
-    margin: 0 auto;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .container .selectRegion h3 {
-    width: 360px;
-    margin: 0 auto;
-    padding: 10px 20px;
+  width: 360px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .container .grid-container {
-    margin: 0 auto;
-    width: 360px;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 0 20px;
+  margin: 0 auto;
+  width: 360px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 7px 20px;
 }
 
 .container .grid-container .grid-item {
-    text-align: center;
-    font-family: Noto Sans KR;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20.27px;
-    letter-spacing: -0.08em;
-    padding: 0;
+  text-align: center;
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20.27px;
+  letter-spacing: -0.08em;
+  padding: 0;
 }
 
 .container .grid-container .grid-item img {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 10px auto;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 10px auto;
 }
 
 .container .popularityRoom h3 {
-    padding: 20px 0 0 20px;
-    margin: 0 auto;
-    width: 360px;
+  padding: 20px 0 0 20px;
+  margin: 0 auto;
+  width: 360px;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .container .popularityRoom .pop-grid {
-    width: 360px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
-    padding: 20px;
+  width: 360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  padding: 20px;
 }
 
+// .pop-grid-item {
+//   display: flex;
+//   flex-direction: column;
+//     gap: 5px;
+// }
+
 .container .popularityRoom .pop-grid .pop-grid-item img {
-    width: 144px;
-    height: 104px;
+  width: 144px;
+  height: 104px;
 }
 
 .container .popularityRoom .pop-grid .pop-grid-item .pop-rate-info {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
 }
 
 .container .popularityRoom .pop-grid .pop-grid-item .pop-title {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20.27px;
-    letter-spacing: -0.05em;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20.27px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-top: 5px;
 }
 
 .container .popularityRoom .pop-grid .pop-grid-item .pop-rate-info .pop-rate {
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 17.38px;
-    letter-spacing: -0.05em;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 17.38px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
-.container
-    .popularityRoom
-    .pop-grid
-    .pop-grid-item
-    .pop-rate-info
-    .pop-ratestar {
-    font-size: 14px;
+.container .popularityRoom .pop-grid .pop-grid-item .pop-rate-info {
+  font-size: 14px;
+}
+
+.pop-ratestar {
+  font-size: 13px;
+  color: var(--main-purple);
 }
 
 .container .popularityRoom .pop-grid .pop-grid-item .pop-rate-info .pop-count {
-    font-size: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray400);
 }
 
 .container .popularityRoom .pop-grid .pop-grid-item .pop-distance {
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 14.48px;
-    letter-spacing: -0.05em;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    color: #7f7f7f;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14.48px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--gray500);
 }
 
 .container .popularityRoom .pop-grid .pop-grid-item .pop-distance .price {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 23.17px;
-    letter-spacing: -0.05em;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23.17px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }

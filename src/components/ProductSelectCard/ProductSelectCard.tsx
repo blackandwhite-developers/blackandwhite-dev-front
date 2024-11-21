@@ -56,19 +56,31 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
             <div className={cx("priceWrapper")}>
               <div className={cx("roomArea")}>
                 <div className={cx("reservationInfo")}>
-                  <p className={cx("priceAreaInfo")}>{infomation.roomInformation}</p>
-                  <p className={cx("priceAreaInfoDetail")}>({infomation.roomInfoDetail})</p>
+                  <p className={cx("priceAreaInfo")}>
+                    {infomation.roomInformation}
+                  </p>
+                  <p className={cx("priceAreaInfoDetail")}>
+                    ({infomation.roomInfoDetail})
+                  </p>
                 </div>
-                <span className={cx("price")}>{infomation.roomPrice} 원</span>
+                <span className={cx("price")}>
+                  {infomation.roomPrice.toLocaleString()} 원
+                </span>
               </div>
             </div>
             <div className={cx("priceWrapper")}>
               <div className={cx("lodgeArea")}>
                 <div className={cx("reservationInfo")}>
-                  <p className={cx("priceAreaInfo")}>{infomation.lodgeInformation}</p>
-                  <p className={cx("priceAreaInfoDetail")}>({infomation.lodgeInfoDetail})</p>
+                  <p className={cx("priceAreaInfo")}>
+                    {infomation.lodgeInformation}
+                  </p>
+                  <p className={cx("priceAreaInfoDetail")}>
+                    ({infomation.lodgeInfoDetail})
+                  </p>
                 </div>
-                <span className={cx("price")}>{infomation.lodgePrice} 원</span>
+                <span className={cx("price")}>
+                  {infomation.lodgePrice.toLocaleString()} 원
+                </span>
               </div>
             </div>
           </div>
