@@ -5,7 +5,6 @@ import { useAtom } from "jotai";
 import { authAtom } from "@/atoms/authAtom";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-
 const LoginPage = () => {
   const [auth, setAuth] = useAtom(authAtom);
   const router = useRouter();
@@ -18,7 +17,9 @@ const LoginPage = () => {
     try {
       const response = await authService.login({ body: { email, password } });
       const { accessToken, refreshToken, user } = response;
-      setAuth({ accessToken, refreshToken, isAuth: true, user });
+      setAuth({ isAuth: true, user });
+      document.cookie = `accessToken=${accessToken}`;
+      document.cookie = `refreshToken=${refreshToken}`;
       router.push("/home");
     } catch (error) {
       console.error(error);
