@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from "react";
 import cn from "classnames/bind";
 import styles from "./Home.view.module.scss";
@@ -20,6 +20,7 @@ const Homeview = (props: HomeviewProps) => {
   const { category, resentView } = props;
   const [src, setSrc] = useState("/home/home_banner_desktop.png");
   const [isAlarm, setIsAlarm] = useState(false);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -57,7 +58,6 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("logo")}>
           <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
         </div>
-
         <Link href={"/alert"}>
           <div
             className={cx("bell", {
@@ -68,33 +68,29 @@ const Homeview = (props: HomeviewProps) => {
           </div>
         </Link>
       </header>
-
       <main className={cx("main-container")}>
         <SearchBar />
         <div className={cx("grid-container")}>
-          {category.map((a) => {
-            return (
-              <Link href={`/product/list/${a.path}`} key={a.id}>
-                <MainCategory categoryName={a.title} categoryIcon={`Http://${a.thumbnail}.svg`} categoryKoreanName={a.title} />
-              </Link>
-            );
-          })}
+          {category.map((a) => (
+            <Link href={`/home/list/${a.path}`} key={a.id}>
+              <MainCategory
+                categoryName={a.title}
+                categoryIcon={`http://${a.thumbnail}.svg`}
+                categoryKoreanName={a.title}
+              />
+            </Link>
+          ))}
         </div>
-
-        <div className={cx("banner")}>
-          <img src={src} alt="" />
-        </div>
-
         <div className={cx("currentList")}>
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
             {resentView?.map((item) => (
               <div className={cx("list-item")} key={item.id}>
                 <div className={cx("list-image")}>
-                  <img src={item.thumbnail} alt={item.title} />
+                  <img src={item.image} alt={item.name} />
                 </div>
                 <div className={cx("list-title")}>
-                  <p>{item.title}</p>
+                  <p>{item.name}</p>
                 </div>
                 <div className={cx("list-price")}>
                   <p>{item.price.toLocaleString()}원</p>

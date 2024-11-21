@@ -35,11 +35,15 @@ const HotelView = (props: HotelViewProps) => {
     <div className={cx("container")}>
       <div className={cx("header")}>
         <Link href={"/product/list"}>
-          <Header title={titleData} leftIcon={<FaAngleLeft />} onClick={handleGoBack} />
+          <Header
+            title={titleData}
+            leftIcon={<FaAngleLeft />}
+            onClickLeft={handleGoBack}
+          />
         </Link>
       </div>
       <div className={cx("banner")}>
-        <img src="/categoryImage/HotelImg/img_hotel_banner.svg" alt="" />
+        <img src="/categoryImage/HotelImg/img_hotel_banner.svg" alt="호텔이미지" />
       </div>
 
       <div className={cx("selectRegion")}>
@@ -71,7 +75,9 @@ const HotelView = (props: HotelViewProps) => {
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
               <div className={cx("pop-distance")}>{a.distance}</div>
-              <div className={cx("pop-price")}>{a.price}원</div>
+              <div className={cx("pop-price")}>
+                {a.price.toLocaleString()}원
+              </div>
             </div>
           ))}
         </div>
@@ -91,7 +97,9 @@ const HotelView = (props: HotelViewProps) => {
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
               <div className={cx("pop-distance")}>{a.distance}</div>
-              <div className={cx("pop-price")}>{a.price}원</div>
+              <div className={cx("pop-price")}>
+                {a.price.toLocaleString()}원
+              </div>
             </div>
           ))}
         </div>
