@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import cn from "classnames/bind";
 import styles from "./Home.view.module.scss";
@@ -30,8 +30,7 @@ const Homeview = (props: HomeviewProps) => {
       }
     };
     window.addEventListener("resize", handleResize);
-    handleResize(); 
-  })}
+    handleResize();
 
     return () => {
       window.removeEventListener("resize", handleResize);

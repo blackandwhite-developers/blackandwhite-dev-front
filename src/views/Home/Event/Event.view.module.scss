@@ -1,40 +1,22 @@
-.wrapper {
+.bannerwrapper {
   margin: 0 auto;
   background-color: #ffffff;
   width: 360px;
   display: flex;
   flex-direction: column;
   gap: 7px;
+  padding: 0 20px;
 }
 
 // 부분
-.sale-container {
+.bannerbox {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
-.box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.text {
+.content {
   font-size: 14px;
-  font-weight: 500;
-  color: var(--gray700);
-}
-
-.amount {
-  font-size: 14px;
-  font-weight: 700;
-  color: #000000;
-}
-
-.border {
-  height: 1px;
-  width: 100%;
-  background-color: var(--gray100);
+  font-weight: 400;
+  color: var(--gray900);
 }
