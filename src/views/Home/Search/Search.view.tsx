@@ -8,19 +8,27 @@ import SearchBar from "@/components/input/SearchBar/SearchBar";
 import { DateBtn } from "@/components/Button/DateBtn";
 import { MemberBtn } from "@/components/Button/MemberBtn";
 import { TextBtn } from "@/components/Button/TextBtn";
+import PopularContent from "@/components/popularContent/PopularContent";
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
 const cx = cn.bind(styles);
 
 export interface SearchViewProps {
   aboutData: { date: string; member: string };
   recommendData: string[];
+  popularcontent: Array<{
+    rank: number;
+    content: string;
+    arrow: JSX.Element;
+  }>;
 }
 
 const RECENT_SEARCHES_KEY = "recentSearches";
 const MAX_RECENT_SEARCHES = 5;
 
 const SearchView = (props: SearchViewProps) => {
-  const { aboutData, recommendData } = props;
+  const { aboutData, recommendData, popularcontent } = props;
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
   useEffect(() => {
@@ -91,7 +99,9 @@ const SearchView = (props: SearchViewProps) => {
 
           <div className={cx("popular-content")}>
             <p>인기 검색어</p>
-            <button>{recommendData}</button>
+            {popularcontent.map((item, index) => (
+              <PopularContent key={index} rank={item.rank} content={item.content} arrow={item.arrow} />
+            ))}
           </div>
         </div>
       </div>
