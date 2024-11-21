@@ -28,7 +28,12 @@ export class AuthService {
 
   async refresh(req: refreshRequest): Promise<refreshResponse> {
     const { body } = req;
-    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.REFRESH, {}), body);
+    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.REFRESH, {}), body, {
+      headers: {
+        "Content-Type": "application/json",
+        "x-refresh-token": body.refreshToken,
+      },
+    });
     return data;
   }
 }
