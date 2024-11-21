@@ -21,14 +21,14 @@ export class AuthService {
   }
 
   async login(req: loginRequest): Promise<loginResponse> {
-    const { path, body } = req;
-    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.LOGIN, path ?? {}), body);
+    const { body } = req;
+    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.LOGIN, {}), body);
     return data;
   }
 
   async refresh(req: refreshRequest): Promise<refreshResponse> {
-    const { path, body } = req;
-    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.REFRESH, path ?? {}), body);
+    const { body } = req;
+    const { data } = await this._ajax.post(pathToUrl(AUTH_ROUTES.REFRESH, {}), body);
     return data;
   }
 }

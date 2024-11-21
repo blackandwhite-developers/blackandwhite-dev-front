@@ -18,6 +18,9 @@ import { useRouter } from "next/navigation";
 const cx = cn.bind(styles);
 
 const SearchResultPageView = () => {
+  const [isSortOptionsVisible, setSortOptionsVisible] = useState(false);
+  const [selectedSortOption, setSelectedSortOption] = useState<string>("코코시 추천 순");
+
   const Data = [
     {
       img: "/images/search/search_01.svg",
@@ -71,7 +74,6 @@ const SearchResultPageView = () => {
     },
   ];
 
-  const [isSortOptionsVisible, setSortOptionsVisible] = useState(false);
   const handleSortOptionsOpen = () => {
     setSortOptionsVisible(true);
   };
@@ -79,7 +81,9 @@ const SearchResultPageView = () => {
   const handleSortOptionsClose = () => {
     setSortOptionsVisible(false);
   };
-
+  const handleSortOptionSelect = (option: string) => {
+    setSelectedSortOption(option);
+  };
   const router = useRouter();
   const handleDateClick = () => {
     router.push("/searchResult/calander");
@@ -91,13 +95,12 @@ const SearchResultPageView = () => {
   const [selectedDateRange, setSelectedDateRange] = useState<string>("");
   const [adultCount, setAdultCount] = useState<number>(0);
   const [childCount, setChildCount] = useState<number>(0);
-
   useEffect(() => {
     const storedDateRange = localStorage.getItem("selectedDateRange");
     const storedAdultCount = localStorage.getItem("adultCount");
     const storedChildCount = localStorage.getItem("childCount");
 
-    if (!storedAdultCount) setAdultCount(0);
+    if (!storedAdultCount) setAdultCount(1);
     if (!storedChildCount) setChildCount(0);
 
     if (storedDateRange) {
@@ -114,34 +117,27 @@ const SearchResultPageView = () => {
     if (storedChildCount) setChildCount(Number(storedChildCount));
   }, []);
   return (
-    <div className={cx("searchResult-warp")}>
+    <div>
       <div className={cx("header")}>
-        <Link href={"/home"}>
+        <Link href={"/product/list"}>
           <Header title={"검색"} />
         </Link>
       </div>
 
       <div className={cx("about")}>
-        <div className={cx("searchBar")}>
-          <SearchBar />
-        </div>
-
+        <SearchBar />
         <div className={cx("about-detail")}>
-          <div className={cx("dateBtn")}>
-            <DateBtn label={selectedDateRange || "날짜를 선택해주세요"} onClick={handleDateClick} />
-          </div>
-          <div className={cx("memberBtn")}>
-            <MemberBtn
-              label={
-                <>
-                  성인 {adultCount}명
-                  <br />
-                  아동 {childCount}명
-                </>
-              }
-              onClick={handleMemberClick}
-            />
-          </div>
+          <DateBtn label={selectedDateRange || "날짜를 선택해주세요"} onClick={handleDateClick} />
+          <MemberBtn
+            label={
+              <>
+                성인 {adultCount}명
+                <br />
+                아동 {childCount}명
+              </>
+            }
+            onClick={handleMemberClick}
+          />
         </div>
       </div>
 
@@ -158,7 +154,7 @@ const SearchResultPageView = () => {
           <div className={cx("recomend")}>
             <button className={cx("recomend-btn")}>
               <p>
-                코코시 추천 순 <FaAngleDown />
+                {selectedSortOption} <FaAngleDown />
               </p>
             </button>
 
@@ -190,7 +186,7 @@ const SearchResultPageView = () => {
 
       {isSortOptionsVisible && (
         <div className={cx("bottom-sheet")}>
-          <SortOptions sortOptions={["가영이 추천순", "리뷰 많은 순", "평점 높은 순", "거리 순", "낮은 가격순", "높은 가격 순"]} onClose={handleSortOptionsClose} />
+          <SortOptions sortOptions={["가영이 추천순", "리뷰 많은 순", "평점 높은 순", "거리 순", "낮은 가격순", "높은 가격 순"]} onClose={handleSortOptionsClose} onSelect={handleSortOptionSelect} selectedOption={selectedSortOption} />
         </div>
       )}
     </div>

@@ -19,16 +19,24 @@ const getDefaultStorage = (): SyncStorage<AuthState> | undefined => {
   return undefined;
 };
 
-interface AuthState {
+export class AuthState {
   accessToken: string | null;
   refreshToken: string | null;
   isAuth: boolean;
+  user: ILoginResponse | null;
+  constructor(data: { accessToken: string | null; refreshToken: string | null; isAuth: boolean; user: ILoginResponse | null }) {
+    this.accessToken = data.accessToken;
+    this.refreshToken = data.refreshToken;
+    this.isAuth = data.isAuth;
+    this.user = data.user;
+  }
 }
 
 const initialState: AuthState = {
   accessToken: null,
   refreshToken: null,
   isAuth: false,
+  user: null,
 };
 
 export const authAtom = atomWithStorage<AuthState>("auth", initialState, getDefaultStorage());

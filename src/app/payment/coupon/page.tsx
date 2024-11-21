@@ -4,7 +4,7 @@ import CouponPage from "@/views/Payment/PaymentCouponPage.view";
 import styles from "@/views/Payment/Payment.view.module.scss";
 import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
-import PaymentCouponPageview, { CouponContentProps } from "@/views/Payment/PaymentCouponPage.view";
+import { CouponContentProps } from "@/views/Payment/PaymentCouponPage.view";
 
 const cx = cn.bind(styles);
 

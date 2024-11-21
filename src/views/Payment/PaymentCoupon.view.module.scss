@@ -1,3 +1,9 @@
+@import "@/app/_mixins.scss";
+
+.reservationCoupons {
+  width: 100%;
+}
+
 //쿠폰 및 포인트 사용 부분
 .title-box {
   height: 50px;
@@ -15,7 +21,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
+  width: 100%;
 }
 
 .coupon-box {
@@ -62,7 +68,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
+  width: 100%;
 }
 
 .point-box {
@@ -122,3 +128,5 @@
   font-weight: 500;
   color: var(--gray500);
 }
+
+@include desktop {}

@@ -18,7 +18,10 @@
 
 .header-container .bell {
   & svg path {
-    fill: var(--main-purple);
+    fill: var(--gray300);
+    &.alarm {
+      fill: var(--main-purple);
+    }
   }
 }
 
@@ -27,7 +30,7 @@
 .main-container .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 20px;
+  padding: 15px 20px 30px 20px;
   margin: 0 auto;
   gap: 20px 0;
 }
@@ -55,7 +58,7 @@
 
 .main-container .banner img {
   width: 100%;
-  padding: 0 20px;
+  padding: 0 20px 7px;
 }
 
 .main-container .currentList h4 {
@@ -82,10 +85,13 @@
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
+  width: 120px;
 }
 
 .main-container .currentList .list-image {
   margin-bottom: 10px;
+  width: 120px;
+  height: 120px;
 }
 
 .main-container .currentList .list-image img {

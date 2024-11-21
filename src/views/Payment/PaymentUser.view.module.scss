@@ -1,7 +1,14 @@
+@import "@/app/_mixins.scss";
+
+.paymentUsers {
+  width: 100%;
+}
+
 .Wrapper {
   margin: 0 auto;
   background-color: #ffffff;
   width: 360px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 7px;
@@ -18,6 +25,7 @@
 .information-title {
   font-size: 14px;
   font-weight: 700;
+
   &::after {
     content: "*";
     color: var(--main-pink);
@@ -49,4 +57,10 @@
   outline: none;
   cursor: pointer;
   color: #999999;
+}
+
+@include desktop {
+  .Wrapper {
+    flex: 1;
+  }
 }
