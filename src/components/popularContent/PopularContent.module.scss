@@ -1,0 +1,35 @@
+.popularContent-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  color: #8728ff;
+  padding: 10px 20px;
+  .rank {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20.27px;
+    letter-spacing: -0.05em;
+  }
+  .content {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 70%;
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20.27px;
+    letter-spacing: -0.05em;
+  }
+  .arrow {
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+}
