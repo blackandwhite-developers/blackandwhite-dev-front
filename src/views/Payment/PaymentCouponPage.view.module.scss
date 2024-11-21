@@ -1,38 +1,40 @@
+@import '@/app/_mixins.scss';
+
 .wrapper {
-    margin: 0 auto;
-    width: 360px;
-    height: 100vh;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    padding: 16px;
+  margin: 0 auto;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 16px;
 }
 
 //적용안함 부분
 .no-coupon-container {
-    width: 320px;
-    height: 47px;
-    border: 1.4px solid var(--main-purple);
-    border-radius: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 20px;
+  width: 100%;
+  padding: 16px 17px 15px;
+  border: 1.4px solid var(--main-purple);
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px;
+
 }
 
 //쿠폰 체크했을때 부분
 .coupon-container {
-    border: 1.4px solid var(--main-purple);
-    border-radius: 10px;
-    width: 320px;
-    height: 92px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
-    flex-direction: column;
-    gap: 2px;
+  border: 1.4px solid var(--main-purple);
+  border-radius: 10px;
+  width: 100%;
+  padding: 16px 17px 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .custom-checkbox {
@@ -42,24 +44,29 @@
 }
 
 .custom-checkbox input[type="checkbox"] {
-    display: none; /* 기본 체크박스 숨기기 */
+  display: none;
+  /* 기본 체크박스 숨기기 */
 }
 
 .custom-checkbox span {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%; /* 동그란 모양 만들기 */
-    border: 0.7px solid #999999; /* 테두리 색상 */
-    position: relative;
-    cursor: pointer;
-    margin-right: 5px; /* 텍스트와의 간격 */
-    transition: background-color 0.2s ease;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  /* 동그란 모양 만들기 */
+  border: 0.7px solid #999999;
+  /* 테두리 색상 */
+  position: relative;
+  cursor: pointer;
+  margin-right: 5px;
+  /* 텍스트와의 간격 */
+  transition: background-color 0.2s ease;
 }
 
-.custom-checkbox input[type="checkbox"]:checked + span {
-    background-color: #ffffff; /* 체크된 상태일 때 배경색 */
-    border: 0.7px solid var(--main-purple);
+.custom-checkbox input[type="checkbox"]:checked+span {
+  background-color: #ffffff;
+  /* 체크된 상태일 때 배경색 */
+  border: 0.7px solid var(--main-purple);
 }
 
 .custom-checkbox span::before {
@@ -75,8 +82,10 @@
     transition: transform 0.2s ease;
 }
 
-.custom-checkbox input[type="checkbox"]:checked + span::before {
-    transform: translate(-50%, -50%) scale(1); /* 체크 표시 나타내기 */
+.custom-checkbox input[type="checkbox"]:checked+span::before {
+  transform: translate(-50%, -50%) scale(1);
+  /* 체크 표시 나타내기 */
+
 }
 
 .custom-checkbox p {
@@ -99,7 +108,26 @@
     margin-left: 20px;
 }
 
-//쿠폰 체크 안했을때 부분
+
+@include desktop {
+  .custom-checkbox p {
+    font-size: 1rem;
+  }
+
+  .coupon-amount {
+    font-size: 1rem;
+  }
+}
+
+@include tablet {
+  .custom-checkbox p {
+    font-size: 1rem;
+  }
+
+  .coupon-amount {
+    font-size: 1rem;
+  }
+}
 
 .button-container {
     margin-top: auto;

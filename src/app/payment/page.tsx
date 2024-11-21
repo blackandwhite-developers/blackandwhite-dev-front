@@ -1,5 +1,7 @@
 import React from "react";
-import PaymentView, { ReservationContentProps } from "@/views/Payment/Payment.view";
+import PaymentView, {
+  ReservationContentProps,
+} from "@/views/Payment/Payment.view";
 import { UserContentProps } from "@/views/Payment/PaymentUesr.view";
 import PaymentUser from "@/views/Payment/PaymentUesr.view";
 import PaymentCoupon from "@/views/Payment/PaymentCoupon.view";
@@ -73,9 +75,15 @@ export default function PaymentPage() {
       <div className={cx("page")}>
         <Header title={"예약"} leftIcon={<FaAngleLeft />} />
         <ReservationSection reservations={reservations} />
-        <ReservetionUser user={user} />
-        <ReservetionCoupon usablePointAmount={1200} usableCouponCount={2} />
-        <PaymentSale price={price} discountPrice={discountPrice} totalPrice={totalPrice} />
+        <div className={cx("reservation-user-coupon")}>
+          <ReservetionUser user={user} />
+          <ReservetionCoupon usablePointAmount={1200} usableCouponCount={2} />
+        </div>
+        <PaymentSale
+          price={price}
+          discountPrice={discountPrice}
+          totalPrice={totalPrice}
+        />
         <PaymentMethod totalPrice={totalPrice} />
       </div>
     </div>

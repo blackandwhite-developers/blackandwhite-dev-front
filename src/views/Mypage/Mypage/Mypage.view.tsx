@@ -34,7 +34,12 @@ const Mypage = (props: MypageProps) => {
     <div className={cx("MypageWrapper")}>
       <div className={cx("MyInformation")}>
         <div className={cx("Thumbnail")}>
-          <Image src={thumbnail || "/mypage/Thumbnail.png"} alt="" width={51} height={51} />
+          <Image
+            src={thumbnail || "/mypage/Thumbnail.png"}
+            alt=""
+            width={51}
+            height={51}
+          />
         </div>
         <div className={cx("NicknameWrapper")}>
           <p className={cx("welcomeMessage")}>안녕하세요!</p>
