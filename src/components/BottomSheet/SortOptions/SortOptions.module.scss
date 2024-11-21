@@ -1,54 +1,54 @@
 .CategoryWrapper {
-    background-color: #fff;
-    z-index: 1;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 360px;
-    margin: 0 auto;
-    padding: 30px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 360px;
+  margin: 0 auto;
+  padding: 30px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .CategoryTapBar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
 }
 
 .CategoryTitle {
-    font-weight: 700;
-    line-height: 24px;
-    font-size: 16px;
-    padding-top: 15px;
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 16px;
+  padding-top: 15px;
 }
 
 .CategoryListWrapper {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .CategoryList {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 14px 0;
-    font-weight: 600;
-    font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-weight: 600;
+  font-size: 14px;
 
-    &.selectedSortOption {
-        color: #8728ff;
-    }
+  &.selectedSortOption {
+    color: #8728ff;
+  }
 }
 
 .CategoryItem {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .CategoryItemCheck {
-    width: 17px;
-    height: 17px;
+  width: 17px;
+  height: 17px;
 }

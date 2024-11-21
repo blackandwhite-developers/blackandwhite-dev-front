@@ -1,262 +1,445 @@
+@import "../../app/mixins";
+
 .cart-container {
-    padding-top: 45px;
-    margin: 0 auto;
-    max-width: 360px;
+  margin: 0 auto;
+  width: 100%;
 
-    .select-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-        position: relative;
+  .select-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 
-        &::after {
-            position: absolute;
-            content: "";
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: #e5e5e5;
-        }
-        .outline-btn {
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 20.27px;
-            letter-spacing: -0.05em;
-            text-align: left;
-            color: #606060;
-        }
+    .outline-btn {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20.27px;
+      letter-spacing: -0.05em;
+      text-align: left;
+      color: #606060;
+    }
+  }
+  .main-container {
+    padding: 10px 20px;
+    align-items: start;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+
+    &.last-item {
+      border-bottom: none;
     }
 
-    .main-container {
-        width: 100%;
+    .main-info {
+      display: flex;
+      align-items: start;
+      gap: 5px;
+
+      .info {
         display: flex;
-        padding: 10px 15px;
-        align-items: start;
-        gap: 20px;
-        border-bottom: 1px solid #e5e5e5;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
 
-        &.last-item {
-            border-bottom: none;
-        }
+        .top-info {
+          display: flex;
+          gap: 10px;
+          width: 100%;
 
-        .main-info {
-            display: flex;
-            align-items: start;
-            gap: 5px;
+          .img {
+            width: 91px;
+            height: 91px;
 
-            .info {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-
-                .top-info {
-                    display: flex;
-                    gap: 10px;
-
-                    img {
-                        width: 91px;
-                        height: 91px;
-                    }
-
-                    .room-info {
-                        display: flex;
-                        flex-direction: column;
-
-                        .title {
-                            font-size: 14px;
-                            font-weight: 700;
-                            line-height: 20.27px;
-                            letter-spacing: -0.05em;
-                            text-align: left;
-                        }
-
-                        .date {
-                            font-size: 12px;
-                            font-weight: 500;
-                            line-height: 17.38px;
-                            letter-spacing: -0.05em;
-                            text-align: left;
-                        }
-
-                        .parlorInfomation {
-                            font-size: 12px;
-                            font-weight: 500;
-                            line-height: 17.38px;
-                            letter-spacing: -0.05em;
-                            text-align: left;
-                            text-underline-position: from-font;
-                            text-decoration-skip-ink: none;
-                            color: #7f7f7f;
-                        }
-                    }
-                }
-
-                .middle-info {
-                    display: flex;
-                    justify-content: space-between;
-                    background: #e5e5e5;
-                    align-items: center;
-                    margin-top: 10px;
-                    padding: 10px 20px;
-                    width: 288px;
-                    border-radius: 7px;
-                    opacity: 0.4;
-
-                    span {
-                        font-size: 12px;
-                        font-weight: 500;
-                        line-height: 17.38px;
-                        letter-spacing: -0.045em;
-                        text-align: left;
-                        text-underline-position: from-font;
-                        text-decoration-skip-ink: none;
-                    }
-                }
-
-                .bottom-info {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-end;
-                    justify-content: center;
-                    padding: 10px 0 0;
-                    .rest-info {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 10px;
-                    }
-
-                    .rest-info p {
-                        text-align: center;
-                    }
-
-                    .count {
-                        font-size: 10px;
-                        font-weight: 500;
-                        line-height: 14.48px;
-                        letter-spacing: -0.045em;
-                        text-align: left;
-                        color: #8728ff;
-                    }
-
-                    .price {
-                        font-size: 16px;
-                        font-weight: 700;
-                        line-height: 23.17px;
-                        letter-spacing: -0.05em;
-                        text-align: left;
-                    }
-                }
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 4px;
             }
+          }
+
+          .room-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .title {
+              font-size: 14px;
+              font-weight: 700;
+              line-height: 20.27px;
+              letter-spacing: -0.05em;
+              text-align: left;
+            }
+
+            .date {
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 17.38px;
+              letter-spacing: -0.05em;
+              text-align: left;
+            }
+
+            .parlorInfomation {
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 17.38px;
+              letter-spacing: -0.05em;
+              text-align: left;
+              text-underline-position: from-font;
+              text-decoration-skip-ink: none;
+              color: #7f7f7f;
+            }
+          }
         }
+
+        .info-product {
+          .middle-info {
+            display: flex;
+            justify-content: space-between;
+            background: #e5e5e5;
+            align-items: center;
+            margin-top: 10px;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 7px;
+            opacity: 0.4;
+
+            span {
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 17.38px;
+              letter-spacing: -0.045em;
+              text-align: left;
+              text-underline-position: from-font;
+              text-decoration-skip-ink: none;
+            }
+          }
+        }
+
+        .bottom-info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: center;
+          padding: 10px 0 0;
+          .rest-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+          }
+
+          .rest-info p {
+            text-align: center;
+          }
+
+          .count {
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 14.48px;
+            letter-spacing: -0.045em;
+            text-align: left;
+            color: #8728ff;
+          }
+
+          .price {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 23.17px;
+            letter-spacing: -0.05em;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom-container {
+    position: relative;
+    margin-top: 10px;
+    padding: 20px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #e5e5e5;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20.27px;
+      letter-spacing: -0.05em;
+      padding: 10px 0;
+    }
+    .payment-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+
+      .payment {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .discount {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 10px 0;
+      }
+
+      .amount-price {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+      }
+    }
+
+    .rule {
+      border-radius: 7px;
+      background: #f6f6f6;
+      padding: 20px;
+
+      li {
+        font-family: Noto Sans KR;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 18.4px;
+        letter-spacing: -0.05em;
+        color: #666666;
+      }
+    }
+
+    .bottom-sheet {
+      margin: 15px 0;
+      padding: 10px 20px;
+      box-shadow: 0px -1px 5px 0px #00000026;
+
+      .amount-count {
+        display: flex;
+        align-self: center;
+        justify-content: space-between;
+
+        span {
+          display: flex;
+          align-self: center;
+          font-family: Noto Sans KR;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 21.46px;
+          letter-spacing: -0.05em;
+        }
+
+        .cash {
+          padding-bottom: 10px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+
+          .cash-results {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 17.38px;
+            letter-spacing: -0.05em;
+          }
+          .cash-total {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 21.46px;
+            letter-spacing: -0.05em;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+}
+
+@include tablet {
+  .cart-container {
+    .main-container {
+      .main-info {
+        gap: 10px;
+        width: 100%;
+        .info {
+          .top-info {
+            display: flex;
+
+            width: 100%;
+
+            .img {
+              flex-shrink: 0;
+              width: 120;
+              height: 120;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+              }
+            }
+            .room-info {
+              gap: 10px;
+              .title {
+                font-size: 18px;
+              }
+              .date {
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 17.38px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  .cart-container {
+    max-width: 1920px;
+
+    .main-container {
+      .main-info {
+        gap: 10px;
+        width: 100%;
+        .info {
+          .top-info {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+
+            .img {
+              flex-shrink: 0;
+              width: 200px;
+              height: 200px;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+              }
+            }
+
+            .room-info {
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+              flex: 1;
+
+              .title {
+                font-size: 25px;
+                font-weight: 700;
+                line-height: 28.96px;
+                letter-spacing: -0.05em;
+              }
+              .date {
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 23.17px;
+                letter-spacing: -0.05em;
+              }
+              .parlorInfomation {
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 23.17px;
+                letter-spacing: -0.05em;
+              }
+            }
+          }
+
+          .info-product {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .middle-info {
+              margin-top: 10px;
+              padding: 20px 40px;
+              width: 100%;
+              .time,
+              .checkIn,
+              .checkOut {
+                font-size: 20px;
+              }
+            }
+          }
+
+          .bottom-info {
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            width: 40%;
+            .rest-info {
+              padding-top: 10px;
+            }
+            .count {
+              font-size: 15px;
+            }
+            .price {
+              font-size: 25px;
+            }
+          }
+        }
+      }
     }
 
     .bottom-container {
-        position: relative;
-        margin-top: 10px;
-        padding: 20px;
+      p {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26.06px;
+      }
+      .payment-info {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      span {
+        font-family: Noto Sans KR;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 26.06px;
+        letter-spacing: -0.05em;
+      }
 
-        &::before {
-            position: absolute;
-            content: "";
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: #e5e5e5;
-        }
-        p {
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 20.27px;
-            letter-spacing: -0.05em;
-            padding: 10px 0;
-        }
-        .payment-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 10px;
+      .rule li {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24.53px;
+      }
+      .bottom-sheet {
+        .amount-count {
+          span {
+            padding: 10px;
+            font-family: Noto Sans KR;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 27.59px;
+          }
 
-            .payment {
-                display: flex;
-                justify-content: space-between;
+          .cash {
+            .cash-results,
+            .cash-total {
+              font-size: 18px;
+              font-weight: 500;
+              line-height: 20.27px;
+              letter-spacing: -0.05em;
             }
-
-            .discount {
-                display: flex;
-                justify-content: space-between;
-                border-bottom: 1px solid #e5e5e5;
-                padding: 10px 0;
-            }
-
-            .amount-price {
-                display: flex;
-                justify-content: space-between;
-                padding: 20px 0;
-            }
+          }
         }
-
-        .rule {
-            border-radius: 7px;
-            background: #f6f6f6;
-            padding: 20px;
-
-            li {
-                font-family: Noto Sans KR;
-                font-size: 12px;
-                font-weight: 500;
-                line-height: 18.4px;
-                letter-spacing: -0.05em;
-                color: #666666;
-            }
-        }
-
-        .bottom-sheet {
-            margin: 15px 0;
-            padding: 3px 0;
-            box-shadow: 0px -1px 5px 0px #00000026;
-
-            .amount-count {
-                display: flex;
-                align-self: center;
-                justify-content: space-between;
-
-                span {
-                    display: flex;
-                    align-self: center;
-                    font-family: Noto Sans KR;
-                    font-size: 14px;
-                    font-weight: 500;
-                    line-height: 21.46px;
-                    letter-spacing: -0.05em;
-                }
-
-                .cash {
-                    padding-bottom: 10px;
-                    display: flex;
-                    gap: 10px;
-                    align-items: center;
-
-                    .cash-results {
-                        font-family: Noto Sans KR;
-                        font-size: 12px;
-                        font-weight: 500;
-                        line-height: 17.38px;
-                        letter-spacing: -0.05em;
-                    }
-                    .cash-total {
-                        font-family: Noto Sans KR;
-                        font-size: 14px;
-                        font-weight: 700;
-                        line-height: 21.46px;
-                        letter-spacing: -0.05em;
-                    }
-                }
-            }
-        }
+      }
     }
+  }
 }
