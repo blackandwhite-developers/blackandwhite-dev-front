@@ -20,7 +20,7 @@ const FilterPageView = (props: FilterPageViewProps) => {
   return (
     <div className={cx("filter-container")}>
       <div>
-        <Header title={"날짜 선택"} leftIcon={<MdClose />} rightIcon={"초기화"} />
+        <Header title={"필터"} leftIcon={<MdClose />} rightIcon={"초기화"} />
       </div>
 
       <div className={cx("main")}>
