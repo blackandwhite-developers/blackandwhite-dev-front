@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import { MockProvider } from "@/mockProvider";
 import JotaiProvider from "@/jotaiProvider";
 
 export const metadata: Metadata = {
@@ -16,9 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MockProvider>
-          <JotaiProvider>{children}</JotaiProvider>
-        </MockProvider>
+        <JotaiProvider>{children}</JotaiProvider>
       </body>
     </html>
   );

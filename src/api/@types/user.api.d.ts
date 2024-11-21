@@ -17,6 +17,14 @@ interface IUser {
     /** 닉네임 */
     nickname: string;
   };
+  point: number;
+  coupon: Array<ICoupon>;
+}
+
+interface ICoupon {
+  id: string;
+  title: string;
+  discount: number;
 }
 
 type signUpRequestPath = {};
