@@ -1,0 +1,22 @@
+.bannerwrapper {
+  margin: 0 auto;
+  background-color: #ffffff;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 0 20px;
+}
+
+// 부분
+.bannerbox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.content {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray900);
+}
