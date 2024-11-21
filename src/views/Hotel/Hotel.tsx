@@ -43,7 +43,7 @@ const HotelView = (props: HotelViewProps) => {
         </Link>
       </div>
       <div className={cx("banner")}>
-        <img src="/categoryImage/HotelImg/img_hotel_banner.svg" alt="" />
+        <img src="/categoryImage/HotelImg/img_hotel_banner.svg" alt="호텔이미지" />
       </div>
 
       <div className={cx("selectRegion")}>
