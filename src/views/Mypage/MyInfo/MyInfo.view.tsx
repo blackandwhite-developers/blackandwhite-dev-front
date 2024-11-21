@@ -10,8 +10,6 @@ import { NomalBtn } from "@/components/Button/NomalBtn";
 import { Dialog } from "@/components/dialog/Dialog";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useAtom } from "jotai";
-import { authAtom } from "@/atoms/authAtom";
 
 const cx = cn.bind(styles);
 

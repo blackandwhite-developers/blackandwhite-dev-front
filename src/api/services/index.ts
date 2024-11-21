@@ -2,7 +2,6 @@ import axios from "axios";
 import { UserService } from "./user.service";
 import { AuthService } from "./auth.service";
 import { CategoryService } from "./category.service";
-import { he } from "date-fns/locale";
 
 let tokens = {
   accessToken: "",
@@ -39,16 +38,15 @@ apiServer.interceptors.response.use(
   },
   async (error) => {
     if (error.response?.status === 401) {
+      console.log(error.response.data.refreshToken);
       try {
-        const response = await apiServer.post("/api/auth/refresh", {
-          refreshToken: tokens.refreshToken,
-        });
-        const { newAccessToken, refreshToken } = response.data;
-        if (!newAccessToken || !refreshToken) {
-          throw new Error("토큰이 존재하지 않습니다.");
+        const response = await apiServer.post("/api/auth/refresh", JSON.stringify({ refreshToken: error.response.data.refreshToken }));
+        if (response.status === 201) {
+          setToken(response.data);
+          return apiServer.request(error.config);
+        } else {
+          console.log("refresh token error");
         }
-        setToken({ accessToken: newAccessToken, refreshToken });
-        return apiServer.request(error.config);
       } catch (error) {
         console.error(error);
       }

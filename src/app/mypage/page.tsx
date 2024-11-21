@@ -1,6 +1,6 @@
 "use client";
 
-import useMyInfo from "@/hooks/useMyInfo";
+import useMyInfo from "@/app/hooks/useMyInfo";
 import MypageView from "@/views/Mypage/Mypage/Mypage.view";
 
 export default function Mypage() {
@@ -9,7 +9,7 @@ export default function Mypage() {
 
   const data = {
     thumbnail: "/mypage/Thumbnail.png",
-    userNickname: myInfo.profile.nickname,
+    userNickname: myInfo.info?.profile.nickname,
     point: 500,
     coupon: 3,
     category: {
