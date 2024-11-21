@@ -21,8 +21,6 @@ const getDefaultStorage = (): SyncStorage<AuthState> | undefined => {
 };
 
 export class AuthState {
-    accessToken: string | null;
-    refreshToken: string | null;
     isAuth: boolean;
     user: ILoginResponse | null;
     constructor(data: {
@@ -31,16 +29,12 @@ export class AuthState {
         isAuth: boolean;
         user: ILoginResponse | null;
     }) {
-        this.accessToken = data.accessToken;
-        this.refreshToken = data.refreshToken;
         this.isAuth = data.isAuth;
         this.user = data.user;
     }
 }
 
 const initialState: AuthState = {
-    accessToken: null,
-    refreshToken: null,
     isAuth: false,
     user: null,
 };

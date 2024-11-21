@@ -2,23 +2,32 @@ import axios from "axios";
 import { UserService } from "./user.service";
 import { AuthService } from "./auth.service";
 import { CategoryService } from "./category.service";
-import { getDefaultStore } from "jotai";
-import { authAtom } from "@/atoms/authAtom";
+import { he } from "date-fns/locale";
+
+let tokens = {
+  accessToken: "",
+  refreshToken: "",
+};
+
+export const setToken = (token: { accessToken: string; refreshToken: string }) => {
+  tokens = {
+    accessToken: token.accessToken,
+    refreshToken: token.refreshToken,
+  };
+};
 
 const apiServer = axios.create({
   baseURL: "http://localhost:4000",
   withCredentials: true,
   timeout: 3000,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-const store = getDefaultStore();
-
 apiServer.interceptors.request.use(async (config) => {
-  // console.log(config);
-  const auth = store.get(authAtom);
-  const accessToken = auth.accessToken;
-  if (accessToken) {
-    config.headers["Authorization"] = `Bearer ${accessToken}`;
+  if (tokens.accessToken) {
+    config.headers["Authorization"] = `Bearer ${tokens.accessToken}`;
   }
   // config.headers["abc"] = "123";
   return config;
@@ -29,19 +38,21 @@ apiServer.interceptors.response.use(
     return response;
   },
   async (error) => {
-    if (error.status === 401) {
-      const auth = store.get(authAtom);
-      const refreshToken = auth.refreshToken;
-      if (refreshToken) {
-        const response = await authService.refresh({ body: { refreshToken } });
-        if (response) {
-          const { accessToken, refreshToken } = response;
-          store.set(authAtom, { ...auth, accessToken, refreshToken });
-          return apiServer.request(error.config);
+    if (error.response?.status === 401) {
+      try {
+        const response = await apiServer.post("/api/auth/refresh", {
+          refreshToken: tokens.refreshToken,
+        });
+        const { newAccessToken, refreshToken } = response.data;
+        if (!newAccessToken || !refreshToken) {
+          throw new Error("토큰이 존재하지 않습니다.");
         }
+        setToken({ accessToken: newAccessToken, refreshToken });
+        return apiServer.request(error.config);
+      } catch (error) {
+        console.error(error);
       }
     }
-    console.error(error);
   }
 );
 
