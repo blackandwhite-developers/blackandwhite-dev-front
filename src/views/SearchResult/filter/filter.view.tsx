@@ -19,7 +19,7 @@ const FilterPageView = (props: FilterPageViewProps) => {
   const { roomData, keyData } = props;
   return (
     <div className={cx("filter-container")}>
-      <div>
+      <div className="header">
         <Header title={"날짜 선택"} leftIcon={<MdClose />} rightIcon={"초기화"} />
       </div>
 
