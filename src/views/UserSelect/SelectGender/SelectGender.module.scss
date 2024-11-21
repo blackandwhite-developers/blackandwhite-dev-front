@@ -1,7 +1,8 @@
 .SelectGenderWrapper {
-  margin: 0 auto;
-  max-width: 360px;
-  height: 100vh;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1024px;
+    height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 0 20px;
@@ -45,10 +46,14 @@
 }
 
 .SelectGenderNextBtn {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  padding-bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding-bottom: 30px;
+
+    & a {
+        width: 100%;
+    }
 }

@@ -21,7 +21,7 @@ export default function PaymentUserPage() {
   ];
 
   return (
-    <div className={cx("page-layout")}>
+    <div className={cx("page-layout", "user-payment-layout")}>
       <div className={cx("page")}>
         <Header title={"예약자 정보"} leftIcon={<FaAngleLeft />} />
         <UserPage userinput={userinput} />

@@ -1,93 +1,71 @@
+"use client"
+import { useState, useEffect } from "react";
 import HotelView from "@/views/Hotel/Hotel";
 import React from "react";
+
+interface Hotel {
+  id: string;
+  image: string;
+  name: string;
+  rate: string;
+  count: string;
+  distance: string;
+  price: number;
+}
+
+const getRandomHotels = (hotelList: Hotel[]): Hotel[] => {
+  const shuffled = hotelList.sort(() => Math.random() - 0.5); 
+  return shuffled.slice(0, 4);
+};
 
 const HotelPage = () => {
   const titleData = "호텔";
 
-  const data = [
-    {
-      id: "1번글",
-      image: "/categoryImage/img_hotel_seoul.svg",
-      title: "서울/경기",
-    },
-    {
-      id: "2번글",
-      image: "/categoryImage/img_hotel_chungcheong.svg",
-      title: "충청",
-    },
-    {
-      id: "3번글",
-      image: "/categoryImage/img_hotel_gyengsang.svg",
-      title: "경상",
-    },
-    {
-      id: "4번글",
-      image: "/categoryImage/img_hotel_jeonla.svg",
-      title: "전라",
-    },
-    {
-      id: "5번글",
-      image: "/categoryImage/img_hotel_gangwon.svg",
-      title: "강원",
-    },
-    {
-      id: "6번글",
-      image: "/categoryImage/img_hotel_jeju.svg",
-      title: "제주",
-    },
-  ];
+  const [data, setData] = useState([]);
+  const [popData, setPopData] = useState<Hotel[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const PopData = [
-    { id: "1번 굴", image: "/categoryImage/HotelImg/pop_01.svg", name: "김포 마리나베이 호텔", rate: "4.0", count: "136", distance: "김포공항역 3분", price: 75000 },
-    {
-      id: "2번 굴",
-      image: "/categoryImage/HotelImg/pop_02.svg",
-      name: "더블유 에비뉴 김포",
-      rate: "4.0",
-      count: "136",
-      distance: "김포공항역 5분",
-      price: 85000,
-    },
-    {
-      id: "3번 굴",
-      image: "/categoryImage/HotelImg/pop_03.svg",
-      name: "리벨 닷지 호텔",
-      rate: "4.0",
-      count: "136",
-      distance: "경단역 5분",
-      price: 85000,
-    },
-    {
-      id: "4번 굴",
-      image: "/categoryImage/HotelImg/pop_04.svg",
-      name: "김포 B hotel",
-      rate: "4.0",
-      count: "136",
-      distance: "김포공항역 10분",
-      price: 85000,
-    },
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log('fetch 시작');
 
-    {
-      id: "5번 굴",
-      image: "/categoryImage/HotelImg/pop_05.svg",
-      name: "호텔 Arbo",
-      rate: "4.0",
-      count: "136",
-      distance: "아시아 게임 주 경기장 5분",
-      price: 85000,
-    },
-    {
-      id: "6번 굴",
-      image: "/categoryImage/HotelImg/pop_06.svg",
-      name: "호텔 더 루티크",
-      rate: "4.0",
-      count: "136",
-      distance: "김포공항역 3분",
-      price: 85000,
-    },
-  ];
+        const hotelResponse = await fetch("http://localhost:4000/admin-api/lodges/?categoryId=673b1682a13a15500742e04d");
 
-  return <HotelView titleData={titleData} data={data} popData={PopData} />;
+        console.log('fetch 완료:', hotelResponse);
+
+        const hotelData: Hotel[] = await hotelResponse.json(); 
+        
+        console.log("hotelData", hotelData);
+
+        const randomHotels = getRandomHotels(hotelData);
+        setPopData(randomHotels); 
+
+        setLoading(false);
+      } catch (error: unknown) { 
+        if (error instanceof Error) { 
+          setError(error.message);
+        } else {
+          setError("알 수 없는 오류가 발생했습니다.");
+        }
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
+
+  if (error) {
+    return <div>에러: {error}</div>;
+  }
+
+
+  return <HotelView titleData={titleData} data={data} popData={popData} />;
 };
 
 export default HotelPage;
