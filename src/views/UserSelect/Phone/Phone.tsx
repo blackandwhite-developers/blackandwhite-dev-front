@@ -35,22 +35,35 @@ const Phone = (props: PhoneProps) => {
     }
   };
 
-  // 전화번호 [000-0000-0000] 하이픈 자동 입력
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let newPhone = e.target.value.replace(/[^0-9]/g, "");
 
-    if (newPhone.length <= 11) {
-      if (newPhone.length > 6) {
-        newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(
-          3,
-          7
-        )}-${newPhone.slice(7, 11)}`;
-      } else if (newPhone.length > 3) {
-        newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(3, 6)}`;
-      }
-      setPhone(newPhone);
-    }
-  };
+    // 전화번호 [000-0000-0000] 하이픈 자동 입력
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const input = e.target.value;
+        const previousValue = e.target.defaultValue;
+        let newPhone = input.replace(/[^0-9]/g, "");
+
+        if (newPhone.length > 11) {
+            newPhone = newPhone.slice(0, 11);
+        }
+
+        if (newPhone.length > 6) {
+            newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(
+                3,
+                7
+            )}-${newPhone.slice(7)}`;
+        } else if (newPhone.length > 3) {
+            newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(3)}`;
+        }
+
+        if (previousValue && input.length < previousValue.length) {
+            if (previousValue.endsWith("-") && !input.endsWith("-")) {
+                newPhone = input.slice(0, -1);
+            }
+        }
+
+        setPhone(newPhone);
+    };
+
 
   const isFormValid = name.length > 0 && phone.length > 0;
 
@@ -62,38 +75,40 @@ const Phone = (props: PhoneProps) => {
     PhoneFunc(phone);
   };
 
-  return (
-    <div className={cx("SelectPhoneWrapper")}>
-      <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
-      <div className={cx("SelectPhoneContent")}>
-        <p className={cx("SelectPhone")}>
-          휴대폰 번호를 <br></br>입력해주세요.
-        </p>
-      </div>
-      <div className={cx("InputWrapper")}>
-        <label htmlFor="name"></label>
-        <input
-          id="name"
-          type="text"
-          className={cx("PhoneInput")}
-          maxLength={20}
-          placeholder="이름"
-          value={name}
-          onChange={handleNameChange}
-        />
-      </div>
-      <div className={cx("InputWrapper")}>
-        <label htmlFor="nickname"></label>
-        <input
-          id="nickname"
-          type="text"
-          className={cx("PhoneInput")}
-          maxLength={20}
-          value={phone}
-          onChange={handlePhoneChange}
-          placeholder="휴대폰 번호"
-        />
-      </div>
+
+    return (
+        <div className={cx("SelectPhoneWrapper")}>
+            <Header leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
+            <div className={cx("SelectPhoneContent")}>
+                <p className={cx("SelectPhone")}>
+                    휴대폰 번호를 <br></br>입력해주세요.
+                </p>
+            </div>
+            <div className={cx("InputWrapper")}>
+                <label htmlFor="name"></label>
+                <input
+                    id="name"
+                    type="text"
+                    className={cx("PhoneInput")}
+                    maxLength={20}
+                    placeholder="이름"
+                    value={name}
+                    onChange={handleNameChange}
+                />
+            </div>
+            <div className={cx("InputWrapper")}>
+                <label htmlFor="phone"></label>
+                <input
+                    id="phone"
+                    type="text"
+                    className={cx("PhoneInput")}
+                    maxLength={20}
+                    value={phone}
+                    onChange={handlePhoneChange}
+                    placeholder="휴대폰 번호"
+                />
+            </div>
+
 
       <div className={cx("PhoneNextBtn")}>
         {isFormValid ? (
