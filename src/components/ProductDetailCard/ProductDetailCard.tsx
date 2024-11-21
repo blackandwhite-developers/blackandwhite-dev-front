@@ -6,60 +6,51 @@ import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-type ProductDetailInfomation = {
-  /** 객실정보 */
-  parlorInfomation?: string | null;
-  /** 입실 */
-  checkInInfomation?: string | null;
-  /** 퇴실 */
-  checkOutInfomation?: string | null;
-  /** 숙박 가격 */
-  lodgePrice?: string;
-  /** 객실 갯수 */
-  roomCount: number;
-};
-
 type ProductDetailCardProps = {
-  imageUrl: string;
+  image: string;
   label?: string;
-  title: string;
-  /** 객실정보 */
-  infomation: ProductDetailInfomation;
+  name: string,
+  standard: number,
+  maximum: number,
+  checkIn: string,
+  checkOut: string,
+  price: string,
+  roomCount: number,
 };
 
 export default function ProductDetailCard(props: ProductDetailCardProps) {
-  const { imageUrl, label, title, infomation } = props;
+  const { image, name, label, standard, maximum,  checkIn, checkOut, price, roomCount} = props;
 
   return (
     <div className={cx("productDetailBox")}>
       <div className={cx("productDetailBoxInn")}>
         <p className={cx("productBoxImage")}>
-          <img src={`${imageUrl}`} alt={`${title}`} />
+          <img src={`${image}`} alt={`${name}`} />
         </p>
 
         <div className={cx("productBoxInfo")}>
           <p className={cx("productLabel")}>{label}</p>
-          <h3>{title}</h3>
+          <h3>{name}</h3>
           <div className={cx("infomation")}>
-            {infomation.parlorInfomation ? (
+            {standard && maximum ? (
               <p className={cx("parlorInfomation")}>
                 <span>객실 정보</span>
-                <span>{infomation.parlorInfomation}</span>
+                <span>기준{standard}인 (최대{maximum}인)</span>
               </p>
             ) : null}
-            {infomation.checkInInfomation ? (
+            {checkIn ? (
               <p className={cx("checkInInfomation")}>
                 <span>입실/퇴실</span>
                 <span>
-                  입실 {infomation.checkInInfomation} / 퇴실 {infomation.checkOutInfomation}
+                  입실 {checkIn} / 퇴실 {checkOut}
                 </span>
               </p>
             ) : null}
           </div>
 
           <div className={cx("priceArea")}>
-            <span>{infomation.roomCount >= 1 ? `${infomation.roomCount}개 남음` : `사용 불가`}</span>
-            <span className={cx("roomPrice")}>{infomation.lodgePrice} 원</span>
+            <span>{roomCount >= 1 ? `${roomCount}개 남음` : `사용 불가`}</span>
+            <span className={cx("roomPrice")}>{price} 원</span>
           </div>
         </div>
       </div>
