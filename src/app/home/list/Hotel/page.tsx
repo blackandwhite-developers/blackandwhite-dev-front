@@ -38,7 +38,7 @@ const HotelPage = () => {
         setLoading(true);
 
         const hotelResponse = await fetch(
-          "http://localhost:4000/admin-api/lodges/?categoryId=673b1682a13a15500742e04d"
+          "http://localhost:4000/api/lodges/?categoryId=673b1682a13a15500742e04d"
         );
         if (!hotelResponse.ok) {
           throw new Error(

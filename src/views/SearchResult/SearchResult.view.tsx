@@ -14,66 +14,19 @@ import Link from "next/link";
 
 import SortOptions from "@/components/BottomSheet/SortOptions/SortOptions";
 import { useRouter } from "next/navigation";
+import Rating from "./Rating";
 
 const cx = cn.bind(styles);
 
-const SearchResultPageView = () => {
+interface SearchResultPageViewProps {
+    data: any[];
+}
+
+const SearchResultPageView = (props: SearchResultPageViewProps) => {
+    const { data } = props;
     const [isSortOptionsVisible, setSortOptionsVisible] = useState(false);
     const [selectedSortOption, setSelectedSortOption] =
         useState<string>("코코시 추천 순");
-
-    const Data = [
-        {
-            img: "/images/search/search_01.svg",
-            title: "김포마리나베이 호텔",
-            type: "호텔",
-            rate: "4.0",
-            rateStar: "★★★★☆",
-            count: "1,136",
-            distance: "김포공항역 3분",
-            price: "75,000",
-        },
-        {
-            img: "/images/search/search_02.svg",
-            title: "Bon voyage 호텔",
-            type: "호텔",
-            rate: "4.0",
-            rateStar: "★★★★☆",
-            count: "1,136",
-            distance: "김포공항역 4분",
-            price: "75,000",
-        },
-        {
-            img: "/images/search/search_03.svg",
-            title: "스테이 위드 김포",
-            type: "호텔",
-            rate: "4.0",
-            rateStar: "★★★★☆",
-            count: "1,136",
-            distance: "프리미엄 아울렛 6분",
-            price: "75,000",
-        },
-        {
-            img: "/images/search/search_04.svg",
-            title: "스테이 위드 김포",
-            type: "호텔",
-            rate: "4.0",
-            rateStar: "★★★★☆",
-            count: "1,136",
-            distance: "경단역 3분",
-            price: "75,000",
-        },
-        {
-            img: "/images/search/search_05.svg",
-            title: "스테이 위드 김포",
-            type: "호텔",
-            rate: "4.0",
-            rateStar: "★★★★☆",
-            count: "1,136",
-            distance: "아시안 게임 주 경기장 5분",
-            price: "75,000",
-        },
-    ];
 
     const handleSortOptionsOpen = () => {
         setSortOptionsVisible(true);
@@ -96,6 +49,7 @@ const SearchResultPageView = () => {
     const [selectedDateRange, setSelectedDateRange] = useState<string>("");
     const [adultCount, setAdultCount] = useState<number>(0);
     const [childCount, setChildCount] = useState<number>(0);
+
     useEffect(() => {
         const storedDateRange = localStorage.getItem("selectedDateRange");
         const storedAdultCount = localStorage.getItem("adultCount");
@@ -114,23 +68,23 @@ const SearchResultPageView = () => {
             )
                 .toString()
                 .padStart(2, "0")}.${formattedStartDate
-                .getDate()
-                .toString()
-                .padStart(2, "0")} (${formattedStartDate.toLocaleString(
-                "default",
-                { weekday: "short" }
-            )})`;
+                    .getDate()
+                    .toString()
+                    .padStart(2, "0")} (${formattedStartDate.toLocaleString(
+                        "default",
+                        { weekday: "short" }
+                    )})`;
             const endDateWithDay = `${formattedEndDate.getFullYear()}.${(
                 formattedEndDate.getMonth() + 1
             )
                 .toString()
                 .padStart(2, "0")}.${formattedEndDate
-                .getDate()
-                .toString()
-                .padStart(2, "0")} (${formattedEndDate.toLocaleString(
-                "default",
-                { weekday: "short" }
-            )})`;
+                    .getDate()
+                    .toString()
+                    .padStart(2, "0")} (${formattedEndDate.toLocaleString(
+                        "default",
+                        { weekday: "short" }
+                    )})`;
 
             setSelectedDateRange(`${startDateWithDay} ~ ${endDateWithDay}`);
         }
@@ -183,46 +137,49 @@ const SearchResultPageView = () => {
                         </button>
 
                         <div className={cx("card-container")}>
-                            {Data.map((a, i) => {
-                                return (
-                                    <div className={cx("card")} key={i}>
-                                        <div className={cx("card-item")}>
-                                            <img src={a.img} alt="" />
-                                            <div className={cx("detail")}>
-                                                <Badge shape="round">
-                                                    {a.type}
-                                                </Badge>
-                                                <p className={cx("title")}>
-                                                    {a.title}
-                                                </p>
-                                                <div
-                                                    className={cx("rate-info")}
-                                                >
-                                                    <p className={cx("rate")}>
-                                                        {a.rate}
+                            {data && data.length > 0 ? (
+                                data.map((a, i) => {
+                                    return (
+                                        <div className={cx("card")} key={i}>
+                                            <div className={cx("card-item")}>
+                                                <img src={a.image} alt="" />
+                                                <div className={cx("detail")}>
+                                                    <Badge shape="round">
+                                                        {a.categoryName}
+                                                    </Badge>
+                                                    <p className={cx("title")}>
+                                                        {a.name}
                                                     </p>
-                                                    <p
-                                                        className={cx(
-                                                            "rate-star"
-                                                        )}
+                                                    <div
+                                                        className={cx("rate-info")}
                                                     >
-                                                        {a.rateStar}
+                                                        <p className={cx("rate")}>
+                                                            {a.rating}
+                                                        </p>
+                                                        <p
+                                                            className={cx("rate-star")}>
+                                                            <Rating rating={a.rating} maxRating={5} />
+
+                                                        </p>
+                                                        <p className={cx("count")}>
+                                                            ({a.count})
+                                                        </p>
+                                                    </div>
+                                                    <p className={cx("distance")}>
+                                                        {a.distance}
                                                     </p>
-                                                    <p className={cx("count")}>
-                                                        ({a.count})
+                                                    <p className={cx("price")}>
+                                                        {a.price}원
                                                     </p>
                                                 </div>
-                                                <p className={cx("distance")}>
-                                                    {a.distance}
-                                                </p>
-                                                <p className={cx("price")}>
-                                                    {a.price}원
-                                                </p>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })
+
+                            ) : (
+                                <p className={cx("no-results")}>검색 결과가 없습니다.</p>
+                            )}
                         </div>
                     </div>
                 </div>

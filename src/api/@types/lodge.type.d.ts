@@ -26,6 +26,8 @@ interface ILodge {
   review: string[]; // TODO: 리뷰 모델 추가
   /** 가격 */
   price: number;
+  /** 카테고리 이름 */
+  categoryName: string;
 }
 
 interface IRoomTypeAndStock {
