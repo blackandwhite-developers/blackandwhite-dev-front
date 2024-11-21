@@ -7,11 +7,13 @@ export default function Mypage() {
   const myInfo = useMyInfo();
   if (!myInfo) return null;
 
+  console.log(myInfo);
+
   const data = {
     thumbnail: "/mypage/Thumbnail.png",
-    userNickname: myInfo.info?.profile.nickname,
-    point: 500,
-    coupon: 3,
+    userNickname: myInfo.info?.profile.nickname || "",
+    point: myInfo.info?.point,
+    coupon: myInfo.info?.coupon.length,
     category: {
       wishlist: ["/mypage/wishlist"],
       reservationList: ["/mypage/reservation"],
