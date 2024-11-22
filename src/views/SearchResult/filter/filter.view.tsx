@@ -19,8 +19,8 @@ const FilterPageView = (props: FilterPageViewProps) => {
   const { roomData, keyData } = props;
   return (
     <div className={cx("filter-container")}>
-      <div className="header">
-        <Header title={"날짜 선택"} leftIcon={<MdClose />} rightIcon={"초기화"} />
+      <div>
+        <Header title={"필터"} leftIcon={<MdClose />} rightIcon={"초기화"} />
       </div>
 
       <div className={cx("main")}>
@@ -30,7 +30,7 @@ const FilterPageView = (props: FilterPageViewProps) => {
             {roomData.map((a, i) => {
               return (
                 <div className={cx("checkbox-wrapper")} key={i}>
-                  <DefaultCheckBox label={a} />
+                  <DefaultCheckBox label={a} isCircle={true} />
                 </div>
               );
             })}
@@ -49,7 +49,6 @@ const FilterPageView = (props: FilterPageViewProps) => {
           </div>
         </div>
         <div className={cx("price-container")}>
-          <h3> 가격대</h3>
           <PriceRangeSlider />
         </div>
       </div>
