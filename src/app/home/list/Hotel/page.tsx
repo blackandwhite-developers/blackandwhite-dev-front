@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import HotelView from "@/views/Hotel/Hotel";
 import React from "react";
+import Loading from "@/components/loading/Loading";
 
 interface Hotel {
   id: string;
@@ -15,7 +16,7 @@ interface Hotel {
 
 interface Region {
   id: string;
-  image: string;
+  thumbnail: string;
   title: string;
 }
 
@@ -47,16 +48,21 @@ const HotelPage = () => {
         }
         const hotelData: Hotel[] = await hotelResponse.json();
         const randomHotels = getRandomHotels(hotelData);
+        console.log("randomHotels", randomHotels);
         setPopData(randomHotels);
 
-        // const regionResponse = await fetch("http://localhost:4000/category/?level=1&parent=673b1682a13a15500742e04d");
-        // if (!regionResponse.ok) {
-        //   throw new Error(
-        //     `지역 데이터 요청 실패: ${regionResponse.status} ${regionResponse.statusText}`
-        //   );
-        // }
-        // const regionData: Region[] = await regionResponse.json();
-        // setData(regionData);
+        const regionResponse = await fetch("http://localhost:4000/api/category?level=1&parent=673b1682a13a15500742e04d");
+        console.log('Region response:', regionResponse); 
+
+        if (!regionResponse.ok) {
+          throw new Error(
+            `지역 데이터 요청 실패: ${regionResponse.status} ${regionResponse.statusText}`
+          );
+        }
+        const data = await regionResponse.json();
+        console.log('Region data:', data);
+        const regionData: Region[] = data.results;
+        setData(regionData);
 
         setLoading(false);
       } catch (error: unknown) {
@@ -73,7 +79,7 @@ const HotelPage = () => {
   }, []);
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <div><Loading/></div>;
   }
 
   if (error) {

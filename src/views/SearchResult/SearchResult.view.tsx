@@ -114,11 +114,12 @@ const SearchResultPageView = (props: SearchResultPageViewProps) => {
               {data && data.length > 0 ? (
                 data.map((a, i) => {
                   return (
+                    <Link href={`/home/select?id=${a._id}`} key={i}>
                     <div className={cx("card")} key={i}>
                       <div className={cx("card-item")}>
-                        <img src={a.image} alt="" />
+                        <img src={a.image} alt={`${a.name}`} />
                         <div className={cx("detail")}>
-                          <Badge shape="round">{a.categoryName}</Badge>
+                          <Badge shape="round">{a.categoryTitle}</Badge>
                           <p className={cx("title")}>{a.name}</p>
                           <div className={cx("rate-info")}>
                             <p className={cx("rate")}>{a.rating}</p>
@@ -132,6 +133,7 @@ const SearchResultPageView = (props: SearchResultPageViewProps) => {
                         </div>
                       </div>
                     </div>
+                    </Link>
                   );
                 })
               ) : (

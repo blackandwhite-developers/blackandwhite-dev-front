@@ -4,7 +4,6 @@ import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
 import { IoIosHeartEmpty } from "react-icons/io";
-import { FaRegStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -49,8 +48,8 @@ export interface ProductDetailProps {
         name: string;
         capacity: { standard: number; maximum: number };
         time: { checkIn: string; checkOut: string, };
-        price: { shortStayPrice: string };
-        roomCount: number;
+        price: {price: number;};
+        stock: number;
     }>;
 }
 
@@ -326,8 +325,8 @@ const ProductDetail = (props: ProductDetailProps) => {
                                                     checkIn={product.time.checkIn}
 
                                                     checkOut={product.time.checkOut}
-                                                    price={product.price.shortStayPrice}
-                                                    roomCount={product.roomCount}
+                                                    price={product.price.price}
+                                                    stock={product.stock}
                                                 />
                                             )
                                         )}

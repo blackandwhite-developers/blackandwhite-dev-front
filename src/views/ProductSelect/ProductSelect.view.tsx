@@ -36,6 +36,7 @@ export interface DateRange {
 }
 export interface ProductSelectProps {
     data: {
+        id: string;
         category: { id: string; title: string; thumbnail: string };
         name: string;
         rating: number;
@@ -47,22 +48,15 @@ export interface ProductSelectProps {
         event: string;
         name: string;
         capacity: { standard: number; maximum: number };
-        time: { checkIn: string; checkOut: string, };
-        price: { shortStayPrice: string ; overnightPrice: string};
+        time: { checkIn: string; checkOut: string };
+        price: {price: number};
         stock: number;
     }>;
 }
 
 const ProductSelect = (props: ProductSelectProps) => {
     const { data, productSelectData } = props;
-    const {
-        // roomType,
-        // roomName,
-        // rating,
-        // review,
-        // location,
-    } = props;
-
+    const router = useRouter();
     /** 상품 카드 더미 데이터 */
     // const productSelectData = [
     //     {
@@ -160,8 +154,6 @@ const ProductSelect = (props: ProductSelectProps) => {
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
     };
-
-    const router = useRouter();
 
     const handleDateBtnClick = () => {
         router.push("/searchResult/calander");
@@ -368,8 +360,7 @@ const ProductSelect = (props: ProductSelectProps) => {
                                                 maximum={product.capacity.maximum}
                                                 checkIn={product.time.checkIn}
                                                 checkOut={product.time.checkOut}
-                                                shortStayPrice={product.price.shortStayPrice}
-                                                overnightPrice = {product.price. overnightPrice}
+                                                price={{ price: product.price.price }}
                                                 stock={product.stock}
                                                 />
                                             )
