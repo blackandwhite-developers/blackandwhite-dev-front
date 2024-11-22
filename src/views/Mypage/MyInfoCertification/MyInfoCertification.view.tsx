@@ -13,101 +13,101 @@ import Link from "next/link";
 const cx = cn.bind(styles);
 
 const MyInfoCertification = () => {
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-    const router = useRouter();
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const router = useRouter();
 
-    /** 뒤로가기 */
-    const handleGoBack = () => {
-        router.back();
-    };
+  /** 뒤로가기 */
+  const handleGoBack = () => {
+    router.back();
+  };
 
-    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let newName = e.target.value;
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let newName = e.target.value;
 
-        // 줄바꿈 제거
-        newName = newName.replace(/\n/g, "");
+    // 줄바꿈 제거
+    newName = newName.replace(/\n/g, "");
 
-        if (newName.length <= 20) {
-            setName(newName);
-        }
-    };
+    if (newName.length <= 20) {
+      setName(newName);
+    }
+  };
 
-    // 전화번호 [000-0000-0000] 하이픈 자동 입력
-    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const input = e.target.value;
-        const previousValue = e.target.defaultValue;
-        let newPhone = input.replace(/[^0-9]/g, "");
+  // 전화번호 [000-0000-0000] 하이픈 자동 입력
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    const previousValue = e.target.defaultValue;
+    let newPhone = input.replace(/[^0-9]/g, "");
 
-        if (newPhone.length > 11) {
-            newPhone = newPhone.slice(0, 11);
-        }
+    if (newPhone.length > 11) {
+      newPhone = newPhone.slice(0, 11);
+    }
 
-        if (newPhone.length > 6) {
-            newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(
-                3,
-                7
-            )}-${newPhone.slice(7)}`;
-        } else if (newPhone.length > 3) {
-            newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(3)}`;
-        }
+    if (newPhone.length > 6) {
+      newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(
+        3,
+        7
+      )}-${newPhone.slice(7)}`;
+    } else if (newPhone.length > 3) {
+      newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(3)}`;
+    }
 
-        if (previousValue && input.length < previousValue.length) {
-            if (previousValue.endsWith("-") && !input.endsWith("-")) {
-                newPhone = input.slice(0, -1);
-            }
-        }
+    if (previousValue && input.length < previousValue.length) {
+      if (previousValue.endsWith("-") && !input.endsWith("-")) {
+        newPhone = input.slice(0, -1);
+      }
+    }
 
-        setPhone(newPhone);
-    };
+    setPhone(newPhone);
+  };
 
-    const isFormValid = name.length > 0 && phone.length > 0;
-    return (
-        <div className={cx("CertificationWrapper")}>
-            <Header
-                title={"내정보 수정"}
-                leftIcon={<FaAngleLeft onClick={handleGoBack} />}
-            />
-            <h1 className={cx("UserInfoCheck")}>회원정보 확인</h1>
-            <p>
-                정보를 안전하게 보호하기 위해 <br></br>본인의 실명과 핸드폰
-                번호를 입력해주세요.
-            </p>
-            <div className={cx("CertificationInputWrapper")}>
-                <div className={cx("CertificationInputTitle")}>
-                    <label htmlFor="name">이름</label>
-                    <input
-                        id="id"
-                        type="text"
-                        className={cx("IdInput")}
-                        value={name}
-                        onChange={handleNameChange}
-                        maxLength={20}
-                    />
-                </div>
-                <div className={cx("CertificationInputTitle")}>
-                    <label htmlFor="phone">휴대전화 번호</label>
-                    <input
-                        id="phone"
-                        type="text"
-                        className={cx("PhoneInput")}
-                        value={phone}
-                        onChange={handlePhoneChange}
-                    />
-                </div>
-            </div>
-
-            <div className={cx("AbleBtnWrapper")}>
-                {isFormValid ? (
-                    <Link href="/mypage/myinfo">
-                        <AbleBtn label={"확인"} />
-                    </Link>
-                ) : (
-                    <DisableBtn label={"확인"} />
-                )}
-            </div>
+  const isFormValid = name.length > 0 && phone.length > 0;
+  return (
+    <div className={cx("CertificationWrapper")}>
+      <Header
+        title={"내정보 수정"}
+        leftIcon={<FaAngleLeft onClick={handleGoBack} />}
+      />
+      <h1 className={cx("UserInfoCheck")}>회원정보 확인</h1>
+      <p>
+        정보를 안전하게 보호하기 위해 <br></br>본인 실명과 핸드폰 번호를
+        입력해주세요.
+      </p>
+      <div className={cx("CertificationInputWrapper")}>
+        <div className={cx("CertificationInputTitle")}>
+          <label htmlFor="name">이름</label>
+          <input
+            id="id"
+            type="text"
+            className={cx("IdInput")}
+            value={name}
+            onChange={handleNameChange}
+            maxLength={20}
+          />
         </div>
-    );
+        <div className={cx("CertificationInputTitle")}>
+          <label htmlFor="phone">휴대폰 번호</label>
+          <input
+            id="phone"
+            type="text"
+            className={cx("PhoneInput")}
+            value={phone}
+            onChange={handlePhoneChange}
+          />
+        </div>
+      </div>
+
+      <div className={cx("AbleBtnWrapper")}>
+        {isFormValid ? (
+          <Link href="/mypage/myinfo">
+            <AbleBtn label={"확인"} />
+          </Link>
+        ) : (
+          <DisableBtn label={"확인"} />
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default MyInfoCertification;
