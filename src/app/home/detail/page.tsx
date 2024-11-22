@@ -17,7 +17,7 @@ interface ProductDetailCardProps {
   capacity: { standard: number; maximum: number };
   time: { checkIn: string; checkOut: string, };
   price: { shortStayPrice: string };
-  roomCount: number;
+  stock: number;
 }
 
 export default function ProductDetailPage() {

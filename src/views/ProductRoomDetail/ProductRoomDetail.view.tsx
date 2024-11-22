@@ -24,52 +24,53 @@ import {
 } from "@/atoms/authAtom";
 
 const cx = cn.bind(styles);
+
 interface DateRange {
     startDate: Date;
     endDate: Date;
 }
-export interface ProductDetailProps {
-    roomType: string;
-    roomName: string;
-    rating: number;
-    review: number;
-    location: number;
+export interface ProductRoomDetailProps {
+    data: Array<{
+        event?: string;
+        title: "대실" | "숙박";
+        name: string;
+        checkIn?: string | null;
+        checkOut?: string | null;
+        price: { shortStayPrice: string; overnightPrice: string; };
+        stock: number;
+        capacity: { standard: number; maximum: number };
+    }>;
+
 }
 
-const ProductDetail = (props: ProductDetailProps) => {
-    const {
-        // roomType,
-        // roomName,
-        // rating,
-        // review,
-        // location,
-    } = props;
+const ProductRoomDetail = (props: ProductRoomDetailProps) => {
+    const { data } = props;
     /** 상품 카드 더미 데이터 */
-    const productDetailsArray = [
-        {
-            title: "대실" as const,
-            infomation: {
-                badge: "선착순 3,000원 할인",
-                operationHoure: "24시간",
-                useHoure: "2시간",
-                checkInTime: "14:00",
-                checkOutTime: "11:00",
-                price: "50,000원",
-                roomCount: 3,
-            },
-        },
-        {
-            title: "숙박" as const,
-            infomation: {
-                operationHoure: "24시간",
-                useHoure: "4시간",
-                checkInTime: "15:00",
-                checkOutTime: "12:00",
-                price: "50,000원",
-                roomCount: 1,
-            },
-        },
-    ];
+    // const productDetailsArray = [
+    //     {
+    //         title: "대실" as const,
+    //         infomation: {
+    //             badge: "선착순 3,000원 할인",
+    //             operationHoure: "24시간",
+    //             useHoure: "2시간",
+    //             checkInTime: "14:00",
+    //             checkOutTime: "11:00",
+    //             price: "50,000원",
+    //             roomCount: 3,
+    //         },
+    //     },
+    //     {
+    //         title: "숙박" as const,
+    //         infomation: {
+    //             operationHoure: "24시간",
+    //             useHoure: "4시간",
+    //             checkInTime: "15:00",
+    //             checkOutTime: "12:00",
+    //             price: "50,000원",
+    //             roomCount: 1,
+    //         },
+    //     },
+    // ];
 
     /** 상단 이미지 더미 데이터 */
     const images = [
@@ -80,6 +81,7 @@ const ProductDetail = (props: ProductDetailProps) => {
 
     /** 뒤로가기 */
     const router = useRouter();
+
     const handleGoBack = () => {
         router.back();
     };
@@ -96,23 +98,6 @@ const ProductDetail = (props: ProductDetailProps) => {
         endDate: new Date(),
     };
 
-    const formattedDateRange = dateRange
-        ? {
-              startDate: dateRange.startDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-              endDate: dateRange.endDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-          }
-        : null;
-
     const [selectedDateRange, setSelectedDateRange] = useAtom(
         selectedDateRangeAtom
     );
@@ -122,15 +107,35 @@ const ProductDetail = (props: ProductDetailProps) => {
     useEffect(() => {
         if (adultCount === undefined) setAdultCount(1);
         if (childCount === undefined) setChildCount(0);
+
         if (!selectedDateRange) {
             const today = new Date();
-            const defaultDateRange: DateRange = {
+            setSelectedDateRange({
                 startDate: today,
                 endDate: today,
-            };
-            setSelectedDateRange(defaultDateRange);
+                from: today,
+                to: today,
+                selected: true,
+            });
         }
-    }, [selectedDateRange, setSelectedDateRange]);
+    }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
+
+    const formattedDateRange = dateRange
+        ? {
+            startDate: dateRange.startDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+            endDate: dateRange.endDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+        }
+        : null;
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -173,14 +178,26 @@ const ProductDetail = (props: ProductDetailProps) => {
             <div className={cx("ProductInform")}>
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
-                        <h1 className={cx("ProductTitle")}>프리미엄 트윈</h1>
+                        <h1 className={cx("ProductTitle")}>
+                            {data.length > 0 ? data[0].name : "객실 이름 없음"}
+                        </h1>
+
                         <p>주차불가 / 마운틴뷰 or 오션뷰 or 시티뷰 랜덤배정</p>
                     </div>
                     <div className={cx("ProductDetailInformation")}>
-                        <p className={cx("RoomInformation")}>객실 정보</p>
-                        <p className={cx("PersonCountInformation")}>
-                            기준 2인 (최대 3인)
+                        <p className={cx("RoomInformation")}>
+                            {data.length > 0 ? "객실 정보" : "객실 데이터가 없습니다."}
                         </p>
+                        <p className={cx("PersonCountInformation")}>
+                            {data.length > 0 ? (
+                                <span>
+                                    기준 {data[0].capacity.standard}인 (최대 {data[0].capacity.maximum}인)
+                                </span>
+                            ) : (
+                                "인원 정보 없음"
+                            )}
+                        </p>
+
                     </div>
                 </div>
 
@@ -216,15 +233,23 @@ const ProductDetail = (props: ProductDetailProps) => {
                         </div>
 
                         <div>
-                            {productDetailsArray.map((product, index) => (
+                            {data.map((product, index) => (
                                 <ProductRoomDetailCard
                                     key={index}
+                                    event={product.event}
                                     title={product.title}
-                                    infomation={product.infomation}
-                                    badge={product.infomation.badge || ""}
+                                    name={product.name}
+                                    checkIn={product.checkIn}
+                                    checkOut={product.checkOut}
+                                    standard={product.capacity.standard}
+                                    maximum={product.capacity.maximum}
+                                    shortStayPrice={product.price.shortStayPrice}
+                                    overnightPrice={product.price.overnightPrice}
+                                    stock={product.stock}
                                 />
                             ))}
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -232,4 +257,4 @@ const ProductDetail = (props: ProductDetailProps) => {
     );
 };
 
-export default ProductDetail;
+export default ProductRoomDetail;

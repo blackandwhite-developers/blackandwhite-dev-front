@@ -15,11 +15,11 @@ type ProductDetailCardProps = {
   checkIn: string,
   checkOut: string,
   price: string,
-  roomCount: number,
+  stock: number,
 };
 
 export default function ProductDetailCard(props: ProductDetailCardProps) {
-  const { image, name, event, standard, maximum,  checkIn, checkOut, price, roomCount} = props;
+  const { image, name, event, standard, maximum,  checkIn, checkOut, price, stock} = props;
 
   return (
     <div className={cx("productDetailBox")}>
@@ -49,7 +49,7 @@ export default function ProductDetailCard(props: ProductDetailCardProps) {
           </div>
 
           <div className={cx("priceArea")}>
-            <span>{roomCount >= 1 ? `${roomCount}개 남음` : `사용 불가`}</span>
+            <span>{stock >= 1 ? `${stock}개 남음` : `사용 불가`}</span>
             <span className={cx("roomPrice")}>{price} 원</span>
           </div>
         </div>

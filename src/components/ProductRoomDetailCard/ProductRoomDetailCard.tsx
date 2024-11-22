@@ -8,23 +8,21 @@ import RoomBooking from "../BottomSheet/RoomBooking/RoomBooking";
 
 const cx = cn.bind(styles);
 
-type ProductDetailInfomation = {
-  operationHoure?: string | null;
-  useHoure?: string | null;
-  checkInTime?: string | null;
-  checkOutTime?: string | null;
-  price?: string;
-  roomCount: number;
-};
-
-type ProductDetailCardProps = {
-  badge?: string;
+type ProductRoomDetailCardProps = {
+  event?: string;
   title: "대실" | "숙박";
-  infomation: ProductDetailInfomation;
+  name: string;
+  checkIn?: string | null;
+  checkOut?: string | null;
+  shortStayPrice: string; 
+  overnightPrice: string;
+  stock: number;
+  standard: number;
+  maximum: number;
 };
 
-export default function ProductRoomDetailCard(props: ProductDetailCardProps) {
-  const { badge, title, infomation } = props;
+export default function ProductRoomDetailCard(props: ProductRoomDetailCardProps) {
+  const { event, title, name,  checkIn, checkOut, shortStayPrice, overnightPrice, stock, standard, maximum} = props;
   const [selectedBookingType, setSelectedBookingType] = useState<"대실" | "숙박" | null>(null);
 
   const handleClose = () => {
@@ -35,36 +33,37 @@ export default function ProductRoomDetailCard(props: ProductDetailCardProps) {
     <div className={cx("productDetailBox")}>
       <div className={cx("productDetailBoxInn")}>
         <div className={cx("productBoxInfo")}>
-          {badge && <p className={cx("productBadge")}>{badge}</p>}
+          {event && <p className={cx("productBadge")}>{event}</p>}
           <h3>{title}</h3>
           <div className={cx("infomation")}>
             {title === "대실" ? (
               <div className={cx("checkInInfomation")}>
                 <p>
                   <span>이용시간</span>
-                  <span>최대 {infomation.useHoure}시간 이용</span>
+                  <span>최대 4시간 이용</span>
                 </p>
                 <p>
                   <span>운영시간</span>
-                  <span>{infomation.operationHoure}</span>
+                  <span>24시간</span>
                 </p>
               </div>
+              
             ) : (
               <div className={cx("checkInInfomation")}>
                 <p>
                   <span>체크인</span>
-                  <span>최대 {infomation.checkInTime}시간 이용</span>
+                  <span>{checkIn}</span>
                 </p>
                 <p>
                   <span>체크아웃</span>
-                  <span>{infomation.checkOutTime}</span>
+                  <span>{checkOut}</span>
                 </p>
               </div>
             )}
           </div>
           <div className={cx("priceArea")}>
-            <span>{infomation.roomCount >= 1 ? `${infomation.roomCount}개 남음` : `사용 불가`}</span>
-            <span className={cx("roomPrice")}>{infomation.price}</span>
+            <span>{stock >= 1 ? `${stock}개 남음` : `사용 불가`}</span>
+            <span className={cx("roomPrice")}>{shortStayPrice}</span>
           </div>
         </div>
       </div>
