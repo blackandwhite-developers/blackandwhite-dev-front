@@ -58,16 +58,22 @@ type signUpRequest = {
 type signUpResponse = IUser;
 
 type resetPasswordRequestPath = {};
-type resetPasswordRequestBody = {};
+type resetPasswordRequestBody = {
+  password: string;
+  name: string;
+  email: string;
+};
 type resetPasswordRequestParams = {};
 
 type resetPasswordRequest = {
   path?: resetPasswordRequestPath;
-  body?: resetPasswordRequestBody;
+  body: resetPasswordRequestBody;
   params?: resetPasswordRequestParams;
 };
 
-type resetPasswordResponse = {};
+type resetPasswordResponse = {
+  isSuccess: boolean;
+};
 
 type getMyInfoRequestPath = {};
 type getMyInfoRequestBody = {};
@@ -80,3 +86,20 @@ type getMyInfoRequest = {
 };
 
 type getMyInfoResponse = IUser;
+
+type authPasswordRequestPath = {};
+type authPasswordRequestBody = {
+  name: string;
+  email: string;
+};
+type authPasswordRequestParams = {};
+
+type authPasswordRequest = {
+  path?: authPasswordRequestPath;
+  body: authPasswordRequestBody;
+  params?: authPasswordRequestParams;
+};
+
+type authPasswordResponse = {
+  isSuccess: boolean;
+};
