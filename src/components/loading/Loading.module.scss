@@ -1,7 +1,7 @@
 .loading-page {
   background-image: url("../../../public/images/ioading.svg"), linear-gradient(135deg, rgba(135, 40, 255, 0.3), rgba(255, 255, 255, 0.5));
-  background-repeat: no-repeat; /* 이미지 반복을 막음 */
-  background-attachment: fixed; /* 배경 이미지 고정 */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   position: fixed;
   top: 0;
   left: 0;
@@ -10,8 +10,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-size: 80% auto; /* 배경 이미지를 80% 크기로 조정 */
-  background-position: center; /* 배경 이미지가 중앙에 위치하도록 */
+  background-size: 80% auto;
+  background-position: center;
   z-index: 9999;
   overflow: hidden;
 }
