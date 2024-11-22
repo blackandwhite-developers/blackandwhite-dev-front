@@ -17,11 +17,13 @@
 }
 
 .header-container .bell {
-  & svg path {
-    fill: var(--gray300);
-    &.alarm {
+  &.alarm {
+    & svg path {
       fill: var(--main-purple);
     }
+  }
+  & svg path {
+    fill: var(--gray300);
   }
 }
 

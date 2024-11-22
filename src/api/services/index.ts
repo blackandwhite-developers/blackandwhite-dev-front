@@ -38,7 +38,11 @@ apiServer.interceptors.response.use(
   },
   async (error) => {
     if (error.response?.status === 401) {
-      console.log(error.response.data.refreshToken);
+      if (!error.response.data.refreshToken) {
+        console.log("refresh token not found");
+        return Promise.reject(error);
+      }
+
       try {
         const response = await apiServer.post("/api/auth/refresh", JSON.stringify({ refreshToken: error.response.data.refreshToken }));
         if (response.status === 201) {
