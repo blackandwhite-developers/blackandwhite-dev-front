@@ -1,4 +1,5 @@
 "use client"
+import Loading from "@/components/loading/Loading";
 import ProductRoomDetailView from "@/views/ProductRoomDetail/ProductRoomDetail.view";
 import React, { useState, useEffect } from "react";
 
@@ -52,7 +53,7 @@ export default function ProductRoomDetailPage() {
   }, []);
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <div><Loading/></div>;
   }
 
   if (error) {

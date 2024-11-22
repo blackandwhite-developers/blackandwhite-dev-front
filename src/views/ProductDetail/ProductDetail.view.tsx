@@ -48,7 +48,7 @@ export interface ProductDetailProps {
         name: string;
         capacity: { standard: number; maximum: number };
         time: { checkIn: string; checkOut: string, };
-        price: number;
+        price: {price: number;};
         stock: number;
     }>;
 }
@@ -325,7 +325,7 @@ const ProductDetail = (props: ProductDetailProps) => {
                                                     checkIn={product.time.checkIn}
 
                                                     checkOut={product.time.checkOut}
-                                                    price={product.price}
+                                                    price={product.price.price}
                                                     stock={product.stock}
                                                 />
                                             )

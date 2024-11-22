@@ -1,4 +1,5 @@
 "use client"
+import Loading from "@/components/loading/Loading";
 import ProductSelectView from "@/views/ProductSelect/ProductSelect.view";
 import React, { useState, useEffect } from "react";
 
@@ -66,7 +67,7 @@ export default function ProductSelectPage() {
   }, []);
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <div><Loading/></div>;
   }
   
   if (error) {

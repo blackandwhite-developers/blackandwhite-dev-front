@@ -17,7 +17,7 @@ interface ProductDetailCardProps {
   name: string;
   capacity: { standard: number; maximum: number };
   time: { checkIn: string; checkOut: string, };
-  price: number;
+  price: {price: number;};
   stock: number;
 }
 
@@ -76,7 +76,7 @@ export default function ProductDetailPage() {
   if (loading) {
     return (
       <div>
-        <Loading></Loading>
+        <Loading/>
       </div>
     );
   }
