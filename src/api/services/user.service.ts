@@ -51,7 +51,7 @@ export class UserService {
 
   async resetPassword(req: resetPasswordRequest): Promise<resetPasswordResponse> {
     const { path, params, body } = req;
-    const res = await this._ajax.post(pathToUrl(USER_ROUTES.RESET_PASSWORD, path ?? {}), { params, ...body });
+    const res = await this._ajax.put(pathToUrl(USER_ROUTES.RESET_PASSWORD, path ?? {}), { params, ...body });
     if (res.status === 204) {
       return { isSuccess: true };
     } else {

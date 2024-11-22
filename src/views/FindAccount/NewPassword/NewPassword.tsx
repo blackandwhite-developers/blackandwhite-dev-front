@@ -30,7 +30,7 @@ const NewPassword = (props: NewPasswordViewProps) => {
 
   // 비밀번호 유효성 검사 [영문, 숫자 조합 8자 이상]
   const validatePassword = (password: string) => {
-    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[\w\d!@#$%^&*]{8,}$/;
     return passwordRegex.test(password);
   };
 
@@ -46,7 +46,8 @@ const NewPassword = (props: NewPasswordViewProps) => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
     if (!validatePassword(password)) {
       setErrorMessage("영문, 숫자를 조합하여 8자 이상으로 입력해주세요.");
     } else if (password !== confirmPassword) {
