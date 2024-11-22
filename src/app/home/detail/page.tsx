@@ -16,9 +16,9 @@ interface ProductDetailCardProps {
   event: string;
   name: string;
   capacity: { standard: number; maximum: number };
-  time: { checkIn: string; checkOut: string };
-  price: { shortStayPrice: string };
-  roomCount: number;
+  time: { checkIn: string; checkOut: string, };
+  price: {price: number;};
+  stock: number;
 }
 
 export default function ProductDetailPage() {
@@ -76,7 +76,7 @@ export default function ProductDetailPage() {
   if (loading) {
     return (
       <div>
-        <Loading></Loading>
+        <Loading/>
       </div>
     );
   }

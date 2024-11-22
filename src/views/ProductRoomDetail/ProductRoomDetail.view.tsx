@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
@@ -24,53 +23,25 @@ import {
 } from "@/atoms/authAtom";
 
 const cx = cn.bind(styles);
-interface DateRange {
-    startDate: Date;
-    endDate: Date;
-}
-export interface ProductDetailProps {
-    roomType: string;
-    roomName: string;
-    rating: number;
-    review: number;
-    location: number;
+
+export interface ProductRoomDetailProps {
+    data: {
+        event: string;
+        name: string;
+        time: {
+            checkIn: string;
+            checkOut: string;
+        }
+        price: { price: number; };
+        stock: number;
+        capacity: { standard: number; maximum: number; };
+        startDate: string;
+        endDate: string;
+    };
 }
 
-const ProductDetail = (props: ProductDetailProps) => {
-    const {
-        // roomType,
-        // roomName,
-        // rating,
-        // review,
-        // location,
-    } = props;
-    /** 상품 카드 더미 데이터 */
-    const productDetailsArray = [
-        {
-            title: "대실" as const,
-            infomation: {
-                badge: "선착순 3,000원 할인",
-                operationHoure: "24시간",
-                useHoure: "2시간",
-                checkInTime: "14:00",
-                checkOutTime: "11:00",
-                price: "50,000원",
-                roomCount: 3,
-            },
-        },
-        {
-            title: "숙박" as const,
-            infomation: {
-                operationHoure: "24시간",
-                useHoure: "4시간",
-                checkInTime: "15:00",
-                checkOutTime: "12:00",
-                price: "50,000원",
-                roomCount: 1,
-            },
-        },
-    ];
-
+const ProductRoomDetail = (props: ProductRoomDetailProps) => {
+    const { data } = props;
     /** 상단 이미지 더미 데이터 */
     const images = [
         "/images/HotelImage1.png",
@@ -80,6 +51,7 @@ const ProductDetail = (props: ProductDetailProps) => {
 
     /** 뒤로가기 */
     const router = useRouter();
+
     const handleGoBack = () => {
         router.back();
     };
@@ -91,46 +63,45 @@ const ProductDetail = (props: ProductDetailProps) => {
         router.push("/searchResult/calander");
     };
 
-    const dateRange: DateRange | null = {
-        startDate: new Date(),
-        endDate: new Date(),
-    };
-
-    const formattedDateRange = dateRange
-        ? {
-              startDate: dateRange.startDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-              endDate: dateRange.endDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-          }
-        : null;
-
     const [selectedDateRange, setSelectedDateRange] = useAtom(
         selectedDateRangeAtom
     );
+
     const [adultCount, setAdultCount] = useAtom(adultCountAtom);
     const [childCount, setChildCount] = useAtom(childCountAtom);
 
     useEffect(() => {
         if (adultCount === undefined) setAdultCount(1);
         if (childCount === undefined) setChildCount(0);
+
         if (!selectedDateRange) {
             const today = new Date();
-            const defaultDateRange: DateRange = {
+            setSelectedDateRange({
                 startDate: today,
                 endDate: today,
-            };
-            setSelectedDateRange(defaultDateRange);
+                from: today,
+                to: today,
+                selected: true,
+            });
         }
-    }, [selectedDateRange, setSelectedDateRange]);
+    }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
+
+    const formattedDateRange = selectedDateRange
+        ? {
+            startDate: selectedDateRange.startDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+            endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+        }
+        : null;
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -144,9 +115,6 @@ const ProductDetail = (props: ProductDetailProps) => {
                         </Link>
                     }
                 />
-                <a href="" className={cx("CartIcon")}>
-                    <BsCart2 />
-                </a>
             </div>
             <div className={cx("ProductImage")}>
                 <Swiper
@@ -173,14 +141,22 @@ const ProductDetail = (props: ProductDetailProps) => {
             <div className={cx("ProductInform")}>
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
-                        <h1 className={cx("ProductTitle")}>프리미엄 트윈</h1>
+                        <h1 className={cx("ProductTitle")}>
+                            {data.name}
+                        </h1>
+
                         <p>주차불가 / 마운틴뷰 or 오션뷰 or 시티뷰 랜덤배정</p>
                     </div>
                     <div className={cx("ProductDetailInformation")}>
-                        <p className={cx("RoomInformation")}>객실 정보</p>
-                        <p className={cx("PersonCountInformation")}>
-                            기준 2인 (최대 3인)
+                        <p className={cx("RoomInformation")}>
+                            객실 정보
                         </p>
+                        <p className={cx("PersonCountInformation")}>
+                            <span>
+                                기준 {data.capacity.standard}인 (최대 {data.capacity.maximum}인)
+                            </span>
+                        </p>
+
                     </div>
                 </div>
 
@@ -214,17 +190,8 @@ const ProductDetail = (props: ProductDetailProps) => {
                                 onClick={handleMemberBtnClick}
                             />
                         </div>
-
-                        <div>
-                            {productDetailsArray.map((product, index) => (
-                                <ProductRoomDetailCard
-                                    key={index}
-                                    title={product.title}
-                                    infomation={product.infomation}
-                                    badge={product.infomation.badge || ""}
-                                />
-                            ))}
-                        </div>
+                        <ProductRoomDetailCard data= {data}
+                        />
                     </div>
                 </div>
             </div>
@@ -232,4 +199,4 @@ const ProductDetail = (props: ProductDetailProps) => {
     );
 };
 
-export default ProductDetail;
+export default ProductRoomDetail;

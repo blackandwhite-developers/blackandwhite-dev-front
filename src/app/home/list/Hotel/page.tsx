@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import HotelView from "@/views/Hotel/Hotel";
 import React from "react";
+import Loading from "@/components/loading/Loading";
 
 interface Hotel {
   id: string;
@@ -73,7 +74,7 @@ const HotelPage = () => {
   }, []);
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <div><Loading/></div>;
   }
 
   if (error) {
