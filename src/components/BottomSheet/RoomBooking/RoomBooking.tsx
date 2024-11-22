@@ -19,22 +19,14 @@ const cx = cn.bind(styles);
 const RoomBooking = ({ onClose }: RoomBookingProps) => {
     const [availableTimes, setAvailableTimes] = useState<string[]>([]);
     const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
-    const [checkInDate, setCheckInDate] = useState<string>("");
-    const [checkOutDate, setCheckOutDate] = useState<string>("");
-    const [checkInTime, setCheckInTime] = useState<string>("00:00");
-    const [checkOutTime, setCheckOutTime] = useState<string>("00:00");
     const [stayDuration, setStayDuration] = useState<number>(0);
     const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
+    const [checkInTime, setCheckInTime] = useState<string>("00:00");
+    const [checkOutTime, setCheckOutTime] = useState<string>("00:00");
+    const router = useRouter();
 
+    /** 대실은 14시 ~ 21시까지만 가능 */
     useEffect(() => {
-        const storedDateRange = localStorage.getItem("selectedDateRange");
-
-        if (storedDateRange) {
-            const [checkIn, checkOut] = storedDateRange.split(" ~ ");
-            setCheckInDate(checkIn);
-            setCheckOutDate(checkOut);
-        }
-
         const startHour = 14;
         const endHour = 21;
         const times = Array.from(
@@ -44,6 +36,54 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
         setAvailableTimes(times);
     }, []);
 
+    /** 시간 선택 */
+    const handleTimeSelect = (time: string) => {
+        const index = availableTimes.indexOf(time);
+        if (index === -1) return;
+        if (selectedTimes.length === 0) {
+            setSelectedTimes([time]);
+        } else if (selectedTimes.length === 1) {
+            const firstSelectedTime = selectedTimes[0];
+            if (firstSelectedTime === time) {
+                setSelectedTimes([]);
+            } else {
+                const startIndex = availableTimes.indexOf(firstSelectedTime);
+                const endIndex = index;
+                const timesInBetween =
+                    startIndex < endIndex
+                        ? availableTimes.slice(startIndex, endIndex + 1)
+                        : availableTimes.slice(endIndex, startIndex + 1);
+
+                setSelectedTimes(timesInBetween);
+            }
+        } else {
+            const firstSelectedTime = selectedTimes[0];
+            const lastSelectedTime = selectedTimes[selectedTimes.length - 1];
+            const startIndex = availableTimes.indexOf(firstSelectedTime);
+            const endIndex = availableTimes.indexOf(lastSelectedTime);
+            const isInBetween =
+                index > Math.min(startIndex, endIndex) &&
+                index < Math.max(startIndex, endIndex);
+
+            if (isInBetween) {
+                setSelectedTimes([]);
+            } else {
+                const isAtStart = index === startIndex;
+                const isAtEnd = index === endIndex;
+
+                if (isAtStart || isAtEnd) {
+                    const newSelectedTimes = selectedTimes.filter(
+                        (t) => t !== time
+                    );
+                    setSelectedTimes(newSelectedTimes);
+                } else {
+                    setSelectedTimes([time]);
+                }
+            }
+        }
+    };
+
+    /** 체크인, 체크아웃 시간 설정 (디폴트값 00:00) */
     useEffect(() => {
         if (selectedTimes.length > 0) {
             const minTime = selectedTimes[0];
@@ -56,6 +96,7 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
         }
     }, [selectedTimes]);
 
+    /** 대실 시간 계산 */
     useEffect(() => {
         const calculateDuration = () => {
             const [startHour, startMinute] = checkInTime.split(":").map(Number);
@@ -71,52 +112,7 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
         calculateDuration();
     }, [checkInTime, checkOutTime]);
 
-    const handleTimeSelect = (time: string) => {
-        const timeIndex = availableTimes.indexOf(time);
-        if (timeIndex === -1) return;
-
-        if (selectedTimes.includes(time)) {
-            const minSelectedIndex = availableTimes.indexOf(selectedTimes[0]);
-            const maxSelectedIndex = availableTimes.indexOf(
-                selectedTimes[selectedTimes.length - 1]
-            );
-
-            if (timeIndex > minSelectedIndex && timeIndex < maxSelectedIndex) {
-                setSelectedTimes([]);
-            } else {
-                setSelectedTimes(selectedTimes.filter((t) => t !== time));
-            }
-        } else {
-            if (selectedTimes.length === 0) {
-                setSelectedTimes([time]);
-            } else {
-                const minSelectedIndex = availableTimes.indexOf(
-                    selectedTimes[0]
-                );
-                const maxSelectedIndex = availableTimes.indexOf(
-                    selectedTimes[selectedTimes.length - 1]
-                );
-
-                if (
-                    timeIndex < minSelectedIndex ||
-                    timeIndex > maxSelectedIndex
-                ) {
-                    const newStartIndex = Math.min(minSelectedIndex, timeIndex);
-                    const newEndIndex = Math.max(maxSelectedIndex, timeIndex);
-                    const newSelectedTimes = availableTimes.slice(
-                        newStartIndex,
-                        newEndIndex + 1
-                    );
-                    setSelectedTimes(newSelectedTimes);
-                } else {
-                    return;
-                }
-            }
-        }
-    };
-
-    const router = useRouter();
-
+    /** 시간 선택이 없을 경우 alert / 선택된 경우 결제화면 이동 */
     const handleReservationClick = () => {
         if (selectedTimes.length === 0) {
             alert("시간을 선택해주세요!");
@@ -125,6 +121,7 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
         }
     };
 
+    /** 장바구니 열기 */
     const handleAddToCart = () => {
         setIsCartPopupVisible(true);
         setTimeout(() => {
@@ -157,13 +154,13 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
                     <div className={cx("ReservationDetail")}>
                         <ul>
                             <li className={cx("CheckIn")}>체크인</li>
-                            <li>{checkInDate}</li>
+                            <li>2024.11.05(화)</li>
                             <li>{checkInTime}</li>
                         </ul>
                         <p className={cx("StayHour")}>{stayDuration}시간</p>
                         <ul>
                             <li className={cx("CheckOut")}>체크아웃</li>
-                            <li>{checkOutDate}</li>
+                            <li>2024.11.05(화)</li>
                             <li>{checkOutTime}</li>
                         </ul>
                     </div>
