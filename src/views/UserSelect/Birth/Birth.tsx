@@ -55,19 +55,15 @@ const Birth = (props: BirthProps) => {
                     value = yearValue < 1900 ? "1900" : "2024";
                 }
             } else if (type === "month") {
-                const monthValue = parseInt(value);
-                if (monthValue > 12) {
-                    value = "12";
-                } else if (monthValue < 1) {
-                    value = "01";
-                }
+                if (value.length > 2) value = value.slice(0, 2);
+                const numericValue = parseInt(value, 10);
+
+                if (numericValue > 12) value = "12";
             } else if (type === "day") {
-                const dayValue = parseInt(value);
-                if (dayValue > 31) {
-                    value = "31";
-                } else if (dayValue < 1) {
-                    value = "01";
-                }
+                if (value.length > 2) value = value.slice(0, 2);
+                const numericValue = parseInt(value, 10);
+
+                if (numericValue > 31) value = "31";
             }
 
             target.value = value;
@@ -102,7 +98,7 @@ const Birth = (props: BirthProps) => {
                         id="month"
                         name="month"
                         ref={month}
-                        placeholder="01"
+                        placeholder="1"
                         className={cx("BirthInput")}
                         required
                         maxLength={2}
@@ -114,7 +110,7 @@ const Birth = (props: BirthProps) => {
                         id="day"
                         name="day"
                         ref={day}
-                        placeholder="01"
+                        placeholder="1"
                         className={cx("BirthInput")}
                         required
                         maxLength={2}
