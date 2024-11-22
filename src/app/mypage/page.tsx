@@ -6,14 +6,11 @@ import MypageView from "@/views/Mypage/Mypage/Mypage.view";
 export default function Mypage() {
   const myInfo = useMyInfo();
   if (!myInfo) return null;
-
-  console.log(myInfo);
-
   const data = {
     thumbnail: "/mypage/Thumbnail.png",
     userNickname: myInfo.info?.profile.nickname || "",
-    point: myInfo.info?.point,
-    coupon: myInfo.info?.coupon.length,
+    point: myInfo.info?.point ?? 0,
+    coupon: myInfo.info?.coupon.length || 0,
     category: {
       wishlist: ["/mypage/wishlist"],
       reservationList: ["/mypage/reservation"],
