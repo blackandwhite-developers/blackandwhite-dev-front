@@ -12,7 +12,7 @@ import Header from "@/components/Header/Header";
 import Link from "next/link";
 import SortOptions from "@/components/BottomSheet/SortOptions/SortOptions";
 import { useRouter } from "next/navigation";
-import Rating from "./Rating";
+import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
 

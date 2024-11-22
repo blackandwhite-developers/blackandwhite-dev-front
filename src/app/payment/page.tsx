@@ -1,10 +1,6 @@
 import React from "react";
-import PaymentView, {
-  ReservationContentProps,
-} from "@/views/Payment/Payment.view";
+import { ReservationContentProps } from "@/views/Payment/Payment.view";
 import { UserContentProps } from "@/views/Payment/PaymentUesr.view";
-import PaymentUser from "@/views/Payment/PaymentUesr.view";
-import PaymentCoupon from "@/views/Payment/PaymentCoupon.view";
 import ReservetionUser from "@/views/Payment/PaymentUesr.view";
 import styles from "@/views/Payment/Payment.view.module.scss";
 import cn from "classnames/bind";
@@ -79,11 +75,7 @@ export default function PaymentPage() {
           <ReservetionUser user={user} />
           <ReservetionCoupon usablePointAmount={1200} usableCouponCount={2} />
         </div>
-        <PaymentSale
-          price={price}
-          discountPrice={discountPrice}
-          totalPrice={totalPrice}
-        />
+        <PaymentSale price={price} discountPrice={discountPrice} totalPrice={totalPrice} />
         <PaymentMethod totalPrice={totalPrice} />
       </div>
     </div>

@@ -41,8 +41,9 @@ const Homeview = (props: HomeviewProps) => {
     const eventSource = new EventSource("http://localhost:4000/api/event");
     eventSource.addEventListener("message", (event) => {
       const parsedEvent = JSON.parse(event.data);
-      console.log(parsedEvent);
-      if (parsedEvent.type === "alarm") {
+      console.log(parsedEvent.data);
+      if (parsedEvent.data.type === "alarm") {
+        console.log("alarm");
         setIsAlarm(true);
       }
     });

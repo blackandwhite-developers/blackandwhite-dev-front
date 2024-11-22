@@ -45,9 +45,11 @@ export const authAtom = atomWithStorage<AuthState>(
     getDefaultStorage()
 );
 interface DateRange {
+    endDate: Date;
+    startDate: Date;
     from: Date;
     to: Date;
-    selected: void;
+    selected: boolean;
 }
 export const selectedDateRangeAtom = atom<DateRange | undefined>(undefined);
 
