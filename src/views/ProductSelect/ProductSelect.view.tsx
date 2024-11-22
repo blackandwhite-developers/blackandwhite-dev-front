@@ -1,11 +1,9 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.view.module.scss";
 import { IoIosHeartEmpty } from "react-icons/io";
-import { FaRegStar } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
@@ -28,22 +26,35 @@ import {
     adultCountAtom,
     childCountAtom,
 } from "@/atoms/authAtom";
+import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
 
-interface DateRange {
+export interface DateRange {
     startDate: Date;
     endDate: Date;
 }
 export interface ProductSelectProps {
-    roomType: string;
-    roomName: string;
-    rating: number;
-    review: number;
-    location: string;
+    data: {
+        category: { id: string; title: string; thumbnail: string };
+        name: string;
+        rating: number;
+        count: number;
+        distance: string;
+    };
+    productSelectData: Array<{
+        image: string;
+        event: string;
+        name: string;
+        capacity: { standard: number; maximum: number };
+        time: { checkIn: string; checkOut: string, };
+        price: { shortStayPrice: string ; overnightPrice: string};
+        stock: number;
+    }>;
 }
 
 const ProductSelect = (props: ProductSelectProps) => {
+    const { data, productSelectData } = props;
     const {
         // roomType,
         // roomName,
@@ -51,53 +62,52 @@ const ProductSelect = (props: ProductSelectProps) => {
         // review,
         // location,
     } = props;
-    const title = "김포 마리나베이 호텔";
 
     /** 상품 카드 더미 데이터 */
-    const productSelectData = [
-        {
-            imageUrl: "/images/HotelImage1.png",
-            label: "특가",
-            title: "프리미엄 트윈",
-            infomation: {
-                parlorInfomation: "기준 2인 (최대 3인)",
-                roomInformation: "대실",
-                roomInfoDetail: "4시간기준",
-                roomPrice: "40000",
-                lodgeInformation: "숙박",
-                lodgeInfoDetail: "16:00 ~ 11:00",
-                lodgePrice: "75000",
-            },
-        },
-        {
-            imageUrl: "/images/HotelImage1.png",
-            label: "세일",
-            title: "디럭스 더블",
-            infomation: {
-                parlorInfomation: "기준 2인 (최대 3인)",
-                roomInformation: "대실",
-                roomInfoDetail: "4시간기준",
-                roomPrice: "40000",
-                lodgeInformation: "숙박",
-                lodgeInfoDetail: "16:00 ~ 11:00",
-                lodgePrice: "75000",
-            },
-        },
-        {
-            imageUrl: "/images/HotelImage1.png",
-            label: "특가",
-            title: "스위트룸",
-            infomation: {
-                parlorInfomation: "기준 2인 (최대 3인)",
-                roomInformation: "대실",
-                roomInfoDetail: "4시간기준",
-                roomPrice: "40000",
-                lodgeInformation: "숙박",
-                lodgeInfoDetail: "16:00 ~ 11:00",
-                lodgePrice: "75000",
-            },
-        },
-    ];
+    // const productSelectData = [
+    //     {
+    //         image: "/images/HotelImage1.png",
+    //         label: "특가",
+    //         title: "프리미엄 트윈",
+    //         infomation: {
+    //             parlorInfomation: "기준 2인 (최대 3인)",
+    //             roomInformation: "대실",
+    //             roomInfoDetail: "4시간기준",
+    //             roomPrice: "40000",
+    //             lodgeInformation: "숙박",
+    //             lodgeInfoDetail: "16:00 ~ 11:00",
+    //             lodgePrice: "75000",
+    //         },
+    //     },
+    //     {
+    //         image: "/images/HotelImage1.png",
+    //         label: "세일",
+    //         title: "디럭스 더블",
+    //         infomation: {
+    //             parlorInfomation: "기준 2인 (최대 3인)",
+    //             roomInformation: "대실",
+    //             roomInfoDetail: "4시간기준",
+    //             roomPrice: "40000",
+    //             lodgeInformation: "숙박",
+    //             lodgeInfoDetail: "16:00 ~ 11:00",
+    //             lodgePrice: "75000",
+    //         },
+    //     },
+    //     {
+    //         image: "/images/HotelImage1.png",
+    //         label: "특가",
+    //         title: "스위트룸",
+    //         infomation: {
+    //             parlorInfomation: "기준 2인 (최대 3인)",
+    //             roomInformation: "대실",
+    //             roomInfoDetail: "4시간기준",
+    //             roomPrice: "40000",
+    //             lodgeInformation: "숙박",
+    //             lodgeInfoDetail: "16:00 ~ 11:00",
+    //             lodgePrice: "75000",
+    //         },
+    //     },
+    // ];
 
     /** 상단 이미지 더미 데이터 */
     const images = [
@@ -116,7 +126,7 @@ const ProductSelect = (props: ProductSelectProps) => {
     /** 후기 더미 데이터 */
     const reviews = [
         {
-            imageUrl: [
+            image: [
                 "/images/HotelImage1.png",
                 "/images/HotelImage1.png",
                 "/images/HotelImage1.png",
@@ -129,7 +139,7 @@ const ProductSelect = (props: ProductSelectProps) => {
                 "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
         },
         {
-            imageUrl: ["/images/HotelImage1.png"],
+            image: ["/images/HotelImage1.png"],
             rating: "1.0",
             nickname: "홍길동",
             date: "2024.11.10",
@@ -161,28 +171,6 @@ const ProductSelect = (props: ProductSelectProps) => {
         router.push("/searchResult/calander");
     };
 
-    const dateRange: DateRange | null = {
-        startDate: new Date(),
-        endDate: new Date(),
-    };
-
-    const formattedDateRange = dateRange
-        ? {
-              startDate: dateRange.startDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-              endDate: dateRange.endDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-          }
-        : null;
-
     const [selectedDateRange, setSelectedDateRange] = useAtom(
         selectedDateRangeAtom
     );
@@ -192,16 +180,35 @@ const ProductSelect = (props: ProductSelectProps) => {
     useEffect(() => {
         if (adultCount === undefined) setAdultCount(1);
         if (childCount === undefined) setChildCount(0);
+
         if (!selectedDateRange) {
             const today = new Date();
-            const defaultDateRange: DateRange = {
+            setSelectedDateRange({
                 startDate: today,
                 endDate: today,
-            };
-            setSelectedDateRange(defaultDateRange);
+                from: today,
+                to: today,
+                selected: true,
+            });
         }
-    }, [selectedDateRange, setSelectedDateRange]);
+    }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
 
+    const formattedDateRange = selectedDateRange
+        ? {
+            startDate: selectedDateRange.startDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+            endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+        }
+        : null;
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
@@ -241,30 +248,26 @@ const ProductSelect = (props: ProductSelectProps) => {
                 </Swiper>
             </div>
             <div className={cx("ProductInform")}>
-                <p className={cx("ProductCategory")}>호텔</p>
+                <p className={cx("ProductCategory")}>{data.category.title}</p>
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
-                        <h1 className={cx("ProductTitle")}>{title}</h1>
+                        <h1 className={cx("ProductTitle")}>{data.name}</h1>
                         <a href="" className={cx("ProductFavorite")}>
                             <IoIosHeartEmpty />
                         </a>
                     </div>
                     <div className={cx("ProductRating")}>
-                        <p className={cx("ProductRatingText")}>4.0</p>
+                        <p className={cx("ProductRatingText")}>{data.rating}</p>
                         <p className={cx("ProductStarRating")}>
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
+                        <Rating rating={data.rating} maxRating={5} />
                         </p>
-                        <p className={cx("ProductReviewCount")}>(1,136)</p>
+                        <p className={cx("ProductReviewCount")}>{data.count}</p>
                     </div>
                     <div className={cx("ProductLocation")}>
                         <p className={cx("ProductLocationIcon")}>
                             <IoLocationOutline />
                         </p>
-                        <p>김포공항역 3분</p>
+                        <p>{data.distance}</p>
                     </div>
                 </div>
 
@@ -304,7 +307,7 @@ const ProductSelect = (props: ProductSelectProps) => {
                                 {reviews.map((review, index) => (
                                     <Review
                                         key={index}
-                                        imageUrl={review.imageUrl}
+                                        image={review.image}
                                         rating={review.rating}
                                         nickname={review.nickname}
                                         date={review.date}
@@ -356,13 +359,18 @@ const ProductSelect = (props: ProductSelectProps) => {
                                         {productSelectData.map(
                                             (product, index) => (
                                                 <ProductSelectCard
-                                                    key={index}
-                                                    imageUrl={product.imageUrl}
-                                                    label={product.label}
-                                                    title={product.title}
-                                                    infomation={
-                                                        product.infomation
-                                                    }
+                                                key={index}
+                                                image={product.image}
+                                                event={product.event}
+
+                                                name={product.name}
+                                                standard={product.capacity.standard}
+                                                maximum={product.capacity.maximum}
+                                                checkIn={product.time.checkIn}
+                                                checkOut={product.time.checkOut}
+                                                shortStayPrice={product.price.shortStayPrice}
+                                                overnightPrice = {product.price. overnightPrice}
+                                                stock={product.stock}
                                                 />
                                             )
                                         )}
