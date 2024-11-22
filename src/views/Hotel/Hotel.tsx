@@ -7,6 +7,7 @@ import Header from "@/components/Header/Header";
 import Link from "next/link";
 import { FaAngleLeft } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
+import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
 
@@ -71,12 +72,12 @@ const HotelView = (props: HotelViewProps) => {
               <div className={cx("pop-title")}>{a.name}</div>
               <div className={cx("pop-rate-info")}>
                 <div className={cx("pop-rate")}>{a.rating} </div>
-                <div className={cx("pop-ratestar")}>★★★★☆ </div>
+                <div className={cx("pop-ratestar")}><Rating rating={a.rating} maxRating={5}/></div>
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
               <div className={cx("pop-distance")}>{a.distance}</div>
               <div className={cx("pop-price")}>
-                {a.price.toLocaleString()}원
+                {a.price}원
               </div>
             </div>
           ))}
@@ -93,12 +94,12 @@ const HotelView = (props: HotelViewProps) => {
               <div className={cx("pop-title")}>{a.name}</div>
               <div className={cx("pop-rate-info")}>
                 <div className={cx("pop-rate")}>{a.rating} </div>
-                <div className={cx("pop-ratestar")}>★★★★☆ </div>
+                <div className={cx("pop-ratestar")}><Rating rating={a.rating} maxRating={5}/></div>
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
               <div className={cx("pop-distance")}>{a.distance}</div>
               <div className={cx("pop-price")}>
-                {a.price.toLocaleString()}원
+                {a.price}원
               </div>
             </div>
           ))}

@@ -48,6 +48,7 @@ const HotelPage = () => {
         }
         const hotelData: Hotel[] = await hotelResponse.json();
         const randomHotels = getRandomHotels(hotelData);
+        console.log("randomHotels", randomHotels);
         setPopData(randomHotels);
 
         // const regionResponse = await fetch("http://localhost:4000/category/?level=1&parent=673b1682a13a15500742e04d");
