@@ -23,6 +23,7 @@ const SearchBar = ({ placeholder = "어떤 숙소를 찾으시나요?", searchFu
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && query.trim()) {
       searchFunc?.(query.trim());
+      setQuery("");
     }
   };
 
@@ -31,14 +32,16 @@ const SearchBar = ({ placeholder = "어떤 숙소를 찾으시나요?", searchFu
   };
 
   return (
-    <div className={cx("searchBar", className)}>
-      <input type="text" value={query} onChange={handleInputChange} onKeyDown={handleKeyDown} placeholder={placeholder} className={cx("searchInput")} />
-      <CiSearch className={cx("searchIcon")} />
-      {query && (
-        <button onClick={clearInput} className={cx("clearButton")}>
-          <FiDelete />
-        </button>
-      )}
+    <div className={cx("searchBarwrapper")}>
+      <div className={cx("searchBar", className)}>
+        <input type="text" value={query} onChange={handleInputChange} onKeyDown={handleKeyDown} placeholder={placeholder} className={cx("searchInput")} />
+        <CiSearch className={cx("searchIcon")} />
+        {query && (
+          <button onClick={clearInput} className={cx("clearButton")}>
+            <FiDelete />
+          </button>
+        )}
+      </div>
     </div>
   );
 };

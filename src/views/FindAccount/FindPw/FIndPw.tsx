@@ -8,32 +8,48 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { DisableBtn } from "@/components/Button/DisableBtn";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const FIndPw = () => {
+type FindPwViewProps = {
+  findPwFn: (
+    name: string,
+    email: string
+  ) => Promise<{
+    result: boolean;
+    error: unknown;
+  }>;
+};
+
+const FIndPw = (props: FindPwViewProps) => {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isValid, setIsValid] = useState(false);
-
+  const { findPwFn } = props;
   /** 뒤로가기 */
   const handleGoBack = () => {
     router.back();
   };
 
-  const validateInputs = () => {
-    const isValidInput = (input: string) =>
-      input.length > 0 && input.length <= 20 && !input.includes("\n");
-    useEffect(() => {
-      const isValidInput = (input: string) =>
-        input.length > 0 && input.length <= 20 && !input.includes("\n");
+  const handleFindPw = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    const isSuccess = await findPwFn(name, email);
+    if (!isSuccess.result) {
+      alert(isSuccess.error);
+      return;
+    }
+    alert("비밀번호 재설정 메일이 발송되었습니다.");
+  };
 
-      setIsValid(isValidInput(name) && isValidInput(email));
-    }, [name, email]);
+  const validateInputs = () => {
+    const isValidInput = (input: string) => input.length > 0 && input.length <= 20 && !input.includes("\n");
     setIsValid(isValidInput(name) && isValidInput(email));
   };
+
+  useEffect(() => {
+    validateInputs();
+  }, [name, email]);
 
   return (
     <div className={cx("FindPwWrapper")}>
@@ -41,9 +57,8 @@ const FIndPw = () => {
       <div className={cx("FindPwContent")}>
         <p className={cx("FindPw")}>비밀번호 찾기</p>
         <p className={cx("FindPwInform")}>
-          비밀번호 찾기 위해서 <br />
-          <span className={cx("Highlight")}>이름과 이메일주소</span>를
-          입력해주세요.
+          비밀번호 재설정을 위해서 <br />
+          <span className={cx("Highlight")}>이름과 이메일주소</span>를 입력해주세요.
         </p>
       </div>
       <div className={cx("PwInputWrapper")}>
@@ -73,15 +88,7 @@ const FIndPw = () => {
           className={cx("EmailInput")}
         />
       </div>
-      <div className={cx("FindPwNextBtn")}>
-        {isValid ? (
-          <Link href="/findaccount/newpassword">
-            <AbleBtn label={"확인"} />
-          </Link>
-        ) : (
-          <DisableBtn label={"확인"} />
-        )}
-      </div>
+      <div className={cx("FindPwNextBtn")}>{isValid ? <AbleBtn label={"확인"} onClick={handleFindPw} /> : <DisableBtn label={"확인"} />}</div>
     </div>
   );
 };

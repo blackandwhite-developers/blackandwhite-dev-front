@@ -7,16 +7,33 @@ import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const cx = cn.bind(styles);
 
-const Birth = () => {
-    const router = useRouter();
+type BirthProps = {
+    birthFunc: (birth: string) => void;
+};
 
+const Birth = (props: BirthProps) => {
+    const router = useRouter();
+    const { birthFunc } = props;
+    const year = React.useRef<HTMLInputElement>(null);
+    const month = React.useRef<HTMLInputElement>(null);
+    const day = React.useRef<HTMLInputElement>(null);
     /** 뒤로가기 */
     const handleGoBack = () => {
         router.back();
+    };
+
+    const handleNext = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        const yearValue = year.current?.value;
+        const monthValue = month.current?.value;
+        const dayValue = day.current?.value;
+        if (yearValue && monthValue && dayValue) {
+            const birth = `${yearValue}-${monthValue}-${dayValue}`;
+            birthFunc(birth);
+        }
     };
 
     const handleInputChange = (
@@ -38,19 +55,15 @@ const Birth = () => {
                     value = yearValue < 1900 ? "1900" : "2024";
                 }
             } else if (type === "month") {
-                const monthValue = parseInt(value);
-                if (monthValue > 12) {
-                    value = "12";
-                } else if (monthValue < 1) {
-                    value = "01";
-                }
+                if (value.length > 2) value = value.slice(0, 2);
+                const numericValue = parseInt(value, 10);
+
+                if (numericValue > 12) value = "12";
             } else if (type === "day") {
-                const dayValue = parseInt(value);
-                if (dayValue > 31) {
-                    value = "31";
-                } else if (dayValue < 1) {
-                    value = "01";
-                }
+                if (value.length > 2) value = value.slice(0, 2);
+                const numericValue = parseInt(value, 10);
+
+                if (numericValue > 31) value = "31";
             }
 
             target.value = value;
@@ -72,6 +85,7 @@ const Birth = () => {
                         type="text"
                         id="year"
                         name="year"
+                        ref={year}
                         placeholder="1990"
                         className={cx("BirthInput")}
                         required
@@ -83,7 +97,8 @@ const Birth = () => {
                         type="text"
                         id="month"
                         name="month"
-                        placeholder="01"
+                        ref={month}
+                        placeholder="1"
                         className={cx("BirthInput")}
                         required
                         maxLength={2}
@@ -94,7 +109,8 @@ const Birth = () => {
                         type="text"
                         id="day"
                         name="day"
-                        placeholder="01"
+                        ref={day}
+                        placeholder="1"
                         className={cx("BirthInput")}
                         required
                         maxLength={2}
@@ -103,9 +119,7 @@ const Birth = () => {
                 </div>
             </form>
             <div className={cx("BirthNextBtn")}>
-                <Link href="/userselect/phone">
-                    <AbleBtn label={"확인"} />
-                </Link>
+                <AbleBtn label={"확인"} onClick={handleNext} />
             </div>
         </div>
     );

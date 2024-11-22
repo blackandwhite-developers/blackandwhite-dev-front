@@ -27,15 +27,45 @@ export class UserService {
     this._ajax = _ajax;
   }
 
+  async getMyInfo(): Promise<getMyInfoResponse> {
+    const { data } = await this._ajax.get(pathToUrl(USER_ROUTES.GET_MY_INFO, {}));
+    console.log(data);
+    return data;
+  }
+
   async signUp(req: signUpRequest): Promise<signUpResponse> {
     const { body } = req;
     const { data } = await this._ajax.post(pathToUrl(USER_ROUTES.SIGN_UP, {}), { ...body });
     return data;
   }
 
+  async authPassword(req: authPasswordRequest): Promise<authPasswordResponse> {
+    const { path, params, body } = req;
+    const res = await this._ajax.post(pathToUrl(USER_ROUTES.AUTH_PASSWORD, path ?? {}), { params, ...body });
+    if (res.status === 204) {
+      return { isSuccess: true };
+    } else {
+      return { isSuccess: false };
+    }
+  }
+
   async resetPassword(req: resetPasswordRequest): Promise<resetPasswordResponse> {
     const { path, params, body } = req;
-    const { data } = await this._ajax.post(pathToUrl(USER_ROUTES.RESET_PASSWORD, path ?? {}), { params, ...body });
-    return data;
+    const res = await this._ajax.put(pathToUrl(USER_ROUTES.RESET_PASSWORD, path ?? {}), { params, ...body });
+    if (res.status === 204) {
+      return { isSuccess: true };
+    } else {
+      return { isSuccess: false };
+    }
+  }
+
+  async updateMyInfo(req: updateMyInfoRequest): Promise<updateMyInfoResponse> {
+    const { body } = req;
+    const res = await this._ajax.put(pathToUrl(USER_ROUTES.UPDATE_MY_INFO, {}), { ...body });
+    if (res.status === 204) {
+      return { isSuccess: true };
+    } else {
+      return { isSuccess: false };
+    }
   }
 }

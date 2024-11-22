@@ -1,3 +1,4 @@
+import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { SyncStorage } from "jotai/vanilla/utils/atomWithStorage";
 
@@ -19,16 +20,29 @@ const getDefaultStorage = (): SyncStorage<AuthState> | undefined => {
   return undefined;
 };
 
-interface AuthState {
-  accessToken: string | null;
-  refreshToken: string | null;
+export class AuthState {
   isAuth: boolean;
+  user: ILoginResponse | null;
+  constructor(data: { isAuth: boolean; user: ILoginResponse | null }) {
+    this.isAuth = data.isAuth;
+    this.user = data.user;
+  }
 }
 
 const initialState: AuthState = {
-  accessToken: null,
-  refreshToken: null,
   isAuth: false,
+  user: null,
 };
 
 export const authAtom = atomWithStorage<AuthState>("auth", initialState, getDefaultStorage());
+interface DateRange {
+  endDate: Date;
+  startDate: Date;
+  from: Date;
+  to: Date;
+  selected: boolean;
+}
+export const selectedDateRangeAtom = atom<DateRange | undefined>(undefined);
+
+export const adultCountAtom = atom<number>(1);
+export const childCountAtom = atom<number>(0);

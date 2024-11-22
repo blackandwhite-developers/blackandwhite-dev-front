@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./PaymentCouponPage.view.module.scss";
 import cn from "classnames/bind";
-import PaymentCard from "./PaymentCard.view";
-import Header from "@/components/Header/Header";
+// import PaymentCard from "./PaymentCard.view";
+// import Header from "@/components/Header/Header";
+import { AbleBtn } from "@/components/Button/AbleBtn";
 
 const cx = cn.bind(styles);
 
@@ -30,6 +31,7 @@ const CouponCard = (props: CouponContentProps) => {
 };
 
 const CouponPage = ({ coupons }: { coupons: CouponContentProps[] }) => {
+  const discountAmount = 0;
   return (
     <div className={cx("wrapper")}>
       <div className={cx("no-coupon-container")}>
@@ -41,11 +43,14 @@ const CouponPage = ({ coupons }: { coupons: CouponContentProps[] }) => {
       </div>
       {coupons.map((data, index) => {
         return (
-          <div>
+          <div key={index}>
             <CouponCard title={data.title} couponAmount={data.couponAmount} exp={data.exp} />
           </div>
         );
-      })}
+      })}{" "}
+      <div className={cx("button-container")}>
+        <AbleBtn label={`${discountAmount.toLocaleString()}원 적용하기`} />
+      </div>
     </div>
   );
 };

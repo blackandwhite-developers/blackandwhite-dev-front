@@ -8,7 +8,6 @@ import styles from "@/views/Payment/Payment.view.module.scss";
 import CompletePayMethod from "@/views/Payment/CompletePayMethod.view";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import Header from "@/components/Header/Header";
-import { FaAngleLeft } from "react-icons/fa6";
 
 const cx = cn.bind(styles);
 

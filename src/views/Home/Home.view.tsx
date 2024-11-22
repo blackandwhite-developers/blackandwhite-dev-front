@@ -7,22 +7,19 @@ import { PiBellSimpleThin } from "react-icons/pi";
 import SearchBar from "../../components/input/SearchBar/SearchBar";
 
 import Link from "next/link";
+import MainCategory from "@/components/category/main/MainCategory";
 
 const cx = cn.bind(styles);
 
 export interface HomeviewProps {
-  category: Array<{ id: string; name: string; image: string }>;
-  currentDate: Array<{
-    id: string;
-    thumbnail: string;
-    title: string;
-    price: number;
-  }>;
+  category: ICategory[];
+  resentView?: ILodge[];
 }
 
 const Homeview = (props: HomeviewProps) => {
-  const { category, currentDate } = props;
+  const { category, resentView } = props;
   const [src, setSrc] = useState("/home/home_banner_desktop.png");
+  const [isAlarm, setIsAlarm] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,52 +37,57 @@ const Homeview = (props: HomeviewProps) => {
     };
   }, []);
 
+  useEffect(() => {
+    const eventSource = new EventSource("http://localhost:4000/api/event");
+    eventSource.addEventListener("message", (event) => {
+      const parsedEvent = JSON.parse(event.data);
+      console.log(parsedEvent.data);
+      if (parsedEvent.data.type === "alarm") {
+        console.log("alarm");
+        setIsAlarm(true);
+      }
+    });
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
+
   return (
     <div className={cx("main-wrap")}>
       <header className={cx("header-container")}>
         <div className={cx("logo")}>
           <img src="/home/img_home_logo.svg" alt="kokoshi-logo" />
         </div>
-
         <Link href={"/alert"}>
-          <div className={cx("bell")}>
+          <div
+            className={cx("bell", {
+              alarm: isAlarm,
+            })}
+          >
             <PiBellSimpleThin style={{ width: "100%", height: "100%" }} />
           </div>
         </Link>
       </header>
-
       <main className={cx("main-container")}>
         <SearchBar />
         <div className={cx("grid-container")}>
-          {category.map((a) => {
-            return (
-              <Link href={`/product/list/${a.image}`} key={a.id}>
-                <div className={cx("grid-item")}>
-                  <img
-                    src={`/categoryImage/ic_home_${a.image}.svg`}
-                    alt={a.name}
-                  />
-                  <div className={cx("title")}>{a.name}</div>
-                </div>
-              </Link>
-            );
-          })}
+          {category.map((a) => (
+            <Link href={`/home/list/${a.path}`} key={a.id}>
+              <MainCategory categoryName={a.title} categoryIcon={`http://${a.thumbnail}.svg`} categoryKoreanName={a.title} />
+            </Link>
+          ))}
         </div>
-
-        <div className={cx("banner")}>
-          <img src={src} alt="" />
-        </div>
-
         <div className={cx("currentList")}>
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
-            {currentDate.map((item) => (
+            {resentView?.map((item) => (
               <div className={cx("list-item")} key={item.id}>
                 <div className={cx("list-image")}>
-                  <img src={item.thumbnail} alt={item.title} />
+                  <img src={item.image} alt={item.name} />
                 </div>
                 <div className={cx("list-title")}>
-                  <p>{item.title}</p>
+                  <p>{item.name}</p>
                 </div>
                 <div className={cx("list-price")}>
                   <p>{item.price.toLocaleString()}원</p>

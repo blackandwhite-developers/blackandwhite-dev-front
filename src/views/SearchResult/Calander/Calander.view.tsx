@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styles from "./Calander.view.module.scss";
 import "react-day-picker/style.css";
 import cn from "classnames/bind";
@@ -11,6 +11,7 @@ import { DateBtn } from "@/components/Button/DateBtn";
 import { MemberBtn } from "@/components/Button/MemberBtn";
 import { ko } from "date-fns/locale";
 import { useRouter } from "next/navigation";
+import { atom, useAtom } from "jotai";
 
 const cx = cn.bind(styles);
 
@@ -20,39 +21,31 @@ const CalanderView = () => {
     const handleGoBack = () => {
         router.back();
     };
-
-    const [adultCount, setAdultCount] = useState<number>(1);
-    const [childCount, setChildCount] = useState<number>(0);
-    const [selectedDateRange, setSelectedDateRange] = useState<
-        DateRange | undefined
-    >(undefined);
+    const defaultAdultCount = 1;
+    const defaultChildCount = 0;
+    const defaultSelectedDateRange = { from: new Date(), to: new Date() };
+    const [adultCount, setAdultCount] = useAtom(adultCountAtom);
+    const [childCount, setChildCount] = useAtom(childCountAtom);
+    const [selectedDateRange, setSelectedDateRange] = useAtom(
+        selectedDateRangeAtom
+    );
 
     useEffect(() => {
-        const storedAdultCount = localStorage.getItem("adultCount");
-        const storedChildCount = localStorage.getItem("childCount");
-        const storedDateRange = localStorage.getItem("selectedDateRange");
+        if (adultCount === undefined) setAdultCount(defaultAdultCount);
+        if (childCount === undefined) setChildCount(defaultChildCount);
+        if (!selectedDateRange) {
+            setSelectedDateRange(defaultSelectedDateRange);
+        }
+    }, [
+        adultCount,
+        childCount,
+        selectedDateRange,
+        setAdultCount,
+        setChildCount,
+        setSelectedDateRange,
+    ]);
 
-        if (storedAdultCount) {
-            setAdultCount(Number(storedAdultCount));
-        }
-        if (storedChildCount) {
-            setChildCount(Number(storedChildCount));
-        }
-        if (storedDateRange) {
-            const [fromDate, toDate] = storedDateRange.split(" ~ ");
-            const parsedFromDate = new Date(fromDate);
-            const parsedToDate = new Date(toDate);
-            setSelectedDateRange({ from: parsedFromDate, to: parsedToDate });
-        } else {
-            const today = new Date();
-            const formattedToday = {
-                from: today,
-                to: today,
-            };
-            setSelectedDateRange(formattedToday);
-        }
-    }, []);
-
+    /** 성인 인원 */
     const handleAdultCountChange = (
         operation: "increase" | "decrease",
         event: React.MouseEvent
@@ -70,6 +63,7 @@ const CalanderView = () => {
         localStorage.setItem("adultCount", newCount.toString());
     };
 
+    /** 아동 인원 */
     const handleChildCountChange = (
         operation: "increase" | "decrease",
         event: React.MouseEvent
@@ -88,22 +82,14 @@ const CalanderView = () => {
     };
 
     const handleDateChange = (date: DateRange | undefined) => {
-        setSelectedDateRange(date);
-        if (date && date.from && date.to) {
-            const formatDate = (date: Date) => {
-                const year = date.getFullYear().toString();
-                const month = String(date.getMonth() + 1).padStart(2, "0");
-                const day = String(date.getDate()).padStart(2, "0");
-                const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][
-                    date.getDay()
-                ];
-                return `${year}.${month}.${day} (${dayOfWeek})`;
-            };
-            const formattedDateRange = `${formatDate(date.from)} ~ ${formatDate(
-                date.to
-            )}`;
-            localStorage.setItem("selectedDateRange", formattedDateRange);
+        if (!date || !date.from || !date.to) {
+            return;
         }
+
+        setSelectedDateRange({
+            from: date.from,
+            to: date.to,
+        });
     };
 
     const formatSelectedDate = () => {
@@ -172,6 +158,7 @@ const CalanderView = () => {
                     mode="range"
                     selected={selectedDateRange}
                     onSelect={handleDateChange}
+                    disabled={[{ before: new Date() }]}
                 />
             </div>
 
@@ -243,3 +230,8 @@ const CalanderView = () => {
 };
 
 export default CalanderView;
+export const adultCountAtom = atom(1);
+export const childCountAtom = atom(0);
+export const selectedDateRangeAtom = atom<
+    { from: Date | undefined; to: Date | undefined } | undefined
+>(undefined);
