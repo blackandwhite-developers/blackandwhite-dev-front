@@ -28,13 +28,27 @@ const PriceBar = () => {
       <div className={cx("price-input")}>
         <div className={cx("field")}>
           <span>최소 금액</span>
-          <input type="number" className={cx("input-min")} value={minValue} onChange={handleMinChange} min="10000" max="500000" />
+          <input
+            type="number"
+            className={cx("input-min")}
+            value={minValue}
+            onChange={handleMinChange}
+            min="10000"
+            max="500000"
+          />
         </div>
 
         <div className={cx("seperator")}>-</div>
         <div className={cx("field")}>
           <span>최대 금액</span>
-          <input type="number" className={cx("input-max")} value={maxValue} onChange={handleMaxChange} min="10000" max="500000" />
+          <input
+            type="number"
+            className={cx("input-max")}
+            value={maxValue}
+            onChange={handleMaxChange}
+            min="10000"
+            max="500000"
+          />
         </div>
       </div>
 
@@ -49,8 +63,24 @@ const PriceBar = () => {
       </div>
 
       <div className={cx("range-input")}>
-        <input type="range" className={cx("range-min")} min="10000" max="500000" value={minValue} step="10000" onChange={handleMinChange} />
-        <input type="range" className={cx("range-max")} min="10000" max="500000" value={maxValue} step="10000" onChange={handleMaxChange} />
+        <input
+          type="range"
+          className={cx("range-min")}
+          min="10000"
+          max="500000"
+          value={minValue}
+          step="10000"
+          onChange={handleMinChange}
+        />
+        <input
+          type="range"
+          className={cx("range-max")}
+          min="10000"
+          max="500000"
+          value={maxValue}
+          step="10000"
+          onChange={handleMaxChange}
+        />
       </div>
     </div>
   );
