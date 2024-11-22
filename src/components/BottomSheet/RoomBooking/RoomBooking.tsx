@@ -120,8 +120,7 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
             router.push("/payment");
         }
     };
-
-    /** 장바구니 열기 */
+    /** 장바구니 담기 선택 시 팝업 (팝업은 2초 노출)*/
     const handleAddToCart = () => {
         setIsCartPopupVisible(true);
         setTimeout(() => {
@@ -220,7 +219,7 @@ const RoomBooking = ({ onClose }: RoomBookingProps) => {
                 <div className={cx("CartPopup")}>
                     <div className={cx("CartItem")}>
                         <p>장바구니에 상품이 담겼습니다.</p>
-                        <Link href="/detail/cart">
+                        <Link href="/home/detail/cart">
                             <p className={cx("LookCart")}>장바구니 보기</p>
                         </Link>
                     </div>
