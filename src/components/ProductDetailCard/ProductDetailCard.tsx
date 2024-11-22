@@ -14,7 +14,7 @@ type ProductDetailCardProps = {
   maximum: number,
   checkIn: string,
   checkOut: string,
-  price: string,
+  price: number,
   stock: number,
 };
 

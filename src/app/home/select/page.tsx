@@ -16,7 +16,7 @@ interface ProductSelectProps {
       name: string;
       capacity: { standard: number; maximum: number };
       time: { checkIn: string; checkOut: string, };
-      price: { shortStayPrice: string ; overnightPrice: string};
+      price: {price: number};
       stock: number;
   };
 

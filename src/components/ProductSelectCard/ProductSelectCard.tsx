@@ -14,13 +14,12 @@ type ProductSelectCardProps = {
   maximum: number,
   checkIn: string;
   checkOut: string;
-  shortStayPrice: string;
-  overnightPrice: string;
+  price: {price: number;};
   stock: number;
 };
 
 export default function ProductSelectCard(props: ProductSelectCardProps) {
-  const { image, event, name, standard, maximum, checkIn, checkOut, shortStayPrice, overnightPrice, stock } = props;
+  const { image, event, name, standard, maximum, checkIn, checkOut, price, stock } = props;
 
   return (
     <div className={cx("productDetailBox")}>
@@ -43,21 +42,6 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
 
           <div className={cx("priceArea")}>
             <div className={cx("priceWrapper")}>
-              <div className={cx("roomArea")}>
-                <div className={cx("reservationInfo")}>
-                  <p className={cx("priceAreaInfo")}>
-                    대실
-                  </p>
-                  <p className={cx("priceAreaInfoDetail")}>
-                    (4시간 기준)
-                  </p>
-                </div>
-                <span className={cx("price")}>
-                  {shortStayPrice.toLocaleString()} 원
-                </span>
-              </div>
-            </div>
-            <div className={cx("priceWrapper")}>
               <div className={cx("lodgeArea")}>
                 <div className={cx("reservationInfo")}>
                   <p className={cx("priceAreaInfo")}>
@@ -68,7 +52,7 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
                   </p>
                 </div>
                 <span className={cx("price")}>
-                  {overnightPrice.toLocaleString()} 원
+                  {price.price} 원
                 </span>
               </div>
             </div>

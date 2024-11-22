@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
@@ -25,53 +24,24 @@ import {
 
 const cx = cn.bind(styles);
 
-interface DateRange {
-    startDate: Date;
-    endDate: Date;
-}
 export interface ProductRoomDetailProps {
-    data: Array<{
-        event?: string;
-        title: "대실" | "숙박";
+    data: {
+        event: string;
         name: string;
-        checkIn?: string | null;
-        checkOut?: string | null;
-        price: { shortStayPrice: string; overnightPrice: string; };
+        time: {
+            checkIn: string;
+            checkOut: string;
+        }
+        price: { price: number; };
         stock: number;
-        capacity: { standard: number; maximum: number };
-    }>;
-
+        capacity: { standard: number; maximum: number; };
+        startDate: string;
+        endDate: string;
+    };
 }
 
 const ProductRoomDetail = (props: ProductRoomDetailProps) => {
     const { data } = props;
-    /** 상품 카드 더미 데이터 */
-    // const productDetailsArray = [
-    //     {
-    //         title: "대실" as const,
-    //         infomation: {
-    //             badge: "선착순 3,000원 할인",
-    //             operationHoure: "24시간",
-    //             useHoure: "2시간",
-    //             checkInTime: "14:00",
-    //             checkOutTime: "11:00",
-    //             price: "50,000원",
-    //             roomCount: 3,
-    //         },
-    //     },
-    //     {
-    //         title: "숙박" as const,
-    //         infomation: {
-    //             operationHoure: "24시간",
-    //             useHoure: "4시간",
-    //             checkInTime: "15:00",
-    //             checkOutTime: "12:00",
-    //             price: "50,000원",
-    //             roomCount: 1,
-    //         },
-    //     },
-    // ];
-
     /** 상단 이미지 더미 데이터 */
     const images = [
         "/images/HotelImage1.png",
@@ -93,14 +63,10 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
         router.push("/searchResult/calander");
     };
 
-    const dateRange: DateRange | null = {
-        startDate: new Date(),
-        endDate: new Date(),
-    };
-
     const [selectedDateRange, setSelectedDateRange] = useAtom(
         selectedDateRangeAtom
     );
+
     const [adultCount, setAdultCount] = useAtom(adultCountAtom);
     const [childCount, setChildCount] = useAtom(childCountAtom);
 
@@ -120,15 +86,15 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
         }
     }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
 
-    const formattedDateRange = dateRange
+    const formattedDateRange = selectedDateRange
         ? {
-            startDate: dateRange.startDate.toLocaleDateString("ko-KR", {
+            startDate: selectedDateRange.startDate.toLocaleDateString("ko-KR", {
                 weekday: "short",
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
             }),
-            endDate: dateRange.endDate.toLocaleDateString("ko-KR", {
+            endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
                 weekday: "short",
                 year: "numeric",
                 month: "2-digit",
@@ -149,9 +115,6 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
                         </Link>
                     }
                 />
-                <a href="" className={cx("CartIcon")}>
-                    <BsCart2 />
-                </a>
             </div>
             <div className={cx("ProductImage")}>
                 <Swiper
@@ -179,23 +142,19 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
                         <h1 className={cx("ProductTitle")}>
-                            {data.length > 0 ? data[0].name : "객실 이름 없음"}
+                            {data.name}
                         </h1>
 
                         <p>주차불가 / 마운틴뷰 or 오션뷰 or 시티뷰 랜덤배정</p>
                     </div>
                     <div className={cx("ProductDetailInformation")}>
                         <p className={cx("RoomInformation")}>
-                            {data.length > 0 ? "객실 정보" : "객실 데이터가 없습니다."}
+                            객실 정보
                         </p>
                         <p className={cx("PersonCountInformation")}>
-                            {data.length > 0 ? (
-                                <span>
-                                    기준 {data[0].capacity.standard}인 (최대 {data[0].capacity.maximum}인)
-                                </span>
-                            ) : (
-                                "인원 정보 없음"
-                            )}
+                            <span>
+                                기준 {data.capacity.standard}인 (최대 {data.capacity.maximum}인)
+                            </span>
                         </p>
 
                     </div>
@@ -231,25 +190,8 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
                                 onClick={handleMemberBtnClick}
                             />
                         </div>
-
-                        <div>
-                            {data.map((product, index) => (
-                                <ProductRoomDetailCard
-                                    key={index}
-                                    event={product.event}
-                                    title={product.title}
-                                    name={product.name}
-                                    checkIn={product.checkIn}
-                                    checkOut={product.checkOut}
-                                    standard={product.capacity.standard}
-                                    maximum={product.capacity.maximum}
-                                    shortStayPrice={product.price.shortStayPrice}
-                                    overnightPrice={product.price.overnightPrice}
-                                    stock={product.stock}
-                                />
-                            ))}
-                        </div>
-
+                        <ProductRoomDetailCard data= {data}
+                        />
                     </div>
                 </div>
             </div>

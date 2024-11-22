@@ -16,7 +16,7 @@ interface ProductDetailCardProps {
   name: string;
   capacity: { standard: number; maximum: number };
   time: { checkIn: string; checkOut: string, };
-  price: { shortStayPrice: string };
+  price: number;
   stock: number;
 }
 

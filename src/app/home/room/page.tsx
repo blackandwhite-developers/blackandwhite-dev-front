@@ -3,18 +3,21 @@ import ProductRoomDetailView from "@/views/ProductRoomDetail/ProductRoomDetail.v
 import React, { useState, useEffect } from "react";
 
 type ProductRoomDetailCardProps = {
-  event?: string;
-  title: "대실" | "숙박";
+  event: string;
   name: string;
-  checkIn?: string | null;
-  checkOut?: string | null;
-  price: { shortStayPrice: string; overnightPrice: string; };
+  time: {
+      checkIn: string;
+      checkOut: string;
+  }
+  price: { price: number; };
   stock: number;
-  capacity: { standard: number; maximum: number };
+  capacity: { standard: number; maximum: number; };
+  startDate: string;
+  endDate: string;
 };
 
 export default function ProductRoomDetailPage() {
-  const [data, setData] = useState<ProductRoomDetailCardProps[] | null>(null);
+  const [data, setData] = useState<ProductRoomDetailCardProps | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,10 +28,9 @@ export default function ProductRoomDetailPage() {
 
         const roomResponse = await fetch('http://localhost:4000/api/rooms/673fffa35ba58908dfcc0df3');
         const roomData = await roomResponse.json();
-        console.log("roomData: ", roomData);
 
-        if (roomData.category) {
-          console.log("categoryTitle:", roomData.category.title);
+        if (roomData) {
+          console.log("roomData:", roomData);
 
           setData(roomData);
         } else {
