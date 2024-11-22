@@ -14,14 +14,14 @@ interface ProductDetailCardProps {
   image: string;
   event: string;
   name: string;
-  capacity: { standard: number; maximum: number};
-  time: { checkIn: string; checkOut: string,};
-  price: {price: string};
+  capacity: { standard: number; maximum: number };
+  time: { checkIn: string; checkOut: string, };
+  price: { shortStayPrice: string };
   roomCount: number;
 }
 
 export default function ProductDetailPage() {
-  const [data, setData] = useState<ProductDetailProps | null>(null); 
+  const [data, setData] = useState<ProductDetailProps | null>(null);
   const [productDetailsArray, setProductDetailsArray] = useState<ProductDetailCardProps[]>([]);
 
   const [loading, setLoading] = useState(true);
@@ -35,12 +35,12 @@ export default function ProductDetailPage() {
         const roomResponse = await fetch('http://localhost:4000/api/lodges/673edf1c2b13f5f8e78a5579');
         const roomData = await roomResponse.json();
         console.log("roomData: ", roomData);
-        
+
         if (roomData.category) {
           console.log("categoryTitle:", roomData.category.title);
 
           setData(roomData);
-        }else {
+        } else {
           console.error("lodge 데이터 요청 실패:", roomData);
           setData(null);
         }
@@ -82,10 +82,10 @@ export default function ProductDetailPage() {
   }
 
   return <>
-  {data ? (
-    <ProductDetailView data={data} productDetailsArray={productDetailsArray} />
-  ) : (
-    <div>데이터를 불러올 수 없습니다.</div>
-  )}
-</>;
+    {data ? (
+      <ProductDetailView data={data} productDetailsArray={productDetailsArray} />
+    ) : (
+      <div>데이터를 불러올 수 없습니다.</div>
+    )}
+  </>;
 }
