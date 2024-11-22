@@ -8,7 +8,7 @@ const cx = cn.bind(styles);
 
 type ProductDetailCardProps = {
   image: string;
-  label?: string;
+  event?: string;
   name: string,
   standard: number,
   maximum: number,
@@ -19,7 +19,7 @@ type ProductDetailCardProps = {
 };
 
 export default function ProductDetailCard(props: ProductDetailCardProps) {
-  const { image, name, label, standard, maximum,  checkIn, checkOut, price, roomCount} = props;
+  const { image, name, event, standard, maximum,  checkIn, checkOut, price, roomCount} = props;
 
   return (
     <div className={cx("productDetailBox")}>
@@ -29,7 +29,7 @@ export default function ProductDetailCard(props: ProductDetailCardProps) {
         </p>
 
         <div className={cx("productBoxInfo")}>
-          <p className={cx("productLabel")}>{label}</p>
+          <p className={cx("productLabel")}>{event}</p>
           <h3>{name}</h3>
           <div className={cx("infomation")}>
             {standard && maximum ? (

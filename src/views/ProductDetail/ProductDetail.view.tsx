@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
@@ -31,46 +30,48 @@ import {
 import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
-interface DateRange {
+
+export interface DateRange {
     startDate: Date;
     endDate: Date;
 }
 export interface ProductDetailProps {
-  data: {
-    category: { id: string; title: string; thumbnail: string };
-    name: string;
-    rating: number;
-    count: number;
-    distance: string;
-  };
-  productDetailsArray: Array<{
-    image: string;
-    event: string;
-    name: string;
-    capacity: { standard: number; maximum: number};
-    time: { checkIn: string; checkOut: string,};
-    price: {price: string};
-    roomCount: number;
-  }>;
+    data: {
+        category: { id: string; title: string; thumbnail: string };
+        name: string;
+        rating: number;
+        count: number;
+        distance: string;
+    };
+    productDetailsArray: Array<{
+        image: string;
+        event: string;
+        name: string;
+        capacity: { standard: number; maximum: number };
+        time: { checkIn: string; checkOut: string, };
+        price: { price: string };
+        roomCount: number;
+    }>;
 }
 
+
 const ProductDetail = (props: ProductDetailProps) => {
-  const { data, productDetailsArray } = props;
+    const { data, productDetailsArray } = props;
 
-  const [selectedTab, setSelectedTab] = useState("room");
+    const [selectedTab, setSelectedTab] = useState("room");
 
-  const router = useRouter();
+    const router = useRouter();
 
-  // const data = {
-  //   roomType: "호텔",
-  //   roomName: "김포 마리나베이 호텔",
-  //   rating: "4.5",
-  //   starRating: "4.5",
-  //   review: "1,135",
-  //   location: "김포공항역 3분",
-  //   reservationDate: "24.11.15 ~ 24.11.16",
-  //   reservationCount: "성인 2명",
-  // };
+    // const data = {
+    //   roomType: "호텔",
+    //   roomName: "김포 마리나베이 호텔",
+    //   rating: "4.5",
+    //   starRating: "4.5",
+    //   review: "1,135",
+    //   location: "김포공항역 3분",
+    //   reservationDate: "24.11.15 ~ 24.11.16",
+    //   reservationCount: "성인 2명",
+    // };
 
     /** 상단 이미지 더미 데이터 */
     const images = [
@@ -86,39 +87,37 @@ const ProductDetail = (props: ProductDetailProps) => {
         reviewCounting: 80,
     };
 
-  /** 후기 더미 데이터 */
-  const reviews = [
-    {
-      image: ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"],
-      rating: "4.5",
-      nickname: "홍길동",
-      date: "2024.11.23",
-      serviceProduct: "[패키지] 스탠다드 디럭스 이용",
-      reviewContent: "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
-    },
-    {
-      image: ["/images/HotelImage1.png"],
-      rating: "1.0",
-      nickname: "홍길동",
-      date: "2024.11.10",
-      serviceProduct: "[패키지] 스탠다드 디럭스 이용",
-      reviewContent: "너무 추워요ㅜ",
-    },
-    {
-      rating: "5.0",
-      nickname: "홍길동",
-      date: "2024.11.05",
-      serviceProduct: "[패키지] 스탠다드 디럭스 이용",
-      reviewContent: "너무 좋았습니당",
-    },
-  ];
+    /** 후기 더미 데이터 */
+    const reviews = [
+        {
+            image: ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"],
+            rating: "4.5",
+            nickname: "홍길동",
+            date: "2024.11.23",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
+        },
+        {
+            image: ["/images/HotelImage1.png"],
+            rating: "1.0",
+            nickname: "홍길동",
+            date: "2024.11.10",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "너무 추워요ㅜ",
+        },
+        {
+            rating: "5.0",
+            nickname: "홍길동",
+            date: "2024.11.05",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "너무 좋았습니당",
+        },
+    ];
 
-    const [selectedTab, setSelectedTab] = useState("room");
 
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
     };
-    const router = useRouter();
 
     const handleDateBtnClick = () => {
         router.push("/searchResult/calander");
@@ -127,24 +126,6 @@ const ProductDetail = (props: ProductDetailProps) => {
     const handleMemberBtnClick = () => {
         router.push("/searchResult/calander");
     };
-
-    const formattedDateRange = dateRange
-        ? {
-              startDate: dateRange.startDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-              endDate: dateRange.endDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-          }
-        : null;
-
     const [selectedDateRange, setSelectedDateRange] = useAtom(
         selectedDateRangeAtom
     );
@@ -154,15 +135,36 @@ const ProductDetail = (props: ProductDetailProps) => {
     useEffect(() => {
         if (adultCount === undefined) setAdultCount(1);
         if (childCount === undefined) setChildCount(0);
+
         if (!selectedDateRange) {
             const today = new Date();
-            const defaultDateRange: DateRange = {
+            setSelectedDateRange({
                 startDate: today,
                 endDate: today,
-            };
-            setSelectedDateRange(defaultDateRange);
+                from: today,
+                to: today,
+                selected: true,
+            });
         }
-    }, [selectedDateRange, setSelectedDateRange]);
+    }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
+
+
+    const formattedDateRange = selectedDateRange
+        ? {
+            startDate: selectedDateRange.startDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+            endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+        }
+        : null;
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -201,10 +203,10 @@ const ProductDetail = (props: ProductDetailProps) => {
                 </Swiper>
             </div>
             <div className={cx("ProductInform")}>
-                <p className={cx("ProductCategory")}>{data.roomType}</p>
+                <p className={cx("ProductCategory")}>{data.category.title}</p>
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
-                        <h1 className={cx("ProductTitle")}>{data.roomName}</h1>
+                        <h1 className={cx("ProductTitle")}>{data.name}</h1>
                         <a href="" className={cx("ProductFavorite")}>
                             <IoIosHeartEmpty />
                         </a>
@@ -212,21 +214,17 @@ const ProductDetail = (props: ProductDetailProps) => {
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>{data.rating}</p>
                         <p className={cx("ProductStarRating")}>
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
+                            <Rating rating={data.rating} maxRating={5} />
                         </p>
                         <p className={cx("ProductReviewCount")}>
-                            {data.review}
+                            {data.count}
                         </p>
                     </div>
                     <div className={cx("ProductLocation")}>
                         <p className={cx("ProductLocationIcon")}>
                             <IoLocationOutline />
                         </p>
-                        <p>{data.location}</p>
+                        <p>{data.distance}</p>
                     </div>
                 </div>
 
@@ -319,12 +317,17 @@ const ProductDetail = (props: ProductDetailProps) => {
                                             (product, index) => (
                                                 <ProductDetailCard
                                                     key={index}
-                                                    imageUrl={product.imageUrl}
-                                                    label={product.label}
-                                                    title={product.title}
-                                                    infomation={
-                                                        product.infomation
-                                                    }
+                                                    image={product.image}
+                                                    event={product.event}
+
+                                                    name={product.name}
+                                                    standard={product.capacity.standard}
+                                                    maximum={product.capacity.maximum}
+                                                    checkIn={product.time.checkIn}
+
+                                                    checkOut={product.time.checkOut}
+                                                    price={product.price.price}
+                                                    roomCount={product.roomCount}
                                                 />
                                             )
                                         )}
