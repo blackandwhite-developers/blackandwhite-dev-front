@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import Loading from "@/components/loading/Loading";
 import ProductDetailView from "@/views/ProductDetail/ProductDetail.view";
 import React, { useState, useEffect } from "react";
 
@@ -32,7 +33,7 @@ export default function ProductDetailPage() {
       try {
         setLoading(true);
 
-        const roomResponse = await fetch('http://localhost:4000/api/lodges/673edf1c2b13f5f8e78a5579');
+        const roomResponse = await fetch("http://localhost:4000/api/lodges/673edf1c2b13f5f8e78a5579");
         const roomData = await roomResponse.json();
         console.log("roomData: ", roomData);
 
@@ -45,8 +46,7 @@ export default function ProductDetailPage() {
           setData(null);
         }
 
-
-        const productResponse = await fetch('http://localhost:4000/api/rooms');
+        const productResponse = await fetch("http://localhost:4000/api/rooms");
         const productData = await productResponse.json();
         console.log("productData: ", productData);
         setProductDetailsArray(productData);
@@ -57,7 +57,7 @@ export default function ProductDetailPage() {
         // setTotalReviewData(reviewData);
 
         // review
-        //     const reviewsResponse = await fetch('/api/reviews'); 
+        //     const reviewsResponse = await fetch('/api/reviews');
         //     const reviewsData = await reviewsResponse.json();
         //     setReviews(reviewsData);
         setLoading(false);
@@ -74,18 +74,16 @@ export default function ProductDetailPage() {
   }, []);
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return (
+      <div>
+        <Loading></Loading>
+      </div>
+    );
   }
 
   if (error) {
     return <div>에러: {error}</div>;
   }
 
-  return <>
-    {data ? (
-      <ProductDetailView data={data} productDetailsArray={productDetailsArray} />
-    ) : (
-      <div>데이터를 불러올 수 없습니다.</div>
-    )}
-  </>;
+  return <>{data ? <ProductDetailView data={data} productDetailsArray={productDetailsArray} /> : <div>데이터를 불러올 수 없습니다.</div>}</>;
 }

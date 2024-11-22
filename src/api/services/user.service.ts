@@ -58,4 +58,14 @@ export class UserService {
       return { isSuccess: false };
     }
   }
+
+  async updateMyInfo(req: updateMyInfoRequest): Promise<updateMyInfoResponse> {
+    const { body } = req;
+    const res = await this._ajax.put(pathToUrl(USER_ROUTES.UPDATE_MY_INFO, {}), { ...body });
+    if (res.status === 204) {
+      return { isSuccess: true };
+    } else {
+      return { isSuccess: false };
+    }
+  }
 }

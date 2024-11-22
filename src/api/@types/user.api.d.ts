@@ -103,3 +103,26 @@ type authPasswordRequest = {
 type authPasswordResponse = {
   isSuccess: boolean;
 };
+
+type updateMyInfoRequestPath = {};
+type updateMyInfoRequestBody = {
+  name: string;
+  profile: {
+    phone: string;
+    birth: string;
+    nickname: string;
+    profileImage: string;
+  };
+};
+
+type updateMyInfoRequestParams = {};
+
+type updateMyInfoRequest = {
+  path?: updateMyInfoRequestPath;
+  body: updateMyInfoRequestBody;
+  params?: updateMyInfoRequestParams;
+};
+
+type updateMyInfoResponse = {
+  isSuccess: boolean;
+};

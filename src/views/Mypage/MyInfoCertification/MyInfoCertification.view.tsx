@@ -8,11 +8,12 @@ import Header from "@/components/Header/Header";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { DisableBtn } from "@/components/Button/DisableBtn";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import useMyInfo from "@/app/hooks/useMyInfo";
 
 const cx = cn.bind(styles);
 
 const MyInfoCertification = () => {
+  const { info } = useMyInfo();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const router = useRouter();
@@ -20,6 +21,16 @@ const MyInfoCertification = () => {
   /** 뒤로가기 */
   const handleGoBack = () => {
     router.back();
+  };
+
+  const validInfo = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    console.log(info);
+    if (name === info?.name && phone === info?.profile.phone) {
+      router.push("/mypage/certificationComplete");
+    } else {
+      alert("정보가 일치하지 않습니다.");
+    }
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,10 +55,7 @@ const MyInfoCertification = () => {
     }
 
     if (newPhone.length > 6) {
-      newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(
-        3,
-        7
-      )}-${newPhone.slice(7)}`;
+      newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(3, 7)}-${newPhone.slice(7)}`;
     } else if (newPhone.length > 3) {
       newPhone = `${newPhone.slice(0, 3)}-${newPhone.slice(3)}`;
     }
@@ -64,48 +72,23 @@ const MyInfoCertification = () => {
   const isFormValid = name.length > 0 && phone.length > 0;
   return (
     <div className={cx("CertificationWrapper")}>
-      <Header
-        title={"내정보 수정"}
-        leftIcon={<FaAngleLeft onClick={handleGoBack} />}
-      />
+      <Header title={"내정보 수정"} leftIcon={<FaAngleLeft onClick={handleGoBack} />} />
       <h1 className={cx("UserInfoCheck")}>회원정보 확인</h1>
       <p>
-        정보를 안전하게 보호하기 위해 <br></br>본인 실명과 핸드폰 번호를
-        입력해주세요.
+        정보를 안전하게 보호하기 위해 <br></br>본인 실명과 핸드폰 번호를 입력해주세요.
       </p>
       <div className={cx("CertificationInputWrapper")}>
         <div className={cx("CertificationInputTitle")}>
           <label htmlFor="name">이름</label>
-          <input
-            id="id"
-            type="text"
-            className={cx("IdInput")}
-            value={name}
-            onChange={handleNameChange}
-            maxLength={20}
-          />
+          <input id="id" type="text" className={cx("IdInput")} value={name} onChange={handleNameChange} maxLength={20} />
         </div>
         <div className={cx("CertificationInputTitle")}>
           <label htmlFor="phone">휴대폰 번호</label>
-          <input
-            id="phone"
-            type="text"
-            className={cx("PhoneInput")}
-            value={phone}
-            onChange={handlePhoneChange}
-          />
+          <input id="phone" type="text" className={cx("PhoneInput")} value={phone} onChange={handlePhoneChange} />
         </div>
       </div>
 
-      <div className={cx("AbleBtnWrapper")}>
-        {isFormValid ? (
-          <Link href="/mypage/myinfo">
-            <AbleBtn label={"확인"} />
-          </Link>
-        ) : (
-          <DisableBtn label={"확인"} />
-        )}
-      </div>
+      <div className={cx("AbleBtnWrapper")}>{isFormValid ? <AbleBtn label={"확인"} onClick={validInfo} /> : <DisableBtn label={"확인"} />}</div>
     </div>
   );
 };
