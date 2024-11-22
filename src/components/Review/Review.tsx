@@ -10,7 +10,7 @@ import "swiper/css";
 const cx = cn.bind(styles);
 
 type ReviewProps = {
-    imageUrl?: string[];
+    image?: string[];
     rating: string;
     thumbnail?: string | { src: string };
     nickname: string;
@@ -21,7 +21,7 @@ type ReviewProps = {
 
 const Review = (props: ReviewProps) => {
     const {
-        imageUrl,
+        image,
         thumbnail = "/mypage/Thumbnail.png",
         nickname,
         date,
@@ -29,10 +29,10 @@ const Review = (props: ReviewProps) => {
         reviewContent,
         rating,
     } = props;
-    const images = Array.isArray(imageUrl)
-        ? imageUrl
-        : imageUrl
-        ? [imageUrl]
+    const images = Array.isArray(image)
+        ? image
+        : image
+        ? [image]
         : [];
 
     const thumbnailSrc =

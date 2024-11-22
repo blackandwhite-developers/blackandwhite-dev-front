@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
@@ -28,75 +27,51 @@ import {
     adultCountAtom,
     childCountAtom,
 } from "@/atoms/authAtom";
+import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
-interface DateRange {
+
+export interface DateRange {
     startDate: Date;
     endDate: Date;
 }
 export interface ProductDetailProps {
-    roomType: string;
-    roomName: string;
-    rating: number;
-    review: number;
-    location: string;
-}
-const ProductDetail = (props: ProductDetailProps) => {
-    const {
-        // roomType,
-        // roomName,
-        // rating,
-        // review,
-        // location,
-    } = props;
-    const data = {
-        roomType: "호텔",
-        roomName: "김포 마리나베이 호텔",
-        rating: "4.5",
-        starRating: "4.5",
-        review: "1,135",
-        location: "김포공항역 3분",
-        reservationDate: "24.11.15 ~ 24.11.16",
-        reservationCount: "성인 2명",
+    data: {
+        category: { id: string; title: string; thumbnail: string };
+        name: string;
+        rating: number;
+        count: number;
+        distance: string;
     };
-    const productDetailsArray = [
-        {
-            imageUrl: "/images/HotelImage1.png",
-            label: "특가",
-            title: "프리미엄 트윈",
-            infomation: {
-                parlorInfomation: "기준 2인 (최대 3인)",
-                checkInInfomation: "16:00",
-                checkOutInfomation: "11:00",
-                lodgePrice: "75,000",
-                roomCount: 1,
-            },
-        },
-        {
-            imageUrl: "/images/HotelImage1.png",
-            label: "스탠다드",
-            title: "디럭스 더블",
-            infomation: {
-                parlorInfomation: "기준 2인 (최대 2인)",
-                checkInInfomation: "15:00",
-                checkOutInfomation: "11:00",
-                lodgePrice: "75,000",
-                roomCount: 3,
-            },
-        },
-        {
-            imageUrl: "/images/HotelImage1.png",
-            label: "프리미엄",
-            title: "슈페리어 트윈",
-            infomation: {
-                parlorInfomation: "기준 3인 (최대 4인)",
-                checkInInfomation: "17:00",
-                checkOutInfomation: "12:00",
-                lodgePrice: "75,000",
-                roomCount: 2,
-            },
-        },
-    ];
+    productDetailsArray: Array<{
+        image: string;
+        event: string;
+        name: string;
+        capacity: { standard: number; maximum: number };
+        time: { checkIn: string; checkOut: string, };
+        price: { shortStayPrice: string };
+        roomCount: number;
+    }>;
+}
+
+
+const ProductDetail = (props: ProductDetailProps) => {
+    const { data, productDetailsArray } = props;
+
+    const [selectedTab, setSelectedTab] = useState("room");
+
+    const router = useRouter();
+
+    // const data = {
+    //   roomType: "호텔",
+    //   roomName: "김포 마리나베이 호텔",
+    //   rating: "4.5",
+    //   starRating: "4.5",
+    //   review: "1,135",
+    //   location: "김포공항역 3분",
+    //   reservationDate: "24.11.15 ~ 24.11.16",
+    //   reservationCount: "성인 2명",
+    // };
 
     /** 상단 이미지 더미 데이터 */
     const images = [
@@ -115,20 +90,15 @@ const ProductDetail = (props: ProductDetailProps) => {
     /** 후기 더미 데이터 */
     const reviews = [
         {
-            imageUrl: [
-                "/images/HotelImage1.png",
-                "/images/HotelImage1.png",
-                "/images/HotelImage1.png",
-            ],
+            image: ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"],
             rating: "4.5",
             nickname: "홍길동",
             date: "2024.11.23",
             serviceProduct: "[패키지] 스탠다드 디럭스 이용",
-            reviewContent:
-                "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
+            reviewContent: "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
         },
         {
-            imageUrl: ["/images/HotelImage1.png"],
+            image: ["/images/HotelImage1.png"],
             rating: "1.0",
             nickname: "홍길동",
             date: "2024.11.10",
@@ -144,17 +114,10 @@ const ProductDetail = (props: ProductDetailProps) => {
         },
     ];
 
-    const dateRange: DateRange | null = {
-        startDate: new Date(),
-        endDate: new Date(),
-    };
-
-    const [selectedTab, setSelectedTab] = useState("room");
 
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
     };
-    const router = useRouter();
 
     const handleDateBtnClick = () => {
         router.push("/searchResult/calander");
@@ -163,24 +126,6 @@ const ProductDetail = (props: ProductDetailProps) => {
     const handleMemberBtnClick = () => {
         router.push("/searchResult/calander");
     };
-
-    const formattedDateRange = dateRange
-        ? {
-              startDate: dateRange.startDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-              endDate: dateRange.endDate.toLocaleDateString("ko-KR", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-              }),
-          }
-        : null;
-
     const [selectedDateRange, setSelectedDateRange] = useAtom(
         selectedDateRangeAtom
     );
@@ -190,15 +135,36 @@ const ProductDetail = (props: ProductDetailProps) => {
     useEffect(() => {
         if (adultCount === undefined) setAdultCount(1);
         if (childCount === undefined) setChildCount(0);
+
         if (!selectedDateRange) {
             const today = new Date();
-            const defaultDateRange: DateRange = {
+            setSelectedDateRange({
                 startDate: today,
                 endDate: today,
-            };
-            setSelectedDateRange(defaultDateRange);
+                from: today,
+                to: today,
+                selected: true,
+            });
         }
-    }, [selectedDateRange, setSelectedDateRange]);
+    }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
+
+
+    const formattedDateRange = selectedDateRange
+        ? {
+            startDate: selectedDateRange.startDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+            endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
+                weekday: "short",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+            }),
+        }
+        : null;
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -237,10 +203,10 @@ const ProductDetail = (props: ProductDetailProps) => {
                 </Swiper>
             </div>
             <div className={cx("ProductInform")}>
-                <p className={cx("ProductCategory")}>{data.roomType}</p>
+                <p className={cx("ProductCategory")}>{data.category.title}</p>
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
-                        <h1 className={cx("ProductTitle")}>{data.roomName}</h1>
+                        <h1 className={cx("ProductTitle")}>{data.name}</h1>
                         <a href="" className={cx("ProductFavorite")}>
                             <IoIosHeartEmpty />
                         </a>
@@ -248,21 +214,17 @@ const ProductDetail = (props: ProductDetailProps) => {
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>{data.rating}</p>
                         <p className={cx("ProductStarRating")}>
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
-                            <FaRegStar />
+                            <Rating rating={data.rating} maxRating={5} />
                         </p>
                         <p className={cx("ProductReviewCount")}>
-                            {data.review}
+                            {data.count}
                         </p>
                     </div>
                     <div className={cx("ProductLocation")}>
                         <p className={cx("ProductLocationIcon")}>
                             <IoLocationOutline />
                         </p>
-                        <p>{data.location}</p>
+                        <p>{data.distance}</p>
                     </div>
                 </div>
 
@@ -302,7 +264,7 @@ const ProductDetail = (props: ProductDetailProps) => {
                                 {reviews.map((review, index) => (
                                     <Review
                                         key={index}
-                                        imageUrl={review.imageUrl}
+                                        image={review.image}
                                         rating={review.rating}
                                         nickname={review.nickname}
                                         date={review.date}
@@ -355,12 +317,17 @@ const ProductDetail = (props: ProductDetailProps) => {
                                             (product, index) => (
                                                 <ProductDetailCard
                                                     key={index}
-                                                    imageUrl={product.imageUrl}
-                                                    label={product.label}
-                                                    title={product.title}
-                                                    infomation={
-                                                        product.infomation
-                                                    }
+                                                    image={product.image}
+                                                    event={product.event}
+
+                                                    name={product.name}
+                                                    standard={product.capacity.standard}
+                                                    maximum={product.capacity.maximum}
+                                                    checkIn={product.time.checkIn}
+
+                                                    checkOut={product.time.checkOut}
+                                                    price={product.price.shortStayPrice}
+                                                    roomCount={product.roomCount}
                                                 />
                                             )
                                         )}

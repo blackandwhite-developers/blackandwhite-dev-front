@@ -34,6 +34,7 @@ const ReviewForm = () => {
         setIsModalOpen(false);
     };
 
+    /** 파일 업로드 */
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
         if (files) {

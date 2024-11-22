@@ -5,49 +5,38 @@ import { ReservationBtn } from "@/components/Button/ReservationBtn";
 import Link from "next/link";
 const cx = cn.bind(styles);
 
-type ProductSelectInfomation = {
-  /** 객실정보 */
-  parlorInfomation?: string | null;
-  /** 숙박  */
-  lodgeInformation: string;
-  /** 대실 */
-  roomInformation: string;
-  /** 숙박 예약 정보*/
-  lodgeInfoDetail: string;
-  /** 대실 예약 정보*/
-  roomInfoDetail: string;
-  /** 숙박 가격 */
-  lodgePrice: string;
-  /** 대실 가격 */
-  roomPrice: string;
-};
 
 type ProductSelectCardProps = {
-  imageUrl: string;
-  label?: string;
-  title: string;
-  /** 객실정보 */
-  infomation: ProductSelectInfomation;
+  image: string;
+  event?: string;
+  name: string;
+  standard: number,
+  maximum: number,
+  checkIn: string;
+  checkOut: string;
+  shortStayPrice: string;
+  overnightPrice: string;
+  stock: number;
 };
 
 export default function ProductSelectCard(props: ProductSelectCardProps) {
-  const { imageUrl, label, title, infomation } = props;
+  const { image, event, name, standard, maximum, checkIn, checkOut, shortStayPrice, overnightPrice, stock } = props;
 
   return (
     <div className={cx("productDetailBox")}>
       <div className={cx("productDetailBoxInn")}>
         <p className={cx("productBoxImage")}>
-          <img src={`${imageUrl}`} alt={`${title}`} />
+          <img src={`${image}`} alt={`${name}`} />
         </p>
 
         <div className={cx("productBoxInfo")}>
-          <p className={cx("productLabel")}>{label}</p>
-          <h3>{title}</h3>
+          <p className={cx("productLabel")}>{event}</p>
+          <h3>{name}</h3>
           <div className={cx("infomation")}>
-            {infomation.parlorInfomation ? (
+            {standard && maximum ? (
               <p className={cx("parlorInfomation")}>
                 <span>객실 정보</span>
-                <span>{infomation.parlorInfomation}</span>
+                <span>기준{standard}인 (최대{maximum}인)</span>
               </p>
             ) : null}
           </div>
@@ -57,14 +46,14 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
               <div className={cx("roomArea")}>
                 <div className={cx("reservationInfo")}>
                   <p className={cx("priceAreaInfo")}>
-                    {infomation.roomInformation}
+                    대실
                   </p>
                   <p className={cx("priceAreaInfoDetail")}>
-                    ({infomation.roomInfoDetail})
+                    (4시간 기준)
                   </p>
                 </div>
                 <span className={cx("price")}>
-                  {infomation.roomPrice.toLocaleString()} 원
+                  {shortStayPrice.toLocaleString()} 원
                 </span>
               </div>
             </div>
@@ -72,14 +61,14 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
               <div className={cx("lodgeArea")}>
                 <div className={cx("reservationInfo")}>
                   <p className={cx("priceAreaInfo")}>
-                    {infomation.lodgeInformation}
+                    숙박
                   </p>
                   <p className={cx("priceAreaInfoDetail")}>
-                    ({infomation.lodgeInfoDetail})
+                    ({checkIn} ~ {checkOut})
                   </p>
                 </div>
                 <span className={cx("price")}>
-                  {infomation.lodgePrice.toLocaleString()} 원
+                  {overnightPrice.toLocaleString()} 원
                 </span>
               </div>
             </div>
