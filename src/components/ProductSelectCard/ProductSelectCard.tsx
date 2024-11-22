@@ -19,7 +19,7 @@ type ProductSelectCardProps = {
 };
 
 export default function ProductSelectCard(props: ProductSelectCardProps) {
-  const { image, event, name, standard, maximum, checkIn, checkOut, price, stock } = props;
+  const { image, event, name, standard, maximum, checkIn, checkOut, price, stock} = props;
 
   return (
     <div className={cx("productDetailBox")}>

@@ -52,7 +52,11 @@ const Homeview = (props: HomeviewProps) => {
       eventSource.close();
     };
   }, []);
-
+  {category.map((a) => {
+  if (!a.path) {
+    console.error(`Category with id ${a.id} has no path.`);
+  }
+})}
   return (
     <div className={cx("main-wrap")}>
       <header className={cx("header-container")}>
@@ -74,7 +78,7 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("grid-container")}>
           {category.map((a) => (
             <Link href={`/home/list/${a.path}`} key={a.id}>
-              <MainCategory categoryName={a.title} categoryIcon={`http://${a.thumbnail}.svg`} categoryKoreanName={a.title} />
+              <MainCategory categoryName={a.title} categoryIcon={`${a.thumbnail}.svg`} categoryKoreanName={a.title} />
             </Link>
           ))}
         </div>
