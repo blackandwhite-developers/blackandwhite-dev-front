@@ -13,7 +13,7 @@ const cx = cn.bind(styles);
 
 export interface HotelViewProps {
   titleData: string;
-  data: Array<{ id: string; image: string; title: string }>;
+  data: Array<{ id: string; thumbnail: string; title: string }>;
   popData: Array<{
     id: string;
     name: string;
@@ -54,8 +54,10 @@ const HotelView = (props: HotelViewProps) => {
           {data.map((a, i) => {
             return (
               <div key={a.id} className={cx("grid-item")}>
-                <img src={a.image} alt="regoinImg" />
+                <Link href={`/searchResult`}>
+                <img src={a.thumbnail} alt="regoinImg" />
                 <div className={cx("title")}>{a.title}</div>
+                </Link>
               </div>
             );
           })}
