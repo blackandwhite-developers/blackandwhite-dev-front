@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
@@ -131,7 +131,9 @@ const ProductDetail = (props: ProductDetailProps) => {
     /** 날짜, 인원 불러오기 */
     const [adultCount] = useAtom(adultCountAtom);
     const [childCount] = useAtom(childCountAtom);
-    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
+    const [selectedDateRange, setSelectedDateRange] = useAtom(
+        selectedDateRangeAtom
+    );
 
     const formatDate = (date: Date) => {
         const year = date.getFullYear();
@@ -142,6 +144,23 @@ const ProductDetail = (props: ProductDetailProps) => {
 
         return `${year}.${month}.${day} (${dayOfWeek})`;
     };
+
+    useEffect(() => {
+        if (
+            !selectedDateRange ||
+            !selectedDateRange.from ||
+            !selectedDateRange.to
+        ) {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            setSelectedDateRange({
+                from: today,
+                to: tomorrow,
+            });
+        }
+    }, []);
 
     return (
         <div className={cx("ProductDetailWrapper")}>
