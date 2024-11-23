@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductRoomDetail.view.module.scss";
@@ -17,10 +17,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import {
-    selectedDateRangeAtom,
     adultCountAtom,
     childCountAtom,
-} from "@/atoms/authAtom";
+    selectedDateRangeAtom,
+} from "@/views/SearchResult/Calander/Calander.view";
 
 const cx = cn.bind(styles);
 
@@ -31,10 +31,10 @@ export interface ProductRoomDetailProps {
         time: {
             checkIn: string;
             checkOut: string;
-        }
-        price: { price: number; };
+        };
+        price: { price: number };
         stock: number;
-        capacity: { standard: number; maximum: number; };
+        capacity: { standard: number; maximum: number };
         startDate: string;
         endDate: string;
     };
@@ -63,45 +63,20 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
         router.push("/searchResult/calander");
     };
 
-    const [selectedDateRange, setSelectedDateRange] = useAtom(
-        selectedDateRangeAtom
-    );
+    /** 날짜, 인원 불러오기 */
+    const [adultCount] = useAtom(adultCountAtom);
+    const [childCount] = useAtom(childCountAtom);
+    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
 
-    const [adultCount, setAdultCount] = useAtom(adultCountAtom);
-    const [childCount, setChildCount] = useAtom(childCountAtom);
+    const formatDate = (date: Date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+        const dayOfWeek = daysOfWeek[date.getDay()];
 
-    useEffect(() => {
-        if (adultCount === undefined) setAdultCount(1);
-        if (childCount === undefined) setChildCount(0);
-
-        if (!selectedDateRange) {
-            const today = new Date();
-            setSelectedDateRange({
-                startDate: today,
-                endDate: today,
-                from: today,
-                to: today,
-                selected: true,
-            });
-        }
-    }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
-
-    const formattedDateRange = selectedDateRange
-        ? {
-            startDate: selectedDateRange.startDate.toLocaleDateString("ko-KR", {
-                weekday: "short",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-            }),
-            endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
-                weekday: "short",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-            }),
-        }
-        : null;
+        return `${year}.${month}.${day} (${dayOfWeek})`;
+    };
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -141,22 +116,18 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
             <div className={cx("ProductInform")}>
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
-                        <h1 className={cx("ProductTitle")}>
-                            {data.name}
-                        </h1>
+                        <h1 className={cx("ProductTitle")}>{data.name}</h1>
 
                         <p>주차불가 / 마운틴뷰 or 오션뷰 or 시티뷰 랜덤배정</p>
                     </div>
                     <div className={cx("ProductDetailInformation")}>
-                        <p className={cx("RoomInformation")}>
-                            객실 정보
-                        </p>
+                        <p className={cx("RoomInformation")}>객실 정보</p>
                         <p className={cx("PersonCountInformation")}>
                             <span>
-                                기준 {data.capacity.standard}인 (최대 {data.capacity.maximum}인)
+                                기준 {data.capacity.standard}인 (최대{" "}
+                                {data.capacity.maximum}인)
                             </span>
                         </p>
-
                     </div>
                 </div>
 
@@ -167,15 +138,15 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
                         <div className={cx("ReservationSelectBtn")}>
                             <DateBtn
                                 label={
-                                    formattedDateRange ? (
-                                        <>
-                                            {formattedDateRange.startDate} ~
-                                            <br />
-                                            {formattedDateRange.endDate}
-                                        </>
-                                    ) : (
-                                        "날짜를 선택해주세요"
-                                    )
+                                    selectedDateRange &&
+                                    selectedDateRange.from &&
+                                    selectedDateRange.to
+                                        ? `${formatDate(
+                                              selectedDateRange.from
+                                          )} ~ ${formatDate(
+                                              selectedDateRange.to
+                                          )}`
+                                        : "날짜를 선택해주세요"
                                 }
                                 onClick={handleDateBtnClick}
                             />
@@ -190,8 +161,7 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
                                 onClick={handleMemberBtnClick}
                             />
                         </div>
-                        <ProductRoomDetailCard data= {data}
-                        />
+                        <ProductRoomDetailCard data={data} />
                     </div>
                 </div>
             </div>
