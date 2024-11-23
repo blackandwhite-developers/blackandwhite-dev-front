@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.view.module.scss";
-import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import { FaAngleLeft } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
@@ -150,6 +150,7 @@ const ProductSelect = (props: ProductSelectProps) => {
     ];
 
     const [selectedTab, setSelectedTab] = useState("room");
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
@@ -161,6 +162,10 @@ const ProductSelect = (props: ProductSelectProps) => {
 
     const handleMemberBtnClick = () => {
         router.push("/searchResult/calander");
+    };
+
+    const handleFavoriteClick = () => {
+        setIsFavorite((prevState) => !prevState);
     };
 
     /** 날짜, 인원 불러오기 */
@@ -190,9 +195,6 @@ const ProductSelect = (props: ProductSelectProps) => {
                         </Link>
                     }
                 />
-                <a href="" className={cx("CartIcon")}>
-                    <BsCart2 />
-                </a>
             </div>
             <div className={cx("ProductImage")}>
                 <Swiper
@@ -221,9 +223,21 @@ const ProductSelect = (props: ProductSelectProps) => {
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
                         <h1 className={cx("ProductTitle")}>{data.name}</h1>
-                        <a href="" className={cx("ProductFavorite")}>
-                            <IoIosHeartEmpty />
-                        </a>
+                        <p
+                            className="ProductFavorite"
+                            onClick={handleFavoriteClick}
+                        >
+                            {isFavorite ? (
+                                <IoIosHeart
+                                    style={{
+                                        fontSize: "22px",
+                                        color: "#8728ff",
+                                    }}
+                                />
+                            ) : (
+                                <IoIosHeartEmpty style={{ fontSize: "22px" }} />
+                            )}
+                        </p>
                     </div>
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>{data.rating}</p>
