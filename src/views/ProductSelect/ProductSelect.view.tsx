@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.view.module.scss";
@@ -22,10 +22,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import {
-    selectedDateRangeAtom,
     adultCountAtom,
     childCountAtom,
-} from "@/atoms/authAtom";
+    selectedDateRangeAtom,
+} from "@/views/SearchResult/Calander/Calander.view";
 import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
@@ -49,7 +49,7 @@ export interface ProductSelectProps {
         name: string;
         capacity: { standard: number; maximum: number };
         time: { checkIn: string; checkOut: string };
-        price: {price: number};
+        price: { price: number };
         stock: number;
     }>;
 }
@@ -163,44 +163,21 @@ const ProductSelect = (props: ProductSelectProps) => {
         router.push("/searchResult/calander");
     };
 
-    const [selectedDateRange, setSelectedDateRange] = useAtom(
-        selectedDateRangeAtom
-    );
-    const [adultCount, setAdultCount] = useAtom(adultCountAtom);
-    const [childCount, setChildCount] = useAtom(childCountAtom);
+    /** 날짜, 인원 불러오기 */
+    const [adultCount] = useAtom(adultCountAtom);
+    const [childCount] = useAtom(childCountAtom);
+    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
 
-    useEffect(() => {
-        if (adultCount === undefined) setAdultCount(1);
-        if (childCount === undefined) setChildCount(0);
+    const formatDate = (date: Date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+        const dayOfWeek = daysOfWeek[date.getDay()];
 
-        if (!selectedDateRange) {
-            const today = new Date();
-            setSelectedDateRange({
-                startDate: today,
-                endDate: today,
-                from: today,
-                to: today,
-                selected: true,
-            });
-        }
-    }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
+        return `${year}.${month}.${day} (${dayOfWeek})`;
+    };
 
-    const formattedDateRange = selectedDateRange
-        ? {
-            startDate: selectedDateRange.startDate.toLocaleDateString("ko-KR", {
-                weekday: "short",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-            }),
-            endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
-                weekday: "short",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-            }),
-        }
-        : null;
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
@@ -251,7 +228,7 @@ const ProductSelect = (props: ProductSelectProps) => {
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>{data.rating}</p>
                         <p className={cx("ProductStarRating")}>
-                        <Rating rating={data.rating} maxRating={5} />
+                            <Rating rating={data.rating} maxRating={5} />
                         </p>
                         <p className={cx("ProductReviewCount")}>{data.count}</p>
                     </div>
@@ -319,20 +296,15 @@ const ProductSelect = (props: ProductSelectProps) => {
                                     <div className={cx("ReservationSelectBtn")}>
                                         <DateBtn
                                             label={
-                                                formattedDateRange ? (
-                                                    <>
-                                                        {
-                                                            formattedDateRange.startDate
-                                                        }{" "}
-                                                        ~
-                                                        <br />
-                                                        {
-                                                            formattedDateRange.endDate
-                                                        }
-                                                    </>
-                                                ) : (
-                                                    "날짜를 선택해주세요"
-                                                )
+                                                selectedDateRange &&
+                                                selectedDateRange.from &&
+                                                selectedDateRange.to
+                                                    ? `${formatDate(
+                                                          selectedDateRange.from
+                                                      )} ~ ${formatDate(
+                                                          selectedDateRange.to
+                                                      )}`
+                                                    : "날짜를 선택해주세요"
                                             }
                                             onClick={handleDateBtnClick}
                                         />
@@ -351,17 +323,28 @@ const ProductSelect = (props: ProductSelectProps) => {
                                         {productSelectData.map(
                                             (product, index) => (
                                                 <ProductSelectCard
-                                                key={index}
-                                                image={product.image}
-                                                event={product.event}
-
-                                                name={product.name}
-                                                standard={product.capacity.standard}
-                                                maximum={product.capacity.maximum}
-                                                checkIn={product.time.checkIn}
-                                                checkOut={product.time.checkOut}
-                                                price={{ price: product.price.price }}
-                                                stock={product.stock}
+                                                    key={index}
+                                                    image={product.image}
+                                                    event={product.event}
+                                                    name={product.name}
+                                                    standard={
+                                                        product.capacity
+                                                            .standard
+                                                    }
+                                                    maximum={
+                                                        product.capacity.maximum
+                                                    }
+                                                    checkIn={
+                                                        product.time.checkIn
+                                                    }
+                                                    checkOut={
+                                                        product.time.checkOut
+                                                    }
+                                                    price={{
+                                                        price: product.price
+                                                            .price,
+                                                    }}
+                                                    stock={product.stock}
                                                 />
                                             )
                                         )}
