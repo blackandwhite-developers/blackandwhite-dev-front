@@ -4,13 +4,15 @@ import React, { useState } from "react";
 import styles from "./MypageReservation.view.module.scss";
 import cn from "classnames/bind";
 import PaymentCard from "../Payment/PaymentCard.view";
-import Header from "@/components/Header/Header";
-import { time } from "console";
-import { title } from "process";
+// import Header from "@/components/Header/Header";
+// import { time } from "console";
+// import { title } from "process";
 import { ReservationContentProps } from "../Payment/Payment.view";
-import PaymentComplete from "../Payment/PaymentCompletePage.view";
+// import PaymentComplete from "../Payment/PaymentCompletePage.view";
 import Badge from "@/components/badge/Badge";
 import { IoIosArrowForward } from "react-icons/io";
+import { useAtom } from "jotai";
+import { selectedDateRangeAtom } from "@/views/SearchResult/Calander/Calander.view";
 
 const cx = cn.bind(styles);
 export interface MyPageReservationProps {
@@ -33,14 +35,37 @@ const MypageReservationCard = (props: ReservationContentProps) => {
         hotelName,
         roomImage,
         roomType,
-        checkInDate,
+        // checkInDate,
         checkInTime,
-        checkOutDate,
+        // checkOutDate,
         checkOutTime,
-        night,
+        // night,
         price,
         discountPrice,
     } = props;
+
+    /** 날짜 불러오기 */
+    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
+
+    const formatDate = (date: Date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+        const dayOfWeek = daysOfWeek[date.getDay()];
+
+        return `${year}.${month}.${day} (${dayOfWeek})`;
+    };
+
+    /** 숙박 일자 계산 */
+    const stayNight =
+        selectedDateRange?.from && selectedDateRange?.to
+            ? Math.ceil(
+                  (selectedDateRange.to.getTime() -
+                      selectedDateRange.from.getTime()) /
+                      (1000 * 60 * 60 * 24)
+              )
+            : 0;
 
     return (
         <div className={cx("reservation-container")}>
@@ -52,7 +77,12 @@ const MypageReservationCard = (props: ReservationContentProps) => {
                     </Badge>
                     <p className={cx("hotel-name")}>{hotelName}</p>
                     <p className={cx("date-text")}>
-                        {checkInDate}~{checkOutDate},{night}박
+                        {selectedDateRange?.from &&
+                            formatDate(selectedDateRange.from)}{" "}
+                        ~
+                        {selectedDateRange?.to &&
+                            formatDate(selectedDateRange.to)}
+                        ,{stayNight}박
                     </p>
                     <p className={cx("room-detailcontent")}>{roomType}</p>
                 </div>

@@ -12,7 +12,9 @@ import { ReservationContentProps } from "../Payment/Payment.view";
 import Badge from "@/components/badge/Badge";
 // import { IoIosArrowForward } from "react-icons/io";
 // import { UserContent } from "../Payment/PaymentUesr.view";
-// import { FaAngleLeft } from "react-icons/fa";
+// import { FaAngleLeft } from "react-icons/fa";import { useAtom } from "jotai";
+import { useAtom } from "jotai";
+import { selectedDateRangeAtom } from "@/views/SearchResult/Calander/Calander.view";
 
 const cx = cn.bind(styles);
 export interface MypageReservationDetailProps {
@@ -35,14 +37,37 @@ const MypageReservationDetailCard = (props: MypageReservationDetailProps) => {
         hotelName,
         roomImage,
         roomType,
-        checkInDate,
+        // checkInDate,
         checkInTime,
-        checkOutDate,
+        // checkOutDate,
         checkOutTime,
-        night,
+        // night,
         price,
         discountPrice,
     } = props;
+
+    /** 날짜 불러오기 */
+    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
+
+    const formatDate = (date: Date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+        const dayOfWeek = daysOfWeek[date.getDay()];
+
+        return `${year}.${month}.${day} (${dayOfWeek})`;
+    };
+
+    /** 숙박 일자 계산 */
+    const stayNight =
+        selectedDateRange?.from && selectedDateRange?.to
+            ? Math.ceil(
+                  (selectedDateRange.to.getTime() -
+                      selectedDateRange.from.getTime()) /
+                      (1000 * 60 * 60 * 24)
+              )
+            : 0;
 
     return (
         <div className={cx("reservation-container")}>
@@ -54,7 +79,12 @@ const MypageReservationDetailCard = (props: MypageReservationDetailProps) => {
                     </Badge>
                     <p className={cx("hotel-name")}>{hotelName}</p>
                     <p className={cx("date-text")}>
-                        {checkInDate}~{checkOutDate},{night}박
+                        {selectedDateRange?.from &&
+                            formatDate(selectedDateRange.from)}{" "}
+                        ~
+                        {selectedDateRange?.to &&
+                            formatDate(selectedDateRange.to)}
+                        ,{stayNight}박
                     </p>
                     <p className={cx("room-detailcontent")}>{roomType}</p>
                 </div>
@@ -75,7 +105,7 @@ const MypageReservationDetailCard = (props: MypageReservationDetailProps) => {
             <div className={cx("pay-container")}>
                 <p className={cx("pay-text")}>결제금액</p>
                 <p className={cx("pay-amount")}>
-                    {(price - discountPrice).toLocaleString()}원
+                    {(Number(price) - Number(discountPrice)).toLocaleString()}원
                 </p>
             </div>
             <div className={cx("border")}></div>
@@ -95,7 +125,7 @@ const MypageReservationDetail = ({
                     return (
                         <MypageReservationDetailCard
                             key={index}
-                            roomImage={data.roomImage}
+                            roomImage={data.roomImage ?? ""}
                             hotelName={data.hotelName}
                             roomType={data.roomType}
                             checkInDate={data.checkInDate}
