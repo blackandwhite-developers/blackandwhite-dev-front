@@ -11,10 +11,10 @@ import Loading from "@/components/loading/Loading";
 
 const cx = cn.bind(styles);
 
-interface RoomData {
-    reservations?: ReservationContentProps[];
-    category?: string;
-}
+// interface RoomData {
+//     reservations?: ReservationContentProps[];
+//     category?: string;
+// }
 
 export default function MypageReservationPage() {
     const reservations: ReservationContentProps[] = [
@@ -84,96 +84,94 @@ export default function MypageReservationPage() {
         //   discountPrice: 5000,
         // },
     ];
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<RoomData | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    // const [loading, setLoading] = useState(true);
+    // const [data, setData] = useState<RoomData | null>(null);
+    // const [error, setError] = useState<string | null>(null);
 
-    const fetchReservations = async () => {
-        try {
-            setLoading(true);
+    // const fetchReservations = async () => {
+    //     try {
+    //         setLoading(true);
 
-            const response = await fetch("/api/reservation", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+    //         const response = await fetch("/api/reservation", {
+    //             method: "GET",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //         });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
 
-            const roomData: RoomData = await response.json();
+    //         const roomData: RoomData = await response.json();
 
-            if (!roomData.reservations) {
-                throw new Error("예약 데이터가 없습니다.");
-            }
+    //         if (!roomData.reservations) {
+    //             throw new Error("예약 데이터가 없습니다.");
+    //         }
 
-            console.log("Fetched reservation data: ", roomData);
-            setData(roomData);
-        } catch (error: unknown) {
-            console.error("Failed to fetch reservations:", error);
-            setError(
-                error instanceof Error
-                    ? error.message
-                    : "예약 정보를 불러오는 중 오류가 발생했습니다."
-            );
-        } finally {
-            setLoading(false);
-        }
-    };
+    //         console.log("Fetched reservation data: ", roomData);
+    //         setData(roomData);
+    //     } catch (error: unknown) {
+    //         console.error("Failed to fetch reservations:", error);
+    //         setError(
+    //             error instanceof Error
+    //                 ? error.message
+    //                 : "예약 정보를 불러오는 중 오류가 발생했습니다."
+    //         );
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
-    useEffect(() => {
-        fetchReservations();
-    }, []);
+    // useEffect(() => {
+    //     fetchReservations();
+    // }, []);
 
-    const renderContent = () => {
-        if (loading) {
-            return (
-                <div>
-                    <Loading />
+    // const renderContent = () => {
+    //     if (loading) {
+    //         return (
+    //             <div>
+    //                 <Loading />
+    //             </div>
+    //         );
+    //     }
+
+    //     if (error) {
+    //         return <div>에러: {error}</div>;
+    //     }
+
+    //     if (error) {
+    //         return (
+    //             <>
+    //                 {data ? (
+    //                     <RoomData data={data} />
+    //                 ) : (
+    //                     <div>데이터를 불러올 수 없습니다.</div>
+    //                 )}
+    //             </>
+    //         );
+    //     }
+
+    //     if (!data?.reservations?.length) {
+    //         return (
+    //             <div className={cx("empty-state")}>
+    //                 <p>예약 내역이 없습니다.</p>
+    //             </div>
+    //         );
+    //     }
+
+    return (
+        <>
+            <div className={cx("page-layout")}>
+                <div className={cx("page")}>
+                    <Header title="예약내역" leftIcon={<FaAngleLeft />} />
+                    <MypageReservation reservations={reservations} />
                 </div>
-            );
-        }
-
-        if (error) {
-            return <div>에러: {error}</div>;
-        }
-
-        if (error) {
-            return (
-                <>
-                    {data ? (
-                        <RoomData data={data} />
-                    ) : (
-                        <div>데이터를 불러올 수 없습니다.</div>
-                    )}
-                </>
-            );
-        }
-
-        if (!data?.reservations?.length) {
-            return (
-                <div className={cx("empty-state")}>
-                    <p>예약 내역이 없습니다.</p>
-                </div>
-            );
-        }
-
-        return (
-            <>
-                <div className={cx("page-layout")}>
-                    <div className={cx("page")}>
-                        <Header title="예약내역" leftIcon={<FaAngleLeft />} />
-                        <MypageReservation reservations={reservations} />
-                    </div>
-                </div>
-                <div className={cx("bottom-box")}>
-                    <p>예약/취소내역은 최대 2년까지 조회할 수 있습니다.</p>
-                </div>
-            </>
-        );
-    };
-
-    return renderContent();
+            </div>
+            <div className={cx("bottom-box")}>
+                <p>예약/취소내역은 최대 2년까지 조회할 수 있습니다.</p>
+            </div>
+        </>
+    );
+    //     return renderContent();
 }
