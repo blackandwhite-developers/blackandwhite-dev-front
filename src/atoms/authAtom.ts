@@ -34,7 +34,11 @@ const initialState: AuthState = {
   user: null,
 };
 
-export const authAtom = atomWithStorage<AuthState>("auth", initialState, getDefaultStorage());
+export const authAtom = atomWithStorage<AuthState>(
+  "auth",
+  initialState,
+  getDefaultStorage()
+);
 interface DateRange {
   endDate: Date;
   startDate: Date;
@@ -43,6 +47,25 @@ interface DateRange {
   selected: boolean;
 }
 export const selectedDateRangeAtom = atom<DateRange | undefined>(undefined);
+
+type BookingData = {
+  event: string;
+  name: string;
+  time: {
+    checkIn: string;
+    checkOut: string;
+  };
+  price: { price: number };
+  stock: number;
+  capacity: { standard: number; maximum: number };
+  startDate: string;
+  endDate: string;
+};
+const bookingDatas = localStorage.getItem("bookingData");
+/** 예약 내역 */
+export const bookingDataAtom = atom<BookingData[]>(
+  bookingDatas ? JSON.parse(bookingDatas) : []
+);
 
 export const adultCountAtom = atom<number>(1);
 export const childCountAtom = atom<number>(0);

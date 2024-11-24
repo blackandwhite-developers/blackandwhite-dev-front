@@ -1,6 +1,32 @@
+"use client";
 import Cartview from "@/views/Cart/Cart.View";
+import { useEffect } from "react";
+import { useAtom } from "jotai";
+import { bookingDataAtom } from "@/atoms/authAtom";
 
 export default function ProductDetailPage() {
+  const [bookingData] = useAtom(bookingDataAtom);
+  useEffect(() => {
+    (async () => {
+      try {
+        const promises = bookingData.map(async (item) => {
+          const response = await fetch(
+            `http://localhost:4000/api/rooms/${item}`
+          );
+          if (!response.ok) {
+            throw new Error(`Error fetching data for item ${item}`);
+          }
+          return await response.json();
+        });
+
+        const results = await Promise.all(promises);
+        console.log(results);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [bookingData]);
+
   const data = [
     {
       id: "1번 장바구니",

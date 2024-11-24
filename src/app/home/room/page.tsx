@@ -1,18 +1,19 @@
-"use client"
+"use client";
 import Loading from "@/components/loading/Loading";
 import ProductRoomDetailView from "@/views/ProductRoomDetail/ProductRoomDetail.view";
 import React, { useState, useEffect } from "react";
 
 type ProductRoomDetailCardProps = {
+  _id: string;
   event: string;
   name: string;
   time: {
-      checkIn: string;
-      checkOut: string;
-  }
-  price: { price: number; };
+    checkIn: string;
+    checkOut: string;
+  };
+  price: { price: number };
   stock: number;
-  capacity: { standard: number; maximum: number; };
+  capacity: { standard: number; maximum: number };
   startDate: string;
   endDate: string;
 };
@@ -27,7 +28,9 @@ export default function ProductRoomDetailPage() {
       try {
         setLoading(true);
 
-        const roomResponse = await fetch('http://localhost:4000/api/rooms/673fffa35ba58908dfcc0df3');
+        const roomResponse = await fetch(
+          "http://localhost:4000/api/rooms/673fffa35ba58908dfcc0df3"
+        );
         const roomData = await roomResponse.json();
 
         if (roomData) {
@@ -53,18 +56,24 @@ export default function ProductRoomDetailPage() {
   }, []);
 
   if (loading) {
-    return <div><Loading/></div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   if (error) {
     return <div>에러: {error}</div>;
   }
 
-  return <>
-    {data ? (
-      <ProductRoomDetailView data={data} />
-    ) : (
-      <div>데이터를 불러올 수 없습니다.</div>
-    )}
-  </>;
+  return (
+    <>
+      {data ? (
+        <ProductRoomDetailView data={data} />
+      ) : (
+        <div>데이터를 불러올 수 없습니다.</div>
+      )}
+    </>
+  );
 }
