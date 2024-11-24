@@ -7,12 +7,6 @@ const Mypage = () => {
   const router = useRouter();
   const res = useMyInfo();
   if (!res) return null;
-  const data = [
-    { label: "이름", name: "name", value: res.info?.name ?? "" },
-    { label: "휴대전화 번호", name: "phone", value: res.info?.profile.phone ?? "" },
-    { label: "생년월일", name: "birthdate", value: res.info?.profile.birth ?? "" },
-    { label: "닉네임", name: "nickname", value: res.info?.profile.nickname ?? "" },
-  ];
 
   const logoutFn = () => {
     res.resetInfo();
@@ -23,6 +17,25 @@ const Mypage = () => {
     res.resetInfo();
     router.push("/login");
   };
+
+  const data = [
+    { label: "이름", name: "name", value: res.info?.name ?? "" },
+    {
+      label: "휴대전화 번호",
+      name: "phone",
+      value: res.info?.profile.phone ?? "",
+    },
+    {
+      label: "생년월일",
+      name: "birthdate",
+      value: res.info?.profile.birth.split("T")[0] ?? "",
+    },
+    {
+      label: "닉네임",
+      name: "nickname",
+      value: res.info?.profile.nickname ?? "",
+    },
+  ];
 
   return <MyInfoView profileFields={data} logoutFn={logoutFn} withdrawFn={withdrawFn} />;
 };

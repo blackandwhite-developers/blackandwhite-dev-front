@@ -1,30 +1,31 @@
 "use client";
+import { userService } from "@/api/services";
 import CertificationCompleteView from "@/views/Mypage/CertificationComplete/CertificationComplete.view";
-import useMyInfo from "@/app/hooks/useMyInfo";
 
 const CertificationComplete = () => {
-    const res = useMyInfo();
-    if (!res) return null;
-    const data = [
-        { label: "이름", name: "name", value: res.info?.name ?? "" },
-        {
-            label: "휴대전화 번호",
-            name: "phone",
-            value: res.info?.profile.phone ?? "",
+  const changeInfoFn = async (data: { name: string; phone: string; birth: string; nickname: string; profilePicture: string }) => {
+    try {
+      const result = await userService.updateMyInfo({
+        body: {
+          name: data.name,
+          profile: {
+            phone: data.phone,
+            birth: data.birth,
+            nickname: data.nickname,
+            profileImage: data.profilePicture,
+          },
         },
-        {
-            label: "생년월일",
-            name: "birthdate",
-            value: res.info?.profile.birth ?? "",
-        },
-        {
-            label: "닉네임",
-            name: "nickname",
-            value: res.info?.profile.nickname ?? "",
-        },
-    ];
+      });
+      if (!result.isSuccess) {
+        throw new Error("정보 변경에 실패했습니다.");
+      }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
 
-    return <CertificationCompleteView profileFields={data} />;
+  return <CertificationCompleteView changeInfoFn={changeInfoFn} />;
 };
 
 export default CertificationComplete;

@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.view.module.scss";
-import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import { FaAngleLeft } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
@@ -22,10 +22,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import {
-    selectedDateRangeAtom,
     adultCountAtom,
     childCountAtom,
-} from "@/atoms/authAtom";
+    selectedDateRangeAtom,
+} from "@/views/SearchResult/Calander/Calander.view";
 import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
@@ -36,6 +36,7 @@ export interface DateRange {
 }
 export interface ProductSelectProps {
     data: {
+        id: string;
         category: { id: string; title: string; thumbnail: string };
         name: string;
         rating: number;
@@ -47,22 +48,15 @@ export interface ProductSelectProps {
         event: string;
         name: string;
         capacity: { standard: number; maximum: number };
-        time: { checkIn: string; checkOut: string, };
-        price: { shortStayPrice: string ; overnightPrice: string};
+        time: { checkIn: string; checkOut: string };
+        price: { price: number };
         stock: number;
     }>;
 }
 
 const ProductSelect = (props: ProductSelectProps) => {
     const { data, productSelectData } = props;
-    const {
-        // roomType,
-        // roomName,
-        // rating,
-        // review,
-        // location,
-    } = props;
-
+    const router = useRouter();
     /** 상품 카드 더미 데이터 */
     // const productSelectData = [
     //     {
@@ -156,12 +150,11 @@ const ProductSelect = (props: ProductSelectProps) => {
     ];
 
     const [selectedTab, setSelectedTab] = useState("room");
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
     };
-
-    const router = useRouter();
 
     const handleDateBtnClick = () => {
         router.push("/searchResult/calander");
@@ -171,44 +164,25 @@ const ProductSelect = (props: ProductSelectProps) => {
         router.push("/searchResult/calander");
     };
 
-    const [selectedDateRange, setSelectedDateRange] = useAtom(
-        selectedDateRangeAtom
-    );
-    const [adultCount, setAdultCount] = useAtom(adultCountAtom);
-    const [childCount, setChildCount] = useAtom(childCountAtom);
+    const handleFavoriteClick = () => {
+        setIsFavorite((prevState) => !prevState);
+    };
 
-    useEffect(() => {
-        if (adultCount === undefined) setAdultCount(1);
-        if (childCount === undefined) setChildCount(0);
+    /** 날짜, 인원 불러오기 */
+    const [adultCount] = useAtom(adultCountAtom);
+    const [childCount] = useAtom(childCountAtom);
+    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
 
-        if (!selectedDateRange) {
-            const today = new Date();
-            setSelectedDateRange({
-                startDate: today,
-                endDate: today,
-                from: today,
-                to: today,
-                selected: true,
-            });
-        }
-    }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
+    const formatDate = (date: Date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+        const dayOfWeek = daysOfWeek[date.getDay()];
 
-    const formattedDateRange = selectedDateRange
-        ? {
-            startDate: selectedDateRange.startDate.toLocaleDateString("ko-KR", {
-                weekday: "short",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-            }),
-            endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
-                weekday: "short",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-            }),
-        }
-        : null;
+        return `${year}.${month}.${day} (${dayOfWeek})`;
+    };
+
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
@@ -221,9 +195,6 @@ const ProductSelect = (props: ProductSelectProps) => {
                         </Link>
                     }
                 />
-                <a href="" className={cx("CartIcon")}>
-                    <BsCart2 />
-                </a>
             </div>
             <div className={cx("ProductImage")}>
                 <Swiper
@@ -252,14 +223,26 @@ const ProductSelect = (props: ProductSelectProps) => {
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
                         <h1 className={cx("ProductTitle")}>{data.name}</h1>
-                        <a href="" className={cx("ProductFavorite")}>
-                            <IoIosHeartEmpty />
-                        </a>
+                        <p
+                            className="ProductFavorite"
+                            onClick={handleFavoriteClick}
+                        >
+                            {isFavorite ? (
+                                <IoIosHeart
+                                    style={{
+                                        fontSize: "22px",
+                                        color: "#8728ff",
+                                    }}
+                                />
+                            ) : (
+                                <IoIosHeartEmpty style={{ fontSize: "22px" }} />
+                            )}
+                        </p>
                     </div>
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>{data.rating}</p>
                         <p className={cx("ProductStarRating")}>
-                        <Rating rating={data.rating} maxRating={5} />
+                            <Rating rating={data.rating} maxRating={5} />
                         </p>
                         <p className={cx("ProductReviewCount")}>{data.count}</p>
                     </div>
@@ -327,20 +310,15 @@ const ProductSelect = (props: ProductSelectProps) => {
                                     <div className={cx("ReservationSelectBtn")}>
                                         <DateBtn
                                             label={
-                                                formattedDateRange ? (
-                                                    <>
-                                                        {
-                                                            formattedDateRange.startDate
-                                                        }{" "}
-                                                        ~
-                                                        <br />
-                                                        {
-                                                            formattedDateRange.endDate
-                                                        }
-                                                    </>
-                                                ) : (
-                                                    "날짜를 선택해주세요"
-                                                )
+                                                selectedDateRange &&
+                                                selectedDateRange.from &&
+                                                selectedDateRange.to
+                                                    ? `${formatDate(
+                                                          selectedDateRange.from
+                                                      )} ~ ${formatDate(
+                                                          selectedDateRange.to
+                                                      )}`
+                                                    : "날짜를 선택해주세요"
                                             }
                                             onClick={handleDateBtnClick}
                                         />
@@ -359,18 +337,28 @@ const ProductSelect = (props: ProductSelectProps) => {
                                         {productSelectData.map(
                                             (product, index) => (
                                                 <ProductSelectCard
-                                                key={index}
-                                                image={product.image}
-                                                event={product.event}
-
-                                                name={product.name}
-                                                standard={product.capacity.standard}
-                                                maximum={product.capacity.maximum}
-                                                checkIn={product.time.checkIn}
-                                                checkOut={product.time.checkOut}
-                                                shortStayPrice={product.price.shortStayPrice}
-                                                overnightPrice = {product.price. overnightPrice}
-                                                stock={product.stock}
+                                                    key={index}
+                                                    image={product.image}
+                                                    event={product.event}
+                                                    name={product.name}
+                                                    standard={
+                                                        product.capacity
+                                                            .standard
+                                                    }
+                                                    maximum={
+                                                        product.capacity.maximum
+                                                    }
+                                                    checkIn={
+                                                        product.time.checkIn
+                                                    }
+                                                    checkOut={
+                                                        product.time.checkOut
+                                                    }
+                                                    price={{
+                                                        price: product.price
+                                                            .price,
+                                                    }}
+                                                    stock={product.stock}
                                                 />
                                             )
                                         )}

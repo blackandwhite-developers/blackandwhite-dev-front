@@ -7,12 +7,13 @@ import Header from "@/components/Header/Header";
 import Link from "next/link";
 import { FaAngleLeft } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
+import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
 
 export interface HotelViewProps {
   titleData: string;
-  data: Array<{ id: string; image: string; title: string }>;
+  data: Array<{ id: string; thumbnail: string; title: string }>;
   popData: Array<{
     id: string;
     name: string;
@@ -53,8 +54,10 @@ const HotelView = (props: HotelViewProps) => {
           {data.map((a, i) => {
             return (
               <div key={a.id} className={cx("grid-item")}>
-                <img src={a.image} alt="regoinImg" />
+                <Link href={`/searchResult`}>
+                <img src={a.thumbnail} alt="regoinImg" />
                 <div className={cx("title")}>{a.title}</div>
+                </Link>
               </div>
             );
           })}
@@ -71,12 +74,12 @@ const HotelView = (props: HotelViewProps) => {
               <div className={cx("pop-title")}>{a.name}</div>
               <div className={cx("pop-rate-info")}>
                 <div className={cx("pop-rate")}>{a.rating} </div>
-                <div className={cx("pop-ratestar")}>★★★★☆ </div>
+                <div className={cx("pop-ratestar")}><Rating rating={a.rating} maxRating={5}/></div>
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
               <div className={cx("pop-distance")}>{a.distance}</div>
               <div className={cx("pop-price")}>
-                {a.price.toLocaleString()}원
+                {a.price}원
               </div>
             </div>
           ))}
@@ -93,12 +96,12 @@ const HotelView = (props: HotelViewProps) => {
               <div className={cx("pop-title")}>{a.name}</div>
               <div className={cx("pop-rate-info")}>
                 <div className={cx("pop-rate")}>{a.rating} </div>
-                <div className={cx("pop-ratestar")}>★★★★☆ </div>
+                <div className={cx("pop-ratestar")}><Rating rating={a.rating} maxRating={5}/></div>
                 <div className={cx("pop-count")}>({a.count})</div>
               </div>
               <div className={cx("pop-distance")}>{a.distance}</div>
               <div className={cx("pop-price")}>
-                {a.price.toLocaleString()}원
+                {a.price}원
               </div>
             </div>
           ))}
