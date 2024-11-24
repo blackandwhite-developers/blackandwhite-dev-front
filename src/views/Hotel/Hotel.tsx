@@ -15,7 +15,7 @@ export interface HotelViewProps {
   titleData: string;
   data: Array<{ id: string; thumbnail: string; title: string }>;
   popData: Array<{
-    id: string;
+    _id: string;
     name: string;
     rating: number;
     count: string;
@@ -32,10 +32,13 @@ const HotelView = (props: HotelViewProps) => {
   const handleGoBack = () => {
     router.back();
   };
+  {popData.map((a) => {
+    console.log("Hotel ID:", a._id); 
+  })}
   return (
     <div className={cx("container")}>
       <div className={cx("header")}>
-        <Link href={"/product/list"}>
+        <Link href={"/home"}>
           <Header
             title={titleData}
             leftIcon={<FaAngleLeft />}
@@ -55,8 +58,8 @@ const HotelView = (props: HotelViewProps) => {
             return (
               <div key={a.id} className={cx("grid-item")}>
                 <Link href={`/searchResult`}>
-                <img src={a.thumbnail} alt="regoinImg" />
-                <div className={cx("title")}>{a.title}</div>
+                  <img src={a.thumbnail} alt="regoinImg" />
+                  <div className={cx("title")}>{a.title}</div>
                 </Link>
               </div>
             );
@@ -66,21 +69,23 @@ const HotelView = (props: HotelViewProps) => {
 
       <div className={cx("popularityRoom")}>
         <h3>지금 핫한 숙소!</h3>
-
+        
         <div className={cx("pop-grid")}>
           {popData.map((a, i) => (
-            <div key={a.id} className={cx("pop-grid-item")}>
-              <img src={a.image} alt={a.name} />
-              <div className={cx("pop-title")}>{a.name}</div>
-              <div className={cx("pop-rate-info")}>
-                <div className={cx("pop-rate")}>{a.rating} </div>
-                <div className={cx("pop-ratestar")}><Rating rating={a.rating} maxRating={5}/></div>
-                <div className={cx("pop-count")}>({a.count})</div>
-              </div>
-              <div className={cx("pop-distance")}>{a.distance}</div>
-              <div className={cx("pop-price")}>
-                {a.price}원
-              </div>
+            <div key={a._id} className={cx("pop-grid-item")}>
+              <Link href={`/home/select?id=${a._id || ''} `}>
+                <img src={a.image} alt={a.name} />
+                <div className={cx("pop-title")}>{a.name}</div>
+                <div className={cx("pop-rate-info")}>
+                  <div className={cx("pop-rate")}>{a.rating} </div>
+                  <div className={cx("pop-ratestar")}><Rating rating={a.rating} maxRating={5} /></div>
+                  <div className={cx("pop-count")}>({a.count})</div>
+                </div>
+                <div className={cx("pop-distance")}>{a.distance}</div>
+                <div className={cx("pop-price")}>
+                  {a.price}원
+                </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -92,17 +97,19 @@ const HotelView = (props: HotelViewProps) => {
         <div className={cx("pop-grid")}>
           {popData.map((a, i) => (
             <div key={i} className={cx("pop-grid-item")}>
-              <img src={a.image} alt={a.name} />
-              <div className={cx("pop-title")}>{a.name}</div>
-              <div className={cx("pop-rate-info")}>
-                <div className={cx("pop-rate")}>{a.rating} </div>
-                <div className={cx("pop-ratestar")}><Rating rating={a.rating} maxRating={5}/></div>
-                <div className={cx("pop-count")}>({a.count})</div>
-              </div>
-              <div className={cx("pop-distance")}>{a.distance}</div>
-              <div className={cx("pop-price")}>
-                {a.price}원
-              </div>
+              <Link href={`/home/select?id=${a._id}`}>
+                <img src={a.image} alt={a.name} />
+                <div className={cx("pop-title")}>{a.name}</div>
+                <div className={cx("pop-rate-info")}>
+                  <div className={cx("pop-rate")}>{a.rating} </div>
+                  <div className={cx("pop-ratestar")}><Rating rating={a.rating} maxRating={5} /></div>
+                  <div className={cx("pop-count")}>({a.count})</div>
+                </div>
+                <div className={cx("pop-distance")}>{a.distance}</div>
+                <div className={cx("pop-price")}>
+                  {a.price}원
+                </div>
+              </Link>
             </div>
           ))}
         </div>

@@ -72,7 +72,7 @@ const ProductDetail = (props: ProductDetailProps) => {
 
   /** 후기 더미 데이터 */
   const totalReviewData = {
-    ratingAverage: "4.5",
+    ratingAverage: 4.5,
     totalReview: 1136,
     reviewCounting: 80,
   };
@@ -81,7 +81,7 @@ const ProductDetail = (props: ProductDetailProps) => {
   const reviews = [
     {
       image: ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"],
-      rating: "4.5",
+      rating: 4.5,
       nickname: "홍길동",
       date: "2024.11.23",
       serviceProduct: "[패키지] 스탠다드 디럭스 이용",
@@ -89,14 +89,14 @@ const ProductDetail = (props: ProductDetailProps) => {
     },
     {
       image: ["/images/HotelImage1.png"],
-      rating: "1.0",
+      rating: 1.0,
       nickname: "홍길동",
       date: "2024.11.10",
       serviceProduct: "[패키지] 스탠다드 디럭스 이용",
       reviewContent: "너무 추워요ㅜ",
     },
     {
-      rating: "5.0",
+      rating: 5.0,
       nickname: "홍길동",
       date: "2024.11.05",
       serviceProduct: "[패키지] 스탠다드 디럭스 이용",

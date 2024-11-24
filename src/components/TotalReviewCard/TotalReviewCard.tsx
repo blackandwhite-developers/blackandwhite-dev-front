@@ -5,11 +5,12 @@ import styles from "./TotalReviewCard.module.scss";
 import cn from "classnames/bind";
 
 import "swiper/css";
+import Rating from "../RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
 
 type ReviewProps = {
-    ratingAverage: string;
+    ratingAverage:  number;
     totalReview: string | number;
     reviewCounting: string | number;
 };
@@ -23,11 +24,7 @@ const TotalReviewCard = (props: ReviewProps) => {
                 <div className={cx("ReviewInform")}>
                     <p className={cx("ReviewRating")}>{ratingAverage}</p>
                     <div>
-                        <FaRegStar />
-                        <FaRegStar />
-                        <FaRegStar />
-                        <FaRegStar />
-                        <FaRegStar />
+                        <Rating rating={ratingAverage} maxRating={5}/>
                     </div>
                     <p className={cx("ReviewCounting")}>리뷰 {totalReview}</p>
                 </div>
