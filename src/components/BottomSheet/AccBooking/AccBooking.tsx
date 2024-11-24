@@ -6,10 +6,8 @@ import styles from "./AccBooking.module.scss";
 import Link from "next/link";
 import { useAtom } from "jotai";
 import { selectedDateRangeAtom } from "@/views/SearchResult/Calander/Calander.view";
-
 import { bookingDataAtom } from "@/atoms/authAtom";
 
-import { useAtom } from "jotai";
 
 const cx = cn.bind(styles);
 
