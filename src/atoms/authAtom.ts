@@ -61,6 +61,7 @@ type BookingData = {
   startDate: string;
   endDate: string;
 };
+
 const bookingDatas = localStorage.getItem("bookingData");
 /** 예약 내역 */
 export const bookingDataAtom = atom<BookingData[]>(

@@ -35,7 +35,11 @@ export interface CartviewProps {
 
 const Cartview = (props: CartviewProps) => {
   const { data } = props;
-  const totalPrice = data.reduce((sum, item) => sum + item.price * item.operate.days, 0);
+
+  const totalPrice = data.reduce(
+    (sum, item) => sum + item.price * item.operate.days,
+    0
+  );
   const discountPrice = data.reduce((sum, item) => sum + item.discount, 0);
   const resultPrice = totalPrice - discountPrice;
 
@@ -49,7 +53,9 @@ const Cartview = (props: CartviewProps) => {
   };
 
   const handleSelectItem = (id: string, checked: boolean) => {
-    setSelectedItems((prev) => (checked ? [...prev, id] : prev.filter((itemId) => itemId !== id)));
+    setSelectedItems((prev) =>
+      checked ? [...prev, id] : prev.filter((itemId) => itemId !== id)
+    );
   };
 
   const handleDeleteSelectedItems = () => {
@@ -70,13 +76,25 @@ const Cartview = (props: CartviewProps) => {
 
   return (
     <div className={cx("cart-container")}>
-      <Header title={"객실상세"} leftIcon={<FaAngleLeft />} rightIcon={<RiHome6Line />} />
+      <Header
+        title={"객실상세"}
+        leftIcon={<FaAngleLeft />}
+        rightIcon={<RiHome6Line />}
+      />
 
       <div className={cx("select-container")}>
         <div className={cx("defaultCheckBox")}>
-          <DefaultCheckBox label="전체 선택" checked={isAllSelected} onChange={(e) => handleSelectAll(e.target.checked)} />
+          <DefaultCheckBox
+            label="전체 선택"
+            checked={isAllSelected}
+            onChange={(e) => handleSelectAll(e.target.checked)}
+          />
         </div>
-        <button className={cx("outline-btn")} onClick={handleDeleteSelectedItems} disabled={selectedItems.length === 0}>
+        <button
+          className={cx("outline-btn")}
+          onClick={handleDeleteSelectedItems}
+          disabled={selectedItems.length === 0}
+        >
           선택 삭제
         </button>
       </div>
@@ -84,7 +102,11 @@ const Cartview = (props: CartviewProps) => {
       {data.map((item) => (
         <div className={cx("main-container")} key={item.id}>
           <div className={cx("main-info")}>
-            <DefaultCheckBox label={""} checked={selectedItems.includes(item.id)} onChange={(e) => handleSelectItem(item.id, e.target.checked)} />
+            <DefaultCheckBox
+              label={""}
+              checked={selectedItems.includes(item.id)}
+              onChange={(e) => handleSelectItem(item.id, e.target.checked)}
+            />
             <div className={cx("info")}>
               <div className={cx("top-info")}>
                 <div className={cx("img")}>
@@ -104,8 +126,12 @@ const Cartview = (props: CartviewProps) => {
               <div className={cx("info-product")}>
                 <div className={cx("middle-info")}>
                   <span className={cx("time")}>이용시간</span>
-                  <span className={cx("checkIn")}>체크인 : {item.operate.checkInTime}</span>
-                  <span className={cx("checkOut")}>체크아웃 : {item.operate.checkOutTime}</span>
+                  <span className={cx("checkIn")}>
+                    체크인 : {item.operate.checkInTime}
+                  </span>
+                  <span className={cx("checkOut")}>
+                    체크아웃 : {item.operate.checkOutTime}
+                  </span>
                 </div>
                 <div className={cx("bottom-info")}>
                   <Badge shape="square">{"선착순 3,000원 특가"}</Badge>
@@ -139,8 +165,14 @@ const Cartview = (props: CartviewProps) => {
         </div>
 
         <div className={cx("rule")}>
-          <li>결제 예상 금액은 현재 프로모션과 객실 여부에 따라 달라질 수 있습니다.</li>
-          <li>장바구니에 담긴 상품은 최대 30일간 보관되며 최대 15개의 상품을 담을 수 있습니다.</li>
+          <li>
+            결제 예상 금액은 현재 프로모션과 객실 여부에 따라 달라질 수
+            있습니다.
+          </li>
+          <li>
+            장바구니에 담긴 상품은 최대 30일간 보관되며 최대 15개의 상품을 담을
+            수 있습니다.
+          </li>
         </div>
 
         <div className={cx("bottom-sheet")}>
@@ -155,7 +187,16 @@ const Cartview = (props: CartviewProps) => {
         </div>
       </div>
 
-      {isDialogOpen && <Dialog title="삭제하기" content={"선택한 상품을 삭제하시겠습니까?"} leftButtonText="취소" rightButtonText="삭제" onLeftButtonClick={handleCloseDialog} onRightButtonClick={handleDeleteConfirm} />}
+      {isDialogOpen && (
+        <Dialog
+          title="삭제하기"
+          content={"선택한 상품을 삭제하시겠습니까?"}
+          leftButtonText="취소"
+          rightButtonText="삭제"
+          onLeftButtonClick={handleCloseDialog}
+          onRightButtonClick={handleDeleteConfirm}
+        />
+      )}
     </div>
   );
 };

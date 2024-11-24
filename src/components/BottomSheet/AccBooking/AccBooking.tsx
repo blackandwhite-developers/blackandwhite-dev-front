@@ -9,6 +9,8 @@ import { selectedDateRangeAtom } from "@/views/SearchResult/Calander/Calander.vi
 
 import { bookingDataAtom } from "@/atoms/authAtom";
 
+import { useAtom } from "jotai";
+
 const cx = cn.bind(styles);
 
 type AccBookingProps = {
@@ -30,92 +32,56 @@ type AccBookingProps = {
 };
 
 const AccBooking = ({ data, onClose }: AccBookingProps) => {
-  const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
 
   const [bookingData, setBookingData] = useAtom(bookingDataAtom);
-  const [selectedDateRange] = useAtom(selectedDateRangeAtom);
+
+  const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
 
   const handleAddToCart = () => {
-    const updatedBookingData = [...bookingData, data._id]; // props로 받은 data 사용
-    console.log(updatedBookingData);
+    const updatedBookingData = [...bookingData, data._id]; 
     setBookingData(updatedBookingData);
     localStorage.setItem("bookingData", JSON.stringify(updatedBookingData));
 
     setIsCartPopupVisible(true);
     setTimeout(() => {
       setIsCartPopupVisible(false);
-    }, 3000);
+    }, 2000);
   };
 
-  const formatDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-    const dayOfWeek = daysOfWeek[date.getDay()];
+  const startDate = new Date(data.startDate);
+  const endDate = new Date(data.endDate);
+  const stayNight = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
 
-    return `${year}.${month}.${day} (${dayOfWeek})`;
-  };
-
-  /** 숙박 일자 계산 */
-  const stayNight =
-    selectedDateRange?.from && selectedDateRange?.to
-      ? Math.ceil(
-          (selectedDateRange.to.getTime() - selectedDateRange.from.getTime()) /
-            (1000 * 60 * 60 * 24)
-        )
-      : 0;
-
-  /** 날짜 선택 안했을 시 alert */
-  const handleReservationClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    if (!selectedDateRange?.from || !selectedDateRange?.to) {
-      alert("날짜를 선택해주세요");
-      event.preventDefault();
-    }
-  };
+  // const formatDate = (date: Date) =>
+  //   date.toLocaleDateString("ko-KR", {
+  //     year: "numeric",
+  //     month: "long",
+  //     day: "numeric",
+  //   });
 
   return (
     <div className={cx("AccBookingWrapper")}>
       <div className={cx("AccBookingTapBar")} onClick={onClose}>
-        <Image
-          src="/images/TapBar.png"
-          alt="탭 바 이미지"
-          width={77}
-          height={3}
-        />
+        <Image src="/images/TapBar.png" alt="탭 바 이미지" width={77} height={3} />
       </div>
       <h1 className={cx("AccBookingTitle")}>숙박 예약</h1>
       <div className={cx("AccBookingDetailWrapper")}>
         <p className={cx("AccBookingImage")}>
-          <Image
-            src="/images/Hotel.png"
-            alt="호텔 이미지"
-            width={95}
-            height={95}
-          />
+
+          <Image src="/images/Hotel.png" alt="호텔 이미지" width={95} height={95} />
         </p>
         <div className={cx("AccBookingDetail")}>
           <h2 className={cx("RoomTitle")}>{data.name}</h2>
           <div className={cx("ReservationDetail")}>
             <ul>
               <li className={cx("CheckIn")}>체크인</li>
-              <li>
-                {selectedDateRange?.from
-                  ? formatDate(selectedDateRange.from)
-                  : "미선택"}
-              </li>
+              <li>{data.startDate}</li>
               <li>{data.time.checkIn}</li>
             </ul>
             <p className={cx("StayNight")}>{stayNight}박</p>
             <ul>
               <li className={cx("CheckOut")}>체크아웃</li>
-              <li>
-                {selectedDateRange?.to
-                  ? formatDate(selectedDateRange.to)
-                  : "미선택"}
-              </li>
+              <li>{data.endDate}</li>
               <li>{data.time.checkOut}</li>
             </ul>
           </div>
@@ -124,10 +90,7 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
       <div>
         <ul className={cx("AccBookingInfo")}>
           <li>현장상황에 따라 객실 랜덤 배정(객실지정불가)</li>
-          <li>
-            예약 후 10분 내 취소될 경우 취소 수수료가 발생하지 않습니다.
-            (*체크인 시간 경과 후 제외)
-          </li>
+          <li>예약 후 10분 내 취소될 경우 취소 수수료가 발생하지 않습니다. (*체크인 시간 경과 후 제외)</li>
         </ul>
       </div>
       <div className={cx("ReservationInfo")}>
@@ -135,9 +98,7 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
           <p>숙박</p>
           <span>({stayNight}박)</span>
         </div>
-        <p>
-          {data.price ? `${data.price.price * stayNight}원` : "불러오는 중..."}
-        </p>
+        <p>{data.price ? `${data.price.price * stayNight}원` : "불러오는 중..."}</p>
       </div>
       <div className={cx("ButtonWrapper")}>
         <button className={cx("CartButton")} onClick={handleAddToCart}>
@@ -145,12 +106,7 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
         </button>
 
         <Link href="/payment" style={{ textDecoration: "none" }}>
-          <button
-            className={cx("ReservationButton")}
-            onClick={handleReservationClick}
-          >
-            예약하기
-          </button>
+          <button className={cx("ReservationButton")}>예약하기</button>
         </Link>
       </div>
 

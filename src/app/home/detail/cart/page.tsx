@@ -1,5 +1,6 @@
 "use client";
 import Cartview from "@/views/Cart/Cart.View";
+
 import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { bookingDataAtom } from "@/atoms/authAtom";
@@ -26,6 +27,8 @@ export default function ProductDetailPage() {
       }
     })();
   }, [bookingData]);
+
+  console.log(bookingData);
 
   const data = [
     {
@@ -80,5 +83,6 @@ export default function ProductDetailPage() {
       discount: 5000,
     },
   ];
+
   return <Cartview data={data} />;
 }
