@@ -104,7 +104,7 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
-              <Image src={src} alt="호텔 이미지" width={360} height={228} />
+              <img src={src} alt="호텔 이미지" width={`100%`} height={`100%`} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -146,9 +146,8 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
               <MemberBtn
                 label={
                   <>
-                    성인 {adultCount}명
-                    <br />
-                    아동 {childCount}명
+                    <span>성인 {adultCount}명</span>
+                    <span>아동 {childCount}명</span>
                   </>
                 }
                 onClick={handleMemberBtnClick}
