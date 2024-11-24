@@ -8,12 +8,14 @@ import { useAtom } from "jotai";
 import { selectedDateRangeAtom } from "@/views/SearchResult/Calander/Calander.view";
 
 import { bookingDataAtom } from "@/atoms/authAtom";
+
 import { useAtom } from "jotai";
 
 const cx = cn.bind(styles);
 
 type AccBookingProps = {
   data: {
+    _id: string;
     event: string;
     name: string;
     time: {
@@ -30,14 +32,14 @@ type AccBookingProps = {
 };
 
 const AccBooking = ({ data, onClose }: AccBookingProps) => {
+
   const [bookingData, setBookingData] = useAtom(bookingDataAtom);
 
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
 
   const handleAddToCart = () => {
-    const updatedBookingData = [...bookingData, data];
+    const updatedBookingData = [...bookingData, data._id]; 
     setBookingData(updatedBookingData);
-
     localStorage.setItem("bookingData", JSON.stringify(updatedBookingData));
 
     setIsCartPopupVisible(true);
@@ -65,6 +67,7 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
       <h1 className={cx("AccBookingTitle")}>숙박 예약</h1>
       <div className={cx("AccBookingDetailWrapper")}>
         <p className={cx("AccBookingImage")}>
+
           <Image src="/images/Hotel.png" alt="호텔 이미지" width={95} height={95} />
         </p>
         <div className={cx("AccBookingDetail")}>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import styles from "./ProductRoomDetailCard.module.scss";
 import cn from "classnames/bind";
@@ -9,23 +9,28 @@ const cx = cn.bind(styles);
 
 type ProductRoomDetailCardProps = {
   data: {
+    _id: string;
     event: string;
     name: string;
     time: {
-        checkIn: string;
-        checkOut: string;
-    }
-    price: { price: number; };
+      checkIn: string;
+      checkOut: string;
+    };
+    price: { price: number };
     stock: number;
-    capacity: { standard: number; maximum: number; };
+    capacity: { standard: number; maximum: number };
     startDate: string;
     endDate: string;
-  }
+  };
 };
 
-export default function ProductRoomDetailCard(props: ProductRoomDetailCardProps) {
+export default function ProductRoomDetailCard(
+  props: ProductRoomDetailCardProps
+) {
   const { data } = props;
-  const [selectedBookingType, setSelectedBookingType] = useState<"숙박" | null>(null);
+  const [selectedBookingType, setSelectedBookingType] = useState<"숙박" | null>(
+    null
+  );
 
   const handleClose = () => {
     setSelectedBookingType(null);
@@ -50,18 +55,23 @@ export default function ProductRoomDetailCard(props: ProductRoomDetailCardProps)
             </div>
           </div>
           <div className={cx("priceArea")}>
-            <span>{data.stock >= 1 ? `${data.stock}개 남음` : `사용 불가`}</span>
+            <span>
+              {data.stock >= 1 ? `${data.stock}개 남음` : `사용 불가`}
+            </span>
             <span className={cx("roomPrice")}>{data.price.price}원</span>
           </div>
         </div>
       </div>
       <div className={cx("reservationBtn")}>
-        <StayReservationBtn label={"숙박 예약"} onClick={() => setSelectedBookingType("숙박")} />
+        <StayReservationBtn
+          label={"숙박 예약"}
+          onClick={() => setSelectedBookingType("숙박")}
+        />
       </div>
       {selectedBookingType === "숙박" && (
-        <AccBooking data={data}
+        <AccBooking
+          data={data}
           onClose={() => {
-            console.log("AccBooking 닫기");
             handleClose();
           }}
         />
