@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import Loading from "@/components/loading/Loading";
 import ProductSelectView from "@/views/ProductSelect/ProductSelect.view";
 import React, { useState, useEffect } from "react";
 
 interface ProductSelectProps {
-  id: string; 
+  id: string;
   category: { id: string; title: string; thumbnail: string };
   name: string;
   rating: number;
@@ -24,7 +24,9 @@ interface productSelectDataProps {
 
 export default function ProductSelectPage() {
   const [data, setData] = useState<ProductSelectProps | null>(null);
-  const [productSelectData, setProductSelectData] = useState<productSelectDataProps[]>([]);
+  const [productSelectData, setProductSelectData] = useState<
+    productSelectDataProps[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,18 +34,20 @@ export default function ProductSelectPage() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const roomResponse = await fetch(`http://localhost:4000/api/lodges/673edf1c2b13f5f8e78a5579`);
+        const roomResponse = await fetch(
+          `http://localhost:4000/api/lodges/673edf1c2b13f5f8e78a5579`
+        );
         const roomData = await roomResponse.json();
         console.log("roomData:", roomData);
 
         if (roomData) {
           const lodgeId = roomData.id;
-          const categoryId = roomData.category.id;  
+          const categoryId = roomData.category.id;
           console.log("lodgeId:", lodgeId);
           console.log("categoryId:", categoryId);
 
           setData({
-            id: lodgeId, 
+            id: lodgeId,
             category: roomData.category,
             name: roomData.name,
             rating: roomData.rating,
@@ -51,13 +55,15 @@ export default function ProductSelectPage() {
             distance: roomData.distance,
           });
 
-          const productResponse = await fetch(`http://localhost:4000/api/rooms/?lodgeId=${lodgeId}`);
+          const productResponse = await fetch(
+            `http://localhost:4000/api/rooms/?lodgeId=${lodgeId}`
+          );
           const productData = await productResponse.json();
           console.log("productData:", productData);
 
           const productDataWithLodgeId = productData.map((item: any) => ({
             ...item,
-            lodgeId: lodgeId, 
+            lodgeId: lodgeId,
           }));
 
           setProductSelectData(productDataWithLodgeId);
@@ -76,10 +82,14 @@ export default function ProductSelectPage() {
       }
     };
     fetchData();
-  }, []); 
+  }, []);
 
   if (loading) {
-    return <div><Loading /></div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   if (error) {
