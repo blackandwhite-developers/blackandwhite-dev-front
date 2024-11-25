@@ -5,6 +5,7 @@ import cn from "classnames/bind";
 import styles from "./AccBooking.module.scss";
 import Link from "next/link";
 import { useAtom } from "jotai";
+
 import { selectedDateRangeAtom } from "@/views/SearchResult/Calander/Calander.view";
 
 const cx = cn.bind(styles);

@@ -9,17 +9,27 @@ const cx = cn.bind(styles);
 type ProductDetailCardProps = {
   image: string;
   event?: string;
-  name: string,
-  standard: number,
-  maximum: number,
-  checkIn: string,
-  checkOut: string,
-  price: number,
-  stock: number,
+  name: string;
+  standard: number;
+  maximum: number;
+  checkIn: string;
+  checkOut: string;
+  price: number;
+  stock: number;
 };
 
 export default function ProductDetailCard(props: ProductDetailCardProps) {
-  const { image, name, event, standard, maximum,  checkIn, checkOut, price, stock} = props;
+  const {
+    image,
+    name,
+    event,
+    standard,
+    maximum,
+    checkIn,
+    checkOut,
+    price,
+    stock,
+  } = props;
 
   return (
     <div className={cx("productDetailBox")}>
@@ -35,7 +45,9 @@ export default function ProductDetailCard(props: ProductDetailCardProps) {
             {standard && maximum ? (
               <p className={cx("parlorInfomation")}>
                 <span>객실 정보</span>
-                <span>기준{standard}인 (최대{maximum}인)</span>
+                <span>
+                  기준{standard}인 (최대{maximum}인)
+                </span>
               </p>
             ) : null}
             {checkIn ? (

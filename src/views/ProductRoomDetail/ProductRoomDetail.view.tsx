@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
-import Image from "next/image";
+import React from "react";
 import cn from "classnames/bind";
 import styles from "./ProductRoomDetail.view.module.scss";
 import { BsCart2 } from "react-icons/bs";
@@ -104,11 +103,11 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
                 >
                     {images.map((src, index) => (
                         <SwiperSlide key={index}>
-                            <Image
+                            <img
                                 src={src}
                                 alt="호텔 이미지"
-                                width={360}
-                                height={228}
+                                width={`100%`}
+                                height={`100%`}
                             />
                         </SwiperSlide>
                     ))}

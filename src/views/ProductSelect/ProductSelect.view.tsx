@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.view.module.scss";
-import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { FaAngleLeft } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
@@ -22,10 +22,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import {
+    selectedDateRangeAtom,
     adultCountAtom,
     childCountAtom,
-    selectedDateRangeAtom,
-} from "@/views/SearchResult/Calander/Calander.view";
+} from "@/atoms/authAtom";
 import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
@@ -112,7 +112,7 @@ const ProductSelect = (props: ProductSelectProps) => {
 
     /** 후기 더미 데이터 */
     const totalReviewData = {
-        ratingAverage: 4.5,
+        ratingAverage: "4.5",
         totalReview: 1136,
         reviewCounting: 80,
     };
@@ -125,7 +125,7 @@ const ProductSelect = (props: ProductSelectProps) => {
                 "/images/HotelImage1.png",
                 "/images/HotelImage1.png",
             ],
-            rating: 4.5,
+            rating: "4.5",
             nickname: "홍길동",
             date: "2024.11.23",
             serviceProduct: "[패키지] 스탠다드 디럭스 이용",
@@ -134,14 +134,14 @@ const ProductSelect = (props: ProductSelectProps) => {
         },
         {
             image: ["/images/HotelImage1.png"],
-            rating: 1.0,
+            rating: "1.0",
             nickname: "홍길동",
             date: "2024.11.10",
             serviceProduct: "[패키지] 스탠다드 디럭스 이용",
             reviewContent: "너무 추워요ㅜ",
         },
         {
-            rating: 5.0,
+            rating: "5.0",
             nickname: "홍길동",
             date: "2024.11.05",
             serviceProduct: "[패키지] 스탠다드 디럭스 이용",
@@ -151,13 +151,8 @@ const ProductSelect = (props: ProductSelectProps) => {
 
     const [selectedTab, setSelectedTab] = useState("room");
     const [isFavorite, setIsFavorite] = useState(false);
-
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
-    };
-
-    const handleGoBack = () => {
-        router.back(); 
     };
 
     const handleDateBtnClick = () => {
@@ -175,9 +170,7 @@ const ProductSelect = (props: ProductSelectProps) => {
     /** 날짜, 인원 불러오기 */
     const [adultCount] = useAtom(adultCountAtom);
     const [childCount] = useAtom(childCountAtom);
-    const [selectedDateRange, setSelectedDateRange] = useAtom(
-        selectedDateRangeAtom
-    );
+    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
 
     const formatDate = (date: Date) => {
         const year = date.getFullYear();
@@ -189,29 +182,12 @@ const ProductSelect = (props: ProductSelectProps) => {
         return `${year}.${month}.${day} (${dayOfWeek})`;
     };
 
-    useEffect(() => {
-        if (
-            !selectedDateRange ||
-            !selectedDateRange.from ||
-            !selectedDateRange.to
-        ) {
-            const today = new Date();
-            const tomorrow = new Date(today);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-
-            setSelectedDateRange({
-                from: today,
-                to: tomorrow,
-            });
-        }
-    }, []);
-
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
                 <Header
                     title={"객실상세"}
-                    leftIcon={<FaAngleLeft onClick={handleGoBack} />}
+                    leftIcon={<FaAngleLeft />}
                     rightIcon={
                         <Link href="/home/detail/cart">
                             <BsCart2 />
@@ -302,9 +278,9 @@ const ProductSelect = (props: ProductSelectProps) => {
                         {selectedTab === "review" && (
                             <div>
                                 <TotalReviewCard
-                                    ratingAverage={
+                                    ratingAverage={Number(
                                         totalReviewData.ratingAverage
-                                    }
+                                    )}
                                     totalReview={totalReviewData.totalReview}
                                     reviewCounting={
                                         totalReviewData.reviewCounting
@@ -314,7 +290,7 @@ const ProductSelect = (props: ProductSelectProps) => {
                                     <Review
                                         key={index}
                                         image={review.image}
-                                        rating={review.rating}
+                                        rating={Number(review.rating)}
                                         nickname={review.nickname}
                                         date={review.date}
                                         serviceProduct={review.serviceProduct}
