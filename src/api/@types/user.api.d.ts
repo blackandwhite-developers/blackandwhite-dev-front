@@ -127,3 +127,25 @@ type updateMyInfoRequest = {
 type updateMyInfoResponse = {
   isSuccess: boolean;
 };
+
+type findIdRequestPath = {};
+
+type findIdRequestBody = {
+  name: string;
+  phone: string;
+};
+
+type findIdRequestParams = {};
+
+type findIdRequest = {
+  path?: findIdRequestPath;
+  body: findIdRequestBody;
+  params?: findIdRequestParams;
+};
+
+type findIdResponse = {
+  data: {
+    email: string;
+    createdAt: Date;
+  };
+};

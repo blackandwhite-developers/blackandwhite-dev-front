@@ -1,3 +1,5 @@
+@import "../../app/mixins";
+
 .header a {
     text-decoration: none;
 }
@@ -65,11 +67,10 @@
 }
 
 .container .popularityRoom h3 {
-    padding: 20px 0 0 20px;
-    margin: 0 auto;
-    width: 100%;
-    font-size: 1rem;
-    font-weight: 700;
+  margin: 0 auto;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .container .popularityRoom .pop-grid {
@@ -147,11 +148,23 @@
 }
 
 .container .popularityRoom .pop-grid .pop-grid-item .pop-distance .price {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 23.17px;
-    letter-spacing: -0.05em;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23.17px;
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
+
+@include mobile {
+  .container .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include tablet {}
+
+@include desktop {}
+
