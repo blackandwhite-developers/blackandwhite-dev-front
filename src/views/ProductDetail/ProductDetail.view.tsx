@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
 import { IoIosHeartEmpty } from "react-icons/io";
@@ -21,7 +20,11 @@ import TotalReviewCard from "@/components/TotalReviewCard/TotalReviewCard";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
-import { selectedDateRangeAtom, adultCountAtom, childCountAtom } from "@/atoms/authAtom";
+import {
+  selectedDateRangeAtom,
+  adultCountAtom,
+  childCountAtom,
+} from "@/atoms/authAtom";
 import Rating from "@/components/RatingStarCount/Rating";
 import { recentRoomsAtom } from "@/atoms/recentRooms";
 
@@ -76,7 +79,11 @@ const ProductDetail = (props: ProductDetailProps) => {
   }, []);
 
   /** 상단 이미지 더미 데이터 */
-  const images = ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"];
+  const images = [
+    "/images/HotelImage1.png",
+    "/images/HotelImage1.png",
+    "/images/HotelImage1.png",
+  ];
 
   /** 후기 더미 데이터 */
   const totalReviewData = {
@@ -88,12 +95,14 @@ const ProductDetail = (props: ProductDetailProps) => {
   /** 후기 더미 데이터 */
   const reviews = [
     {
+
       image: ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"],
       rating: 4.5,
       nickname: "홍길동",
       date: "2024.11.23",
       serviceProduct: "[패키지] 스탠다드 디럭스 이용",
-      reviewContent: "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
+      reviewContent:
+        "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
     },
     {
       image: ["/images/HotelImage1.png"],
@@ -123,7 +132,9 @@ const ProductDetail = (props: ProductDetailProps) => {
   const handleMemberBtnClick = () => {
     router.push("/searchResult/calander");
   };
-  const [selectedDateRange, setSelectedDateRange] = useAtom(selectedDateRangeAtom);
+  const [selectedDateRange, setSelectedDateRange] = useAtom(
+    selectedDateRangeAtom
+  );
   const [adultCount, setAdultCount] = useAtom(adultCountAtom);
   const [childCount, setChildCount] = useAtom(childCountAtom);
 
@@ -141,7 +152,14 @@ const ProductDetail = (props: ProductDetailProps) => {
         selected: true,
       });
     }
-  }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
+  }, [
+    adultCount,
+    childCount,
+    selectedDateRange,
+    setAdultCount,
+    setChildCount,
+    setSelectedDateRange,
+  ]);
 
   const formattedDateRange = selectedDateRange
     ? {
@@ -186,7 +204,7 @@ const ProductDetail = (props: ProductDetailProps) => {
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
-              <Image src={src} alt="호텔 이미지" width={360} height={228} />
+              <img src={src} alt="호텔 이미지" width={`100%`} height={`100%`} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -236,10 +254,14 @@ const ProductDetail = (props: ProductDetailProps) => {
           </div>
           <div className={cx("ProductCategoryLine")}></div>
 
-          <div>
+          <div className={cx("reservationSelectWrapper")}>
             {selectedTab === "review" && (
               <div>
-                <TotalReviewCard ratingAverage={totalReviewData.ratingAverage} totalReview={totalReviewData.totalReview} reviewCounting={totalReviewData.reviewCounting} />
+                <TotalReviewCard
+                  ratingAverage={totalReviewData.ratingAverage}
+                  totalReview={totalReviewData.totalReview}
+                  reviewCounting={totalReviewData.reviewCounting}
+                />
                 {reviews.map((review, index) => (
                   <Review key={index} image={review.image} rating={review.rating} nickname={review.nickname} date={review.date} serviceProduct={review.serviceProduct} reviewContent={review.reviewContent} />
                 ))}
@@ -257,9 +279,8 @@ const ProductDetail = (props: ProductDetailProps) => {
                       label={
                         formattedDateRange ? (
                           <>
-                            {formattedDateRange.startDate} ~
-                            <br />
-                            {formattedDateRange.endDate}
+                            <span>{formattedDateRange.startDate}</span> ~
+                            <span>{formattedDateRange.endDate}</span>
                           </>
                         ) : (
                           "날짜를 선택해주세요"
@@ -270,9 +291,8 @@ const ProductDetail = (props: ProductDetailProps) => {
                     <MemberBtn
                       label={
                         <>
-                          성인 {adultCount}명
-                          <br />
-                          아동 {childCount}명
+                          <span>성인 {adultCount}명</span>
+                          <span>아동 {childCount}명</span>
                         </>
                       }
                       onClick={handleMemberBtnClick}

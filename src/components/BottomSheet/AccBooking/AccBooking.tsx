@@ -5,6 +5,7 @@ import cn from "classnames/bind";
 import styles from "./AccBooking.module.scss";
 import Link from "next/link";
 import { useAtom } from "jotai";
+
 import { selectedDateRangeAtom } from "@/views/SearchResult/Calander/Calander.view";
 import { bookingDataAtom } from "@/atoms/authAtom";
 
@@ -30,13 +31,12 @@ type AccBookingProps = {
 };
 
 const AccBooking = ({ data, onClose }: AccBookingProps) => {
-
   const [bookingData, setBookingData] = useAtom(bookingDataAtom);
 
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
 
   const handleAddToCart = () => {
-    const updatedBookingData = [...bookingData, data._id]; 
+    const updatedBookingData = [...bookingData, data._id];
     setBookingData(updatedBookingData);
     localStorage.setItem("bookingData", JSON.stringify(updatedBookingData));
 
@@ -48,7 +48,9 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
 
   const startDate = new Date(data.startDate);
   const endDate = new Date(data.endDate);
-  const stayNight = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
+  const stayNight = Math.ceil(
+    (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
+  );
 
   // const formatDate = (date: Date) =>
   //   date.toLocaleDateString("ko-KR", {
@@ -60,13 +62,17 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
   return (
     <div className={cx("AccBookingWrapper")}>
       <div className={cx("AccBookingTapBar")} onClick={onClose}>
-        <Image src="/images/TapBar.png" alt="탭 바 이미지" width={77} height={3} />
+        <Image
+          src="/images/TapBar.png"
+          alt="탭 바 이미지"
+          width={77}
+          height={3}
+        />
       </div>
       <h1 className={cx("AccBookingTitle")}>숙박 예약</h1>
       <div className={cx("AccBookingDetailWrapper")}>
         <p className={cx("AccBookingImage")}>
-
-          <Image src="/images/Hotel.png" alt="호텔 이미지" width={95} height={95} />
+          <img src="/images/Hotel.png" alt="호텔 이미지" />
         </p>
         <div className={cx("AccBookingDetail")}>
           <h2 className={cx("RoomTitle")}>{data.name}</h2>
@@ -88,7 +94,10 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
       <div>
         <ul className={cx("AccBookingInfo")}>
           <li>현장상황에 따라 객실 랜덤 배정(객실지정불가)</li>
-          <li>예약 후 10분 내 취소될 경우 취소 수수료가 발생하지 않습니다. (*체크인 시간 경과 후 제외)</li>
+          <li>
+            예약 후 10분 내 취소될 경우 취소 수수료가 발생하지 않습니다.
+            (*체크인 시간 경과 후 제외)
+          </li>
         </ul>
       </div>
       <div className={cx("ReservationInfo")}>
@@ -96,7 +105,9 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
           <p>숙박</p>
           <span>({stayNight}박)</span>
         </div>
-        <p>{data.price ? `${data.price.price * stayNight}원` : "불러오는 중..."}</p>
+        <p>
+          {data.price ? `${data.price.price * stayNight}원` : "불러오는 중..."}
+        </p>
       </div>
       <div className={cx("ButtonWrapper")}>
         <button className={cx("CartButton")} onClick={handleAddToCart}>

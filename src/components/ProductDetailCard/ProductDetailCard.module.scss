@@ -5,11 +5,9 @@
     transition: 0.3s ease all;
     // cursor: pointer;
     position: relative;
-    max-width: 320px;
-    margin-bottom: 30px;
+    width: 100%;
     box-sizing: border-box;
     padding: 14px 10px 12px;
-    margin: 30px auto;
 
     &:hover {
         box-shadow: 0px 4px 11px 4px rgba(121, 121, 121, 0.3);
@@ -93,6 +91,7 @@
         }
     }
 }
+
 .reservationBtn {
     display: flex;
     justify-content: flex-end;
