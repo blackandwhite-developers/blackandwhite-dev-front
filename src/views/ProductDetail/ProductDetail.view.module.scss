@@ -8,7 +8,6 @@
     width: 100%;
     height: 100%;
     // padding-top: 45px;
-
 }
 
 .ProductImage {
@@ -102,7 +101,6 @@
     padding: 0 10px;
 }
 
-
 .ProductCategoryWrapper {
     display: flex;
     flex-direction: column;
@@ -146,7 +144,7 @@
             &::after {
                 content: "";
                 position: absolute;
-                transition: .3s ease all;
+                transition: 0.3s ease all;
                 left: 0;
                 bottom: -3px;
                 width: 100%;
@@ -160,8 +158,6 @@
         }
     }
 
-
-
     .ProductCategoryLine {
         display: flex;
         position: absolute;
@@ -172,8 +168,6 @@
         gap: 10px;
     }
 }
-
-
 
 .reservationSelectWrapper {
     width: 100%;
@@ -191,7 +185,7 @@
         justify-content: left;
     }
 
-    &> :first-child {
+    & > :first-child {
         width: 70%;
     }
 }
