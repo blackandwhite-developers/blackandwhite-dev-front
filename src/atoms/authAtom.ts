@@ -34,11 +34,7 @@ const initialState: AuthState = {
   user: null,
 };
 
-export const authAtom = atomWithStorage<AuthState>(
-  "auth",
-  initialState,
-  getDefaultStorage()
-);
+export const authAtom = atomWithStorage<AuthState>("auth", initialState, getDefaultStorage());
 interface DateRange {
   endDate: Date;
   startDate: Date;
@@ -64,9 +60,7 @@ type BookingData = {
 
 const bookingDatas = localStorage.getItem("bookingData");
 /** 예약 내역 */
-export const bookingDataAtom = atom<BookingData[]>(
-  bookingDatas ? JSON.parse(bookingDatas) : []
-);
+export const bookingDataAtom = atom<BookingData[]>(bookingDatas ? JSON.parse(bookingDatas) : []);
 
 export const adultCountAtom = atom<number>(1);
 export const childCountAtom = atom<number>(0);
