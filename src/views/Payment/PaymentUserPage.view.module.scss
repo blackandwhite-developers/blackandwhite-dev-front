@@ -4,7 +4,7 @@
     margin: 0 auto;
     max-width: 1024px;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -24,9 +24,12 @@
     font-weight: 500;
 }
 
+.custom-input-container {
+    height: 100vh;
+}
 .custom-input {
     width: 100%;
-    min-height: 43px;
+    // min-height: 43px;
     border: 1.4px solid var(--main-purple);
     border-radius: 10px;
     display: flex;
@@ -38,18 +41,16 @@
     color: #999999;
 }
 
-
 .button-container {
-    margin: auto;
+    margin-top: auto;
     width: 100%;
+    padding-bottom: 70px;
+    //margin-top으로 하단에 배치하려고 했는데 스크롤 생겨서 임시로 padding값 줌
 }
-
 
 @include desktop {
     .title-text {
         font-size: var(--small);
         font-weight: 500;
     }
-
 }
-
