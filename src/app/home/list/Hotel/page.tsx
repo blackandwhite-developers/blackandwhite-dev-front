@@ -5,7 +5,7 @@ import React from "react";
 import Loading from "@/components/loading/Loading";
 
 interface Hotel {
-  id: string;
+  _id: string;
   image: string;
   name: string;
   rating: number;
@@ -47,7 +47,11 @@ const HotelPage = () => {
           );
         }
         const hotelData: Hotel[] = await hotelResponse.json();
-        const randomHotels = getRandomHotels(hotelData);
+        const modifiedHotelData = hotelData.map((item) => ({
+          ...item,
+          id: item._id, 
+        }));
+        const randomHotels = getRandomHotels(modifiedHotelData);
         console.log("randomHotels", randomHotels);
         setPopData(randomHotels);
 

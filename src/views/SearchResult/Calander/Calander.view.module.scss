@@ -5,8 +5,9 @@
     max-width: 1024px;
     width: 100%;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
 
     .about {
         margin-top: 45px;
@@ -45,20 +46,24 @@
             height: 5px;
             background-color: var(--gray100);
         }
-    }
+    .member {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
 
     .member-info {
         flex: 1;
         padding: 20px;
+      .adult {
         display: flex;
-        flex-direction: column;
-        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
 
-        h4 {
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 23.17px;
-            letter-spacing: -0.08em;
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20.27px;
+          letter-spacing: -0.08em;
         }
 
         .member {
@@ -77,11 +82,10 @@
                     line-height: 20.27px;
                     letter-spacing: -0.08em;
                 }
+        .adult-container {
+          display: flex;
 
-                .adult-container {
-                    display: flex;
-
-                    gap: 10px;
+          gap: 10px;
 
                     .minus {
                         color: #8728ff;
@@ -95,16 +99,16 @@
                 }
             }
 
-            .child {
-                display: flex;
-                justify-content: space-between;
+      .child {
+        display: flex;
+        justify-content: space-between;
 
-                span {
-                    font-size: 14px;
-                    font-weight: 500;
-                    line-height: 20.27px;
-                    letter-spacing: -0.08em;
-                }
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20.27px;
+          letter-spacing: -0.08em;
+        }
 
                 .child-container {
                     display: flex;
@@ -122,6 +126,7 @@
                 }
             }
         }
+      }
     }
 
     .bottomBtn {
@@ -132,22 +137,22 @@
         margin-top: auto;
         padding-bottom: 30px;
 
-        .confirmBtn {
-            background-color: #8728ff;
-            border: none;
-            outline: none;
-            width: auto;
-            height: 50px;
-            border-radius: 5px;
-            padding: 10px 26px 10px 26px;
-            color: white;
-            font-weight: 500;
-            line-height: 23.17px;
-            letter-spacing: -5%;
-            font-size: 15px;
-            text-align: center;
-        }
+    .confirmBtn {
+      background-color: #8728ff;
+      border: none;
+      outline: none;
+      width: auto;
+      height: 50px;
+      border-radius: 5px;
+      padding: 10px 26px 10px 26px;
+      color: white;
+      font-weight: 500;
+      line-height: 23.17px;
+      letter-spacing: -5%;
+      font-size: 15px;
+      text-align: center;
     }
+  }
 }
 
 @include mobile {

@@ -26,9 +26,7 @@ const CalanderView = () => {
   const defaultSelectedDateRange = { from: new Date(), to: new Date() };
   const [adultCount, setAdultCount] = useAtom(adultCountAtom);
   const [childCount, setChildCount] = useAtom(childCountAtom);
-  const [selectedDateRange, setSelectedDateRange] = useAtom(
-    selectedDateRangeAtom
-  );
+  const [selectedDateRange, setSelectedDateRange] = useAtom(selectedDateRangeAtom);
 
   useEffect(() => {
     if (adultCount === undefined) setAdultCount(defaultAdultCount);
@@ -36,20 +34,10 @@ const CalanderView = () => {
     if (!selectedDateRange) {
       setSelectedDateRange(defaultSelectedDateRange);
     }
-  }, [
-    adultCount,
-    childCount,
-    selectedDateRange,
-    setAdultCount,
-    setChildCount,
-    setSelectedDateRange,
-  ]);
+  }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
 
   /** 성인 인원 */
-  const handleAdultCountChange = (
-    operation: "increase" | "decrease",
-    event: React.MouseEvent
-  ) => {
+  const handleAdultCountChange = (operation: "increase" | "decrease", event: React.MouseEvent) => {
     event.stopPropagation();
     let newCount = adultCount;
     if (operation === "increase") {
@@ -64,10 +52,7 @@ const CalanderView = () => {
   };
 
   /** 아동 인원 */
-  const handleChildCountChange = (
-    operation: "increase" | "decrease",
-    event: React.MouseEvent
-  ) => {
+  const handleChildCountChange = (operation: "increase" | "decrease", event: React.MouseEvent) => {
     event.stopPropagation();
     let newCount = childCount;
     if (operation === "increase") {
@@ -93,35 +78,22 @@ const CalanderView = () => {
   };
 
   const formatSelectedDate = () => {
-    if (
-      !selectedDateRange ||
-      !selectedDateRange.from ||
-      !selectedDateRange.to
-    ) {
+    if (!selectedDateRange || !selectedDateRange.from || !selectedDateRange.to) {
       return "날짜를 선택해주세요";
     }
 
     const formatDate = (date: Date) => {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-      const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][
-        date.getDay()
-      ];
+      const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
       return `${year}.${month}.${day} (${dayOfWeek})`;
     };
 
-    return `${formatDate(selectedDateRange.from)} ~ ${formatDate(
-      selectedDateRange.to
-    )}`;
+    return `${formatDate(selectedDateRange.from)} ~ ${formatDate(selectedDateRange.to)}`;
   };
 
   const handleConfirmClick = () => {
-    if (
-      !selectedDateRange ||
-      !selectedDateRange.from ||
-      !selectedDateRange.to
-    ) {
+    if (!selectedDateRange || !selectedDateRange.from || !selectedDateRange.to) {
       alert("날짜를 선택해주세요.");
       return;
     }
@@ -135,10 +107,7 @@ const CalanderView = () => {
 
   return (
     <div className={cx("calander-container")}>
-      <Header
-        title={"날짜 선택"}
-        leftIcon={<MdClose onClick={handleGoBack} />}
-      />
+      <Header title={"날짜 선택"} leftIcon={<MdClose onClick={handleGoBack} />} />
       <div className={cx("about")}>
         <DateBtn label={formatSelectedDate()} />
         <MemberBtn
@@ -219,6 +188,5 @@ const CalanderView = () => {
 export default CalanderView;
 export const adultCountAtom = atom(1);
 export const childCountAtom = atom(0);
-export const selectedDateRangeAtom = atom<
-  { from: Date | undefined; to: Date | undefined } | undefined
->(undefined);
+
+export const selectedDateRangeAtom = atom<{ from: Date | undefined; to: Date | undefined } | undefined>(undefined);

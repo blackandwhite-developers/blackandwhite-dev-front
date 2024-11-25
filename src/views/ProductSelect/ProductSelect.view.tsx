@@ -155,6 +155,44 @@ const ProductSelect = (props: ProductSelectProps) => {
   const handleTabClick = (tab: string) => {
     setSelectedTab(tab);
   };
+    /** 후기 더미 데이터 */
+    const totalReviewData = {
+        ratingAverage: 4.5,
+        totalReview: 1136,
+        reviewCounting: 80,
+    };
+
+    /** 후기 더미 데이터 */
+    const reviews = [
+        {
+            image: [
+                "/images/HotelImage1.png",
+                "/images/HotelImage1.png",
+                "/images/HotelImage1.png",
+            ],
+            rating: 4.5,
+            nickname: "홍길동",
+            date: "2024.11.23",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent:
+                "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
+        },
+        {
+            image: ["/images/HotelImage1.png"],
+            rating: 1.0,
+            nickname: "홍길동",
+            date: "2024.11.10",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "너무 추워요ㅜ",
+        },
+        {
+            rating: 5.0,
+            nickname: "홍길동",
+            date: "2024.11.05",
+            serviceProduct: "[패키지] 스탠다드 디럭스 이용",
+            reviewContent: "너무 좋았습니당",
+        },
+    ];
 
   const handleDateBtnClick = () => {
     router.push("/searchResult/calander");
@@ -167,6 +205,13 @@ const ProductSelect = (props: ProductSelectProps) => {
   const handleFavoriteClick = () => {
     setIsFavorite((prevState) => !prevState);
   };
+    const handleGoBack = () => {
+        router.back(); 
+    };
+
+    const handleDateBtnClick = () => {
+        router.push("/searchResult/calander");
+    };
 
   /** 날짜, 인원 불러오기 */
   const [adultCount] = useAtom(adultCountAtom);
