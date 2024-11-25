@@ -22,6 +22,8 @@ const getDefaultStorage = (): SyncStorage<RecentRoomsState> | undefined => {
 
 export class RecentRoomsState {
   lodges: Array<{
+    price: number;
+    image: string | undefined;
     id: string;
     category: { id: string; title: string; thumbnail: string };
     name: string;
@@ -29,6 +31,7 @@ export class RecentRoomsState {
     count: number;
     distance: string;
   }>;
+  rooms: any;
   constructor(data: {
     lodges: Array<{
       id: string;
@@ -37,6 +40,7 @@ export class RecentRoomsState {
       rating: number;
       count: number;
       distance: string;
+      price: number;
     }>;
   }) {
     this.lodges = data.lodges;
