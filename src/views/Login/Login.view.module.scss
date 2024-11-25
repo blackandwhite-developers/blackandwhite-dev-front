@@ -2,7 +2,7 @@ $primary-color: #8728ff;
 $background-color: #f4f4f4;
 
 body {
-  background-color: #fff;
+  background-color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;

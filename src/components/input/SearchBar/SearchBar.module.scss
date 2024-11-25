@@ -1,3 +1,4 @@
+@import "@/app/mixins";
 $primary-color: #8728ff;
 
 .searchBarwrapper {
@@ -15,7 +16,6 @@ $primary-color: #8728ff;
   padding: 3px;
   box-sizing: border-box;
   margin: 0 auto;
-  height: 37px;
 }
 
 .searchInput {
@@ -49,5 +49,19 @@ $primary-color: #8728ff;
 
   &:hover {
     color: $primary-color;
+  }
+}
+
+@include desktop {
+  .searchInput {
+    font-size: var(--medium);
+  }
+
+  .searchBar {
+    padding: 14px 16px;
+  }
+
+  .searchIcon {
+    font-size: var(--xx-large);
   }
 }
