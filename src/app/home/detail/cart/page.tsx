@@ -3,7 +3,7 @@ import Cartview from "@/views/Cart/Cart.View";
 
 import { useEffect } from "react";
 import { useAtom } from "jotai";
-import { bookingDataAtom } from "@/atoms/authAtom";
+import { bookingDataAtom } from "@/atoms/bookingDataAtom";
 
 export default function ProductDetailPage() {
   const [bookingData] = useAtom(bookingDataAtom);
@@ -28,8 +28,6 @@ export default function ProductDetailPage() {
     })();
   }, [bookingData]);
 
-  console.log(bookingData);
-
   const data = [
     {
       id: "1번 장바구니",
@@ -48,6 +46,7 @@ export default function ProductDetailPage() {
       roomCount: 1,
       discount: 3000,
     },
+
     {
       id: "2번 장바구니",
       img: "/images/room/market-91x91/room2.png",
