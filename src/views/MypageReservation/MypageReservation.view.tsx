@@ -16,7 +16,7 @@ import { selectedDateRangeAtom } from "@/views/SearchResult/Calander/Calander.vi
 
 const cx = cn.bind(styles);
 
-interface LocalReservationContentProps  {
+interface LocalReservationContentProps {
     hotelName: string;
     startDate: string;
     endDate: string;
@@ -41,9 +41,15 @@ interface ReservationWithRoomDetails {
             checkOut: string;
         },
     };
+    lodgeDetails: {
+        name: string;
+        category: {
+            title: string;
+        };
+    } | null;
 }
 
-const MypageReservationCard = (props: LocalReservationContentProps  & ReservationWithRoomDetails) => {
+const MypageReservationCard = (props: LocalReservationContentProps & ReservationWithRoomDetails) => {
     const router = useRouter();
 
     const {
@@ -51,30 +57,13 @@ const MypageReservationCard = (props: LocalReservationContentProps  & Reservatio
         startDate,
         endDate,
         roomDetails,
+        lodgeDetails,
     } = props;
 
-    /** 날짜 불러오기 */
-    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
-
-    const formatDate = (date: Date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-        const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-        const dayOfWeek = daysOfWeek[date.getDay()];
-
-        return `${year}.${month}.${day} (${dayOfWeek})`;
-    };
-
     /** 숙박 일자 계산 */
-    const stayNight =
-        selectedDateRange?.from && selectedDateRange?.to
-            ? Math.ceil(
-                (selectedDateRange.to.getTime() -
-                    selectedDateRange.from.getTime()) /
-                (1000 * 60 * 60 * 24)
-            )
-            : 0;
+    const stayNight = endDate && startDate
+        ? Math.ceil((new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))
+        : 0;
 
     return (
         <div className={cx("reservation-container")}>
@@ -82,19 +71,18 @@ const MypageReservationCard = (props: LocalReservationContentProps  & Reservatio
                 <img src={roomDetails.image} alt="room-image" />
                 <div className={cx("hotel-content")}>
                     <Badge shape="round" color="point">
-                        호텔
+                        {lodgeDetails?.category.title}
                     </Badge>
-                    <p className={cx("hotel-name")}>{hotelName}</p>
+                    <p className={cx("hotel-name")}>{lodgeDetails?.name}</p>
                     <p className={cx("date-text")}>
-                        {selectedDateRange?.from &&
-                            formatDate(selectedDateRange.from)}{" "}
+                        {startDate}
                         ~
-                        {selectedDateRange?.to &&
-                            formatDate(selectedDateRange.to)}
-                        ,{stayNight}박
+                        {endDate}
+                        , {stayNight > 0 ? `${stayNight}박` : "0박"}
                     </p>
-                    <p className={cx("room-detailcontent")}>{roomDetails.name}
-                    기준 {roomDetails.capacity.standard}인 (최대
+
+                    <p className={cx("room-detailcontent")}>{roomDetails.name} /
+                        기준 {roomDetails.capacity.standard}인 (최대
                         {roomDetails.capacity.maximum}인)
                     </p>
                 </div>
@@ -131,7 +119,7 @@ const MypageReservationCard = (props: LocalReservationContentProps  & Reservatio
     );
 };
 
-const MypageReservation = ({ reservations }: { reservations: (LocalReservationContentProps  & ReservationWithRoomDetails)[] }) => {
+const MypageReservation = ({ reservations }: { reservations: (LocalReservationContentProps & ReservationWithRoomDetails)[] }) => {
     const [selectedTab, setSelectedTab] = useState("reservations");
 
     const handleTabClick = (tab: string) => {
@@ -158,13 +146,13 @@ const MypageReservation = ({ reservations }: { reservations: (LocalReservationCo
                     <p>취소내역</p>
                 </button>
             </div>
-            
+
             {reservations.map((data, index) => (
                 <PaymentCard title={data.startDate}>
                     <MypageReservationCard key={index} {...data} />
-                    </PaymentCard>
-                ))}
-            
+                </PaymentCard>
+            ))}
+
         </div>
     );
 };
