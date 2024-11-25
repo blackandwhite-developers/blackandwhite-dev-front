@@ -24,7 +24,7 @@ import {
     selectedDateRangeAtom,
     adultCountAtom,
     childCountAtom,
-} from "@/atoms/authAtom";
+} from "@/views/SearchResult/Calander/Calander.view";
 import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
@@ -150,6 +150,7 @@ const ProductSelect = (props: ProductSelectProps) => {
 
     const [selectedTab, setSelectedTab] = useState("room");
     const [isFavorite, setIsFavorite] = useState(false);
+
     const handleTabClick = (tab: string) => {
         setSelectedTab(tab);
     };
@@ -170,7 +171,9 @@ const ProductSelect = (props: ProductSelectProps) => {
     const [adultCount] = useAtom(adultCountAtom);
     const [childCount] = useAtom(childCountAtom);
     const [selectedDateRange] = useAtom(selectedDateRangeAtom);
-
+    console.log("Selected Date Range:", selectedDateRange);
+    console.log("Adult Count:", adultCount);
+    console.log("Child Count:", childCount);
     const formatDate = (date: Date) => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, "0");
