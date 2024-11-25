@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.view.module.scss";
 import { IoIosHeartEmpty } from "react-icons/io";
@@ -236,7 +235,7 @@ const ProductSelect = (props: ProductSelectProps) => {
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
-              <Image src={src} alt="호텔 이미지" width={360} height={228} />
+              <img src={src} alt="호텔 이미지" width={`100%`} height={`100%`} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -286,7 +285,7 @@ const ProductSelect = (props: ProductSelectProps) => {
           </div>
           <div className={cx("ProductCategoryLine")}></div>
 
-          <div>
+          <div className={cx("productSelectWrapper")}>
             {selectedTab === "review" && (
               <div>
                 <TotalReviewCard
@@ -319,9 +318,8 @@ const ProductSelect = (props: ProductSelectProps) => {
                       label={
                         formattedDateRange ? (
                           <>
-                            {formattedDateRange.startDate} ~
-                            <br />
-                            {formattedDateRange.endDate}
+                            <span>{formattedDateRange.startDate}</span> ~
+                            <span>{formattedDateRange.endDate}</span>
                           </>
                         ) : (
                           "날짜를 선택해주세요"
@@ -332,9 +330,8 @@ const ProductSelect = (props: ProductSelectProps) => {
                     <MemberBtn
                       label={
                         <>
-                          성인 {adultCount}명
-                          <br />
-                          아동 {childCount}명
+                          <span>성인 {adultCount}명</span>
+                          <span>아동 {childCount}명</span>
                         </>
                       }
                       onClick={handleMemberBtnClick}

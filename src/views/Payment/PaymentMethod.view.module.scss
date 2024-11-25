@@ -28,8 +28,9 @@
 
 .button-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 7px;
     flex: 1;
     width: 100%;
 }
@@ -44,7 +45,6 @@
 
         & .button-container {
             width: 50%;
-            justify-content: space-around;
         }
     }
 
@@ -60,7 +60,6 @@
 
         & .button-container {
             width: 50%;
-            justify-content: space-around;
         }
     }
 }
