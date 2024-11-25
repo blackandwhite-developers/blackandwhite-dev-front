@@ -41,7 +41,9 @@ export class UserService {
 
   async authPassword(req: authPasswordRequest): Promise<authPasswordResponse> {
     const { path, params, body } = req;
-    const res = await this._ajax.post(pathToUrl(USER_ROUTES.AUTH_PASSWORD, path ?? {}), { params, ...body });
+    console.log(req.body);
+    const res = await this._ajax.post(pathToUrl(USER_ROUTES.AUTH_PASSWORD, {}), { params, ...body });
+    console.log(res);
     if (res.status === 204) {
       return { isSuccess: true };
     } else {
@@ -51,7 +53,13 @@ export class UserService {
 
   async resetPassword(req: resetPasswordRequest): Promise<resetPasswordResponse> {
     const { path, params, body } = req;
-    const res = await this._ajax.put(pathToUrl(USER_ROUTES.RESET_PASSWORD, path ?? {}), { params, ...body });
+    const res = await this._ajax.put(
+      pathToUrl(USER_ROUTES.RESET_PASSWORD, path ?? {}),
+      { ...body },
+      {
+        params: { ...params },
+      }
+    );
     if (res.status === 204) {
       return { isSuccess: true };
     } else {
