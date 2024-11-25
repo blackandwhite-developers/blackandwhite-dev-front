@@ -1,161 +1,166 @@
 @import "@/app/mixins";
 
 body {
-  background-color: #fff;
-  justify-content: normal;
+    background-color: #fff;
+    justify-content: normal;
 }
 
 .main-wrap {
-  max-width: 1024px;
-  width: 100%;
-  margin: 0 auto;
+    max-width: 1024px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
 }
 
 /*헤더*/
 
 .header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto 11px auto;
-  padding: 50px 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 11px auto;
+    padding: 10px 20px 0;
 }
 
 .header-container .logo {
-  display: flex;
-  width: 121px;
-  height: 29px;
+    display: flex;
+    width: 121px;
+    height: 29px;
 }
 
 .header-container .bell {
-  &.alarm {
-    & svg path {
-      fill: var(--main-purple);
+    &.alarm {
+        & svg path {
+            fill: var(--main-purple);
+        }
     }
-  }
 
-  & svg path {
-    fill: var(--gray300);
-  }
+    & svg path {
+        fill: var(--gray300);
+    }
 }
 
 /*메인*/
 
 .main-container .grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 15px 20px 30px 20px;
-  margin: 0 auto;
-  gap: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 15px 20px 30px 20px;
+    margin: 0 auto;
+    gap: 20px 0;
 }
 
 .main-container .grid-container .grid-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .main-container .grid-container .grid-item img {
-  width: 58px;
-  height: 58px;
+    width: 58px;
+    height: 58px;
 }
 
 .main-container .grid-container .grid-item .title {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20.27px;
-  letter-spacing: -0.08em;
-  text-align: left;
-  font-family: var(--font);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20.27px;
+    letter-spacing: -0.08em;
+    text-align: left;
+    font-family: var(--font);
 }
 
 .main-container .banner img {
-  width: 100%;
-  padding: 0 20px 7px;
+    width: 100%;
+    padding: 0 20px 7px;
 }
 
 .main-container .currentList h4 {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 23.17px;
-  letter-spacing: -0.08em;
-  text-align: left;
-  padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 23.17px;
+    letter-spacing: -0.08em;
+    text-align: left;
+    padding: 10px 20px;
 }
 
 .main-container .list-container {
-  width: 100%;
-  margin: 0 auto;
-  display: grid;
-  gap: 10px;
-  padding: 0 20px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-bottom: 68px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    gap: 10px;
+    padding: 0 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-bottom: 68px;
 }
 
 .main-container .currentList .list-item {
-  list-style: none;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-  width: 120px;
+    list-style: none;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 120px;
 }
 
 .main-container .currentList .list-image {
-  margin-bottom: 10px;
-  width: 120px;
-  height: 120px;
+    margin-bottom: 10px;
+    width: 120px;
+    height: 120px;
 }
 
 .main-container .currentList .list-image img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 10px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .main-container .currentList .list-title p {
-  font-family: Noto Sans KR;
-  font-size: 0.75rem;
-  font-weight: 500;
+    font-family: Noto Sans KR;
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 
 .main-container .currentList .list-price p {
-  font-family: Noto Sans KR;
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 23.17px;
+    font-family: Noto Sans KR;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 23.17px;
+}
+
+.search-container {
+    padding-top: 15px;
 }
 
 @include mobile {
-  .header-container .bell {
-    width: 20px;
-    height: 20px;
-  }
+    .header-container .bell {
+        width: 20px;
+        height: 20px;
+    }
 
-  .main-container .list-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .main-container .list-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @include tablet {
-  .header-container .bell {
-    width: 23px;
-    height: 23px;
-  }
+    .header-container .bell {
+        width: 23px;
+        height: 23px;
+    }
 }
 
 @include desktop {
-  .header-container .bell {
-    width: 37px;
-    height: 37px;
-  }
+    .header-container .bell {
+        width: 37px;
+        height: 37px;
+    }
 
-  .main-container .currentList .list-price p {
-    font-size: var(--x-large);
-  }
+    .main-container .currentList .list-price p {
+        font-size: var(--x-large);
+    }
 
-  .main-container .currentList .list-price p {
-    font-size: var(--x-large);
-  }
+    .main-container .currentList .list-price p {
+        font-size: var(--x-large);
+    }
 }
