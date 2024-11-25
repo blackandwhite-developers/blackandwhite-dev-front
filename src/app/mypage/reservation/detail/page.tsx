@@ -113,7 +113,7 @@ export default function MypageReservationDetailPage() {
     //         );
     //     }
     // };
-
+    //
     return (
         <div className={cx("page-layout")}>
             <div className={cx("page")}>

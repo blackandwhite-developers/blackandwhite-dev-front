@@ -49,14 +49,18 @@
     }
 }
 
-.member {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 
-    .member-info {
-        flex: 1;
-        padding: 20px;
+
+.member-info {
+    flex: 1;
+    padding: 20px;
+
+
+
+    .member {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
 
         .adult {
             display: flex;
@@ -70,93 +74,76 @@
                 letter-spacing: -0.08em;
             }
 
-            .member {
+            .adult-container {
                 display: flex;
-                flex-direction: column;
-                gap: 20px;
 
-                .adult {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
+                gap: 10px;
 
-                    span {
-                        font-size: 14px;
-                        font-weight: 500;
-                        line-height: 20.27px;
-                        letter-spacing: -0.08em;
-                    }
-
-                    .adult-container {
-                        display: flex;
-
-                        gap: 10px;
-
-                        .minus {
-                            color: #8728ff;
-                            font-size: 20px;
-                        }
-
-                        .plus {
-                            color: #8728ff;
-                            font-size: 20px;
-                        }
-                    }
+                .minus {
+                    color: #8728ff;
+                    font-size: 20px;
                 }
 
-                .child {
-                    display: flex;
-                    justify-content: space-between;
+                .plus {
+                    color: #8728ff;
+                    font-size: 20px;
+                }
+            }
+        }
 
-                    span {
-                        font-size: 14px;
-                        font-weight: 500;
-                        line-height: 20.27px;
-                        letter-spacing: -0.08em;
-                    }
+        .child {
+            display: flex;
+            justify-content: space-between;
 
-                    .child-container {
-                        display: flex;
-                        gap: 10px;
+            span {
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20.27px;
+                letter-spacing: -0.08em;
+            }
 
-                        .minus {
-                            color: #8728ff;
-                            font-size: 20px;
-                        }
+            .child-container {
+                display: flex;
+                gap: 10px;
 
-                        .plus {
-                            color: #8728ff;
-                            font-size: 20px;
-                        }
-                    }
+                .minus {
+                    color: #8728ff;
+                    font-size: 20px;
+                }
+
+                .plus {
+                    color: #8728ff;
+                    font-size: 20px;
                 }
             }
         }
     }
 
-    .bottomBtn {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: auto;
-        padding-bottom: 30px;
 
-        .confirmBtn {
-            background-color: #8728ff;
-            border: none;
-            outline: none;
-            width: auto;
-            height: 50px;
-            border-radius: 5px;
-            padding: 10px 26px 10px 26px;
-            color: white;
-            font-weight: 500;
-            line-height: 23.17px;
-            letter-spacing: -5%;
-            font-size: 15px;
-            text-align: center;
-        }
+}
+
+.bottomBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding-bottom: 30px;
+
+    .confirmBtn {
+        background-color: #8728ff;
+        border: none;
+        outline: none;
+        width: auto;
+        height: 50px;
+        border-radius: 5px;
+        padding: 10px 26px 10px 26px;
+        color: white;
+        font-weight: 500;
+        line-height: 23.17px;
+        letter-spacing: -5%;
+        font-size: 15px;
+        text-align: center;
     }
 }
 

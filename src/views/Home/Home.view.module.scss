@@ -1,5 +1,16 @@
 @import "../../app/mixins";
 
+body {
+  background-color: #fff;
+  justify-content: normal;
+}
+
+.main-wrap {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 /*헤더*/
 
 .header-container {
@@ -22,6 +33,7 @@
       fill: var(--main-purple);
     }
   }
+
   & svg path {
     fill: var(--gray300);
   }
@@ -134,10 +146,7 @@
 }
 
 @include desktop {
-  .main-wrap {
-    max-width: 1024px;
-    margin: 0 auto;
-  }
+
 
   .header-container .bell {
     width: 37px;
