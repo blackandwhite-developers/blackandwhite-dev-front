@@ -65,18 +65,17 @@ const HotelView = (props: HotelViewProps) => {
         <h3>지금 핫한 숙소</h3>
 
         <div className={cx("grid-container")}>
-          {data.map((item) => {
-            return (
+          {data.map((item) => (
+            <Link href={`/home/detail/${item._id}`} key={item._id}>
               <ProductCard
-                key={item.id}
                 imageUrl={item.image}
                 title={item.name}
                 address={item.address}
                 price={item.price}
                 rating={item.rating}
               />
-            );
-          })}
+            </Link>
+          ))}
         </div>
       </div>
     </div>

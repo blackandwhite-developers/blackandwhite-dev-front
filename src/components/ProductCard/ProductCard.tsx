@@ -26,7 +26,7 @@ export default function ProductCard(props: ProductCardProps) {
           {label ? <span>{label}</span> : ""}
           <h4>{title}</h4>
           <div className={cx("ratingBox")}>
-            <Rating rating={rating} />
+            <Rating rating={rating} maxRating={5} />
             {review ? (
               <span className={cx("reviews")}>{review}</span>
             ) : (

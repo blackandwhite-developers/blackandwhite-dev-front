@@ -15,7 +15,7 @@ export interface WishListProps {
     roomImage: string;
     roomCategory: string;
     roomName: string;
-    rating: string;
+    rating: number;
     starRating: string;
     review: number;
     location: string;

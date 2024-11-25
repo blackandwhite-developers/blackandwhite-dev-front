@@ -14,7 +14,7 @@ type ProductInfoCardProps = {
     imageUrl: string;
     label: string;
     title: string;
-    rating: string;
+    rating: number;
     review: string | number;
     location: string;
     price?: string | number;
