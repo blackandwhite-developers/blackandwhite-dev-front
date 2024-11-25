@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
-import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
+import { IoIosHeartEmpty } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -22,14 +22,18 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import {
+    selectedDateRangeAtom,
     adultCountAtom,
     childCountAtom,
-    selectedDateRangeAtom,
-} from "@/views/SearchResult/Calander/Calander.view";
+} from "@/atoms/authAtom";
 import Rating from "@/components/RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
 
+export interface DateRange {
+    startDate: Date;
+    endDate: Date;
+}
 export interface ProductDetailProps {
     data: {
         category: { id: string; title: string; thumbnail: string };
@@ -51,6 +55,7 @@ export interface ProductDetailProps {
 
 const ProductDetail = (props: ProductDetailProps) => {
     const { data, productDetailsArray } = props;
+
     const [selectedTab, setSelectedTab] = useState("room");
 
     const router = useRouter();
@@ -75,7 +80,7 @@ const ProductDetail = (props: ProductDetailProps) => {
 
     /** 후기 더미 데이터 */
     const totalReviewData = {
-        ratingAverage: "4.5",
+        ratingAverage: 4.5,
         totalReview: 1136,
         reviewCounting: 80,
     };
@@ -88,7 +93,7 @@ const ProductDetail = (props: ProductDetailProps) => {
                 "/images/HotelImage1.png",
                 "/images/HotelImage1.png",
             ],
-            rating: "4.5",
+            rating: 4.5,
             nickname: "홍길동",
             date: "2024.11.23",
             serviceProduct: "[패키지] 스탠다드 디럭스 이용",
@@ -97,14 +102,14 @@ const ProductDetail = (props: ProductDetailProps) => {
         },
         {
             image: ["/images/HotelImage1.png"],
-            rating: "1.0",
+            rating: 1.0,
             nickname: "홍길동",
             date: "2024.11.10",
             serviceProduct: "[패키지] 스탠다드 디럭스 이용",
             reviewContent: "너무 추워요ㅜ",
         },
         {
-            rating: "5.0",
+            rating: 5.0,
             nickname: "홍길동",
             date: "2024.11.05",
             serviceProduct: "[패키지] 스탠다드 디럭스 이용",
@@ -123,17 +128,11 @@ const ProductDetail = (props: ProductDetailProps) => {
     const handleMemberBtnClick = () => {
         router.push("/searchResult/calander");
     };
-    const [isFavorite, setIsFavorite] = useState(false);
-    const handleFavoriteClick = () => {
-        setIsFavorite((prevState) => !prevState);
-    };
 
     /** 날짜, 인원 불러오기 */
     const [adultCount] = useAtom(adultCountAtom);
     const [childCount] = useAtom(childCountAtom);
-    const [selectedDateRange, setSelectedDateRange] = useAtom(
-        selectedDateRangeAtom
-    );
+    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
 
     const formatDate = (date: Date) => {
         const year = date.getFullYear();
@@ -144,23 +143,6 @@ const ProductDetail = (props: ProductDetailProps) => {
 
         return `${year}.${month}.${day} (${dayOfWeek})`;
     };
-
-    useEffect(() => {
-        if (
-            !selectedDateRange ||
-            !selectedDateRange.from ||
-            !selectedDateRange.to
-        ) {
-            const today = new Date();
-            const tomorrow = new Date(today);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-
-            setSelectedDateRange({
-                from: today,
-                to: tomorrow,
-            });
-        }
-    }, []);
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -203,21 +185,9 @@ const ProductDetail = (props: ProductDetailProps) => {
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
                         <h1 className={cx("ProductTitle")}>{data.name}</h1>
-                        <p
-                            className="ProductFavorite"
-                            onClick={handleFavoriteClick}
-                        >
-                            {isFavorite ? (
-                                <IoIosHeart
-                                    style={{
-                                        fontSize: "22px",
-                                        color: "#8728ff",
-                                    }}
-                                />
-                            ) : (
-                                <IoIosHeartEmpty style={{ fontSize: "22px" }} />
-                            )}
-                        </p>
+                        <a href="" className={cx("ProductFavorite")}>
+                            <IoIosHeartEmpty />
+                        </a>
                     </div>
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>{data.rating}</p>

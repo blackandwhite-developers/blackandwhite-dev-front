@@ -26,6 +26,7 @@ const cx = cn.bind(styles);
 
 export interface ProductRoomDetailProps {
     data: {
+        _id: string;
         event: string;
         name: string;
         time: {
@@ -66,9 +67,7 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
     /** 날짜, 인원 불러오기 */
     const [adultCount] = useAtom(adultCountAtom);
     const [childCount] = useAtom(childCountAtom);
-    const [selectedDateRange, setSelectedDateRange] = useAtom(
-        selectedDateRangeAtom
-    );
+    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
 
     const formatDate = (date: Date) => {
         const year = date.getFullYear();
@@ -79,23 +78,6 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
 
         return `${year}.${month}.${day} (${dayOfWeek})`;
     };
-
-    useEffect(() => {
-        if (
-            !selectedDateRange ||
-            !selectedDateRange.from ||
-            !selectedDateRange.to
-        ) {
-            const today = new Date();
-            const tomorrow = new Date(today);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-
-            setSelectedDateRange({
-                from: today,
-                to: tomorrow,
-            });
-        }
-    }, []);
 
     return (
         <div className={cx("ProductDetailWrapper")}>
