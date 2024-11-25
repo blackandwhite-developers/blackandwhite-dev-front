@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./ProductSelect.view.module.scss";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
@@ -207,11 +206,11 @@ const ProductSelect = (props: ProductSelectProps) => {
                 >
                     {images.map((src, index) => (
                         <SwiperSlide key={index}>
-                            <Image
+                            <img
                                 src={src}
                                 alt="호텔 이미지"
-                                width={360}
-                                height={228}
+                                width={`100%`}
+                                height={`100%`}
                             />
                         </SwiperSlide>
                     ))}
