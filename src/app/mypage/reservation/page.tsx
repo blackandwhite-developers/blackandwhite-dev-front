@@ -8,6 +8,7 @@ import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 // import MypageReservationView from "@/views/MypageReservation/MypageReservation.view";
 import Loading from "@/components/loading/Loading";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
@@ -161,11 +162,18 @@ export default function MypageReservationPage() {
     //     }
     //
 
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
     return (
         <>
             <div className={cx("page-layout")}>
                 <div className={cx("page")}>
-                    <Header title="예약내역" leftIcon={<FaAngleLeft />} />
+                    <Header
+                        title="예약내역"
+                        leftIcon={<FaAngleLeft onClick={handleGoBack} />}
+                    />
                     <MypageReservation reservations={reservations} />
                 </div>
             </div>

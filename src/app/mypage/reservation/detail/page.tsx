@@ -114,10 +114,17 @@ export default function MypageReservationDetailPage() {
     //     }
     // };
     //
+
+    const handleGoBack = () => {
+        router.back();
+    };
     return (
         <div className={cx("page-layout")}>
             <div className={cx("page")}>
-                <Header title={"예약내역 상세"} leftIcon={<FaAngleLeft />} />
+                <Header
+                    title={"예약내역 상세"}
+                    leftIcon={<FaAngleLeft onClick={handleGoBack} />}
+                />
                 <MypageReservationDetail reservations={reservations} />
                 <PaymentCard title="예약자 정보">
                     <UserContent

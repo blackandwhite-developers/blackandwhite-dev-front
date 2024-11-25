@@ -2,250 +2,249 @@
 
 //전체적인 페이지 레이아웃
 .page-layout {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
 }
 
 .user-payment-layout {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 .page {
-  max-width: 1024px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 8px;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
 }
 
 .bottom-box {
-  max-width: 1024px;
-  margin: 0 auto;
-  width: 100%;
-  min-height: 162px;
-  padding: 15px;
+    max-width: 1024px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 162px;
+    padding: 15px;
 }
 
 .bottom-box p {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gray600);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray600);
 }
 
 .ablebutton-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #ffffff;
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
 }
 
 .error-message {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--sub-red);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--sub-red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrapper {
-  width: 100%;
-  margin: 0 auto;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
 
 //호텔명 부분
 .reservation-container {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
 .hotelname-title {
-  font-size: 14px;
-  font-weight: 700;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .room-detailcontent {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gray700);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray700);
 }
 
 //체크인, 체크아웃 부분
 .reservationdate-container {
-  background-color: var(--gray50);
-  border-radius: 20px;
-  padding: 12px 0;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 7px;
+    background-color: var(--gray50);
+    border-radius: 20px;
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 7px;
 }
 
 .reservationdate-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 360px;
-  gap: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 360px;
+    gap: 28px;
 }
 
 .check {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gray500);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray500);
 }
 
 .date-text {
-  font-size: 14px;
-  font-weight: 500;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .date-time {
-  font-size: 14px;
-  font-weight: 500;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 //n박 표시 부분
 .day-box {
-  width: 41px;
-  height: 23px;
-  background-color: var(--gray100);
-  border-radius: 17px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 41px;
+    height: 23px;
+    background-color: var(--gray100);
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .day-text {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gray800);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray800);
 }
 
 //방문수단 부분
 .visit-container {
-  background-color: var(--gray50);
-  border-radius: 10px;
-  width: 100%;
-  height: 47px;
-  display: flex;
-  justify-content: center;
+    background-color: var(--gray50);
+    border-radius: 10px;
+    width: 100%;
+    height: 47px;
+    display: flex;
+    justify-content: center;
 }
 
 .visit-box {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: space-around;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .visit-text {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gray700);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray700);
 
-  &::after {
-    content: "*";
-    color: var(--main-pink);
-  }
+    &::after {
+        content: "*";
+        color: var(--main-pink);
+    }
 }
 
 //방문수단 체크박스 부분
 .visit-checkBox {
-  display: flex;
-  gap: 23px;
+    display: flex;
+    gap: 23px;
 }
 
 .custom-checkbox {
-  display: flex;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gray400);
-  align-items: center;
-  cursor: pointer;
+    display: flex;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray400);
+    align-items: center;
+    cursor: pointer;
 }
 
 .custom-checkbox span {
-  display: inline-block;
-  border: none;
-  /* 테두리 색상 */
-  position: relative;
-  cursor: pointer;
-  margin-right: 5px;
-  /* 텍스트와의 간격 */
-  transition: background-color 0.2s ease;
+    display: inline-block;
+    border: none;
+    /* 테두리 색상 */
+    position: relative;
+    cursor: pointer;
+    margin-right: 5px;
+    /* 텍스트와의 간격 */
+    transition: background-color 0.2s ease;
 }
 
 //결제금액 부붙
 .pay-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  // width: 320px;
-  height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // width: 320px;
+    height: 60px;
 }
 
 .pay-text {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gray700);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray700);
 }
 
 .badge-box {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
 }
 
 .pay-amount {
-  font-size: 16px;
-  font-weight: 700;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .border {
-  height: 1px;
-  width: 100%;
-  background-color: var(--gray100);
-  margin-bottom: 10px;
+    height: 1px;
+    width: 100%;
+    background-color: var(--gray100);
+    margin-bottom: 10px;
 }
 
 @include mobile {
-  .reservationdate-container {
-    gap: 12px;
-  }
+    .reservationdate-container {
+        gap: 12px;
+    }
 }
 
-
 @include desktop {
-  .reservation-top-wrapper {
-    display: flex;
-    gap: 20px;
+    .reservation-top-wrapper {
+        display: flex;
+        gap: 20px;
 
-    & .reservationdate-container {
-      flex: 1;
-      gap: 34px;
+        & .reservationdate-container {
+            flex: 1;
+            gap: 34px;
+        }
+
+        & .visit-pay-wrap {
+            flex: 1;
+        }
     }
 
-    & .visit-pay-wrap {
-      flex: 1;
+    .reservation-user-coupon {
+        display: flex;
     }
-  }
-
-  .reservation-user-coupon {
-    display: flex;
-
-
-  }
 }
