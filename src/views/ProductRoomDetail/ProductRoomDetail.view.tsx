@@ -124,7 +124,7 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
                         <p className={cx("RoomInformation")}>객실 정보</p>
                         <p className={cx("PersonCountInformation")}>
                             <span>
-                                기준 {data.capacity.standard}인 (최대{" "}
+                                기준 {data.capacity.standard}인 (최대
                                 {data.capacity.maximum}인)
                             </span>
                         </p>
