@@ -3,8 +3,7 @@ import Loading from "@/components/loading/Loading";
 import ProductRoomDetailView from "@/views/ProductRoomDetail/ProductRoomDetail.view";
 import React, { useState, useEffect } from "react";
 
-type ProductRoomDetailCardProps = {
-  _id: string;
+type BookingData = {
   event: string;
   name: string;
   time: {
@@ -17,9 +16,10 @@ type ProductRoomDetailCardProps = {
   startDate: string;
   endDate: string;
 };
+// type ProductRoomDetailCardProps = <>;
 
 export default function ProductRoomDetailPage() {
-  const [data, setData] = useState<ProductRoomDetailCardProps | null>(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,16 +33,24 @@ export default function ProductRoomDetailPage() {
         );
         const roomData = await roomResponse.json();
 
-        if (roomData) {
-          console.log("roomData:", roomData);
+        const lodgeResponse = await fetch(
+          `http://localhost:4000/api/lodges/${roomData.lodgeId}`
+        );
+        const lodgeData = await lodgeResponse.json();
 
-          setData(roomData);
+        if (roomData && lodgeData) {
+          console.log("roomData:", roomData);
+          const combinedData = {
+            roomData: roomData,
+            lodgeData: lodgeData,
+          };
+          setData(combinedData);
         } else {
           console.error("lodge 데이터 요청 실패:", roomData);
           setData(null);
         }
 
-        setLoading(false);
+        return setLoading(false);
       } catch (error: unknown) {
         if (error instanceof Error) {
           setError(error.message);
