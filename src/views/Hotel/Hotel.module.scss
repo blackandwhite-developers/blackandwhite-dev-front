@@ -1,3 +1,5 @@
+@import "../../app/mixins";
+
 .header a {
   text-decoration: none;
 }
@@ -65,7 +67,6 @@
 }
 
 .container .popularityRoom h3 {
-  padding: 20px 0 0 20px;
   margin: 0 auto;
   width: 100%;
   font-size: 1rem;
@@ -155,3 +156,13 @@
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
+
+@include mobile {
+  .container .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include tablet {}
+
+@include desktop {}

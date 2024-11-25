@@ -10,7 +10,9 @@ const fetchCategoryData = async (categoryId: string) => {
 };
 
 const fetchHotelData = async (categoryId: string) => {
-  const res = await lodgeService.getLodgesByCategories({ params: { categoryId: categoryId } });
+  const res = await lodgeService.getLodgesByCategories({
+    params: { categoryId: categoryId },
+  });
   return res;
 };
 
@@ -42,20 +44,14 @@ type CategoryPageProps = {
 // 호텔 페이지에서 카테고리 페이지로 수정 필요함
 const HotelPage = async (props: CategoryPageProps) => {
   const { categoryId } = await props.params;
-  console.log(categoryId);
   const categoryData = await fetchCategoryData(categoryId);
   const hotelData = await fetchHotelData(categoryId);
-  console.log(categoryData);
-  console.log(hotelData);
   const titleData = categoryData.category.title;
 
   return (
-    <React.Fragment>
-      <HotelView titleData={titleData} />
-      {hotelData.data.map((hotel) => {
-        return <ProductCard key={hotel.id} imageUrl={hotel.image} label={hotel.description} title={hotel.name} address={hotel.address} price={hotel.price} />;
-      })}
-    </React.Fragment>
+    <>
+      <HotelView titleData={titleData} data={hotelData.data} />
+    </>
   );
 };
 
