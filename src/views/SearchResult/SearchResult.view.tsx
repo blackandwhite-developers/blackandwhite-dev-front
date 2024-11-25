@@ -27,10 +27,11 @@ interface SearchResultPageViewProps {
 }
 
 const SearchResultPageView = (props: SearchResultPageViewProps) => {
-    const { data } = props;
+    //const { data } = props;
     const searchParams = useSearchParams();
     const query = searchParams.get("query");
     const [results, setResults] = useState<any[]>([]);
+    const [data, setData] = useState<any[]>([]); 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();
@@ -49,22 +50,28 @@ const SearchResultPageView = (props: SearchResultPageViewProps) => {
     };
 
     const handleSortOptionSelect = (option: string) => {
-        setSelectedSortOption(option);
-
-        const sortedResults = [...results];
-        if (option === "리뷰 많은 순") {
-            sortedResults.sort((a, b) => b.count - a.count);
-        } else if (option === "평점 높은 순") {
-            sortedResults.sort((a, b) => b.rating - a.rating);
-        } else if (option === "낮은 가격순") {
-            sortedResults.sort((a, b) => a.price - b.price);
-        } else if (option === "높은 가격 순") {
-            sortedResults.sort((a, b) => b.price - a.price);
-        }
-        setResults(sortedResults);
+        setSelectedSortOption(option); 
     };
-
-
+    
+    
+    const sortData = (data: any[], option: string) => {
+        const sortedData = [...data];
+        if (option === "리뷰 많은 순") {
+            sortedData.sort((a, b) => b.count - a.count);
+        } else if (option === "평점 높은 순") {
+            sortedData.sort((a, b) => b.rating - a.rating);
+        } else if (option === "낮은 가격순") {
+            sortedData.sort((a, b) => a.price - b.price);
+        } else if (option === "높은 가격 순") {
+            sortedData.sort((a, b) => b.price - a.price);
+        }
+        return sortedData;
+    };
+    useEffect(() => {
+        setResults(sortData(data, selectedSortOption)); 
+    }, [selectedSortOption, data]);
+    
+    
 
     const handleDateClick = () => {
         router.push("/searchResult/calander");
@@ -98,20 +105,21 @@ const SearchResultPageView = (props: SearchResultPageViewProps) => {
                     if (!response.ok) {
                         throw new Error("검색 결과를 가져오는 데 실패했습니다.");
                     }
-                    const data = await response.json();
-                    setResults(data);
+                    const fetchedData = await response.json();
+                    setData(fetchedData); 
+                    setResults(sortData(fetchedData, selectedSortOption)); 
                 } catch (error) {
                     setError("검색 결과를 불러오지 못했습니다.");
                 } finally {
                     setIsLoading(false);
                 }
             };
-
+    
             fetchSearchResults();
         }
     }, [query]);
-
-
+    
+    
     return (
         <div>
             <div className={cx("header")}>
@@ -178,8 +186,8 @@ const SearchResultPageView = (props: SearchResultPageViewProps) => {
                             <p className={cx("error")}>{error}</p>
                         ) : (
                             <div className={cx("card-container")}>
-                                {data && data.length > 0 ? (
-                                    data.map((a, i) => {
+                                {results && results.length > 0 ? (
+                                    results.map((a, i) => {
                                         return (
                                             <Link
                                                 href={`/home/select?id=${a._id}`}
