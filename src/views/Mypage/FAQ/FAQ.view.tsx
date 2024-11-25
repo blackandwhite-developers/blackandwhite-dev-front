@@ -6,6 +6,7 @@ import styles from "./FAQ.module.scss";
 import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import Accordion from "@/components/accordion/Accordion";
+import FooterBar from "@/components/footer/FooterBar";
 
 const cx = cn.bind(styles);
 
@@ -26,6 +27,9 @@ const FAQ = ({ data }: FAQProps) => {
             {item.answer}
           </Accordion>
         ))}
+      </div>
+      <div className={cx("FooterBar")}>
+        <FooterBar />
       </div>
     </div>
   );

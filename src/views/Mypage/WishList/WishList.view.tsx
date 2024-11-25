@@ -6,6 +6,7 @@ import styles from "./WishList.module.scss";
 import Header from "@/components/Header/Header";
 import { FaAngleLeft } from "react-icons/fa6";
 import ProductInfoCard from "@/components/ProductInfoCard/ProductInfoCard";
+import FooterBar from "@/components/footer/FooterBar";
 
 const cx = cn.bind(styles);
 
@@ -39,6 +40,9 @@ const WishList = ({ data }: WishListProps) => {
             price={item.price}
           />
         ))}
+      </div>
+      <div className={cx("FooterBar")}>
+        <FooterBar />
       </div>
     </div>
   );
