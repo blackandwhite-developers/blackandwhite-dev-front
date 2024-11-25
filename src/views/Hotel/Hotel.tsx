@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames/bind";
 import styles from "./Hotel.module.scss";
 import Header from "@/components/Header/Header";
@@ -27,6 +27,10 @@ export interface HotelViewProps {
 
 const HotelView = (props: HotelViewProps) => {
   const { titleData, data, popData } = props;
+  const [src, setSrc] = useState(
+    "/categoryImage/HotelImg/img_hotel_banner.svg"
+  );
+
   /** 뒤로가기 */
   const router = useRouter();
   const handleGoBack = () => {
@@ -37,15 +41,36 @@ const HotelView = (props: HotelViewProps) => {
       console.log("Hotel ID:", a._id);
     });
   }
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSrc("/categoryImage/HotelImg/img_hotel_banner.svg");
+      } else {
+        setSrc("/categoryImage/HotelImg/hotel_banner_desktop.png");
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className={cx("container")}>
       <div className={cx("header")}>
         <Link href={"/home"}>
-          <Header title={titleData} leftIcon={<FaAngleLeft />} onClickLeft={handleGoBack} />
+          <Header
+            title={titleData}
+            leftIcon={<FaAngleLeft />}
+            onClickLeft={handleGoBack}
+          />
         </Link>
       </div>
       <div className={cx("banner")}>
-        <img src="/categoryImage/HotelImg/img_hotel_banner.svg" alt="호텔이미지" />
+        <img src={src} alt="호텔이미지" />
       </div>
 
       <div className={cx("selectRegion")}>

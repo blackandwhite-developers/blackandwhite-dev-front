@@ -1,3 +1,5 @@
+@import "@/app/mixins";
+
 .MainCategory {
   display: flex;
   flex-direction: column;
@@ -24,4 +26,14 @@
   font-weight: 500;
   color: var(--gray700);
   letter-spacing: -8%;
+}
+
+@include mobile {}
+
+@include tablet {}
+
+@include desktop {
+  .CategoryName {
+    font-size: var(--large);
+  }
 }

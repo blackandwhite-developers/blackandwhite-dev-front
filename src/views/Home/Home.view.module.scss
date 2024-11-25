@@ -1,4 +1,4 @@
-@import "../../app/mixins";
+@import "@/app/mixins";
 
 body {
   background-color: #fff;
@@ -146,10 +146,16 @@ body {
 }
 
 @include desktop {
-
-
   .header-container .bell {
     width: 37px;
     height: 37px;
+  }
+
+  .main-container .currentList .list-price p {
+    font-size: var(--x-large);
+  }
+
+  .main-container .currentList .list-price p {
+    font-size: var(--x-large);
   }
 }

@@ -333,8 +333,8 @@
               height: 200px;
 
               img {
+                max-width: 198px;
                 width: 100%;
-                height: 100%;
                 object-fit: cover;
                 border-radius: 8px;
               }
@@ -347,21 +347,22 @@
               flex: 1;
 
               .title {
-                font-size: 25px;
+                font-size: var(--x-large);
                 font-weight: 700;
                 line-height: 28.96px;
                 letter-spacing: -0.05em;
               }
 
               .date {
-                font-size: 20px;
+                font-size: var(--medium);
                 font-weight: 500;
                 line-height: 23.17px;
                 letter-spacing: -0.05em;
               }
 
               .parlorInfomation {
-                font-size: 20px;
+                font-size: var(--medium);
+                color: var(--gray500);
                 font-weight: 500;
                 line-height: 23.17px;
                 letter-spacing: -0.05em;
@@ -383,7 +384,7 @@
               .time,
               .checkIn,
               .checkOut {
-                font-size: 20px;
+                font-size: var(--small);
               }
             }
           }
@@ -400,11 +401,11 @@
             }
 
             .count {
-              font-size: 15px;
+              font-size: var(--small);
             }
 
             .price {
-              font-size: 25px;
+              font-size: var(--xx-large);
             }
           }
         }
@@ -413,26 +414,27 @@
 
     .bottom-container {
       p {
-        font-size: 18px;
+        font-size: var(--large);
         font-weight: 700;
         line-height: 26.06px;
       }
 
       .payment-info {
-        font-size: 18px;
+        font-size: var(--large);
         font-weight: 500;
       }
 
       span {
         font-family: Noto Sans KR;
-        font-size: 18px;
+        font-size: var(--large);
         font-weight: 500;
+        color: var(--gray700);
         line-height: 26.06px;
         letter-spacing: -0.05em;
       }
 
       .rule li {
-        font-size: 16px;
+        font-size: var(--medium);
         font-weight: 500;
         line-height: 24.53px;
       }
