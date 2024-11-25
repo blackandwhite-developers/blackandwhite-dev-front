@@ -8,6 +8,8 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { DisableBtn } from "@/components/Button/DisableBtn";
 import { useRouter } from "next/navigation";
+import { findIdAtom } from "@/atoms/findIdAtom";
+import { useAtom } from "jotai";
 
 const cx = cn.bind(styles);
 
@@ -26,11 +28,21 @@ const FIndPw = (props: FindPwViewProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [findId, setFindId] = useAtom(findIdAtom);
   const { findPwFn } = props;
   /** 뒤로가기 */
   const handleGoBack = () => {
     router.back();
   };
+
+  useEffect(() => {
+    if (findId.email !== "") {
+      setFindId({
+        email: "",
+        createdAt: new Date(),
+      }); // 초기화
+    }
+  }, []);
 
   const handleFindPw = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
