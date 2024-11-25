@@ -1,20 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Login.view.module.scss";
 import TextInput from "@/components/input/TextInput/TextInput";
 import { AbleBtn } from "@/components/Button/AbleBtn";
 import { DisableBtn } from "@/components/Button/DisableBtn";
+import { findIdAtom } from "@/atoms/findIdAtom";
+import { useAtom } from "jotai";
 type LoginViewProps = {
   loginFn: (email: string, password: string) => void;
 };
 const LoginView = (props: LoginViewProps) => {
   const { loginFn } = props;
-
+  const [findId, setFindId] = useAtom(findIdAtom);
   const handleButtonClick = () => {
     loginFn(email, password); // 로그인 함수 호출
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (findId.email !== "") {
+      setFindId({
+        email: "",
+        createdAt: new Date(),
+      }); // 초기화
+    }
+  }, []);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);

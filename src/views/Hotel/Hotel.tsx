@@ -8,39 +8,27 @@ import Link from "next/link";
 import { FaAngleLeft } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import Rating from "@/components/RatingStarCount/Rating";
+import ProductCard from "@/components/ProductCard/ProductCard";
 
 const cx = cn.bind(styles);
 
 export interface HotelViewProps {
   titleData: string;
-  data?: Array<{ id: string; thumbnail: string; title: string }>;
-  popData?: Array<{
-    _id: string;
-    name: string;
-    rating: number;
-    count: string;
-    distance: string;
-    price: number;
-    image: string;
-  }>;
+  data: Array<ILodge>;
 }
 
 const HotelView = (props: HotelViewProps) => {
-  const { titleData, data, popData } = props;
+  const { titleData, data } = props;
   const [src, setSrc] = useState(
     "/categoryImage/HotelImg/img_hotel_banner.svg"
   );
+  console.log(data);
 
   /** 뒤로가기 */
   const router = useRouter();
   const handleGoBack = () => {
     router.back();
   };
-  {
-    popData?.map((a) => {
-      console.log("Hotel ID:", a._id);
-    });
-  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -74,17 +62,19 @@ const HotelView = (props: HotelViewProps) => {
       </div>
 
       <div className={cx("selectRegion")}>
-        <h3>지역 선택</h3>
+        <h3>지금 핫한 숙소</h3>
 
         <div className={cx("grid-container")}>
-          {data?.map((a, i) => {
+          {data.map((item) => {
             return (
-              <div key={a.id} className={cx("grid-item")}>
-                <Link href={`/searchResult`}>
-                  <img src={a.thumbnail} alt="regoinImg" />
-                  <div className={cx("title")}>{a.title}</div>
-                </Link>
-              </div>
+              <ProductCard
+                key={item.id}
+                imageUrl={item.image}
+                title={item.name}
+                address={item.address}
+                price={item.price}
+                rating={item.rating}
+              />
             );
           })}
         </div>

@@ -1,9 +1,8 @@
 .productBox {
     border-radius: 10px;
-    box-shadow: 0px 4px 11px 4px rgba(121, 121, 121, 0.2);
     max-width: 320px;
     transition: 0.3s ease all;
-    // cursor: pointer;
+    cursor: pointer;
     position: relative;
     padding: 11px 10px 12px;
 
@@ -11,9 +10,11 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        height: 100%;
+        flex-direction: column;
 
         .productBoxImage {
-            max-width: 110px;
+            width: 100%;
             border-radius: 10px;
             overflow: hidden;
 
@@ -28,17 +29,11 @@
             flex-grow: 1;
             gap: 2px;
             width: 100%;
+            justify-content: space-between;
 
-            span {
-                font-size: 0.7rem;
-                border: 1px solid rgba(135, 40, 255, 1);
-                align-self: flex-start;
-                width: auto;
-                padding: 2px 9px;
-                border-radius: 9px;
-            }
 
-            h3 {
+
+            h4 {
                 font-size: 0.8rem;
                 font-weight: 700;
             }
@@ -53,7 +48,7 @@
                     font-weight: 700;
                 }
 
-                .ratingCount {
+                .reviews {
                     font-size: 0.7rem;
                     color: rgba(153, 153, 153, 1);
                 }
@@ -77,42 +72,42 @@
     }
 }
 
-@media (min-width: 560px) {
-    .productBox {
-        max-width: 328px;
+// @media (min-width: 560px) {
+//     .productBox {
+//         max-width: 328px;
 
-        .productBoxInn {
-            flex-direction: column;
+//         .productBoxInn {
+//             flex-direction: column;
 
-            .productBoxImage {
-                max-width: 100%;
-                border-radius: 10px;
-                overflow: hidden;
-            }
+//             .productBoxImage {
+//                 max-width: 100%;
+//                 border-radius: 10px;
+//                 overflow: hidden;
+//             }
 
-            .productBoxInfo {
-                h3 {
-                    font-size: 1.25rem;
-                }
+//             .productBoxInfo {
+//                 h3 {
+//                     font-size: 1.25rem;
+//                 }
 
-                .ratingBox {
-                    .ratingScore {
-                        font-size: 1rem;
-                    }
+//                 .ratingBox {
+//                     .ratingScore {
+//                         font-size: 1rem;
+//                     }
 
-                    .ratingCount {
-                        font-size: 1rem;
-                    }
-                }
+//                     .ratingCount {
+//                         font-size: 1rem;
+//                     }
+//                 }
 
-                .address {
-                    font-size: 0.85rem;
-                }
+//                 .address {
+//                     font-size: 0.85rem;
+//                 }
 
-                .priceArea {
-                    font-size: 1.35rem;
-                }
-            }
-        }
-    }
-}
+//                 .priceArea {
+//                     font-size: 1.35rem;
+//                 }
+//             }
+//         }
+//     }
+// }

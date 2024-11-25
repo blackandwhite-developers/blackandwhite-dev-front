@@ -76,4 +76,15 @@ export class UserService {
       return { isSuccess: false };
     }
   }
+
+  async findId(req: findIdRequest): Promise<findIdResponse> {
+    const { body } = req;
+    const res = await this._ajax.get(pathToUrl(USER_ROUTES.FIND_ID, {}), {
+      data: {
+        name: body.name,
+        phone: body.phone,
+      },
+    });
+    return { data: res.data };
+  }
 }
