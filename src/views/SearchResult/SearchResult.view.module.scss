@@ -1,6 +1,10 @@
 @import "../../app/mixins";
 
 .searchResult-warp {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+
   .header {
     padding: 0 20px;
     color: black;
@@ -204,19 +208,21 @@
 @include mobile {
   .searchResult-warp {
     background-color: cadetblue;
-    .card-container {
-    }
+
+    .card-container {}
   }
 }
 
 @include tablet {
   .searchResult-warp {
     background-color: blue;
+
     .about {
       .about-detail {
         width: 100%;
       }
     }
+
     .card-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);

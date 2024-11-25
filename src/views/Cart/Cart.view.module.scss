@@ -2,6 +2,7 @@
 
 .cart-container {
   margin: 0 auto;
+  width: 100%;
   max-width: 1024px;
 
   .select-container {
@@ -19,6 +20,7 @@
       color: #606060;
     }
   }
+
   .main-container {
     padding: 10px 20px;
     align-items: start;
@@ -121,6 +123,7 @@
           align-items: flex-end;
           justify-content: center;
           padding: 10px 0 0;
+
           .rest-info {
             display: flex;
             flex-direction: row;
@@ -168,6 +171,7 @@
       height: 5px;
       background-color: #e5e5e5;
     }
+
     p {
       font-size: 14px;
       font-weight: 700;
@@ -175,6 +179,7 @@
       letter-spacing: -0.05em;
       padding: 10px 0;
     }
+
     .payment-info {
       display: flex;
       flex-direction: column;
@@ -247,6 +252,7 @@
             line-height: 17.38px;
             letter-spacing: -0.05em;
           }
+
           .cash-total {
             font-size: 16px;
             font-weight: 700;
@@ -259,8 +265,7 @@
   }
 }
 
-@include mobile {
-}
+@include mobile {}
 
 @include tablet {
   .cart-container {
@@ -268,6 +273,7 @@
       .main-info {
         gap: 10px;
         width: 100%;
+
         .info {
           .top-info {
             display: flex;
@@ -286,11 +292,14 @@
                 border-radius: 8px;
               }
             }
+
             .room-info {
               gap: 10px;
+
               .title {
                 font-size: 18px;
               }
+
               .date {
                 font-size: 16px;
                 font-weight: 500;
@@ -306,12 +315,12 @@
 
 @include desktop {
   .cart-container {
-    max-width: 1920px;
 
     .main-container {
       .main-info {
         gap: 10px;
         width: 100%;
+
         .info {
           .top-info {
             display: flex;
@@ -343,12 +352,14 @@
                 line-height: 28.96px;
                 letter-spacing: -0.05em;
               }
+
               .date {
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 23.17px;
                 letter-spacing: -0.05em;
               }
+
               .parlorInfomation {
                 font-size: 20px;
                 font-weight: 500;
@@ -368,6 +379,7 @@
               margin-top: 10px;
               padding: 20px 40px;
               width: 100%;
+
               .time,
               .checkIn,
               .checkOut {
@@ -382,12 +394,15 @@
             justify-content: center;
             align-items: end;
             width: 40%;
+
             .rest-info {
               padding-top: 10px;
             }
+
             .count {
               font-size: 15px;
             }
+
             .price {
               font-size: 25px;
             }
@@ -402,10 +417,12 @@
         font-weight: 700;
         line-height: 26.06px;
       }
+
       .payment-info {
         font-size: 18px;
         font-weight: 500;
       }
+
       span {
         font-family: Noto Sans KR;
         font-size: 18px;
@@ -419,6 +436,7 @@
         font-weight: 500;
         line-height: 24.53px;
       }
+
       .bottom-sheet {
         .amount-count {
           span {
@@ -430,6 +448,7 @@
           }
 
           .cash {
+
             .cash-results,
             .cash-total {
               font-size: 18px;
