@@ -1,47 +1,48 @@
 .SelectBirthWrapper {
-  margin: 0 auto;
-  max-width: 320px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  .SelectBirthContent {
-    padding: 70px 0 30px;
+    margin: 0 auto;
+    max-width: 320px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    padding: 10px 20px 0;
 
-    .SelectBirth {
-      font-size: 25px;
-      color: #8728ff;
-      font-weight: 500;
+    .SelectBirthContent {
+        padding: 70px 0 30px;
+        display: flex;
+        flex-direction: column;
+
+        .SelectBirth {
+            font-size: 25px;
+            color: #8728ff;
+            font-weight: 500;
+        }
     }
-  }
 
-  .InputWrapper {
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    margin-top: 10px;
-    background-color: #f6f6f6;
-    color: #b2b2b2;
-    width: 320px;
-    height: 55px;
-    border-radius: 5px;
+    .InputWrapper {
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        margin-top: 10px;
+        background-color: #f6f6f6;
+        color: #b2b2b2;
+        width: 320px;
+        height: 55px;
+        border-radius: 5px;
 
-    .BirthInput {
-      width: 100%;
-      text-align: center;
-      background-color: transparent;
-      color: #8728ff;
-      font-weight: 500;
+        .BirthInput {
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            color: #8728ff;
+            font-weight: 500;
+        }
     }
-  }
-  .BirthNextBtn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
-    padding-bottom: 30px;
-  }
+    .BirthNextBtn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: auto;
+        padding-bottom: 30px;
+    }
 }
