@@ -9,6 +9,7 @@ export default function Nickname() {
   const data = signUpData ? JSON.parse(signUpData) : null;
   if (!data) {
     router.push("/signup");
+    return null;
   }
   const nicknameSelectFunc = async (nickname: string) => {
     const newData = {
