@@ -161,6 +161,9 @@ const ProductDetail = (props: ProductDetailProps) => {
         return `${year}.${month}.${day} (${dayOfWeek})`;
     };
 
+    const handleGoBack = () => {
+        router.back();
+    };
     return (
         <div className={cx("ProductDetailWrapper")}>
             <div className={cx("ProductDetailHeader")}>
