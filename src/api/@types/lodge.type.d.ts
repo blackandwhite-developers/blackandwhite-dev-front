@@ -18,19 +18,26 @@ interface ILodge {
   image: string;
   /** 숙소 객실 종류 및 재고 */
   room: Array<IRoomTypeAndStock>;
-  /** 카테고리 ID */
-  categoryId: string;
   /** 평점 */
   rating: number;
   /** 리뷰 */
   review: string[]; // TODO: 리뷰 모델 추가
   /** 가격 */
   price: number;
+  /**리뷰수 */
+  count: number;
+  /**랜드로부터 거리 */
+  distance: string;
   /** 카테고리 이름 */
-  categoryName: string;
+  category: {
+    id: string;
+    path: string;
+    title: string;
+    thumbnail: string;
+  };
 }
 
 interface IRoomTypeAndStock {
-  roomType: Array<IRoom>;
+  roomType: IRoom;
   stock: number;
 }

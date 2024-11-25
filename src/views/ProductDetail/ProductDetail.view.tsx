@@ -26,6 +26,7 @@ import {
     childCountAtom,
 } from "@/atoms/authAtom";
 import Rating from "@/components/RatingStarCount/Rating";
+import { recentRoomsAtom } from "@/atoms/recentRooms";
 
 const cx = cn.bind(styles);
 
@@ -35,6 +36,7 @@ export interface DateRange {
 }
 export interface ProductDetailProps {
     data: {
+        id: string;
         category: { id: string; title: string; thumbnail: string };
         name: string;
         rating: number;
@@ -54,21 +56,29 @@ export interface ProductDetailProps {
 
 const ProductDetail = (props: ProductDetailProps) => {
     const { data, productDetailsArray } = props;
+    const [recentView, setRecentView] = useAtom(recentRoomsAtom);
 
     const [selectedTab, setSelectedTab] = useState("room");
 
     const router = useRouter();
 
-    // const data = {
-    //   roomType: "호텔",
-    //   roomName: "김포 마리나베이 호텔",
-    //   rating: "4.5",
-    //   starRating: "4.5",
-    //   review: "1,135",
-    //   location: "김포공항역 3분",
-    //   reservationDate: "24.11.15 ~ 24.11.16",
-    //   reservationCount: "성인 2명",
-    // };
+    useEffect(() => {
+        if (recentView.lodges.some((lodge) => lodge.id === data.id)) {
+            const oldRecent = recentView.lodges.filter(
+                (lodge) => lodge.id !== data.id
+            );
+            const newRecent = [data, ...oldRecent];
+
+            console.log(recentView.lodges);
+
+            setRecentView({ lodges: newRecent });
+        } else {
+            const newRecent = [data, ...recentView.lodges];
+
+            console.log(recentView.lodges);
+            setRecentView({ lodges: newRecent });
+        }
+    }, [data, recentView.lodges, setRecentView]);
 
     /** 상단 이미지 더미 데이터 */
     const images = [
@@ -127,21 +137,54 @@ const ProductDetail = (props: ProductDetailProps) => {
     const handleMemberBtnClick = () => {
         router.push("/searchResult/calander");
     };
+    const [selectedDateRange, setSelectedDateRange] = useAtom(
+        selectedDateRangeAtom
+    );
+    const [adultCount, setAdultCount] = useAtom(adultCountAtom);
+    const [childCount, setChildCount] = useAtom(childCountAtom);
 
-    /** 날짜, 인원 불러오기 */
-    const [adultCount] = useAtom(adultCountAtom);
-    const [childCount] = useAtom(childCountAtom);
-    const [selectedDateRange] = useAtom(selectedDateRangeAtom);
+    useEffect(() => {
+        if (adultCount === undefined) setAdultCount(1);
+        if (childCount === undefined) setChildCount(0);
 
-    const formatDate = (date: Date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-        const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-        const dayOfWeek = daysOfWeek[date.getDay()];
+        if (!selectedDateRange) {
+            const today = new Date();
+            setSelectedDateRange({
+                startDate: today,
+                endDate: today,
+                from: today,
+                to: today,
+                selected: true,
+            });
+        }
+    }, [
+        adultCount,
+        childCount,
+        selectedDateRange,
+        setAdultCount,
+        setChildCount,
+        setSelectedDateRange,
+    ]);
 
-        return `${year}.${month}.${day} (${dayOfWeek})`;
-    };
+    const formattedDateRange = selectedDateRange
+        ? {
+              startDate: selectedDateRange.startDate.toLocaleDateString(
+                  "ko-KR",
+                  {
+                      weekday: "short",
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                  }
+              ),
+              endDate: selectedDateRange.endDate.toLocaleDateString("ko-KR", {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+              }),
+          }
+        : null;
 
     return (
         <div className={cx("ProductDetailWrapper")}>
@@ -190,9 +233,9 @@ const ProductDetail = (props: ProductDetailProps) => {
                     </div>
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>{data.rating}</p>
-                        <p className={cx("ProductStarRating")}>
+                        <div className={cx("ProductStarRating")}>
                             <Rating rating={data.rating} maxRating={5} />
-                        </p>
+                        </div>
                         <p className={cx("ProductReviewCount")}>{data.count}</p>
                     </div>
                     <div className={cx("ProductLocation")}>
@@ -259,24 +302,35 @@ const ProductDetail = (props: ProductDetailProps) => {
                                     <div className={cx("ReservationSelectBtn")}>
                                         <DateBtn
                                             label={
-                                                selectedDateRange &&
-                                                selectedDateRange.from &&
-                                                selectedDateRange.to
-                                                    ? `${formatDate(
-                                                          selectedDateRange.from
-                                                      )} ~ ${formatDate(
-                                                          selectedDateRange.to
-                                                      )}`
-                                                    : "날짜를 선택해주세요"
+                                                formattedDateRange ? (
+                                                    <>
+                                                        <span>
+                                                            {
+                                                                formattedDateRange.startDate
+                                                            }
+                                                        </span>{" "}
+                                                        ~
+                                                        <span>
+                                                            {
+                                                                formattedDateRange.endDate
+                                                            }
+                                                        </span>
+                                                    </>
+                                                ) : (
+                                                    "날짜를 선택해주세요"
+                                                )
                                             }
                                             onClick={handleDateBtnClick}
                                         />
                                         <MemberBtn
                                             label={
                                                 <>
-                                                    성인 {adultCount}명
-                                                    <br />
-                                                    아동 {childCount}명
+                                                    <span>
+                                                        성인 {adultCount}명
+                                                    </span>
+                                                    <span>
+                                                        아동 {childCount}명
+                                                    </span>
                                                 </>
                                             }
                                             onClick={handleMemberBtnClick}

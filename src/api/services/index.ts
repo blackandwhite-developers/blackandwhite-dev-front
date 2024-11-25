@@ -2,6 +2,7 @@ import axios from "axios";
 import { UserService } from "./user.service";
 import { AuthService } from "./auth.service";
 import { CategoryService } from "./category.service";
+import { LodgeService } from "./lodge.service";
 
 let tokens = {
   accessToken: "",
@@ -61,3 +62,4 @@ apiServer.interceptors.response.use(
 export const authService = new AuthService(apiServer);
 export const userService = new UserService(apiServer);
 export const categoryService = new CategoryService(apiServer);
+export const lodgeService = new LodgeService(apiServer);
