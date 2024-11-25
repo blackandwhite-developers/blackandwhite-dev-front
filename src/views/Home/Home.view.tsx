@@ -5,19 +5,20 @@ import styles from "./Home.view.module.scss";
 import FooterBar from "../../components/footer/FooterBar";
 import { PiBellSimpleThin } from "react-icons/pi";
 import SearchBar from "../../components/input/SearchBar/SearchBar";
-
 import Link from "next/link";
 import MainCategory from "@/components/category/main/MainCategory";
+import { useAtom } from "jotai";
+import { recentRoomsAtom } from "@/atoms/recentRooms";
 
 const cx = cn.bind(styles);
 
 export interface HomeviewProps {
   category: ICategory[];
-  resentView?: ILodge[];
 }
 
 const Homeview = (props: HomeviewProps) => {
-  const { category, resentView } = props;
+  const [recentView, setRecentView] = useAtom(recentRoomsAtom);
+  const { category } = props;
   const [src, setSrc] = useState("/home/home_banner_desktop.png");
   const [isAlarm, setIsAlarm] = useState(false);
 
@@ -52,11 +53,13 @@ const Homeview = (props: HomeviewProps) => {
       eventSource.close();
     };
   }, []);
-  {category.map((a) => {
-  if (!a.path) {
-    console.error(`Category with id ${a.id} has no path.`);
+  {
+    category.map((a) => {
+      if (!a.path) {
+        console.error(`Category with id ${a.id} has no path.`);
+      }
+    });
   }
-})}
   return (
     <div className={cx("main-wrap")}>
       <header className={cx("header-container")}>
@@ -77,7 +80,7 @@ const Homeview = (props: HomeviewProps) => {
         <SearchBar />
         <div className={cx("grid-container")}>
           {category.map((a) => (
-            <Link href={`/home/list/${a.path}`} key={a.id}>
+            <Link href={`/home/list/${a.id}`} key={a.id}>
               <MainCategory categoryName={a.title} categoryIcon={`${a.thumbnail}.svg`} categoryKoreanName={a.title} />
             </Link>
           ))}
@@ -85,7 +88,7 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("currentList")}>
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
-            {resentView?.map((item) => (
+            {recentView.rooms?.map((item) => (
               <div className={cx("list-item")} key={item.id}>
                 <div className={cx("list-image")}>
                   <img src={item.image} alt={item.name} />

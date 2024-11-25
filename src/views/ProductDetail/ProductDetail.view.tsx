@@ -26,6 +26,7 @@ import {
   childCountAtom,
 } from "@/atoms/authAtom";
 import Rating from "@/components/RatingStarCount/Rating";
+import { recentRoomsAtom } from "@/atoms/recentRooms";
 
 const cx = cn.bind(styles);
 
@@ -35,6 +36,7 @@ export interface DateRange {
 }
 export interface ProductDetailProps {
   data: {
+    id: string;
     category: { id: string; title: string; thumbnail: string };
     name: string;
     rating: number;
@@ -54,21 +56,27 @@ export interface ProductDetailProps {
 
 const ProductDetail = (props: ProductDetailProps) => {
   const { data, productDetailsArray } = props;
+  const [recentView, setRecentView] = useAtom(recentRoomsAtom);
 
   const [selectedTab, setSelectedTab] = useState("room");
 
   const router = useRouter();
 
-  // const data = {
-  //   roomType: "호텔",
-  //   roomName: "김포 마리나베이 호텔",
-  //   rating: "4.5",
-  //   starRating: "4.5",
-  //   review: "1,135",
-  //   location: "김포공항역 3분",
-  //   reservationDate: "24.11.15 ~ 24.11.16",
-  //   reservationCount: "성인 2명",
-  // };
+  useEffect(() => {
+    if (recentView.lodges.some((lodge) => lodge.id === data.id)) {
+      const oldRecent = recentView.lodges.filter((lodge) => lodge.id !== data.id);
+      const newRecent = [data, ...oldRecent];
+
+      console.log(recentView.lodges);
+
+      setRecentView({ lodges: newRecent });
+    } else {
+      const newRecent = [data, ...recentView.lodges];
+
+      console.log(recentView.lodges);
+      setRecentView({ lodges: newRecent });
+    }
+  }, []);
 
   /** 상단 이미지 더미 데이터 */
   const images = [
@@ -212,9 +220,9 @@ const ProductDetail = (props: ProductDetailProps) => {
           </div>
           <div className={cx("ProductRating")}>
             <p className={cx("ProductRatingText")}>{data.rating}</p>
-            <p className={cx("ProductStarRating")}>
+            <div className={cx("ProductStarRating")}>
               <Rating rating={data.rating} maxRating={5} />
-            </p>
+            </div>
             <p className={cx("ProductReviewCount")}>{data.count}</p>
           </div>
           <div className={cx("ProductLocation")}>
@@ -255,15 +263,7 @@ const ProductDetail = (props: ProductDetailProps) => {
                   reviewCounting={totalReviewData.reviewCounting}
                 />
                 {reviews.map((review, index) => (
-                  <Review
-                    key={index}
-                    image={review.image}
-                    rating={review.rating}
-                    nickname={review.nickname}
-                    date={review.date}
-                    serviceProduct={review.serviceProduct}
-                    reviewContent={review.reviewContent}
-                  />
+                  <Review key={index} image={review.image} rating={review.rating} nickname={review.nickname} date={review.date} serviceProduct={review.serviceProduct} reviewContent={review.reviewContent} />
                 ))}
                 <div className={cx("ReviewWriteBtn")}>
                   <AbleBtn label={"후기 작성하기"} />
@@ -300,18 +300,7 @@ const ProductDetail = (props: ProductDetailProps) => {
                   </div>
                   <div className={cx("ProductSelectCard")}>
                     {productDetailsArray.map((product, index) => (
-                      <ProductDetailCard
-                        key={index}
-                        image={product.image}
-                        event={product.event}
-                        name={product.name}
-                        standard={product.capacity.standard}
-                        maximum={product.capacity.maximum}
-                        checkIn={product.time.checkIn}
-                        checkOut={product.time.checkOut}
-                        price={product.price.price}
-                        stock={product.stock}
-                      />
+                      <ProductDetailCard key={index} image={product.image} event={product.event} name={product.name} standard={product.capacity.standard} maximum={product.capacity.maximum} checkIn={product.time.checkIn} checkOut={product.time.checkOut} price={product.price.price} stock={product.stock} />
                     ))}
                   </div>
                 </div>
