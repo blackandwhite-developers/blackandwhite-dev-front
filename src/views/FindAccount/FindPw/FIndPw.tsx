@@ -13,8 +13,8 @@ const cx = cn.bind(styles);
 
 type FindPwViewProps = {
   findPwFn: (
-    name: string,
-    email: string
+    email: string,
+    name: string
   ) => Promise<{
     result: boolean;
     error: unknown;
@@ -34,7 +34,7 @@ const FIndPw = (props: FindPwViewProps) => {
 
   const handleFindPw = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const isSuccess = await findPwFn(name, email);
+    const isSuccess = await findPwFn(email, name);
     if (!isSuccess.result) {
       alert(isSuccess.error);
       return;

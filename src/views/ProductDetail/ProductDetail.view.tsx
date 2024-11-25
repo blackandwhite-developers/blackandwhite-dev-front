@@ -41,6 +41,8 @@ export interface ProductDetailProps {
         name: string;
         rating: number;
         count: number;
+        image: string;
+        price: number;
         distance: string;
     };
     productDetailsArray: Array<{
@@ -56,16 +58,11 @@ export interface ProductDetailProps {
 
 const ProductDetail = (props: ProductDetailProps) => {
     const { data, productDetailsArray } = props;
-    const [_, setRecentView] = useAtom(recentRoomsAtom);
+    const [, setRecentView] = useAtom(recentRoomsAtom);
 
     const [selectedTab, setSelectedTab] = useState("room");
 
     const router = useRouter();
-
-    /** 뒤로가기 */
-    const handleGoBack = () => {
-        router.back();
-    };
 
     const updateRecentRooms = useCallback(() => {
         if (!data) return;

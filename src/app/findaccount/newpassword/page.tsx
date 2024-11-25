@@ -15,7 +15,8 @@ const NewPassword = async ({ searchParams }: { searchParams: Promise<{ [key: str
     "use server";
     try {
       const res = await userService.resetPassword({
-        body: { email, name, password },
+        body: { password },
+        params: { email, name },
       });
       if (!res.isSuccess) {
         throw new Error("비밀번호 변경에 실패했습니다.");

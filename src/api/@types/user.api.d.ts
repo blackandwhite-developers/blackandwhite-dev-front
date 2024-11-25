@@ -60,15 +60,16 @@ type signUpResponse = IUser;
 type resetPasswordRequestPath = {};
 type resetPasswordRequestBody = {
   password: string;
-  name: string;
-  email: string;
 };
-type resetPasswordRequestParams = {};
+type resetPasswordRequestParams = {
+  email: string;
+  name: string;
+};
 
 type resetPasswordRequest = {
   path?: resetPasswordRequestPath;
   body: resetPasswordRequestBody;
-  params?: resetPasswordRequestParams;
+  params: resetPasswordRequestParams;
 };
 
 type resetPasswordResponse = {

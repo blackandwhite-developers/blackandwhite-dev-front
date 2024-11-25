@@ -2,9 +2,15 @@
   text-decoration: none;
 }
 
-.container .header {
-  width: 360px;
+.container {
+  max-width: 1024px;
+  width: 100%;
   margin: 0 auto;
+}
+
+.container .header {
+  width: 100%;
+
   font-size: 16px;
   font-weight: 500;
   line-height: 23.17px;
@@ -14,8 +20,9 @@
 }
 
 .container .banner {
-  width: 360px;
+  width: 100%;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 
 .container .banner img {
@@ -24,7 +31,7 @@
 }
 
 .container .selectRegion h3 {
-  width: 360px;
+  width: 100%;
   margin: 0 auto;
   padding: 10px 20px;
   font-size: 1rem;
@@ -33,7 +40,7 @@
 
 .container .grid-container {
   margin: 0 auto;
-  width: 360px;
+  width: 100%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
@@ -60,13 +67,13 @@
 .container .popularityRoom h3 {
   padding: 20px 0 0 20px;
   margin: 0 auto;
-  width: 360px;
+  width: 100%;
   font-size: 1rem;
   font-weight: 700;
 }
 
 .container .popularityRoom .pop-grid {
-  width: 360px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -112,6 +119,7 @@
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
+
 .container .popularityRoom .pop-grid .pop-grid-item .pop-rate-info {
   font-size: 14px;
 }

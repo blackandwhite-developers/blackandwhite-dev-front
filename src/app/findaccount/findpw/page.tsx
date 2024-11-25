@@ -6,7 +6,7 @@ const FindPw = () => {
     "use server";
     try {
       const res = await userService.authPassword({
-        body: { email, name },
+        body: { email: email, name: name },
       });
       if (!res.isSuccess) {
         throw new Error("비밀번호 찾기에 실패했습니다.");

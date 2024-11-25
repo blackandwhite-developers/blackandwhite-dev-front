@@ -17,10 +17,11 @@ export interface HomeviewProps {
 }
 
 const Homeview = (props: HomeviewProps) => {
-  const [recentView, setRecentView] = useAtom(recentRoomsAtom);
+  const [recentView] = useAtom(recentRoomsAtom);
   const { category } = props;
-  const [src, setSrc] = useState("/home/home_banner_desktop.png");
+  const [, setSrc] = useState("/home/home_banner_desktop.png");
   const [isAlarm, setIsAlarm] = useState(false);
+  console.log(recentView);
 
   useEffect(() => {
     const handleResize = () => {
@@ -88,16 +89,16 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("currentList")}>
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
-            {recentView.rooms?.map((item) => (
+            {recentView.lodges?.map((item) => (
               <div className={cx("list-item")} key={item.id}>
                 <div className={cx("list-image")}>
-                  <img src={item.image} alt={item.name} />
+                  <img src={item.category.thumbnail} alt={item.name} />
                 </div>
                 <div className={cx("list-title")}>
                   <p>{item.name}</p>
                 </div>
                 <div className={cx("list-price")}>
-                  <p>{item.price.toLocaleString()}원</p>
+                  <p>{item.price}</p>
                 </div>
               </div>
             ))}
