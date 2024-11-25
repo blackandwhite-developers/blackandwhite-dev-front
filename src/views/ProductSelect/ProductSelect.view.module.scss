@@ -107,7 +107,7 @@
     color: var(--gray500);
 }
 
-.productSelectWrapper {
+.productSelectWrap {
     width: 100%;
     padding: 0 10px;
 }
@@ -201,7 +201,7 @@
         justify-content: left;
     }
 
-    & > :first-child {
+    &> :first-child {
         width: 70%;
     }
 }

@@ -1,6 +1,7 @@
 .ReviewContainer {
     margin: 0 auto;
-    max-width: 320px;
+    max-width: 1024px;
+    width: 100%;
     border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
 
@@ -18,6 +19,7 @@
             .ReviewNickname {
                 font-size: 14px;
             }
+
             .ReviewRationg {
                 display: flex;
                 gap: 5px;
@@ -31,6 +33,7 @@
                 }
             }
         }
+
         .ReviewTimestamp {
             position: absolute;
             top: 15pxpx;
@@ -56,6 +59,7 @@
             font-size: 12px;
             padding: 0 0 10 50px;
         }
+
         .ReviewContent p {
             padding-bottom: 10px;
         }
