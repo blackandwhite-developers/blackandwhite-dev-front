@@ -1,5 +1,5 @@
 interface ILodge {
-  id: string;
+  _id: string;
   /** 숙소 이름 */
   name: string;
   /** 숙소 주소 */
