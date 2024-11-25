@@ -16,9 +16,10 @@ export class LodgeService {
   }
 
   async getLodgesByCategories(req: getLodgesByCategoriesRequest): Promise<getLodgesByCategoriesResponse> {
-    const { path } = req;
-    const res = await this._ajax.get(pathToUrl(LODGE_ROUTES.GET_LODGES, path));
-    return res.data;
+    const { params } = req;
+    console.log(params);
+    const res = await this._ajax.get(pathToUrl(LODGE_ROUTES.GET_LODGES, {}), { params: { ...params } });
+    return { data: res.data };
   }
 
   async getLodgeById(req: getLodgesByIdRequest): Promise<getLodgesByIdResponse> {

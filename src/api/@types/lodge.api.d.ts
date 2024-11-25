@@ -1,16 +1,16 @@
 //롯지 카테고리
-type getLodgesByCategoriesRequestPath = {
-  categoryId: string;
-};
+type getLodgesByCategoriesRequestPath = {};
 
 type getLodgesByCategoriesRequestBody = {};
 
-type getLodgesByCategoriesRequestParams = {};
+type getLodgesByCategoriesRequestParams = {
+  categoryId: string;
+};
 
 type getLodgesByCategoriesRequest = {
-  path: getLodgesByCategoriesRequestPath;
+  path?: getLodgesByCategoriesRequestPath;
   body?: getLodgesByCategoriesRequestBody;
-  params?: getLodgesByCategoriesRequestParams;
+  params: getLodgesByCategoriesRequestParams;
 };
 type getLodgesByCategoriesResponse = {
   data: Array<ILodge>;
