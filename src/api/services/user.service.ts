@@ -40,7 +40,7 @@ export class UserService {
   }
 
   async authPassword(req: authPasswordRequest): Promise<authPasswordResponse> {
-    const { path, params, body } = req;
+    const { params, body } = req;
     console.log(req.body);
     const res = await this._ajax.post(pathToUrl(USER_ROUTES.AUTH_PASSWORD, {}), { params, ...body });
     console.log(res);

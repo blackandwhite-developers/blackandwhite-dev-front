@@ -1,25 +1,5 @@
 import { lodgeService } from "@/api/services";
-import { LodgeService } from "@/api/services/lodge.service";
-import Loading from "@/components/loading/Loading";
 import ProductDetailView from "@/views/ProductDetail/ProductDetail.view";
-
-interface ProductDetailProps {
-  category: { id: string; title: string; thumbnail: string };
-  name: string;
-  rating: number;
-  count: number;
-  distance: string;
-}
-
-interface ProductDetailCardProps {
-  image: string;
-  event: string;
-  name: string;
-  capacity: { standard: number; maximum: number };
-  time: { checkIn: string; checkOut: string };
-  price: { price: number };
-  stock: number;
-}
 
 type ProductDetailPageProps = {
   params: Promise<{ lodgeId: string }>;
@@ -51,6 +31,8 @@ export default async function ProductDetailPage(props: ProductDetailPageProps) {
     rating: lodgeData.rating,
     count: lodgeData.count,
     distance: lodgeData.description,
+    price: lodgeData.price,
+    image: lodgeData.image,
   };
 
   const productDetailsArray = lodgeData.room.map((r) => {

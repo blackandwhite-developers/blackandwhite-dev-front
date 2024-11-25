@@ -17,9 +17,9 @@ export interface HomeviewProps {
 }
 
 const Homeview = (props: HomeviewProps) => {
-  const [recentView, setRecentView] = useAtom(recentRoomsAtom);
+  const [recentView] = useAtom(recentRoomsAtom);
   const { category } = props;
-  const [src, setSrc] = useState("/home/home_banner_desktop.png");
+  const [, setSrc] = useState("/home/home_banner_desktop.png");
   const [isAlarm, setIsAlarm] = useState(false);
   console.log(recentView);
 

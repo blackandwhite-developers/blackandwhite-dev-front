@@ -1,4 +1,3 @@
-import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { SyncStorage } from "jotai/vanilla/utils/atomWithStorage";
 
@@ -31,7 +30,6 @@ export class RecentRoomsState {
     count: number;
     distance: string;
   }>;
-  rooms: any;
   constructor(data: {
     lodges: Array<{
       id: string;
@@ -41,6 +39,7 @@ export class RecentRoomsState {
       count: number;
       distance: string;
       price: number;
+      image: string | undefined;
     }>;
   }) {
     this.lodges = data.lodges;

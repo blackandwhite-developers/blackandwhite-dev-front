@@ -1,7 +1,6 @@
 "use client";
 import { setToken, userService } from "@/api/services";
 import { authAtom } from "@/atoms/authAtom";
-import { set } from "date-fns";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

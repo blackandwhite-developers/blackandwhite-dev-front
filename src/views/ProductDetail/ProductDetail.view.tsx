@@ -20,9 +20,10 @@ import TotalReviewCard from "@/components/TotalReviewCard/TotalReviewCard";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
-import { selectedDateRangeAtom, adultCountAtom, childCountAtom } from "@/atoms/authAtom";
+import { selectedDateRangeAtom } from "@/atoms/authAtom";
 import Rating from "@/components/RatingStarCount/Rating";
 import { recentRoomsAtom } from "@/atoms/recentRooms";
+import { adultCountAtom, childCountAtom } from "@/atoms/bookingDataAtom";
 
 const cx = cn.bind(styles);
 
@@ -37,6 +38,8 @@ export interface ProductDetailProps {
     name: string;
     rating: number;
     count: number;
+    image: string;
+    price: number;
     distance: string;
   };
   productDetailsArray: Array<{
@@ -52,7 +55,7 @@ export interface ProductDetailProps {
 
 const ProductDetail = (props: ProductDetailProps) => {
   const { data, productDetailsArray } = props;
-  const [_, setRecentView] = useAtom(recentRoomsAtom);
+  const [, setRecentView] = useAtom(recentRoomsAtom);
 
   const [selectedTab, setSelectedTab] = useState("room");
 
@@ -62,11 +65,12 @@ const ProductDetail = (props: ProductDetailProps) => {
     if (!data) return;
     setRecentView((prev) => {
       const isExist = prev.lodges.some((lodge) => lodge.id === data.id);
+      const newData = { ...data, image: data.image || "" };
       if (isExist) {
         const oldRecent = prev.lodges.filter((lodge) => lodge.id !== data.id);
-        return { lodges: [data, ...oldRecent] };
+        return { lodges: [newData, ...oldRecent] };
       } else {
-        return { lodges: [data, ...prev.lodges] };
+        return { lodges: [newData, ...prev.lodges] };
       }
     });
   }, [data, setRecentView]);
@@ -241,7 +245,15 @@ const ProductDetail = (props: ProductDetailProps) => {
               <div>
                 <TotalReviewCard ratingAverage={totalReviewData.ratingAverage} totalReview={totalReviewData.totalReview} reviewCounting={totalReviewData.reviewCounting} />
                 {reviews.map((review, index) => (
-                  <Review key={index} image={review.image} rating={review.rating} nickname={review.nickname} date={review.date} serviceProduct={review.serviceProduct} reviewContent={review.reviewContent} />
+                  <Review
+                    key={index}
+                    image={review.image}
+                    rating={review.rating}
+                    nickname={review.nickname}
+                    date={review.date}
+                    serviceProduct={review.serviceProduct}
+                    reviewContent={review.reviewContent}
+                  />
                 ))}
                 <div className={cx("ReviewWriteBtn")}>
                   <AbleBtn label={"후기 작성하기"} />
@@ -277,7 +289,18 @@ const ProductDetail = (props: ProductDetailProps) => {
                   </div>
                   <div className={cx("ProductSelectCard")}>
                     {productDetailsArray.map((product, index) => (
-                      <ProductDetailCard key={index} image={product.image} event={product.event} name={product.name} standard={product.capacity.standard} maximum={product.capacity.maximum} checkIn={product.time.checkIn} checkOut={product.time.checkOut} price={product.price.price} stock={product.stock} />
+                      <ProductDetailCard
+                        key={index}
+                        image={product.image}
+                        event={product.event}
+                        name={product.name}
+                        standard={product.capacity.standard}
+                        maximum={product.capacity.maximum}
+                        checkIn={product.time.checkIn}
+                        checkOut={product.time.checkOut}
+                        price={product.price.price}
+                        stock={product.stock}
+                      />
                     ))}
                   </div>
                 </div>
