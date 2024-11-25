@@ -1,50 +1,59 @@
+@import "@/app/_mixins.scss";
+
 .calander-container {
-  margin: 0 auto;
-  max-width: 100%;
-  width: 1024%;
-  height: 100vh;
+    margin: 0 auto;
+    max-width: 1024px;
+    width: 100%;
+    min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 0 20px;
 
-  .about {
-    margin-top: 45px;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0px;
-  }
+    .about {
+        margin-top: 45px;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 20px;
+        gap: 10px;
 
-  .calander {
-    display: flex;
-    justify-content: center;
-    width: 1024px;
-    max-width: 100%;
-  }
+        button {
+            width: 30%;
+        }
 
-  .middle-line {
-    width: 360px;
-    height: 5px;
-    margin-top: 20px;
-    background: #e5e5e5;
-  }
-
-  .member-info {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    h4 {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 23.17px;
-      letter-spacing: -0.08em;
+        &>:first-child {
+            width: 70%;
+        }
     }
+
+    .calanderInfoWrapper {
+        display: flex;
+        box-sizing: border-box;
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .calander {
+        position: relative;
+        padding-bottom: 20px;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--gray100);
+        }
     .member {
       display: flex;
       flex-direction: column;
       gap: 20px;
 
+    .member-info {
+        flex: 1;
+        padding: 20px;
       .adult {
         display: flex;
         justify-content: space-between;
@@ -57,21 +66,38 @@
           letter-spacing: -0.08em;
         }
 
+        .member {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .adult {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                span {
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 20.27px;
+                    letter-spacing: -0.08em;
+                }
         .adult-container {
           display: flex;
 
           gap: 10px;
 
-          .minus {
-            color: #8728ff;
-            font-size: 20px;
-          }
-          .plus {
-            color: #8728ff;
-            font-size: 20px;
-          }
-        }
-      }
+                    .minus {
+                        color: #8728ff;
+                        font-size: 20px;
+                    }
+
+                    .plus {
+                        color: #8728ff;
+                        font-size: 20px;
+                    }
+                }
+            }
 
       .child {
         display: flex;
@@ -84,28 +110,32 @@
           letter-spacing: -0.08em;
         }
 
-        .child-container {
-          display: flex;
-          gap: 10px;
-          .minus {
-            color: #8728ff;
-            font-size: 20px;
-          }
-          .plus {
-            color: #8728ff;
-            font-size: 20px;
-          }
+                .child-container {
+                    display: flex;
+                    gap: 10px;
+
+                    .minus {
+                        color: #8728ff;
+                        font-size: 20px;
+                    }
+
+                    .plus {
+                        color: #8728ff;
+                        font-size: 20px;
+                    }
+                }
+            }
         }
       }
     }
-  }
-  .bottomBtn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
-    padding-bottom: 30px;
+
+    .bottomBtn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: auto;
+        padding-bottom: 30px;
 
     .confirmBtn {
       background-color: #8728ff;
@@ -124,3 +154,32 @@
     }
   }
 }
+
+@include mobile {
+    .calanderInfoWrapper {
+        flex-direction: column;
+    }
+
+    .calander {
+        display: flex;
+        justify-content: center;
+    }
+
+    .about {
+        margin-top: 45px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5px 20px;
+        gap: 10px;
+
+        button {
+            flex: 1;
+            width: 100% !important;
+        }
+    }
+}
+
+@include tablet {}
+
+@include desktop {}

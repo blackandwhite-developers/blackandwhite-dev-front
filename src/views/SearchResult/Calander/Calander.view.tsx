@@ -85,7 +85,6 @@ const CalanderView = () => {
     const formatDate = (date: Date) => {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
       const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
       return `${year}.${month}.${day} (${dayOfWeek})`;
     };
@@ -114,46 +113,64 @@ const CalanderView = () => {
         <MemberBtn
           label={
             <>
-              성인 {adultCount}명
-              <br />
-              아동 {childCount}명
+              <span>성인 {adultCount}명</span>
+              <span>아동 {childCount}명</span>
             </>
           }
         />
       </div>
-
-      <div className={cx("calander")}>
-        <DayPicker locale={ko} mode="range" selected={selectedDateRange} onSelect={handleDateChange} disabled={[{ before: new Date() }]} />
-      </div>
-
-      <div className={cx("middle-line")}></div>
-
-      <div className={cx("member-info")}>
-        <h4>인원</h4>
-        <div className={cx("member")}>
-          <div className={cx("adult")}>
-            <span>성인</span>
-            <div className={cx("adult-container")}>
-              <button className={cx("minus")} onClick={(e) => handleAdultCountChange("decrease", e)}>
-                <CiCircleMinus />
-              </button>
-              {adultCount}
-              <button className={cx("plus")} onClick={(e) => handleAdultCountChange("increase", e)}>
-                <CiCirclePlus />
-              </button>
+      <div className={cx("calanderInfoWrapper")}>
+        <div className={cx("calander")}>
+          <DayPicker
+            locale={ko}
+            mode="range"
+            className={styles.datePicker}
+            selected={selectedDateRange}
+            onSelect={handleDateChange}
+            disabled={[{ before: new Date() }]}
+          />
+        </div>
+        <div className={cx("member-info")}>
+          <h4>인원</h4>
+          <div className={cx("member")}>
+            <div className={cx("adult")}>
+              <span>성인</span>
+              <div className={cx("adult-container")}>
+                <button
+                  className={cx("minus")}
+                  onClick={(e) => handleAdultCountChange("decrease", e)}
+                >
+                  <CiCircleMinus />
+                </button>
+                {adultCount}
+                <button
+                  className={cx("plus")}
+                  onClick={(e) => handleAdultCountChange("increase", e)}
+                >
+                  <CiCirclePlus />
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div className={cx("child")}>
-            <span>아동</span>
-            <div className={cx("child-container")}>
-              <button className={cx("minus")} style={{ color: "#8728ff" }} onClick={(e) => handleChildCountChange("decrease", e)}>
-                <CiCircleMinus />
-              </button>
-              {childCount}
-              <button className={cx("plus")} style={{ color: "#8728ff" }} onClick={(e) => handleChildCountChange("increase", e)}>
-                <CiCirclePlus />
-              </button>
+            <div className={cx("child")}>
+              <span>아동</span>
+              <div className={cx("child-container")}>
+                <button
+                  className={cx("minus")}
+                  style={{ color: "#8728ff" }}
+                  onClick={(e) => handleChildCountChange("decrease", e)}
+                >
+                  <CiCircleMinus />
+                </button>
+                {childCount}
+                <button
+                  className={cx("plus")}
+                  style={{ color: "#8728ff" }}
+                  onClick={(e) => handleChildCountChange("increase", e)}
+                >
+                  <CiCirclePlus />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -171,4 +188,5 @@ const CalanderView = () => {
 export default CalanderView;
 export const adultCountAtom = atom(1);
 export const childCountAtom = atom(0);
+
 export const selectedDateRangeAtom = atom<{ from: Date | undefined; to: Date | undefined } | undefined>(undefined);
