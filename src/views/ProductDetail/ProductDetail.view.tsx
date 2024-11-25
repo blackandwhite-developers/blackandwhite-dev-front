@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
-import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -61,6 +61,11 @@ const ProductDetail = (props: ProductDetailProps) => {
     const [selectedTab, setSelectedTab] = useState("room");
 
     const router = useRouter();
+
+    /** 뒤로가기 */
+    const handleGoBack = () => {
+        router.back();
+    };
 
     const updateRecentRooms = useCallback(() => {
         if (!data) return;
@@ -138,6 +143,12 @@ const ProductDetail = (props: ProductDetailProps) => {
     const handleMemberBtnClick = () => {
         router.push("/searchResult/calander");
     };
+
+    const [isFavorite, setIsFavorite] = useState(false);
+    const handleFavoriteClick = () => {
+        setIsFavorite((prevState) => !prevState);
+    };
+
     /** 날짜, 인원 불러오기 */
     const [adultCount] = useAtom(adultCountAtom);
     const [childCount] = useAtom(childCountAtom);
@@ -158,7 +169,7 @@ const ProductDetail = (props: ProductDetailProps) => {
             <div className={cx("ProductDetailHeader")}>
                 <Header
                     title={"객실상세"}
-                    leftIcon={<FaAngleLeft />}
+                    leftIcon={<FaAngleLeft onClick={handleGoBack} />}
                     rightIcon={
                         <Link href="/home/detail/cart">
                             <BsCart2 />
@@ -194,9 +205,21 @@ const ProductDetail = (props: ProductDetailProps) => {
                 <div className={cx("ProductWrapper")}>
                     <div className={cx("ProductTitleWrapper")}>
                         <h1 className={cx("ProductTitle")}>{data.name}</h1>
-                        <a href="" className={cx("ProductFavorite")}>
-                            <IoIosHeartEmpty />
-                        </a>
+                        <p
+                            className="ProductFavorite"
+                            onClick={handleFavoriteClick}
+                        >
+                            {isFavorite ? (
+                                <IoIosHeart
+                                    style={{
+                                        fontSize: "22px",
+                                        color: "#8728ff",
+                                    }}
+                                />
+                            ) : (
+                                <IoIosHeartEmpty style={{ fontSize: "22px" }} />
+                            )}
+                        </p>
                     </div>
                     <div className={cx("ProductRating")}>
                         <p className={cx("ProductRatingText")}>{data.rating}</p>

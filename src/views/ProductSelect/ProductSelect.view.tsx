@@ -168,6 +168,11 @@ const ProductSelect = (props: ProductSelectProps) => {
         setIsFavorite((prevState) => !prevState);
     };
 
+    /** 뒤로가기 */
+    const handleGoBack = () => {
+        router.back();
+    };
+
     /** 날짜, 인원 불러오기 */
     const [adultCount] = useAtom(adultCountAtom);
     const [childCount] = useAtom(childCountAtom);
@@ -190,7 +195,7 @@ const ProductSelect = (props: ProductSelectProps) => {
             <div className={cx("ProductDetailHeader")}>
                 <Header
                     title={"객실상세"}
-                    leftIcon={<FaAngleLeft />}
+                    leftIcon={<FaAngleLeft onClick={handleGoBack} />}
                     rightIcon={
                         <Link href="/home/detail/cart">
                             <BsCart2 />
