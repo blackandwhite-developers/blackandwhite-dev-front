@@ -1,52 +1,52 @@
 .IdCompleteWrapper {
-  margin: 0 auto;
-  max-width: 1024px;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px;
-
-  .IdCompleteContent {
-    padding-top: 70px;
+    margin: 0 auto;
+    max-width: 1024px;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding: 10px 20px 0;
 
-    .IdComplete {
-      font-size: 25px;
-      color: #8728ff;
+    .IdCompleteContent {
+        padding-top: 70px;
+        display: flex;
+        flex-direction: column;
+
+        .IdComplete {
+            font-size: 25px;
+            color: #8728ff;
+        }
     }
-  }
 
-  .UserIdWrapper {
-    background-color: #f6f6f6;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    margin-top: 30px;
-    border-radius: 5px;
+    .UserIdWrapper {
+        background-color: #f6f6f6;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        margin-top: 30px;
+        border-radius: 5px;
 
-    .UserSignupDate {
-      font-size: 12px;
-      color: #7f7f7f;
+        .UserSignupDate {
+            font-size: 12px;
+            color: #7f7f7f;
+        }
     }
-  }
 }
 
 .IncompleteBtn {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: auto;
-  padding-bottom: 30px;
-  gap: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding-bottom: 30px;
+    gap: 10px;
 
-  & a {
-    flex: 1;
+    & a {
+        flex: 1;
 
-    & button {
-      width: 100%;
+        & button {
+            width: 100%;
+        }
     }
-  }
 }

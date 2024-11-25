@@ -39,6 +39,11 @@
 }
 
 
+.button-container {
+    margin: auto;
+    width: 100%;
+}
+
 
 @include desktop {
     .title-text {
@@ -47,3 +52,4 @@
     }
 
 }
+
