@@ -82,7 +82,7 @@ const Homeview = (props: HomeviewProps) => {
         <div className={cx("grid-container")}>
           {category.map((a) => (
             <Link href={`/home/list/${a.id}`} key={a.id}>
-              <MainCategory categoryName={a.title} categoryIcon={`${a.thumbnail}.svg`} categoryKoreanName={a.title} />
+              <MainCategory categoryName={a.title} categoryIcon={`${a.thumbnail}`} categoryKoreanName={a.title} />
             </Link>
           ))}
         </div>
@@ -90,17 +90,19 @@ const Homeview = (props: HomeviewProps) => {
           <h4>최근 본 숙소</h4>
           <div className={cx("list-container")}>
             {recentView.lodges?.map((item) => (
-              <div className={cx("list-item")} key={item.id}>
-                <div className={cx("list-image")}>
-                  <img src={item.category.thumbnail} alt={item.name} />
+              <Link href={`/home/detail/${item.id}`} key={item.id}>
+                <div className={cx("list-item")}>
+                  <div className={cx("list-image")}>
+                    <img src={item.image} alt={item.name} />
+                  </div>
+                  <div className={cx("list-title")}>
+                    <p>{item.name}</p>
+                  </div>
+                  <div className={cx("list-price")}>
+                    <p>{item.price}</p>
+                  </div>
                 </div>
-                <div className={cx("list-title")}>
-                  <p>{item.name}</p>
-                </div>
-                <div className={cx("list-price")}>
-                  <p>{item.price}</p>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

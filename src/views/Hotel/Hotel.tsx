@@ -27,9 +27,7 @@ export interface HotelViewProps {
 
 const HotelView = (props: HotelViewProps) => {
   const { titleData, data, popData } = props;
-  const [src, setSrc] = useState(
-    "/categoryImage/HotelImg/img_hotel_banner.svg"
-  );
+  const [src, setSrc] = useState("/categoryImage/HotelImg/img_hotel_banner.svg");
 
   /** 뒤로가기 */
   const router = useRouter();
@@ -62,11 +60,7 @@ const HotelView = (props: HotelViewProps) => {
     <div className={cx("container")}>
       <div className={cx("header")}>
         <Link href={"/home"}>
-          <Header
-            title={titleData}
-            leftIcon={<FaAngleLeft />}
-            onClickLeft={handleGoBack}
-          />
+          <Header title={titleData} leftIcon={<FaAngleLeft />} onClickLeft={handleGoBack} />
         </Link>
       </div>
       <div className={cx("banner")}>
@@ -74,7 +68,7 @@ const HotelView = (props: HotelViewProps) => {
       </div>
 
       <div className={cx("selectRegion")}>
-        <h3>지역 선택</h3>
+        {/* <h3>지역 선택</h3> */}
 
         <div className={cx("grid-container")}>
           {data?.map((a, i) => {
