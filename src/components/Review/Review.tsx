@@ -6,12 +6,13 @@ import cn from "classnames/bind";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Rating from "../RatingStarCount/Rating";
 
 const cx = cn.bind(styles);
 
 type ReviewProps = {
     image?: string[];
-    rating: string;
+    rating: number;
     thumbnail?: string | { src: string };
     nickname: string;
     date: string | number;
@@ -52,11 +53,7 @@ const Review = (props: ReviewProps) => {
                         <p className={cx("ReviewNickname")}>{nickname}</p>
                         <div className={cx("ReviewRationg")}>
                             <div className={cx("StarRating")}>
-                                <FaRegStar />
-                                <FaRegStar />
-                                <FaRegStar />
-                                <FaRegStar />
-                                <FaRegStar />
+                                <Rating rating={rating} maxRating={5}/>
                             </div>
                             <p className={cx("RatingAverage")}>{rating}</p>
                         </div>
