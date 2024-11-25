@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
 import { IoIosHeartEmpty } from "react-icons/io";
@@ -20,12 +20,9 @@ import TotalReviewCard from "@/components/TotalReviewCard/TotalReviewCard";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
-import {
-  selectedDateRangeAtom,
-  adultCountAtom,
-  childCountAtom,
-} from "@/atoms/authAtom";
+import { selectedDateRangeAtom, adultCountAtom, childCountAtom } from "@/atoms/authAtom";
 import Rating from "@/components/RatingStarCount/Rating";
+import { recentRoomsAtom } from "@/atoms/recentRooms";
 
 const cx = cn.bind(styles);
 
@@ -35,6 +32,7 @@ export interface DateRange {
 }
 export interface ProductDetailProps {
   data: {
+    id: string;
     category: { id: string; title: string; thumbnail: string };
     name: string;
     rating: number;
@@ -54,28 +52,31 @@ export interface ProductDetailProps {
 
 const ProductDetail = (props: ProductDetailProps) => {
   const { data, productDetailsArray } = props;
+  const [_, setRecentView] = useAtom(recentRoomsAtom);
 
   const [selectedTab, setSelectedTab] = useState("room");
 
   const router = useRouter();
 
-  // const data = {
-  //   roomType: "호텔",
-  //   roomName: "김포 마리나베이 호텔",
-  //   rating: "4.5",
-  //   starRating: "4.5",
-  //   review: "1,135",
-  //   location: "김포공항역 3분",
-  //   reservationDate: "24.11.15 ~ 24.11.16",
-  //   reservationCount: "성인 2명",
-  // };
+  const updateRecentRooms = useCallback(() => {
+    if (!data) return;
+    setRecentView((prev) => {
+      const isExist = prev.lodges.some((lodge) => lodge.id === data.id);
+      if (isExist) {
+        const oldRecent = prev.lodges.filter((lodge) => lodge.id !== data.id);
+        return { lodges: [data, ...oldRecent] };
+      } else {
+        return { lodges: [data, ...prev.lodges] };
+      }
+    });
+  }, [data, setRecentView]);
+
+  useEffect(() => {
+    updateRecentRooms();
+  }, [updateRecentRooms]);
 
   /** 상단 이미지 더미 데이터 */
-  const images = [
-    "/images/HotelImage1.png",
-    "/images/HotelImage1.png",
-    "/images/HotelImage1.png",
-  ];
+  const images = ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"];
 
   /** 후기 더미 데이터 */
   const totalReviewData = {
@@ -87,14 +88,12 @@ const ProductDetail = (props: ProductDetailProps) => {
   /** 후기 더미 데이터 */
   const reviews = [
     {
-
       image: ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"],
       rating: 4.5,
       nickname: "홍길동",
       date: "2024.11.23",
       serviceProduct: "[패키지] 스탠다드 디럭스 이용",
-      reviewContent:
-        "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
+      reviewContent: "처음 방문했는데 너무 좋아요! 객실 상태도 정말 깔끔하고 무엇보다 직원분들이 정말 친절하셨습니다 ㅎㅎ 그리고 호텔인데 이정도면 가격도 정말 괜찮은 것 같아요~!",
     },
     {
       image: ["/images/HotelImage1.png"],
@@ -124,9 +123,7 @@ const ProductDetail = (props: ProductDetailProps) => {
   const handleMemberBtnClick = () => {
     router.push("/searchResult/calander");
   };
-  const [selectedDateRange, setSelectedDateRange] = useAtom(
-    selectedDateRangeAtom
-  );
+  const [selectedDateRange, setSelectedDateRange] = useAtom(selectedDateRangeAtom);
   const [adultCount, setAdultCount] = useAtom(adultCountAtom);
   const [childCount, setChildCount] = useAtom(childCountAtom);
 
@@ -144,14 +141,7 @@ const ProductDetail = (props: ProductDetailProps) => {
         selected: true,
       });
     }
-  }, [
-    adultCount,
-    childCount,
-    selectedDateRange,
-    setAdultCount,
-    setChildCount,
-    setSelectedDateRange,
-  ]);
+  }, [adultCount, childCount, selectedDateRange, setAdultCount, setChildCount, setSelectedDateRange]);
 
   const formattedDateRange = selectedDateRange
     ? {
@@ -212,9 +202,9 @@ const ProductDetail = (props: ProductDetailProps) => {
           </div>
           <div className={cx("ProductRating")}>
             <p className={cx("ProductRatingText")}>{data.rating}</p>
-            <p className={cx("ProductStarRating")}>
+            <div className={cx("ProductStarRating")}>
               <Rating rating={data.rating} maxRating={5} />
-            </p>
+            </div>
             <p className={cx("ProductReviewCount")}>{data.count}</p>
           </div>
           <div className={cx("ProductLocation")}>
@@ -249,11 +239,7 @@ const ProductDetail = (props: ProductDetailProps) => {
           <div className={cx("reservationSelectWrapper")}>
             {selectedTab === "review" && (
               <div>
-                <TotalReviewCard
-                  ratingAverage={totalReviewData.ratingAverage}
-                  totalReview={totalReviewData.totalReview}
-                  reviewCounting={totalReviewData.reviewCounting}
-                />
+                <TotalReviewCard ratingAverage={totalReviewData.ratingAverage} totalReview={totalReviewData.totalReview} reviewCounting={totalReviewData.reviewCounting} />
                 {reviews.map((review, index) => (
                   <Review
                     key={index}
@@ -279,8 +265,7 @@ const ProductDetail = (props: ProductDetailProps) => {
                       label={
                         formattedDateRange ? (
                           <>
-                            <span>{formattedDateRange.startDate}</span> ~
-                            <span>{formattedDateRange.endDate}</span>
+                            <span>{formattedDateRange.startDate}</span> ~<span>{formattedDateRange.endDate}</span>
                           </>
                         ) : (
                           "날짜를 선택해주세요"

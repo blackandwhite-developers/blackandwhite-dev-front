@@ -41,6 +41,8 @@ export class CategoryService {
   async getCategory(req: getCategoryRequest): Promise<getCategoryResponse> {
     const { path } = req;
     const { data } = await this._ajax.get(pathToUrl(CATEGORY_ROUTES.GET_CATEGORY, path ?? {}));
-    return data;
+    return {
+      category: data,
+    };
   }
 }

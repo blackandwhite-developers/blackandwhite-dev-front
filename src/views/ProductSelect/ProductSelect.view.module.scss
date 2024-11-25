@@ -1,10 +1,13 @@
 @import "@/app/_mixins.scss";
 
 .ProductDetailWrapper {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     max-width: 1024px;
+    width: 100%;
     height: 100%;
-    padding-top: 45px;
+    // padding-top: 45px;
 }
 
 .ProductDetailHeader {
@@ -21,7 +24,6 @@
 
 .ProductImage {
     width: 100%;
-
 }
 
 .ProductMainImage {
@@ -145,7 +147,7 @@
             }
 
             &::after {
-                transition: .3s ease all;
+                transition: 0.3s ease all;
                 content: "";
                 position: absolute;
                 left: 0;
@@ -162,7 +164,7 @@
     }
 
     .ProductCategoryBadge:before {
-        transition: .3s ease all;
+        transition: 0.3s ease all;
         position: absolute;
         bottom: -3;
         right: 15px;
@@ -199,7 +201,7 @@
         justify-content: left;
     }
 
-    &> :first-child {
+    & > :first-child {
         width: 70%;
     }
 }

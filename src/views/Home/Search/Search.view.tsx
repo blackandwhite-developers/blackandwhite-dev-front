@@ -23,13 +23,14 @@ export interface SearchViewProps {
     content: string;
     arrow: JSX.Element;
   }>;
+  onSearch: (searchTerm: string) => void;
 }
 
 const RECENT_SEARCHES_KEY = "recentSearches";
 const MAX_RECENT_SEARCHES = 10;
 
 const SearchView = (props: SearchViewProps) => {
-  const { aboutData, recommendData, popularcontent } = props;
+  const { aboutData, recommendData, popularcontent, onSearch } = props;
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
   useEffect(() => {
@@ -49,8 +50,10 @@ const SearchView = (props: SearchViewProps) => {
   const handleSearch = (searchTerm: string) => {
     if (searchTerm.trim()) {
       addSearchTerm(searchTerm.trim());
+      router.push(`/searchResult?query=${encodeURIComponent(searchTerm.trim())}`);
     }
   };
+  
 
   const deleteAllSearches = () => {
     setRecentSearches([]);
@@ -67,7 +70,7 @@ const SearchView = (props: SearchViewProps) => {
       <Header title={"검색"} leftIcon={<FaAngleLeft onClick={gohome} />} />
 
       <div className={cx("search-input")}>
-        <SearchBar placeholder="어떤 숙소를 찾으시나요?" searchFunc={handleSearch} />
+        <SearchBar placeholder="어떤 숙소를 찾으시나요?" searchFunc={onSearch} />
 
         <div className={cx("about")}>
           <DateBtn label={aboutData.date} />
@@ -97,7 +100,7 @@ const SearchView = (props: SearchViewProps) => {
             <div className={cx("recommend-container")}>
               {recommendData.slice(0, 5).map((term, index) => (
                 <div className={cx("text")}>
-                  <TextBtn key={index} label={term} />
+                  <TextBtn key={index} label={term} onClick={() => handleSearch(term)}/>
                 </div>
               ))}
             </div>
@@ -106,7 +109,7 @@ const SearchView = (props: SearchViewProps) => {
           <div className={cx("popular-content")}>
             <p>인기 검색어</p>
             {popularcontent.map((item, index) => (
-              <PopularContent key={item.rank} rank={item.rank} content={item.content} arrow={item.arrow} />
+              <PopularContent key={item.rank} rank={item.rank} content={item.content} arrow={item.arrow} onClick={() => handleSearch(item.content)}/>
             ))}
           </div>
         </div>
