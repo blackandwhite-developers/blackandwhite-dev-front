@@ -16,16 +16,6 @@ const fetchHotelData = async (categoryId: string) => {
   return res;
 };
 
-interface Hotel {
-  _id: string;
-  image: string;
-  name: string;
-  rating: number;
-  count: string;
-  distance: string;
-  price: number;
-}
-
 type CategoryPageProps = {
   params: Promise<{ categoryId: string }>;
 };

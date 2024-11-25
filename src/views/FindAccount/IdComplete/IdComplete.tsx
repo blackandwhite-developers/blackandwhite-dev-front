@@ -9,17 +9,15 @@ import { FindPasswordBtn } from "@/components/Button/FindPasswordBtn";
 import { LoginBtn } from "@/components/Button/LoginBtn";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { findIdAtom } from "@/atoms/findIdAtom";
+import { useAtom } from "jotai";
 
 const cx = cn.bind(styles);
 
-export interface InCompleteProps {
-  userId: string | number;
-  signupDate: string | number;
-}
-
-const FIndId = (props: InCompleteProps) => {
-  const { userId, signupDate } = props;
-
+const FIndId = () => {
+  const [findId] = useAtom(findIdAtom);
+  const userId = findId.email;
+  const signupDate = findId.createdAt;
   /** 뒤로가기 */
   const router = useRouter();
   const handleGoBack = () => {
@@ -35,7 +33,7 @@ const FIndId = (props: InCompleteProps) => {
       </div>
       <div className={cx("UserIdWrapper")}>
         <p className={cx("UserId")}>{userId}</p>
-        <p className={cx("UserSignupDate")}>{signupDate}</p>
+        <p className={cx("UserSignupDate")}>{signupDate ? new Date(signupDate).toLocaleDateString() : "Invalid date"}</p>
       </div>
       <div className={cx("IncompleteBtn")}>
         <Link href="/findaccount/findpw">

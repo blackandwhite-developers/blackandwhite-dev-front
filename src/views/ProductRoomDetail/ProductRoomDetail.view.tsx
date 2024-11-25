@@ -125,6 +125,7 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
           </div>
         </div>
 
+
         <div className={cx("ProductCategoryWrapper")}>
           <div className={cx("ProductCategoryLine")}></div>
 

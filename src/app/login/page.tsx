@@ -18,8 +18,9 @@ const LoginPage = () => {
       const response = await authService.login({ body: { email, password } });
       const { accessToken, refreshToken, user } = response;
       setAuth({ isAuth: true, user });
-      document.cookie = `accessToken=${accessToken}`;
-      document.cookie = `refreshToken=${refreshToken}`;
+      document.cookie = `accessToken=${accessToken}; path=/; samesite=None; secure`;
+      document.cookie = `refreshToken=${refreshToken}; path=/; samesite=None; secure`;
+
       router.push("/home");
     } catch (error) {
       console.error(error);

@@ -1,61 +1,61 @@
 .SelectInterestWrapper {
-  margin: 0 auto;
-  max-width: 360px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px;
-
-  .SelectInterestContent {
-    padding-top: 70px;
+    margin: 0 auto;
+    max-width: 360px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    padding: 10px 20px 0;
 
-    .SelectInterest {
-      font-size: 25px;
-      color: #8728ff;
-      font-weight: 500;
+    .SelectInterestContent {
+        padding-top: 70px;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        .SelectInterest {
+            font-size: 25px;
+            color: #8728ff;
+            font-weight: 500;
+        }
+
+        .SelectInterestInform {
+            font-size: 16px;
+            font-weight: 400;
+        }
     }
 
-    .SelectInterestInform {
-      font-size: 16px;
-      font-weight: 400;
-    }
-  }
+    .SelectInterestCategoryWrapper {
+        padding: 30px 0 60px;
+        display: grid;
+        grid-template-columns: 105px 105px 105px;
+        gap: 5px;
 
-  .SelectInterestCategoryWrapper {
-    padding: 30px 0 60px;
-    display: grid;
-    grid-template-columns: 105px 105px 105px;
-    gap: 5px;
+        .SelectInterestCategory {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #8728ff;
+            font-size: 14px;
+            font-weight: 700;
+            width: 105px;
+            height: 105px;
+            border: 1px solid #e9d8ff;
+            border-radius: 10px;
+            transition: background-color 0.2s ease;
+        }
 
-    .SelectInterestCategory {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #8728ff;
-      font-size: 14px;
-      font-weight: 700;
-      width: 105px;
-      height: 105px;
-      border: 1px solid #e9d8ff;
-      border-radius: 10px;
-      transition: background-color 0.2s ease;
+        .SelectInterestCategory.selected {
+            background-color: #e9d8ff;
+            border: 1px solid #8728ff;
+        }
     }
-
-    .SelectInterestCategory.selected {
-      background-color: #e9d8ff;
-      border: 1px solid #8728ff;
-    }
-  }
 }
 .SelectInterestNextBtn {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: auto;
-  padding-bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding-bottom: 30px;
 }
