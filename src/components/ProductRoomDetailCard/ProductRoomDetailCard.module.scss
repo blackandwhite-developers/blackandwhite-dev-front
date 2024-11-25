@@ -1,3 +1,5 @@
+@import "@/app/_mixins.scss";
+
 .productDetailBox {
   background-color: #fff;
   border-radius: 10px;
@@ -5,7 +7,7 @@
   transition: 0.3s ease all;
   // cursor: pointer;
   position: relative;
-  max-width: 320px;
+  width: 100%;
   margin-bottom: 30px;
   box-sizing: border-box;
   padding: 14px 10px 12px;
@@ -90,8 +92,22 @@
     }
   }
 }
+
 .reservationBtn {
   display: flex;
   justify-content: flex-end;
   padding-top: 10px;
+}
+
+@include mobile {}
+
+@include tablet {}
+
+@include desktop {
+
+  .productBoxInfo h3 {
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
 }
