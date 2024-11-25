@@ -40,34 +40,35 @@ export default async function ProductDetailPage(props: ProductDetailPageProps) {
   console.log(lodgeId);
   const lodgeData = await fetchLodgeData(lodgeId);
 
-  // const data = {
-  //   category: {
-  //     id: lodgeData.category.id,
-  //     title: lodgeData.category.title,
-  //     thumbnail: lodgeData.category.thumbnail,
-  //   },
-  //   name: lodgeData.name,
-  //   rating: lodgeData.rating,
-  //   count: lodgeData.count,
-  //   distance: lodgeData.description,
-  // };
+  const data = {
+    id: lodgeData.id,
+    category: {
+      id: lodgeData.category.id,
+      title: lodgeData.category.title,
+      thumbnail: lodgeData.category.thumbnail,
+    },
+    name: lodgeData.name,
+    rating: lodgeData.rating,
+    count: lodgeData.count,
+    distance: lodgeData.description,
+  };
 
-  // const productDetailsArray = lodgeData.room.map((r) => {
-  //   return {
-  //   image: string;
-  //   event: string;
-  //   name: string;
-  //   capacity: { standard: number; maximum: number };
-  //   time: { checkIn: string; checkOut: string };
-  //   price: { price: number };
-  //   stock: number;
-  //   }
-  // });
+  const productDetailsArray = lodgeData.room.map((r) => {
+    return {
+      image: r.roomType.image,
+      event: r.roomType.event,
+      name: r.roomType.name,
+      capacity: {
+        standard: r.roomType.capacity.standard,
+        maximum: r.roomType.capacity.maximum,
+      },
+      time: { checkIn: r.roomType.time.checkIn, checkOut: r.roomType.time.checkOut },
+      price: { price: r.roomType.price.price },
+      stock: r.stock,
+    };
+  });
 
   console.log(lodgeData);
-  return null;
 
-  // return <>
-  // {data ? <ProductDetailView data={data} productDetailsArray={productDetailsArray} /> : <div>데이터를 불러올 수 없습니다.</div>}
-  // </>;
+  return <>{data ? <ProductDetailView data={data} productDetailsArray={productDetailsArray} /> : <div>데이터를 불러올 수 없습니다.</div>}</>;
 }

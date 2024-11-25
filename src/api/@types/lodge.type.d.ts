@@ -38,6 +38,6 @@ interface ILodge {
 }
 
 interface IRoomTypeAndStock {
-  roomType: Array<IRoom>;
+  roomType: IRoom;
   stock: number;
 }

@@ -21,14 +21,30 @@ const getDefaultStorage = (): SyncStorage<RecentRoomsState> | undefined => {
 };
 
 export class RecentRoomsState {
-  rooms: Array<ILodge>;
-  constructor(data: { rooms: Array<ILodge> }) {
-    this.rooms = data.rooms;
+  lodges: Array<{
+    id: string;
+    category: { id: string; title: string; thumbnail: string };
+    name: string;
+    rating: number;
+    count: number;
+    distance: string;
+  }>;
+  constructor(data: {
+    lodges: Array<{
+      id: string;
+      category: { id: string; title: string; thumbnail: string };
+      name: string;
+      rating: number;
+      count: number;
+      distance: string;
+    }>;
+  }) {
+    this.lodges = data.lodges;
   }
 }
 
 const initialState: RecentRoomsState = {
-  rooms: [],
+  lodges: [],
 };
 
 export const recentRoomsAtom = atomWithStorage<RecentRoomsState>("recentRooms", initialState, getDefaultStorage());
