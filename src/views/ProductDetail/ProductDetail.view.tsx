@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import cn from "classnames/bind";
 import styles from "./ProductDetail.view.module.scss";
 import { IoIosHeartEmpty } from "react-icons/io";
@@ -52,27 +52,28 @@ export interface ProductDetailProps {
 
 const ProductDetail = (props: ProductDetailProps) => {
   const { data, productDetailsArray } = props;
-  const [recentView, setRecentView] = useAtom(recentRoomsAtom);
+  const [_, setRecentView] = useAtom(recentRoomsAtom);
 
   const [selectedTab, setSelectedTab] = useState("room");
 
   const router = useRouter();
 
+  const updateRecentRooms = useCallback(() => {
+    if (!data) return;
+    setRecentView((prev) => {
+      const isExist = prev.lodges.some((lodge) => lodge.id === data.id);
+      if (isExist) {
+        const oldRecent = prev.lodges.filter((lodge) => lodge.id !== data.id);
+        return { lodges: [data, ...oldRecent] };
+      } else {
+        return { lodges: [data, ...prev.lodges] };
+      }
+    });
+  }, [data, setRecentView]);
+
   useEffect(() => {
-    if (recentView.lodges.some((lodge) => lodge.id === data.id)) {
-      const oldRecent = recentView.lodges.filter((lodge) => lodge.id !== data.id);
-      const newRecent = [data, ...oldRecent];
-
-      console.log(recentView.lodges);
-
-      setRecentView({ lodges: newRecent });
-    } else {
-      const newRecent = [data, ...recentView.lodges];
-
-      console.log(recentView.lodges);
-      setRecentView({ lodges: newRecent });
-    }
-  }, [data, recentView.lodges, setRecentView]);
+    updateRecentRooms();
+  }, [updateRecentRooms]);
 
   /** 상단 이미지 더미 데이터 */
   const images = ["/images/HotelImage1.png", "/images/HotelImage1.png", "/images/HotelImage1.png"];
