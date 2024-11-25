@@ -10,7 +10,7 @@ import styles from "@/views/Payment/Payment.view.module.scss";
 
 const cx = cn.bind(styles);
 
-interface LocalReservationContentProps  {
+interface LocalReservationContentProps {
     hotelName: string;
     startDate: string;
     endDate: string;
@@ -35,6 +35,12 @@ interface ReservationWithRoomDetails {
             checkOut: string;
         },
     };
+    lodgeDetails: {
+        name: string;
+        category: {
+            title: string;
+        };
+    } | null;
 }
 
 const fetchReservations = async (accessToken: string) => {
@@ -66,10 +72,10 @@ const fetchReservations = async (accessToken: string) => {
 
 const fetchRoomDetails = async (roomId: string) => {
     try {
-        const response = await fetch(`http://localhost:4000/api/room/${roomId}`, {
+        const response = await fetch(`http://localhost:4000/api/rooms/${roomId}`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             },
         });
 
@@ -82,6 +88,21 @@ const fetchRoomDetails = async (roomId: string) => {
         console.error("방 정보를 불러오는 중 오류 발생", error);
         return null;
     }
+};
+
+const fetchLodgeDetails = async (lodgeId: string) => {
+    const response = await fetch(`http://localhost:4000/api/lodges/${lodgeId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Lodge fetch error! status: ${response.status}`);
+    }
+
+    return await response.json();
 };
 
 export default function MypageReservationPage() {
@@ -113,22 +134,27 @@ export default function MypageReservationPage() {
 
             const reservationData = await fetchReservations(accessToken);
             console.log("Reservation Data:", reservationData);
-            if (!reservationData.reservations || reservationData.reservations.length === 0) {
+            if (!reservationData || reservationData.length === 0) {
                 throw new Error("예약 데이터가 없습니다.2");
             }
 
-            const reservationsWithRoomDetails = await Promise.all(
-                reservationData.reservations.map(async (reservation: LocalReservationContentProps) => {
+            const reservationsWithRoomAndLodgeDetails = await Promise.all(
+                reservationData.map(async (reservation: LocalReservationContentProps) => {
                     const roomDetails = await fetchRoomDetails(reservation.roomId);
-                    console.log("Fetched Room Details:", roomDetails);
+
+                    const lodgeDetails = roomDetails?.lodgeId
+                        ? await fetchLodgeDetails(roomDetails.lodgeId)
+                        : null;
+
                     return {
                         ...reservation,
-                        roomDetails, 
+                        roomDetails,
+                        lodgeDetails,
                     };
                 })
             );
 
-            setReservations(reservationsWithRoomDetails);
+            setReservations(reservationsWithRoomAndLodgeDetails);
         } catch (error: unknown) {
             console.error("예약 데이터 및 방 정보를 불러오는 중 오류 발생", error);
             setError(
@@ -143,31 +169,31 @@ export default function MypageReservationPage() {
         fetchReservationsAndRooms();
     }, []);
 
-    const renderContent = () => {
-        if (loading) return <Loading />;
-        if (error) return <div>{`에러: ${error}`}</div>;
-        if (!reservations || reservations.length === 0) return <div>예약 내역이 없습니다.</div>;
-    };
+const renderContent = () => {
+    if (loading) return <Loading />;
+    if (error) return <div>{`에러: ${error}`}</div>;
+    if (!reservations || reservations.length === 0) return <div>예약 내역이 없습니다.</div>;
+};
 
-    const handleGoBack = () => {
-        router.back();
-    };
+const handleGoBack = () => {
+    router.back();
+};
 
-    return (
-        <>
-            <div className={cx("page-layout")}>
-                <div className={cx("page")}>
-                    <Header
-                        title="예약내역"
-                        leftIcon={<FaAngleLeft onClick={handleGoBack} />}
-                    />
-                    <MypageReservation reservations={reservations} />
-                    {renderContent()}
-                </div>
+return (
+    <>
+        <div className={cx("page-layout")}>
+            <div className={cx("page")}>
+                <Header
+                    title="예약내역"
+                    leftIcon={<FaAngleLeft onClick={handleGoBack} />}
+                />
+                <MypageReservation reservations={reservations} />
+                {renderContent()}
             </div>
-            <div className={cx("bottom-box")}>
-                <p>예약/취소내역은 최대 2년까지 조회할 수 있습니다.</p>
-            </div>
-        </>
-    );
+        </div>
+        <div className={cx("bottom-box")}>
+            <p>예약/취소내역은 최대 2년까지 조회할 수 있습니다.</p>
+        </div>
+    </>
+);
 }
