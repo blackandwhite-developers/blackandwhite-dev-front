@@ -21,7 +21,7 @@ export default async function ProductDetailPage(props: ProductDetailPageProps) {
   const lodgeData = await fetchLodgeData(lodgeId);
 
   const data = {
-    id: lodgeData.id,
+    id: lodgeData._id,
     category: {
       id: lodgeData.category.id,
       title: lodgeData.category.title,
