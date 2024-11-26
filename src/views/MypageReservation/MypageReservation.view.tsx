@@ -111,7 +111,7 @@ const MypageReservationCard = (props: LocalReservationContentProps & Reservation
             <div className={cx("pay-container")}>
                 <p className={cx("pay-text")}>결제금액</p>
                 <p className={cx("pay-amount")}>
-                    {(roomDetails.price.price - roomDetails.price.discount).toLocaleString()}원
+                    {(roomDetails.price.price * 3).toLocaleString()}원
                 </p>
             </div>
             <div className={cx("border")}></div>
