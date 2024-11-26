@@ -25,18 +25,24 @@ const cx = cn.bind(styles);
 
 export interface ProductRoomDetailProps {
   data: {
-    _id: string;
-    event: string;
-    name: string;
-    time: {
-      checkIn: string;
-      checkOut: string;
+    lodgeData: {
+      name: string;
     };
-    price: { price: number };
-    stock: number;
-    capacity: { standard: number; maximum: number };
-    startDate: string;
-    endDate: string;
+    roomData: {
+      _id: string;
+      event: string;
+      time: {
+        checkIn: string;
+        checkOut: string;
+      };
+      price: { 
+        price: number;
+      };
+      stock: number;
+      capacity: { standard: number; maximum: number };
+      startDate: string;
+      endDate: string;
+    };
   };
 }
 
@@ -111,7 +117,7 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
       <div className={cx("ProductInform")}>
         <div className={cx("ProductWrapper")}>
           <div className={cx("ProductTitleWrapper")}>
-            <h1 className={cx("ProductTitle")}>{data.name}</h1>
+            <h1 className={cx("ProductTitle")}>{data.lodgeData.name}</h1>
 
             <p>주차불가 / 마운틴뷰 or 오션뷰 or 시티뷰 랜덤배정</p>
           </div>
@@ -119,7 +125,7 @@ const ProductRoomDetail = (props: ProductRoomDetailProps) => {
             <p className={cx("RoomInformation")}>객실 정보</p>
             <p className={cx("PersonCountInformation")}>
               <span>
-                기준 {data.capacity.standard}인 (최대 {data.capacity.maximum}인)
+                기준 {data.roomData.capacity.standard}인 (최대 {data.roomData.capacity.maximum}인)
               </span>
             </p>
           </div>

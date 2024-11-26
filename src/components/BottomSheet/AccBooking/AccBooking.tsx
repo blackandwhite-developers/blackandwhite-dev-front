@@ -13,17 +13,24 @@ const cx = cn.bind(styles);
 
 type AccBookingProps = {
   data: {
-    event: string;
-    name: string;
-    time: {
-      checkIn: string;
-      checkOut: string;
+    lodgeData: {
+      name: string;
     };
-    price: { price: number };
-    stock: number;
-    capacity: { standard: number; maximum: number };
-    startDate: string;
-    endDate: string;
+    roomData: {
+      _id: string;
+      event: string;
+      time: {
+        checkIn: string;
+        checkOut: string;
+      };
+      price: { 
+        price: number;
+      };
+      stock: number;
+      capacity: { standard: number; maximum: number };
+      startDate: string;
+      endDate: string;
+    };
   };
   onClose: () => void;
 };
@@ -34,7 +41,10 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
 
   /** 장바구니 선택 시 팝업 3초 */
   const handleAddToCart = () => {
-    setBookingDataAtom(data);
+    setBookingDataAtom((prev) => {
+      const isDuplicate = prev.some((item) => item.roomData._id === data.roomData._id);
+      return isDuplicate ? prev : [...prev, data];
+    });
     setIsCartPopupVisible(true);
     setTimeout(() => {
       setIsCartPopupVisible(false);
@@ -94,7 +104,7 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
           />
         </p>
         <div className={cx("AccBookingDetail")}>
-          <h2 className={cx("RoomTitle")}>{data.name}</h2>
+          <h2 className={cx("RoomTitle")}>{data.lodgeData.name}</h2>
           <div className={cx("ReservationDetail")}>
             <ul>
               <li className={cx("CheckIn")}>체크인</li>
@@ -103,7 +113,7 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
                   ? formatDate(selectedDateRange.from)
                   : "미선택"}
               </li>
-              <li>{data.time.checkIn}</li>
+              <li>{data.roomData.time.checkIn}</li>
             </ul>
             <p className={cx("StayNight")}>{stayNight}박</p>
             <ul>
@@ -113,7 +123,7 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
                   ? formatDate(selectedDateRange.to)
                   : "미선택"}
               </li>
-              <li>{data.time.checkOut}</li>
+              <li>{data.roomData.time.checkOut}</li>
             </ul>
           </div>
         </div>
@@ -133,7 +143,7 @@ const AccBooking = ({ data, onClose }: AccBookingProps) => {
           <span>({stayNight}박)</span>
         </div>
         <p>
-          {data.price ? `${data.price.price * stayNight}원` : "불러오는 중..."}
+          {data.roomData.price ? `${data.roomData.price.price * stayNight}원` : "불러오는 중..."}
         </p>
       </div>
       <div className={cx("ButtonWrapper")}>

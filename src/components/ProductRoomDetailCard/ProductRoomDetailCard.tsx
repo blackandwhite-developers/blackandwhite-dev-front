@@ -9,18 +9,24 @@ const cx = cn.bind(styles);
 
 type ProductRoomDetailCardProps = {
   data: {
-    _id: string;
-    event: string;
-    name: string;
-    time: {
-      checkIn: string;
-      checkOut: string;
+    lodgeData: {
+      name: string;
     };
-    price: { price: number };
-    stock: number;
-    capacity: { standard: number; maximum: number };
-    startDate: string;
-    endDate: string;
+    roomData: {
+      _id: string;
+      event: string;
+      time: {
+        checkIn: string;
+        checkOut: string;
+      };
+      price: { 
+        price: number;
+      };
+      stock: number;
+      capacity: { standard: number; maximum: number };
+      startDate: string;
+      endDate: string;
+    };
   };
 };
 
@@ -36,23 +42,23 @@ export default function ProductRoomDetailCard(props: ProductRoomDetailCardProps)
     <div className={cx("productDetailBox")}>
       <div className={cx("productDetailBoxInn")}>
         <div className={cx("productBoxInfo")}>
-          {data.event && <p className={cx("productBadge")}>{data.event}</p>}
+          {data.roomData.event && <p className={cx("productBadge")}>{data.roomData.event}</p>}
           <h3>숙박</h3>
           <div className={cx("infomation")}>
             <div className={cx("checkInInfomation")}>
               <p>
                 <span>체크인</span>
-                <span>{data.time.checkIn}</span>
+                <span>{data.roomData.time.checkIn}</span>
               </p>
               <p>
                 <span>체크아웃</span>
-                <span>{data.time.checkOut}</span>
+                <span>{data.roomData.time.checkOut}</span>
               </p>
             </div>
           </div>
           <div className={cx("priceArea")}>
-            <span>{data.stock >= 1 ? `${data.stock}개 남음` : `사용 불가`}</span>
-            <span className={cx("roomPrice")}>{data.price.price.toLocaleString()}원</span>
+            <span>{data.roomData.stock >= 1 ? `${data.roomData.stock}개 남음` : `사용 불가`}</span>
+            <span className={cx("roomPrice")}>{data.roomData.price.price.toLocaleString()}원</span>
           </div>
         </div>
       </div>
