@@ -27,14 +27,10 @@ export default function ProductCard(props: ProductCardProps) {
           <h4>{title}</h4>
           <div className={cx("ratingBox")}>
             <Rating rating={rating} maxRating={5} />
-            {review ? (
-              <span className={cx("reviews")}>{review}</span>
-            ) : (
-              <span className={cx("reviews")}>0</span>
-            )}
+            {review ? <span className={cx("reviews")}>{review}</span> : <span className={cx("reviews")}>0</span>}
           </div>
           <p className={cx("address")}>{address}</p>
-          <p className={cx("priceArea")}>{price}</p>
+          <p className={cx("priceArea")}>{price.toLocaleString()}원</p>
         </div>
       </div>
     </div>

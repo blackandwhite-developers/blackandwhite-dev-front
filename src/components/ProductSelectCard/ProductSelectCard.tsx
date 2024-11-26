@@ -5,21 +5,20 @@ import { ReservationBtn } from "@/components/Button/ReservationBtn";
 import Link from "next/link";
 const cx = cn.bind(styles);
 
-
 type ProductSelectCardProps = {
   image: string;
   event?: string;
   name: string;
-  standard: number,
-  maximum: number,
+  standard: number;
+  maximum: number;
   checkIn: string;
   checkOut: string;
-  price: {price: number;};
+  price: { price: number };
   stock: number;
 };
 
 export default function ProductSelectCard(props: ProductSelectCardProps) {
-  const { image, event, name, standard, maximum, checkIn, checkOut, price, stock} = props;
+  const { image, event, name, standard, maximum, checkIn, checkOut, price, stock } = props;
 
   return (
     <div className={cx("productDetailBox")}>
@@ -35,7 +34,9 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
             {standard && maximum ? (
               <p className={cx("parlorInfomation")}>
                 <span>객실 정보</span>
-                <span>기준{standard}인 (최대{maximum}인)</span>
+                <span>
+                  기준{standard}인 (최대{maximum}인)
+                </span>
               </p>
             ) : null}
           </div>
@@ -44,16 +45,12 @@ export default function ProductSelectCard(props: ProductSelectCardProps) {
             <div className={cx("priceWrapper")}>
               <div className={cx("lodgeArea")}>
                 <div className={cx("reservationInfo")}>
-                  <p className={cx("priceAreaInfo")}>
-                    숙박
-                  </p>
+                  <p className={cx("priceAreaInfo")}>숙박</p>
                   <p className={cx("priceAreaInfoDetail")}>
                     ({checkIn} ~ {checkOut})
                   </p>
                 </div>
-                <span className={cx("price")}>
-                  {price.price} 원
-                </span>
+                <span className={cx("price")}>{price.price.toLocaleString()} 원</span>
               </div>
             </div>
           </div>

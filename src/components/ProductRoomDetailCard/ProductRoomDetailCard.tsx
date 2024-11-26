@@ -30,13 +30,9 @@ type ProductRoomDetailCardProps = {
   };
 };
 
-export default function ProductRoomDetailCard(
-  props: ProductRoomDetailCardProps
-) {
+export default function ProductRoomDetailCard(props: ProductRoomDetailCardProps) {
   const { data } = props;
-  const [selectedBookingType, setSelectedBookingType] = useState<"숙박" | null>(
-    null
-  );
+  const [selectedBookingType, setSelectedBookingType] = useState<"숙박" | null>(null);
 
   const handleClose = () => {
     setSelectedBookingType(null);
@@ -61,18 +57,13 @@ export default function ProductRoomDetailCard(
             </div>
           </div>
           <div className={cx("priceArea")}>
-            <span>
-              {data.roomData.stock >= 1 ? `${data.roomData.stock}개 남음` : `사용 불가`}
-            </span>
-            <span className={cx("roomPrice")}>{data.roomData.price.price}원</span>
+            <span>{data.roomData.stock >= 1 ? `${data.roomData.stock}개 남음` : `사용 불가`}</span>
+            <span className={cx("roomPrice")}>{data.roomData.price.price.toLocaleString()}원</span>
           </div>
         </div>
       </div>
       <div className={cx("reservationBtn")}>
-        <StayReservationBtn
-          label={"숙박 예약"}
-          onClick={() => setSelectedBookingType("숙박")}
-        />
+        <StayReservationBtn label={"숙박 예약"} onClick={() => setSelectedBookingType("숙박")} />
       </div>
       {selectedBookingType === "숙박" && (
         <AccBooking
