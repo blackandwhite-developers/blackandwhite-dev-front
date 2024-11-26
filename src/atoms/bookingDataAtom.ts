@@ -21,17 +21,24 @@ const getDefaultStorage = (): SyncStorage<BookingData[]> | undefined => {
 };
 
 type BookingData = {
-  event: string;
-  name: string;
-  time: {
-    checkIn: string;
-    checkOut: string;
+  lodgeData: {
+    name: string;
   };
-  price: { price: number };
-  stock: number;
-  capacity: { standard: number; maximum: number };
-  startDate: string;
-  endDate: string;
+  roomData: {
+    _id: string;
+    event: string;
+    time: {
+      checkIn: string;
+      checkOut: string;
+    };
+    price: { 
+      price: number;
+    };
+    stock: number;
+    capacity: { standard: number; maximum: number };
+    startDate: string;
+    endDate: string;
+  };
 };
 
 /** 예약 내역 */
